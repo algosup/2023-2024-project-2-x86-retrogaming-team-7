@@ -1,3 +1,5 @@
+org 100h
+
 section .data
     score dw 0        ; Define score as a word (16 bits)
     lives db 3        ; Define lives as a byte (8 bits)
@@ -7,7 +9,7 @@ menu_message db 'Main Menu', 0x0D, 0x0A
             db '1. Start', 0x0D, 0x0A
             db '2. Select Mode', 0x0D, 0x0A
             db '3. Options', 0x0D, 0x0A
-            db 'Enter your choice: $'
+            db 'Enter your choice:$'
 
 section .bss
     ; Reserve space for dynamic parts of the maze or other variables
