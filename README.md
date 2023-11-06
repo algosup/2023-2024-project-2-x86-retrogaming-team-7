@@ -1,4 +1,5 @@
 # Project 2 - RetroGaming x86 - Team 7 - 2023/2024
+![Static Badge](https://img.shields.io/badge/Assembly%20x86-Grey?logo=windowsterminal&color=3b3832) 
 
 |                                                                                                           | **Name**          |         **Role**         |
 |:---------------------------------------------------------------------------------------------------------:|-------------------|:------------------------:|
