@@ -1,29 +1,32 @@
 
 # Functional Specification Document
 
-## Project Name: [Retro-gamaing]
+## Project Name: [x86x16bits Retro-gaming]
 
 ## Project Overview
 
 
-Our team get a task from Algosup, the objective is to create the game called "Pac man" with assembly language [^1].
+Our team get a task from Algosup, the project is to create the game called "Pac man" with assembly language [^1].
+
+This project is about remaking a video games called "Pac-Man" in assembly language
 
 ---
- So what is Pac man ?
+ So what is Pac-Man ?
 ![PAC-MAN](https://ocremix.org/files/images/games/arc/2/pac-man-arc-title-80834.jpg)
 
->Pac-Man is a maze-based and a singleplayer video game set in a brightly colored. The player takes control of a round, yellow character, known as Pac Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts blue and vulnerable.
+>Pac-Man is a maze-based and a singleplayer video game set in a brightly colored. The player takes control of a round, yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts blue and vulnerable.
 
 ### Project Purpose
 
 [Explain why the project is being undertaken and its overall objectives.]
 
+Improve the new students' skills of ALgosup with a low level language...
 
 ### Project Goals
 
 [List the specific goals and outcomes the project aims to achieve.]
 
-The students of Algosup are divided in eight team with a special role, each team have the same exercise to create the game Pac man in 16 bits assembly language with a provided environment called "NS-DOS" and its emulator "DOS BOX".
+The students of Algosup are divided in eight team with a special role, each team have the same exercise to create the game Pac-Man in 16 bits assembly language with a provided environment called "MS-DOS" and its emulator "DOSBox".
 
 ### Project Scope
 
@@ -32,16 +35,16 @@ The students of Algosup are divided in eight team with a special role, each team
 **Goals :**
 
 - To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
-- To change all the copyright elements of the game like the yellow character sprite and his name : "Pac-man",  the ghost sprite and the musics of the game 
+- To change all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man",  the ghost sprite and the musics of the game 
 - To add some features as the difficulty and some sprites.
-- To et performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
+- To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
 - 
 
 **Non goals :**
 - To create the game that have another objective of the main game.
 - To create the game in another language than assembly
-- To develope the game up of his maximum capacity which is 16 bits
-- 
+- To develop the game up of his maximum capacity which is 16 bits
+- To deteriorate the public image of Algosup
 
 ## Stakeholders
 
