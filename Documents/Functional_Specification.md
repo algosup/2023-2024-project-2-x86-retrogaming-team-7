@@ -6,7 +6,7 @@
 ## Project Overview
 
 
-ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man" in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
+ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
 
 ---
  So what is Pac-Man ? 
