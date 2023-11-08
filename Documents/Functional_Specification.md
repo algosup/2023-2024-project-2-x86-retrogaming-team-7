@@ -124,7 +124,7 @@ Identify any external dependencies that the project relies on, such as third-par
 - Not deliver the final product on time.
 - Make the game not working/launching on the customer's hardware.
 - Do not respect the legislations regarding the copyrights. 
-
+    blabla
 
 #
 ## Change Control
