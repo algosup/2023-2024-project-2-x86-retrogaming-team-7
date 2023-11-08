@@ -56,31 +56,25 @@ The students of Algosup are divided in eight team with a special role, each team
 
 ## Functional Requirements
 
-This section should detail the functional requirements of the software system. Each requirement should be clear, specific, and measurable.
-
-### 1. [Requirement Title]
+### 1. x86-16bits environment
 
 #### Description:
 
-[Provide a brief description of the requirement.]
+For this project we need to use the software DOSBox which is a simulator of a MS-DOS envrinonment.
 
 #### Acceptance Criteria:
 
-- [List specific criteria that must be met for the requirement to be considered complete.]
-- [E.g., "The system must allow users to log in with a valid username and password."]
-- ...
+- Each system should be available to use this software for complete this project.
 
-### 2. [Requirement Title]
+### 2. Pac-Man like
 
 #### Description:
 
-[Provide a brief description of the requirement.]
+We need to create a game which contains the same mecanics of gameplay than the game Pac-Man, using new models and song due to copyright. 
 
 #### Acceptance Criteria:
 
-- [List specific criteria that must be met for the requirement to be considered complete.]
-- [E.g., "The system must provide a search functionality that allows users to filter results by date, category, and keyword."]
-- ...
+- The game must be complete with no issues, crash, bug or glitch during all the user experience.
 
 ### [Continue listing requirements...]
 
