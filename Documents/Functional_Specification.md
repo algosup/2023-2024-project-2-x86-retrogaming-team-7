@@ -123,8 +123,13 @@ Identify any external dependencies that the project relies on, such as third-par
 
 - Not deliver the final product on time.
 - Make the game not working/launching on the customer's hardware.
+<<<<<<< Updated upstream
 - Do not respect the legislations regarding the copyrights. 
     blabla
+=======
+- Do not respect the legislations, regarding the copyrights. 
+
+>>>>>>> Stashed changes
 
 #
 ## Change Control
