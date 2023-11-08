@@ -6,21 +6,20 @@
 ## Project Overview
 
 
-Our team get a task from Algosup, the project is to create the game called "Pac man" with assembly language [^1].
-
-This project is about remaking a video games called "Pac-Man" in assembly language
+ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man" in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
 
 ---
- So what is Pac-Man ?
+ So what is Pac-Man ? 
+
 ![PAC-MAN](https://ocremix.org/files/images/games/arc/2/pac-man-arc-title-80834.jpg)
 
->Pac-Man is a maze-based and a singleplayer video game set in a brightly colored. The player takes control of a round, yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts blue and vulnerable.
+>Pac-Man is a maze-based and a singleplayer video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points.
 
 ### Project Purpose
 
 [Explain why the project is being undertaken and its overall objectives.]
 
-Improve the new students' skills of ALgosup with a low level language...
+Improve the students' skills of ALGOSUP with a low-level language...
 
 ### Project Goals
 
