@@ -45,14 +45,14 @@ The students of Algosup are divided in eight team with a special role, each team
 
 
 ## Stakeholders
-- **Stakeholder 1:** [Algosup, ]
+- **Stakeholder 1:** [Algosup, Contractor]
 - **Stakeholder 2:** [Guillaume DESPAUX, Project Manager]
 - **Stakeholder 3:** [Michel RIFF, Program manager]
 - **Stakeholder 4:** [Lucas AUBARD, Technical Lead]
 - **Stakeholder 5:** [Enzo GUILLOUCHE, Junior Software Engineer]
 - **Stakeholder 5:** [Elone DELILLE, Junior Software Engineer]
 - **Stakeholder 6:** [Ian LAURENT, Quality Assurance]
-- **Stakeholder 8:** [, ]
+- **Stakeholder 7:** [Customer, Player]
 
 ## Functional Requirements
 
