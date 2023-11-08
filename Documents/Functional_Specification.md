@@ -17,13 +17,9 @@ ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Ma
 
 ### Project Purpose
 
-[Explain why the project is being undertaken and its overall objectives.]
-
-Improve the students' skills of ALGOSUP with a low-level language...
+This project provides to students a comprehensive learning experience, encompassing not only technical skills but also soft skills related to teamwork within special roles, project management, and problem-solving. It prepares students for real-world challenges in software development and can serve as a strong foundation for their programming careers.
 
 ### Project Goals
-
-[List the specific goals and outcomes the project aims to achieve.]
 
 The students of Algosup are divided in eight team with a special role, each team have the same exercise to create the game Pac-Man in 16 bits assembly language with a provided environment called "MS-DOS" and its emulator "DOSBox".
 
