@@ -9,3 +9,5 @@
 | <img src="https://ca.slack-edge.com/T064M0GMENL-U063XTSFHDH-gd0f64565afd-512" width="75px" height="75px"> | DELILLE Elone | Junior Software Engineer | <a href="https://www.linkedin.com/in/elonedelille/" target="_blank">LinkedIn</a><br> <a href="https://github.com/HiNett" target="_blank">GitHub</a> |
 | <img src="https://ca.slack-edge.com/T064M0GMENL-U063RBRNQCW-g20f42d2a13d-512" width="75px" height="75px"> | GUILLOUCHE Enzo | Junior Software Engineer | <a href="https://www.linkedin.com/in/enzo-g-b62114293/" target="_blank">LinkedIn</a><br> <a href="https://github.com/EnzoGuillouche" target="_blank">GitHub</a> |
 | <img src="https://ca.slack-edge.com/T064M0GMENL-U063V3GDL69-gcde1403d4cf-512" width="75px" height="75px"> | LAURENT Ian | Quality Assurance | <a href="https://www.linkedin.com/in/ian-h-laurent/" target="_blank">LinkedIn</a><br> <a href="https://github.com/Ianlaur" target="_blank">GitHub</a>|
+
+<a href="https://trello.com/b/LDonuwXp/x86-rétrogaming" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c1/Logo_Trello.svg/langfr-300px-Logo_Trello.svg.png"></a>
