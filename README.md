@@ -1,1 +1,3 @@
-# 2023-2024-project-2-x86-retrogaming-team-7
+# Developer Branch
+
+Branch used for developers to code the software.
