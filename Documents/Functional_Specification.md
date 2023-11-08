@@ -25,22 +25,26 @@ The students of Algosup are divided in eight team with a special role, each team
 
 ### Project Scope
 
-[Define the boundaries and limitations of the project. What is included and what is excluded from the project scope?]
 
 **Goals :**
 
+- Recreate a game that makes people feel the joy of playing. 
 - To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
-- To change all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man",  the ghost sprite and the musics of the game 
-- To add some features as the difficulty and some sprites.
+- To avoid all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man", the ghost sprite and the soundtracks of the game. We need to change those elements. 
+- To add some features as the difficulty and some sprites, to not just remake the game without changes (excepting the copyrights).
 - To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
-- 
 
+
+#
 **Non goals :**
+- Make a game that is not pleasant to play. 
 - To create the game that have another objective of the main game.
-- To create the game in another language than assembly
-- To develop the game up of his maximum capacity which is 16 bits
-- To deteriorate the public image of Algosup
+- To create the game in another language than assembly. 
+- To develop the game that does not work/launch. 
+- To deteriorate the ALGOSUP's ~~reputation~~.
 
+
+#
 ## Stakeholders
 
 List all the key stakeholders involved in the project, including their roles and contact information.
