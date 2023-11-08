@@ -2,27 +2,37 @@
 
 This test plan will allow to clearly follow up and understand the different issues, this chart includs all the important aspects to fix and follow all the mind path of the quality insurer.
 
-|| Process | Test case  | test number | Description | Status | expected result | Actual result | comment |
+## Pre-development
+
+|| Process | Test case  | Test number | Description | Status | Expected result | Actual result | Comment |
 |------------|-------------|-------|-------|-------|----------|------|-----|-----|
-|  |  Functional specification|      |       |       |       |          |
+|  |**Functional specification**|      |       |       |       |          |
 |  |      |      |       |       |       |          |
-| |Technical specification|      |       |       |       |          |
+| |**Technical specification**|      |       |       |       |          |
+| |**Weekly report**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |Game test|      |       |       |       |          |
+| |**Project charter**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |      Controlability|      |       |       |       |          |
+
+## Post Development (Game)
+
+|| Process | Test case  | Test number | Description | Status | Expected result | Actual result | Comment |
+|------------|-------------|-------|-------|-------|----------|------|-----|-----|
+| |**Game test**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |loading|      |       |       |       |          |
+| |      **Controlability**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |Effects|      |       |       |       |          |
+| |**Loading**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |Visual|      |       |       |       |          |
+| |**Effects**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |Content|      |       |       |       |          |
+| |**Visual**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |Features|      |       |       |       |          |
+| |**Content**|      |       |       |       |          |
 | |      |      |       |       |       |          |
-| |buffers|      |       |       |       |          |
+| |**Features**|      |       |       |       |          |
+| |      |      |       |       |       |          |
+| |**Buffers**|      |       |       |       |          |
 | |      |      |       |       |       |          |
 
 This allows the team to have a dfferent point of view of the product. 
