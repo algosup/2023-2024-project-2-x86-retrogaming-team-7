@@ -126,8 +126,13 @@ Identify any external dependencies that the project relies on, such as third-par
 
 ## Risks
 
-List potential risks to the project's success and describe mitigation strategies.
 
+- Not deliver the final product on time.
+- Make the game not working/launching on the customer's hardware.
+- Do not respect the legislations regarding the copyrights. 
+
+
+#
 ## Change Control
 
 Outline the process for managing and approving changes to the functional specification.
