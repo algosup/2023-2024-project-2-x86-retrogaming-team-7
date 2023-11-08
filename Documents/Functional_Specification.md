@@ -1,40 +1,33 @@
-# Functional Specification
 
-### 1. Project members
+# Functional Specification Document
 
-**| Member of the project |**
+## Project Name: [Retro-gamaing]
 
-| Guillaume DESPAUX | Project Manager
-
-| Michel RIFF | Project Manager
-
-| Lucas AUBARD | Technical Lead
-
-| Enzo GUILLOUCHE | Junior Software Engineer
-
-| Elone DELILLE | Junior Software Engineer
-
-| Ian LAURENT | Quality Assurance
-
-### 2. Overview
+## Project Overview
 
 
-Our team get a task from Algosup, the objective is to create the game called "Pac-man" with assembly language [^1].
+Our team get a task from Algosup, the objective is to create the game called "Pac man" with assembly language [^1].
 
 ---
- So what is Pac-man ?
+ So what is Pac man ?
 ![PAC-MAN](https://ocremix.org/files/images/games/arc/2/pac-man-arc-title-80834.jpg)
 
-Pac-Man is a maze-based and a singleplayer video game set in a brightly colored. The player takes control of a round, yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts blue and vulnerable.
+>Pac-Man is a maze-based and a singleplayer video game set in a brightly colored. The player takes control of a round, yellow character, known as Pac Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts blue and vulnerable.
 
-### 3. Project scope
+### Project Purpose
 
-The students of Algosup are divided in eight team with a special role, each team have the same exercise to create the game Pac-man in 16 bits assembly language with a provided 
-
-The primary objectives of this project is to make the 
+[Explain why the project is being undertaken and its overall objectives.]
 
 
-### 4. Goals and non goals
+### Project Goals
+
+[List the specific goals and outcomes the project aims to achieve.]
+
+The students of Algosup are divided in eight team with a special role, each team have the same exercise to create the game Pac man in 16 bits assembly language with a provided environment called "NS-DOS" and its emulator "DOS BOX".
+
+### Project Scope
+
+[Define the boundaries and limitations of the project. What is included and what is excluded from the project scope?]
 
 **Goals :**
 
@@ -47,70 +40,103 @@ The primary objectives of this project is to make the
 **Non goals :**
 - To create the game that have another objective of the main game.
 - To create the game in another language than assembly
-- To develop the game up of his maximum (16)
+- To develope the game up of his maximum capacity which is 16 bits
 - 
 
----
+## Stakeholders
 
----
+List all the key stakeholders involved in the project, including their roles and contact information.
 
----
-### 5. Thinking process :
+- **Stakeholder 1:** [Name, Role, Contact Information]
+- **Stakeholder 2:** [Name, Role, Contact Information]
+- ...
 
+## Functional Requirements
 
+This section should detail the functional requirements of the software system. Each requirement should be clear, specific, and measurable.
 
+### 1. [Requirement Title]
 
-### 6. Image
+#### Description:
 
-    Ideas for the sprites :
+[Provide a brief description of the requirement.]
 
-.
+#### Acceptance Criteria:
 
-    Ideas for the music
+- [List specific criteria that must be met for the requirement to be considered complete.]
+- [E.g., "The system must allow users to log in with a valid username and password."]
+- ...
 
+### 2. [Requirement Title]
 
+#### Description:
 
+[Provide a brief description of the requirement.]
 
-### 7. Risks and Assumptions
+#### Acceptance Criteria:
 
-**Risks and Assumptions :**
+- [List specific criteria that must be met for the requirement to be considered complete.]
+- [E.g., "The system must provide a search functionality that allows users to filter results by date, category, and keyword."]
+- ...
 
-- copyright
-- not performant/smooth gameplay
-- 
-- 
-- 
-- 
+### [Continue listing requirements...]
 
+## Non-Functional Requirements
 
-### 8. Development and environement and Requirements
+This section should detail non-functional requirements, which include performance, security, usability, and other quality attributes.
 
-  - 
-  - 
-  - 
-  - 
+### 1. Performance
 
----
+#### [Performance Requirement Title]
 
-### 9. Milestone
+- [Describe the performance requirement, such as response time, scalability, or throughput.]
+- [E.g., "The system should be able to handle 100 concurrent users with response times under 2 seconds."]
 
+### 2. Security
 
+#### [Security Requirement Title]
 
-### 10. Glossary
+- [Describe the security requirements, such as authentication, authorization, encryption, and data protection.]
+- [E.g., "User passwords must be securely hashed and stored in the database."]
 
+### [Continue listing non-functional requirements...]
 
-^1: Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code, which is the binary code that a CPU can directly execute. Assembly language provides a symbolic way to represent the CPU's instructions, making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
+## Data Model
 
+Provide a data model or database schema, including tables, fields, and relationships, if applicable.
 
-[^2]: 
+## User Interface
 
-[^3]: 
+Describe the user interface design and layout, including wireframes or mockups if available.
 
-[^4]: 
+## Use Cases
 
-[^5]: 
+Provide use case diagrams and descriptions to illustrate how users will interact with the system.
 
-[^6]: 
+## Assumptions and Constraints
 
+List any assumptions and constraints that may impact the project's development and implementation.
 
-[def]: 
+## Dependencies
+
+Identify any external dependencies that the project relies on, such as third-party APIs, libraries, or hardware.
+
+## Risks
+
+List potential risks to the project's success and describe mitigation strategies.
+
+## Change Control
+
+Outline the process for managing and approving changes to the functional specification.
+
+## Approval
+
+The undersigned stakeholders hereby approve this functional specification document.
+
+- [Name and Signature of Stakeholder 1]
+- [Name and Signature of Stakeholder 2]
+- ...
+
+## Revision History
+
+Record changes made to the document, including dates, descriptions, and the names of those who made the changes.
