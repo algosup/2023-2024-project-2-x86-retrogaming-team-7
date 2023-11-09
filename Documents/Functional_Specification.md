@@ -113,13 +113,48 @@ For this project we need to use the software DOSBox which is a simulator of a MS
 
 #### Description
 
-We need to create a game which contains the same mecanics of gameplay than the game Pac-Man, using new models and song due to copyright. 
+We need to create a game which contains the same mecanics of gameplay than the game Pac-Man, using new models and soundtracks due to copyright. 
 
-#### Acceptance Criteria
 
-- The game must be complete with no issues, crash, bug or glitch during all the user experience.
+##### Acceptance Criteria
 
+<<<<<<< HEAD
 <!-- [Continue listing requirements...]-->
+=======
+- The game must be complete with no issue, crash, bug or glitch during the user experience.
+
+#
+#### 2.1 Main menu
+The main menu is the menu you land on when you launch the game. It allows the player to choose to play, to change his controls in the settings. 
+
+#### 2.2 Start
+The game starts and the player can play until he looses all his lives.
+
+#### 2.3 Game over
+If the player looses all his lives, it's game over, then he comes back to the main menu.
+
+#### 2.4 "Control" menu as the settings
+The settings is accessible from the main menu, it has to change the player's keybinds as he would like. 
+
+#### 2.5 Credits
+The credits are accessible from the main menu, they serve to credit the people who worked on the project, from close or far.
+
+#### 2.6 Map
+When the player starts the game, it will take place in a map. The whole map deals with all the maze, and it will all displayed on the screen. 
+
+#### 2.7 Pac-Man
+The famous character Pac-Man is the playable one in the game. The player who controls him can change his direction, while he's moving, in 4 directions (up, left, right and down), he also can eat dots by just going on them.
+
+#### 2.8 Collisions/Hitboxes 
+In Pac-Man, the payable character has hitbox with the map, the objects he can interact with, the enemies. 
+
+#### 2.9 Enemies 
+The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern.
+
+#
+### [Continue listing requirements...]
+
+# Design
 
 ## Non-Functional Requirements
 
@@ -181,9 +216,9 @@ Record changes made to the document, including dates, descriptions, and the name
 [^1]: Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code, which is the binary code that a CPU can directly execute. Assembly language provides a symbolic way to represent the CPU's instructions, making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
 
 
-[^2]: 
+[^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
 
-[^3]: 
+[^3]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
 
 [^4]: 
 
