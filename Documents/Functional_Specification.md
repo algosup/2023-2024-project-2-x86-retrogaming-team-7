@@ -56,7 +56,7 @@
 
 | Guillaume DESPAUX | Project Manager
 
-| Michel RIFF | Project Manager
+| Michel RIFF | Program Manager
 
 | Lucas AUBARD | Technical Lead
 
@@ -70,7 +70,7 @@
 ## Project Overview
 
 ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
-This project started the Monday 6th November and its deadline is Thursday 21st December.
+This project started on Monday November 6th and its deadline is on Thursday December 21st.
 
 ---
  So what is Pac-Man ? 
@@ -79,9 +79,9 @@ This project started the Monday 6th November and its deadline is Thursday 21st D
 
 Pac-Man is a maze-based and a single player video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points.
 
----
 
-### Project Scope
+
+## Project Scope
 
 #### Project in scope
 
@@ -96,9 +96,9 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To create the game in another language than assembly. 
 - To develop the game that does not work/launch. 
 
----
 
-### Project Goals
+
+## Project Goals
 
 #### Goals
 - To change the sprites
@@ -159,27 +159,27 @@ When the player starts the game, it will take place in a map. The whole map deal
 The famous character Pac-Man is the playable one in the game. The player who controls him can change his direction, while he's moving, in 4 directions (up, left, right and down), he also can eat dots by just going on them.
 
 #### 2.8 Collisions/Hitboxes 
-In Pac-Man, the payable character has hitbox with the map, the objects he can interact with, the enemies. 
+In Pac-Man, the payable character has hitboxes[^2] with the map, the objects he can interact with, the enemies. 
 
 #### 2.9 Enemies 
-The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern.
+The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern[^3].
 
 #### 2.10 Dots
 The dots are the points that Pac-Man eats during the game. The player has to eat all of them to success the level and increase the score. The power pellets make the ghosts vulnerable. There are 244 dots and 4 power pellets (located on the corners of the map).
 
 #### 2.11 Score
-The score shows the points the player earned during the game. The little dots earn 10 points, the power pellets earn 30 points, when the player eats a vulnerable ghost, he earns 200 points; and a bonus earns 100 points. 
+The score shows the points the player earned during the game. The little dots earn 10 points, the power pellets earn 30 points, when the player eats a vulnerable ghost, he earns 200 points; and a bonus earns from 100 points to 5000. A highscore can be displayed on the screen, the player could want to beat it. 
+
 
 #### 2.12 Bonus
 In Pac-Man, the bonus are the fruits which appear on the map, they just earn points.
 
 #### 2.13 Lives
-The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. 
+The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
 
 #
 ### [Continue listing requirements...]
 
-# Design
 
 ## Non-Functional Requirements
 
@@ -202,6 +202,10 @@ The lives are the chances the player has to beat the game. If he has no lives an
 
 <!-- [Continue listing non-functional requirements...] -->
 
+## Design
+
+
+
 ## Use Cases
 
 Provide use case diagrams and descriptions to illustrate how users will interact with the system.
@@ -218,7 +222,7 @@ Identify any external dependencies that the project relies on, such as third-par
 
 - Not deliver the final product on time.
 - Make the game not working/launching on the customer's hardware.
-- Do not respect the legislations regarding the copyrights. 
+- To not credit regarding the copyrights. 
 
 ## Change Control
 
