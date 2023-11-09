@@ -1,80 +1,115 @@
-org 100h
-
+org 100h ; Set the origin for the program, necessary for .COM files
 section .data
-    score dw 0        ; Define score as a word (16 bits)
-    lives db 3        ; Define lives as a byte (8 bits)
-    user_choice db 0  ; Variable to store the user's choice
-
-menu_message db 'Main Menu', 0x0D, 0x0A
-            db '1. Start', 0x0D, 0x0A
-            db '2. Select Mode', 0x0D, 0x0A
-            db '3. Options', 0x0D, 0x0A
-            db 'Enter your choice:$'
-
+    menu db 'Main Menu', 13, 10, 0  ; Menu title
+    startOption db 'Start', 13, 10, 0
+    gameModeOption db 'Game Mode', 13, 10, 0
+    settingsOption db 'Settings', 13, 10, 0
+    menuItems dw startOption, gameModeOption, settingsOption
+    currentSelection db 0 ; Start with the first menu item selected
+    menuItemCount db 3 ; Total number of menu items
 section .bss
-    ; Reserve space for dynamic parts of the maze or other variables
-
+    ; No uninitialized data for now.
 section .text
     global _start
-
 _start:
-    ; Set up the segment registers
-    mov ax, 0x07C0
-    add ax, 288
-    mov ss, ax
-    mov sp, 4096
-
-    ; Display the main menu
+initialize_game:
+    ; Set up the video mode to 80x25 text mode
+    mov ax, 0x0003
+    int 0x10
+    ; Display the menu
     call display_menu
-    ; Get the user's choice
-    call get_user_choice
-
-    ; Based on the user's choice, take appropriate action
-    cmp byte [user_choice], '1'
-    je start_game
-    cmp byte [user_choice], '2'
-    je select_mode
-    cmp byte [user_choice], '3'
-    je options
-    jmp _start ; Invalid choice, display menu again
-
-start_game:
-    ; Set up the game
-    ; call initialize_game
-    ; ... rest of the game loop
-
-select_mode:
-    ; Implement mode selection logic here
-    ; This is where the user can choose game modes
-
-options:
-    ; Implement options menu logic here
-    ; This is where the user can configure game settings
-
+main_game_loop:
+    call handle_input   ; Get and handle user input
+    jmp main_game_loop  ; Continue looping
+; Function to display the menu
 display_menu:
-    ; Set video mode to 13h (320x200 with 256 colors)
-    mov ah, 0x00       ; Function: Set Video Mode
-    mov al, 0x13       ; Mode: 320x200 256-color mode
-    int 0x10           ; BIOS video interrupt
-
-    ; Display the main menu on the screen
-    mov ah, 0x09         ; Function: Print String
-    mov dx, menu_message ; DX points to the menu message
-    int 0x21             ; DOS interrupt for displaying text
+    mov ah, 0x02        ; Function for setting cursor position
+    mov bh, 0x00        ; Page number
+    mov dh, 2           ; Row (Y coordinate) for "Main Menu"
+    mov dl, 35          ; Column (X coordinate) for "Main Menu"
+    int 0x10            ; Call video interrupt
+    ; Display "Main Menu"
+    mov si, menu        ; Point SI to the start of the "Main Menu" text
+    call print_string   ; Call print string function
+    ; Display menu items
+    call print_menu_items
     ret
-
-get_user_choice:
-    ; Read the user's choice from keyboard input
-    ; You can use BIOS interrupt for keyboard input
-    ; Example:
-    mov ah, 0x00         ; Function: Wait for Keypress
-    int 0x16             ; BIOS interrupt for keyboard input
-    mov ah, 0x01         ; Function: Read Keypress
-    int 0x16             ; BIOS interrupt for keyboard input
-    mov [user_choice], al ; Store the user's choice
+print_menu_items:
+    mov cl, [menuItemCount]  ; Number of menu items
+    mov si, menuItems        ; Address of menu items
+    mov dh, 4                ; Starting Row (Y coordinate) for menu items
+print_next_item:
+    mov ah, 0x02            ; Function for setting cursor position
+    mov bh, 0x00            ; Page number
+    mov dl, 35              ; Column (X coordinate) for menu items
+    int 0x10                ; Call video interrupt
+    mov bx, si              ; Save current position of SI
+    lodsw                   ; Load word at SI into AX (address of the menu item string)
+    mov si, ax              ; Point SI to our menu item string
+    cmp cl, [currentSelection]
+    jne print_item_normal   ; If this is not the current selection, print normally
+    call print_string_highlighted
+    jmp short print_next_item_continue
+print_item_normal:
+    call print_string       ; Call print string function
+print_next_item_continue:
+    mov si, bx              ; Restore SI position
+    add si, 2               ; Move SI to the next word in the menuItems array
+    add dh, 2               ; Move to the next line
+    dec cl                  ; Decrement the menu item count
+    jnz print_next_item     ; If there are more items, loop again
     ret
-
-; initialize_game:
-    ; Initialize game variables (score, lives, etc.)
-    ; Draw the static parts of the maze
-    ; ret
+print_string_highlighted:  ; This function expects a string pointed to by SI
+    mov ah, 0x09            ; BIOS function to write character and attribute
+    mov bl, 0x70            ; Attribute for highlighted text
+    mov cx, 1               ; Number of times to write the character
+    print_highlighted_char:
+        lodsb               ; Load string byte into AL
+        or al, al           ; Check if it's zero (end of string)
+        jz return_highlighted ; If zero, we are at the end
+        int 0x10            ; Write character and attribute
+        jmp print_highlighted_char
+    return_highlighted:
+    ret
+; Print a null-terminated string pointed to by SI
+print_string:
+    next_char:
+        lodsb               ; Load next byte from SI into AL
+        or al, al           ; OR AL with itself to check if it's zero (null-terminator)
+        jz return           ; If zero, we are at the end of the string
+        mov ah, 0x0E        ; Teletype output function
+        int 0x10            ; Call video interrupt to print AL
+        jmp next_char       ; Loop to print next character
+    return:
+        ret
+; Handle user input
+handle_input:
+    mov ah, 0x01           ; BIOS keyboard service - check for keystroke
+    int 0x16             
+ ; BIOS keyboard interrupt
+    jz main_game_loop      ; If no key is pressed, just return to the main loop
+    ; Read the key pressed
+    mov ah, 0x00
+    int 0x16
+    cmp ah, 0x48           ; Check if the 'up arrow' was pressed
+    je move_up
+    cmp ah, 0x50           ; Check if the 'down arrow' was pressed
+    je move_down
+    ret
+move_up:
+    ; Decrement current selection, if not the first item
+    dec byte [currentSelection]
+    js  set_to_max         ; If selection is < 0, set it to max (2 in this case)
+    jmp short display_menu
+move_down:
+    ; Increment current selection, if not the last item
+    inc byte [currentSelection]
+    cmp byte [currentSelection], menuItemCount
+    jae set_to_zero        ; If selection is >= menuItemCount, set it to zero
+    jmp short display_menu
+set_to_max:
+    mov byte [currentSelection], menuItemCount - 1 ; Set to the last menu item index
+    jmp short display_menu
+set_to_zero:
+    mov byte [currentSelection], 0 ; Set to the first menu item index
+    jmp short display_menu
