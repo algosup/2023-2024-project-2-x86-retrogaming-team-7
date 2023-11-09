@@ -19,14 +19,9 @@
     - [2. Pac-Man like](#2-pac-man-like)
       - [Description](#description-1)
       - [Acceptance Criteria](#acceptance-criteria-1)
-    - [\[Continue listing requirements...\]](#continue-listing-requirements)
-- [Design](#design)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Performance](#1-performance)
-      - [\[Performance Requirement Title\]](#performance-requirement-title)
     - [2. Security](#2-security)
-      - [\[Security Requirement Title\]](#security-requirement-title)
-    - [\[Continue listing non-functional requirements...\]](#continue-listing-non-functional-requirements)
   - [Use Cases](#use-cases)
   - [Assumptions and Constraints](#assumptions-and-constraints)
   - [Dependencies](#dependencies)
@@ -57,11 +52,12 @@
 ## Project Overview
 
 ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
+This project started the Monday 6th November and its deadline is Thursday 21th December.
 
 ---
  So what is Pac-Man ? 
 
-![PAC-MAN](https://ocremix.org/files/images/games/arc/2/pac-man-arc-title-80834.jpg)
+![PAC-MAN](https://openseauserdata.com/files/7980c0c921ad90ecb7deadf1aefeda41.png)
 
 Pac-Man is a maze-based and a singleplayer video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points.
 
@@ -84,6 +80,7 @@ Pac-Man is a maze-based and a singleplayer video game set in a brightly colored,
 - To create the game in another language than assembly. 
 - To develop the game that does not work/launch. 
 
+---
 
 ### Project Goals
 
@@ -122,9 +119,7 @@ We need to create a game which contains the same mecanics of gameplay than the g
 
 - The game must be complete with no issues, crash, bug or glitch during all the user experience.
 
-### [Continue listing requirements...]
-
-# Design
+<!-- [Continue listing requirements...]-->
 
 ## Non-Functional Requirements
 
@@ -132,19 +127,19 @@ This section should detail non-functional requirements, which include performanc
 
 ### 1. Performance
 
-#### [Performance Requirement Title]
+<!-- [Performance Requirement Title] -->
 
 - [Describe the performance requirement, such as response time, scalability, or throughput.]
 - [E.g., "The system should be able to handle 100 concurrent users with response times under 2 seconds."]
 
 ### 2. Security
 
-#### [Security Requirement Title]
+<!-- [Security Requirement Title] -->
 
 - [Describe the security requirements, such as authentication, authorization, encryption, and data protection.]
 - [E.g., "User passwords must be securely hashed and stored in the database."]
 
-### [Continue listing non-functional requirements...]
+<!-- [Continue listing non-functional requirements...] -->
 
 ## Use Cases
 
