@@ -18,7 +18,9 @@
       - [Acceptance Criteria](#acceptance-criteria)
     - [2. Pac-Man like](#2-pac-man-like)
       - [Description](#description-1)
-      - [Acceptance Criteria](#acceptance-criteria-1)
+        - [Acceptance Criteria](#acceptance-criteria-1)
+    - [\[Continue listing requirements...\]](#continue-listing-requirements)
+- [Design](#design)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Performance](#1-performance)
     - [2. Security](#2-security)
@@ -118,40 +120,8 @@ We need to create a game which contains the same mecanics of gameplay than the g
 
 ##### Acceptance Criteria
 
-<<<<<<< HEAD
-<!-- [Continue listing requirements...]-->
-=======
-- The game must be complete with no issue, crash, bug or glitch during the user experience.
+- The game must be complete with no issues, crash, bug or glitch during all the user experience.
 
-#
-#### 2.1 Main menu
-The main menu is the menu you land on when you launch the game. It allows the player to choose to play, to change his controls in the settings. 
-
-#### 2.2 Start
-The game starts and the player can play until he looses all his lives.
-
-#### 2.3 Game over
-If the player looses all his lives, it's game over, then he comes back to the main menu.
-
-#### 2.4 "Control" menu as the settings
-The settings is accessible from the main menu, it has to change the player's keybinds as he would like. 
-
-#### 2.5 Credits
-The credits are accessible from the main menu, they serve to credit the people who worked on the project, from close or far.
-
-#### 2.6 Map
-When the player starts the game, it will take place in a map. The whole map deals with all the maze, and it will all displayed on the screen. 
-
-#### 2.7 Pac-Man
-The famous character Pac-Man is the playable one in the game. The player who controls him can change his direction, while he's moving, in 4 directions (up, left, right and down), he also can eat dots by just going on them.
-
-#### 2.8 Collisions/Hitboxes 
-In Pac-Man, the payable character has hitbox with the map, the objects he can interact with, the enemies. 
-
-#### 2.9 Enemies 
-The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern.
-
-#
 ### [Continue listing requirements...]
 
 # Design
