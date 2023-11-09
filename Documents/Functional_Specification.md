@@ -69,16 +69,13 @@ Pac-Man is a maze-based and a singleplayer video game set in a brightly colored,
 
 #### Project in scope
 
-- Recreate a game that makes people feel the joy of playing. 
-- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
-- To avoid all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man", the ghost sprite and the soundtracks of the game. We need to change those elements. 
-- To add some features as the difficulty and some sprites, to not just remake the game without changes (excepting the copyrights).
+- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movements of the Pac-Man character, the behaviors of ghosts and collecting pellets.
+- To avoid all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man", the ghost sprites and the soundtracks of the game. We need to change those elements. 
+- To add some features as the difficulty and some sprites, to not just remake the game without changes.
 - To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
 
-#### Project out of scope
-- Make a game that is not pleasant to play. 
-- To create the game that have another objective of the main game.
-- To create the game in another language than assembly. 
+#### Project out of scope 
+- To create the game that have another objective of the main game (collecting dots, having a high score).
 - To develop the game that does not work/launch. 
 
 
