@@ -1,10 +1,10 @@
 
 # Functional Specification Document
 
-## Project Name: [x86x16bits Retro-gaming] 
+## x86x16bits Retro-gaming
 
 - [Functional Specification Document](#functional-specification-document)
-  - [Project Name: \[x86x16bits Retro-gaming\]](#project-name-x86x16bits-retro-gaming)
+  - [x86x16bits Retro-gaming](#x86x16bits-retro-gaming)
   - [Project Overview](#project-overview)
     - [Project Scope](#project-scope)
       - [Project in scope](#project-in-scope)
@@ -65,28 +65,39 @@ ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Ma
 
 Pac-Man is a maze-based and a singleplayer video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points.
 
+---
+
 ### Project Scope
 
 #### Project in scope
 
-- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movements of the Pac-Man character, the behaviors of ghosts and collecting pellets.
-- To avoid all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man", the ghost sprites and the soundtracks of the game. We need to change those elements. 
-- To add some features as the difficulty and some sprites, to not just remake the game without changes.
+- Recreate a game that makes people feel the joy of playing. 
+- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
+- To avoid all the copyright elements of the game like the yellow character sprite and his name : "Pac-Man", the ghost sprite and the soundtracks of the game. We need to change those elements. 
+- To add some features as the difficulty and some sprites, to not just remake the game without changes (excepting the copyrights).
 - To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
 
-#### Project out of scope 
-- To create the game that have another objective of the main game (collecting dots, having a high score).
+#### Project out of scope
+
+- Make a game that is not pleasant to play. 
+- To create the game that have another objective of the main game.
+- To create the game in another language than assembly. 
 - To develop the game that does not work/launch. 
 
 
 ### Project Goals
 
-
 #### Goals
-
+- To change the sprites
+- To change the music
+- To give the possibility to change the difficulty
+- To create new maps
+- To make the game smooth and playable
+- To make a compatible game
 
 #### Non-Goals
-
+- To add boss stages
+- To add new game mode
 
 ## Functional Requirements
 
@@ -94,12 +105,11 @@ Pac-Man is a maze-based and a singleplayer video game set in a brightly colored,
 
 #### Description
 
-For this project we need to use the software DOSBox which is a simulator of a MS-DOS environment.
+For this project we need to use the software DOSBox which is a simulator of a MS-DOS envrinonment.
 
 #### Acceptance Criteria
 
-- Each system will have to use this software to play the game.
-- The DOSBox emulator will be integrated in an installer, supplied when we will be going to bring out this game. 
+- Each system should be available to use this software for complete this project.
 
 ### 2. Pac-Man like
 
