@@ -43,9 +43,7 @@
     - [Assumptions](#assumptions)
     - [Constraints](#constraints)
   - [Risks](#risks)
-  - [Approval](#approval)
-  - [Revision History](#revision-history)
-    - [Glossary](#glossary)
+  - [Glossary](#glossary)
 
 ---
 
@@ -89,8 +87,6 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To create the game that has another objective of the main game.
 - To create the game in another language than assembly. 
 - To develop the game that does not work/launch.
-
-
 
 ## Project Goals
 
@@ -231,12 +227,13 @@ Goals and Motivations:
 -Desires a game that provides a sense of accomplishment and mastery.
 ```
 
-
 ### Design
 
 Here's a description of what the game would look like in the player's sight. 
 
 ![Diagram](diagram_functional.png)
+
+---
 
 ## Assumptions and Constraints
 
@@ -251,22 +248,8 @@ Here's a description of what the game would look like in the player's sight.
 - Make the game not working/launching on the customer's hardware.
 - To not credit regarding the copyrights. 
 
-## Approval
 
-The undersigned stakeholders hereby approve this functional specification document.
-
-- [Name and Signature of Stakeholder 1]
-- [Name and Signature of Stakeholder 2]
-- ...
-
-## Revision History
-
-<!-- To be revised if it's necessary because of the member list at the beginning -->
-
-Record changes made to the document, including dates, descriptions, and the names of those who made the changes.
-
-### Glossary
-
+## Glossary
 
 [^1]:  Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
 
@@ -279,6 +262,3 @@ Record changes made to the document, including dates, descriptions, and the name
 [^5]: 
 
 [^6]: 
-
-
-[def]: 
