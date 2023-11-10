@@ -235,7 +235,7 @@ Goals and Motivations:
 
 ### Design
 
-![Diagram]()
+![Diagram](diagram_functional.png)
 
 ## Assumptions and Constraints
 
