@@ -37,9 +37,11 @@
     - [2. Boss stage](#2-boss-stage)
     - [3. Options in the game](#3-options-in-the-game)
   - [Use Cases](#use-cases)
+    - [Personas](#personas)
     - [Design](#design)
   - [Assumptions and Constraints](#assumptions-and-constraints)
-  - [Dependencies](#dependencies)
+    - [Assumptions](#assumptions)
+    - [Constraints](#constraints)
   - [Risks](#risks)
   - [Approval](#approval)
   - [Revision History](#revision-history)
@@ -84,10 +86,10 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Project out of scope
 
-- Make a game that is not pleasant to play. 
+- Make a game that is not pleasant to play.
 - To create the game that has another objective of the main game.
 - To create the game in another language than assembly. 
-- To develop the game that does not work/launch. 
+- To develop the game that does not work/launch.
 
 
 
@@ -202,22 +204,45 @@ The lives are the chances the player has to beat the game. If he has no lives an
 
 ---
 
-
 ## Use Cases
+
+### Personas
+
+**First user:**
+```
+Name: Carl Johnson 
+
+Background: Carl is a casual gamer who enjoys classic arcade games. He has limited technical knowledge but is enthusiastic about playing games for relaxation and entertainment.
+
+Goals and Motivations: 
+-Wants an engaging and nostalgic gaming experience.
+-Prefers simple controls and intuitive gameplay.
+-Enjoys challenges but expects the game to be fair.
+```
+
+**Second user:**
+```
+Name: Trevor Philips
+
+Background: Trevor is an avid gamer with extensive experience playing a variety of video games, including classic arcade games like Pac-Man. They are well-versed in gaming mechanics, strategies, and appreciate a good challenge.
+
+Goals and Motivations:
+-Seeks a Pac-Man game that offers a challenging and competitive experience.
+-Enjoys discovering easter eggs and hidden features in games.
+-Desires a game that provides a sense of accomplishment and mastery.
+```
+
 
 ### Design
 
-<!-- Put the user interface diagram here -->
-
-<!-- Provide use case diagrams and descriptions to illustrate how users will interact with the system -->
+![Diagram]()
 
 ## Assumptions and Constraints
 
-List any assumptions and constraints that may impact the project's development and implementation.
-
-## Dependencies
-
-Identify any external dependencies that the project relies on, such as third-party APIs, libraries, or hardware.
+### Assumptions
+- The game would be download, it would run without any Internet connection. 
+### Constraints
+- The game has to run on DOSBox. 
 
 ## Risks
 
@@ -243,7 +268,6 @@ Record changes made to the document, including dates, descriptions, and the name
 
 
 [^1]:  Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
-
 
 [^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
 
