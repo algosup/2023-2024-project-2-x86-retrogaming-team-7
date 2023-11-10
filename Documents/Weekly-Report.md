@@ -13,4 +13,39 @@
     - Spread out all aspect with the technical leader and assign deadline for each task.
 5. Conclusion:
     - To conclude this week, we are finishing off the tehcnical specification and worked on the test plan as soon as the Quality assurence and the Project manager has validated the functional specification we will go into the phase of development. This week as the kick off of the project meaning that we were all integrated into a new team then the previous project, meaning that we had to learn to work togther to assure a harmony in the team, getting to know the strenghts of each team member but also understanding their limits. To describe this week into a few words it would be: Productive, time optimising, team working, team building.
-6. Attachments:
+6. KPI's
+<!-- >KPI's template
+>
+>Aspect name
+>
+>Description. Status of the task.
+>
+>Accomptable people.  
+>
+>|Start|Deadline|Completion in per cen|
+>|:-:|:-:|:-:|
+>|||<span style=color:green>Complete in time</span>|
+>|||<span style=color:orange>Late but always in time</span>|
+>|||<span style=color:red>Deadline crossed</span>| -->
+
+
+
+|Aspect name|Description|Start|Deadline|Completion in per cen|
+|:-:|:-:|:-:|:-:|:-:|
+|Functional specification|Do the functional specification|November 6th, 2023|November 13th, 2023|<span style=color:orange>**72%**</span>|
+
+<!-- |Aspect name|Description|Start|Deadline|Completion in per cen|
+|:-:|:-:|:-:|:-:|:-:|
+|Technical specification|||November 27th, 2023|<span style=color:orange></span>|
+
+|Aspect name|Description|Start|Deadline|Completion in per cen|
+|:-:|:-:|:-:|:-:|:-:|
+|Test plan|||December 8th, 2023|<span style=color:orange></span>|
+
+|Aspect name|Description|Start|Deadline|Completion in per cen|
+|:-:|:-:|:-:|:-:|:-:|
+|Working prototype||November 6th, 2023|November 13th, 2023|<span style=color:orange></span>|
+
+|Aspect name|Description|Start|Deadline|Completion in per cen|
+|:-:|:-:|:-:|:-:|:-:|
+|Final product||November 6th, 2023|November 13th, 2023|<span style=color:orange></span>| -->
