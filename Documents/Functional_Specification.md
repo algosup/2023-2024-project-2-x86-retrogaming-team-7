@@ -95,7 +95,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
 - To make the game smooth and playable.
-- To make a compatible game with all the Operating Systems.
+- To make a compatible game with all the Operating Systems [^6].
 
 #### Non-Goals
 - To add boss stages.
@@ -276,3 +276,5 @@ Here's a description of what the game would look like in the player's sight.
 [^4]: MS-DOS is an Operating System for x86-based PCs mostly developed by Microsoft.
 
 [^5]: DOSBox is a simulator of the MS-DOS environment. 
+
+[^6]: An Operating System (OS) is the low-level software that supports a computer's basic functions, such as scheduling tasks and controlling peripherals.
