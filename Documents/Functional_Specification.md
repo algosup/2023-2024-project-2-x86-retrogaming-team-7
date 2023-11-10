@@ -70,7 +70,7 @@ This project started on Monday November 6th and its deadline is on Thursday Dece
 
 ![PAC-MAN](https://openseauserdata.com/files/7980c0c921ad90ecb7deadf1aefeda41.png)
 
-Pac-Man is a maze-based and a single player video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points.
+Pac-Man is a maze-based and a single player video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points. The player can play until he loses all his lives.
 
 
 
@@ -106,7 +106,12 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Description
 
+<<<<<<< HEAD
 For this project we were asked to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
+=======
+For this project we need to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
+As well as DOSBox, NASM [^7] will also be required for the project.
+>>>>>>> 62e5c3a5a3e02b1a8d9233a737d87c1d2995f5ed
 
 #### Acceptance Criteria
 
@@ -277,3 +282,5 @@ Here's a description of what the game would look like in the player's sight.
 [^5]: DOSBox is a simulator of the MS-DOS environment. 
 
 [^6]: An Operating System (OS) is the low-level software that supports a computer's basic functions, such as scheduling tasks and controlling peripherals.
+
+[^7]: The Netwide Assembler (NASM) is an assembler and disassembler for the Intel x86 architecture. It can be used to write 16-bit, 32-bit (IA-32) and 64-bit (x86-64) programs.
