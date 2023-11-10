@@ -32,6 +32,7 @@
       - [2.11 Score](#211-score)
       - [2.12 Bonus](#212-bonus)
       - [2.13 Lives](#213-lives)
+    - [Sprites](#sprites)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Game mode](#1-game-mode)
     - [2. Options in the game](#2-options-in-the-game)
@@ -163,6 +164,21 @@ In Pac-Man, the bonus are the objects which appear on the map, they just earn po
 #### 2.13 Lives
 The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
 
+### Sprites
+| Name | Sprite |
+| :--- | ---: |
+| Main menu | ![mainmenu](https://archive.org/serve/gg_Pac-Man_1990Namco/Pac-Man_1990Namco_screenshot.gif) |
+| Map | ![map](https://i.pinimg.com/236x/2d/76/b5/2d76b5fbf93a4f0d6f5e4dda97d40580.jpg) |
+| Pac-Man | ![pacman](https://upload.wikimedia.org/wikipedia/commons/a/a8/Original_PacMan.png) |
+| Ghosts | ![ghosts](https://external-preview.redd.it/GHNcBEnZeJVMMZkOK9snAwDMOxGdiToO-18lPVx4ykA.jpg?auto=webp&s=1c033bfe52028ad8addab5e7cb09e4e817193dd3) |
+| Dots | ![dots](https://pbs.twimg.com/media/D2NUyD6VAAAI5pl.jpg) |
+| Score | ![score]() |
+| Lives | ![lives]() |
+| Bonus | ![bonus]() | 
+
+This is how the game would looke like:
+![game]()
+
 ## Non-Functional Requirements
 
 ### 1. Game mode
@@ -176,6 +192,10 @@ The lives are the chances the player has to beat the game. If he has no lives an
 - Reverse game mode:
   
   In this game mode, the player takes control of the red ghost and has the objective to catch Pac-Man accompanied with the three other ghosts. Pac-Man has three lives as the original game and it has its own pattern. The player wins if Pac-Man has no lives left but he loses if it eats all the dots.
+
+- Timed game mode:
+  
+  This game mode is like the original one but with a limited time determined which is reduced further the player wins level.
   
 ### 2. Options in the game
 
@@ -183,6 +203,7 @@ The lives are the chances the player has to beat the game. If he has no lives an
 - Music : Give the possibility to put on/off the music of the game.
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
+- Keybind : Give the possibility to configure the keybinds as the player want. 
 
 
 ## Use Cases
