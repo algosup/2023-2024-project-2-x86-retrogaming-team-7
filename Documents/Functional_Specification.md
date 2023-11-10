@@ -90,16 +90,15 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 ## Project Goals
 
 #### Goals
-- To change the playable character.
-- To change the music.
-- To give the possibility to change the difficulty.
+- To change the playable character (play other skins of Pac-Man).
+- To change the music (if we could in 16bits).
+- To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
 - To make the game smooth and playable.
-- To make a compatible game.
+- To make a compatible game with all the Operating Systems.
 
 #### Non-Goals
 - To add boss stages.
-- To add new game mode.
 
 ## Functional Requirements
 
@@ -155,7 +154,7 @@ The enemies are the 4 ghosts in the game, each has a special color to discern it
 The dots are the points that Pac-Man eats during the game. The player has to eat all of them to success the level and increase the score. The power pellets make the ghosts vulnerable. There are 244 dots and 4 power pellets (located on the corners of the map).
 
 #### 2.11 Score
-The score shows the points the player earned during the game. The little dots earn 10 points, the power pellets earn 30 points, when the player eats a vulnerable ghost, he earns 200 points; and a bonus earns from 100 points to 5000. A highscore can be displayed on the screen, the player could want to beat it. 
+The score shows the points the player earned during the game. The little dots earn 10 points, the power pellets earn 30 points when the player eats a vulnerable ghost (until 1600 points, depending on the consecutive ghost eats), he earns 200 points; and a bonus earns from 100 points to 5000. A highscore can be displayed on the screen, the player could want to beat it. 
 
 
 #### 2.12 Bonus
@@ -274,6 +273,6 @@ Here's a description of what the game would look like in the player's sight.
 
 [^3]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
 
-[^4]: MS-DOS is an operating system for x86-based PCs mostly developed by Microsoft.
+[^4]: MS-DOS is an Operating System for x86-based PCs mostly developed by Microsoft.
 
 [^5]: DOSBox is a simulator of the MS-DOS environment. 
