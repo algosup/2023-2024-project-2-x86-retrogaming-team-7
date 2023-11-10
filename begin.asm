@@ -70,11 +70,7 @@ start_game:
     mov ah, 0x0E
     mov si, startGame
     call print_string
-    ; Wait for key press
-    mov ah, 0x00
-    int 0x16  ; BIOS keyboard service
-    cmp al, 0x1B
-    je _start
+    call wait_for_escape
 
 select_game_mode:
     call clear_screen
@@ -83,11 +79,7 @@ select_game_mode:
     mov ah, 0x0E
     mov si, gamemodeMessage
     call print_string
-    ; Wait for key press
-    mov ah, 0x00
-    int 0x16  ; BIOS keyboard service
-    cmp al, 0x1B
-    je _start
+    call wait_for_escape
 
 option_setting:
     call clear_screen
@@ -96,11 +88,7 @@ option_setting:
     mov ah, 0x0E
     mov si, optionMessage
     call print_string
-    ; Wait for key press
-    mov ah, 0x00
-    int 0x16  ; BIOS keyboard service
-    cmp al, 0x1B
-    je _start
+    call wait_for_escape
 
 print_string:
     next_char:
@@ -120,6 +108,15 @@ clear_screen:
     mov dx, 184Fh
     int 0x10
     ret
+
+wait_for_escape:
+    ; Wait for key press in a loop until 'Escape' is pressed
+    wait_loop:
+        mov ah, 0x00
+        int 0x16  ; BIOS keyboard service
+        cmp al, 0x1B
+        je _start  ; Jump to start if Escape key is pressed
+        jmp wait_loop  ; Otherwise, keep waiting
 
 ; Function to exit the program and return to DOS
 exit_program:
