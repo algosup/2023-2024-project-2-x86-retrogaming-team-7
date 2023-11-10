@@ -11,7 +11,7 @@
       - [Project out of scope](#project-out-of-scope)
   - [Project Goals](#project-goals)
       - [Goals](#goals)
-      - [Non-Goals](#non-goals)
+      - [Non-Goals (features we want to add)](#non-goals-features-we-want-to-add)
   - [Functional Requirements](#functional-requirements)
     - [1. x86-16bits environment](#1-x86-16bits-environment)
       - [Description](#description)
@@ -91,15 +91,14 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Goals
 - To change the playable character (play other skins of Pac-Man).
-- To change the music (if we could in 16 or 8 bits).
+- To implement music.
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
 - To make the game smooth and playable.
 - To make a compatible game with all the Operating Systems [^6].
 
-#### Non-Goals
+#### Non-Goals (features we want to add)
 - To add boss stages.
-- To add multiples game modes.
 
 ## Functional Requirements
 
