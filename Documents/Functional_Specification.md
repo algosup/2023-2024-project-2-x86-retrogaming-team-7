@@ -6,10 +6,10 @@
 - [Functional Specification Document](#functional-specification-document)
   - [x86x16bits Retro-gaming](#x86x16bits-retro-gaming)
   - [Project Overview](#project-overview)
-    - [Project Scope](#project-scope)
+  - [Project Scope](#project-scope)
       - [Project in scope](#project-in-scope)
       - [Project out of scope](#project-out-of-scope)
-    - [Project Goals](#project-goals)
+  - [Project Goals](#project-goals)
       - [Goals](#goals)
       - [Non-Goals](#non-goals)
   - [Functional Requirements](#functional-requirements)
@@ -19,7 +19,6 @@
     - [2. Pac-Man like](#2-pac-man-like)
       - [Description](#description-1)
         - [Acceptance Criteria](#acceptance-criteria-1)
-- [](#)
       - [2.1 Main menu](#21-main-menu)
       - [2.2 Start](#22-start)
       - [2.3 Game over](#23-game-over)
@@ -33,18 +32,15 @@
       - [2.11 Score](#211-score)
       - [2.12 Bonus](#212-bonus)
       - [2.13 Lives](#213-lives)
-- [](#-1)
-    - [\[Continue listing requirements...\]](#continue-listing-requirements)
-- [Design](#design)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Game mode](#1-game-mode)
     - [2. Boss stage](#2-boss-stage)
     - [3. Options in the game](#3-options-in-the-game)
   - [Use Cases](#use-cases)
+    - [Design](#design)
   - [Assumptions and Constraints](#assumptions-and-constraints)
   - [Dependencies](#dependencies)
   - [Risks](#risks)
-  - [Change Control](#change-control)
   - [Approval](#approval)
   - [Revision History](#revision-history)
     - [Glossary](#glossary)
@@ -54,16 +50,13 @@
 
 **| Member of the project |**
 
+| Name | Role |
+| :--- | ---: |
 | Guillaume DESPAUX | Project Manager
-
 | Michel RIFF | Program Manager
-
 | Lucas AUBARD | Technical Lead
-
 | Enzo GUILLOUCHE | Junior Software Engineer
-
 | Elone DELILLE | Junior Software Engineer
-
 | Ian LAURENT | Quality Assurance
 
 
@@ -112,6 +105,8 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To add boss stages
 - To add new game mode
 
+---
+
 ## Functional Requirements
 
 ### 1. x86-16bits environment
@@ -136,7 +131,6 @@ We need to create a game which contains the same mechanics of gameplay than the 
 
 - The game must be complete with no issue, crash, bug or glitch during all the user experience.
 
-#
 #### 2.1 Main menu
 The main menu is the menu you land on when you launch the game. It allows the player to choose to play, to change his controls in the settings. 
 
@@ -177,9 +171,7 @@ In Pac-Man, the bonus are the fruits which appear on the map, they just earn poi
 #### 2.13 Lives
 The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
 
-#
-### [Continue listing requirements...]
-
+---
 
 ## Non-Functional Requirements
 
@@ -197,18 +189,27 @@ The lives are the chances the player has to beat the game. If he has no lives an
 
 ### 2. Boss stage
 
-
+**A stage dedicated for a boss:**
+- An unique music for this level
+- To be decided
+  
 ### 3. Options in the game
 
-<!-- [Continue listing non-functional requirements...] -->
+**Options available in the game:**
+- Music : Give the possibility to put on/off the music of the game.
+- Sound effect : Give the possibility to put on/off the sound effect of the game.
+- Character : Give the possibility to select one of the available skin implemented in the game.
 
-## Design
-
+---
 
 
 ## Use Cases
 
-Provide use case diagrams and descriptions to illustrate how users will interact with the system.
+### Design
+
+<!-- Put the user interface diagram here -->
+
+<!-- Provide use case diagrams and descriptions to illustrate how users will interact with the system -->
 
 ## Assumptions and Constraints
 
@@ -224,10 +225,6 @@ Identify any external dependencies that the project relies on, such as third-par
 - Make the game not working/launching on the customer's hardware.
 - To not credit regarding the copyrights. 
 
-## Change Control
-
-Outline the process for managing and approving changes to the functional specification.
-
 ## Approval
 
 The undersigned stakeholders hereby approve this functional specification document.
@@ -238,12 +235,14 @@ The undersigned stakeholders hereby approve this functional specification docume
 
 ## Revision History
 
+<!-- To be revised if it's necessary because of the member list at the beginning -->
+
 Record changes made to the document, including dates, descriptions, and the names of those who made the changes.
 
 ### Glossary
 
 
-[^1]: Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code, which is the binary code that a CPU can directly execute. Assembly language provides a symbolic way to represent the CPU's instructions, making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
+[^1]:  Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
 
 
 [^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
