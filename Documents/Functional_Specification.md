@@ -235,6 +235,7 @@ Goals and Motivations:
 
 ### Design
 
+Here's a description of what the game would look like in the player's sight. 
 ![Diagram](diagram_functional.png)
 
 ## Assumptions and Constraints
