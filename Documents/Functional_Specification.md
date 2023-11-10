@@ -62,7 +62,7 @@
 
 ## Project Overview
 
-ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS (x86-16bits) and in assembly language [^1].
+ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS [^4] (x86-16bits) and in assembly language [^1].
 This project started on Monday November 6th and its deadline is on Thursday December 21st.
 
 ---
@@ -107,18 +107,18 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Description
 
-For this project we need to use the software DOSBox which is a simulator of a MS-DOS environment.
+For this project we need to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
 
 #### Acceptance Criteria
 
 - Each system will have to use this software to play the game.
 - The DOSBox emulator will be integrated into an installer, supplied when we will be going to bring out this game. 
 
-### 2. Pac-Man like
+### 2. Pac-Man
 
 #### Description
 
-We need to create a game which contains the same mechanics of gameplay than the game Pac-Man, using new models and soundtracks due to copyright. 
+We need to create a game which contains the same mechanics of gameplay than the game Pac-Man, since the copyrights are no longer a problem, we could use the same sprites and musics. 
 
 ##### Acceptance Criteria
 
@@ -176,7 +176,7 @@ The lives are the chances the player has to beat the game. If he has no lives an
 | Lives | ![lives](image.png) |
 | Bonus | ![bonus](https://static.wikia.nocookie.net/pacman/images/2/25/Fruits_Points.png/revision/latest/scale-to-width-down/256?cb=20210921001546) | 
 
-This is how the game would looke like:
+This is how the game would look like:
 
 ![game](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX4WkTq3cFwdLFLVv-tG117URwp-gL8e0f_5G8EwA1GgfU5ClGkqu78HGjXoVdQ6NjR98&usqp=CAU)
 
@@ -185,7 +185,7 @@ This is how the game would looke like:
 
 ### 1. Game mode
 
-**Differents game modes :**
+**Different game modes :**
 
 - Multiplayer game mode:
   
@@ -273,3 +273,7 @@ Here's a description of what the game would look like in the player's sight.
 [^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
 
 [^3]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
+
+[^4]: MS-DOS is an operating system for x86-based PCs mostly developed by Microsoft.
+
+[^5]: DOSBox is a simulator of the MS-DOS environment. 
