@@ -37,7 +37,7 @@
     - [1. Game mode](#1-game-mode)
     - [2. Options in the game](#2-options-in-the-game)
   - [Use Cases](#use-cases)
-    - [Personas](#personas)
+    - [Personae](#personae)
   - [Design](#design)
   - [Assumptions and Constraints](#assumptions-and-constraints)
     - [Assumptions](#assumptions)
@@ -200,7 +200,7 @@ This is how the game would look like:
   
 ### 2. Options in the game
 
-**Settings in the game:**
+**Settings in game:**
 - Music : Give the possibility to put on/off the music of the game.
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
@@ -217,10 +217,9 @@ This is how the game would look like:
     - **Q**: Move the Ghost character to the left.
     - **D**: Move the Ghost character to the right.
 
-
 ## Use Cases
 
-### Personas
+### Personae
 
 **First user:**
 ```
