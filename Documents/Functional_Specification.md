@@ -167,11 +167,11 @@ The lives are the chances the player has to beat the game. If he has no lives an
 ### Sprites
 | Name | Sprite |
 | :--- | ---: |
-| Main menu | ![mainmenu](https://archive.org/serve/gg_Pac-Man_1990Namco/Pac-Man_1990Namco_screenshot.gif) |
+| Main menu | ![mainmenu](image-1.png) |
 | Map | ![map](https://i.pinimg.com/236x/2d/76/b5/2d76b5fbf93a4f0d6f5e4dda97d40580.jpg) |
 | Pac-Man | ![pacman](https://upload.wikimedia.org/wikipedia/commons/a/a8/Original_PacMan.png) |
 | Ghosts | ![ghosts](https://external-preview.redd.it/GHNcBEnZeJVMMZkOK9snAwDMOxGdiToO-18lPVx4ykA.jpg?auto=webp&s=1c033bfe52028ad8addab5e7cb09e4e817193dd3) |
-| Dots | ![dots](https://pbs.twimg.com/media/D2NUyD6VAAAI5pl.jpg) |
+| Dots | ![dots](image-2.png) |
 | High-score | ![highscore](https://highscoresave.com/media/image/5e/cf/ae/pengo_multigame_kit_highscoresaves_5_1mhgEHUHhWPyRK.png) |
 | Lives | ![lives](image.png) |
 | Bonus | ![bonus](https://static.wikia.nocookie.net/pacman/images/2/25/Fruits_Points.png/revision/latest/scale-to-width-down/256?cb=20210921001546) | 
