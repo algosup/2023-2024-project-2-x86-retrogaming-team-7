@@ -16,7 +16,7 @@
     - [1. x86-16bits environment](#1-x86-16bits-environment)
       - [Description](#description)
       - [Acceptance Criteria](#acceptance-criteria)
-    - [2. Pac-Man like](#2-pac-man-like)
+    - [2. Pac-Man](#2-pac-man)
       - [Description](#description-1)
         - [Acceptance Criteria](#acceptance-criteria-1)
       - [2.1 Main menu](#21-main-menu)
@@ -78,7 +78,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Project in scope
 
-- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
+- To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and scoring by collecting pellets.
 - To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
 
 #### Project out of scope
