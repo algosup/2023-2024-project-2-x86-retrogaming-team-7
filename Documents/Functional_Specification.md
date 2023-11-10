@@ -106,34 +106,34 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Description
 
-For this project we need to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
+For this project we were asked to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
 
 #### Acceptance Criteria
 
-- Each system will have to use this software to play the game.
-- The DOSBox emulator will be integrated into an installer, supplied when we will be going to bring out this game. 
+- Each system will have to use this software to launch the final product.
+- The DOSBox emulator will be integrated into an installer, which will be supplied when the final product will be launched. 
 
 ### 2. Pac-Man
 
 #### Description
 
-We need to create a game which contains the same mechanics of gameplay than the game Pac-Man, since the copyrights are no longer a problem, we could use the same sprites and musics. 
+We need to create a game which contains the same mechanics of gameplay than the game Pac-Man, since the copyrights are no longer a problem, we can use the same sprites and musics. 
 
 ##### Acceptance Criteria
 
-- The game must be complete with no issue, crash, bug or glitch during all the user experience.
+- The game must be complete with no issues, crashs, bugs or glitchs during all the user's experience.
 
 #### 2.1 Main menu
-The main menu is the menu you land on when you launch the game. It allows the player to choose to play, to change his controls in the settings. 
+The main menu is the first page that you land on when you launch the game. This page allows the player to either play or to access to the settings. 
 
 #### 2.2 Start
-The game starts and the player can play until he loses all his lives.
+Once the game starts, the player will be able to play until he loses all his lives.
 
 #### 2.3 Game over
-If the player loses all his lives, it's game over, then he comes back to the main menu.
+If the player loses all his lives, he will be redirected to the main menu.
 
 #### 2.4 "Control" menu as the settings
-The settings are accessible from the main menu, it must to change the player's key binds as he would like. 
+The settings will be accessible from the main menu, it will allows to customise the player's key binds. 
 
 #### 2.5 Credits
 The credits are accessible from the main menu, they serve to credit the people who worked on the project, from close or far.
@@ -205,13 +205,13 @@ This is how the game would look like:
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
 - Keybind : Give the possibility to configure the keybinds as the player want. 
-  - Default keybind for the first player moves :
+  - Default key binds for the first player moves :
     - **Up Arrow**: Move the Pac-Man character upward.
     - **Down Arrow**: Move the Pac-Man character downward.
     - **Left Arrow**: Move the Pac-Man character to the left.
     - **Right Arrow**: Move the Pac-Man character to the right.
 
-  - Default keybind for the second player moves:
+  - Default key binds for the second player moves:
     - **Z**: Move the Ghost character upward.
     - **S**: Move the Ghost character downward.
     - **Q**: Move the Ghost character to the left.
