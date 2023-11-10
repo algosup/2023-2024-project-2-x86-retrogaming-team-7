@@ -102,7 +102,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To add boss stages
 - To add new game mode
 
----
+#
 
 ## Functional Requirements
 
@@ -168,7 +168,7 @@ In Pac-Man, the bonus are the objects which appear on the map, they just earn po
 #### 2.13 Lives
 The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
 
----
+#
 
 ## Non-Functional Requirements
 
@@ -197,7 +197,7 @@ The lives are the chances the player has to beat the game. If he has no lives an
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
 
----
+#
 
 ## Use Cases
 
@@ -227,13 +227,13 @@ Goals and Motivations:
 -Desires a game that provides a sense of accomplishment and mastery.
 ```
 
-### Design
+## Design
 
 Here's a description of what the game would look like in the player's sight. 
 
 ![Diagram](diagram_functional.png)
 
----
+#
 
 ## Assumptions and Constraints
 
