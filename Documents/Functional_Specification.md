@@ -80,7 +80,6 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Project in scope
 
-- Recreate a game that makes people feel the joy of playing. 
 - To define the core gameplay mechanics, rules, and objectives for the Pac-Man game, including the movement of the Pac-Man character, the behavior of ghosts and collecting pellets.
 - To set performance goals, such as achieving a target frame rate and ensuring smooth gameplay.
 
@@ -168,7 +167,7 @@ The score shows the points the player earned during the game. The little dots ea
 
 
 #### 2.12 Bonus
-In Pac-Man, the bonus are the fruits which appear on the map, they just earn points.
+In Pac-Man, the bonus are the objects which appear on the map, they just earn points.
 
 #### 2.13 Lives
 The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
@@ -236,6 +235,7 @@ Goals and Motivations:
 ### Design
 
 Here's a description of what the game would look like in the player's sight. 
+
 ![Diagram](diagram_functional.png)
 
 ## Assumptions and Constraints
