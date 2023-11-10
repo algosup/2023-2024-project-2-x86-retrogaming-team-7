@@ -90,16 +90,16 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 ## Project Goals
 
 #### Goals
-- To change the playable character
-- To change the music
-- To give the possibility to change the difficulty
-- To create new maps
-- To make the game smooth and playable
-- To make a compatible game
+- To change the playable character.
+- To change the music.
+- To give the possibility to change the difficulty.
+- To create new maps.
+- To make the game smooth and playable.
+- To make a compatible game.
 
 #### Non-Goals
-- To add boss stages
-- To add new game mode
+- To add boss stages.
+- To add new game mode.
 
 ## Functional Requirements
 
@@ -206,6 +206,17 @@ This is how the game would looke like:
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
 - Keybind : Give the possibility to configure the keybinds as the player want. 
+  - Default keybind for the first player moves :
+    - **Up Arrow**: Move the Pac-Man character upward.
+    - **Down Arrow**: Move the Pac-Man character downward.
+    - **Left Arrow**: Move the Pac-Man character to the left.
+    - **Right Arrow**: Move the Pac-Man character to the right.
+
+  - Default keybind for the second player moves:
+    - **Z**: Move the Ghost character upward.
+    - **S**: Move the Ghost character downward.
+    - **Q**: Move the Ghost character to the left.
+    - **D**: Move the Ghost character to the right.
 
 
 ## Use Cases
