@@ -91,7 +91,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Goals
 - To change the playable character (play other skins of Pac-Man).
-- To change the music (if we could in 16bits).
+- To change the music (if we could in 16 or 8 bits).
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
 - To make the game smooth and playable.
@@ -99,6 +99,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Non-Goals
 - To add boss stages.
+- To add multiples game modes.
 
 ## Functional Requirements
 
