@@ -106,12 +106,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Description
 
-<<<<<<< HEAD
-For this project we were asked to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
-=======
-For this project we need to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
-As well as DOSBox, NASM [^7] will also be required for the project.
->>>>>>> 62e5c3a5a3e02b1a8d9233a737d87c1d2995f5ed
+For this project we were asked to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.As well as DOSBox, NASM [^7] will also be required for the project.
 
 #### Acceptance Criteria
 
