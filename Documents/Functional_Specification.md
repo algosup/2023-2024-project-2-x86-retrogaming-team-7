@@ -256,9 +256,3 @@ Here's a description of what the game would look like in the player's sight.
 [^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
 
 [^3]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
-
-[^4]: 
-
-[^5]: 
-
-[^6]: 
