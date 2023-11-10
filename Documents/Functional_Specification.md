@@ -34,11 +34,10 @@
       - [2.13 Lives](#213-lives)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Game mode](#1-game-mode)
-    - [2. Boss stage](#2-boss-stage)
-    - [3. Options in the game](#3-options-in-the-game)
+    - [2. Options in the game](#2-options-in-the-game)
   - [Use Cases](#use-cases)
     - [Personas](#personas)
-    - [Design](#design)
+  - [Design](#design)
   - [Assumptions and Constraints](#assumptions-and-constraints)
     - [Assumptions](#assumptions)
     - [Constraints](#constraints)
@@ -83,7 +82,6 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Project out of scope
 
-- Make a game that is not pleasant to play.
 - To create the game that has another objective of the main game.
 - To create the game in another language than assembly. 
 - To develop the game that does not work/launch.
@@ -91,7 +89,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 ## Project Goals
 
 #### Goals
-- To change the sprites
+- To change the playable character
 - To change the music
 - To give the possibility to change the difficulty
 - To create new maps
@@ -101,8 +99,6 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 #### Non-Goals
 - To add boss stages
 - To add new game mode
-
-#
 
 ## Functional Requirements
 
@@ -122,7 +118,6 @@ For this project we need to use the software DOSBox which is a simulator of a MS
 #### Description
 
 We need to create a game which contains the same mechanics of gameplay than the game Pac-Man, using new models and soundtracks due to copyright. 
-
 
 ##### Acceptance Criteria
 
@@ -168,8 +163,6 @@ In Pac-Man, the bonus are the objects which appear on the map, they just earn po
 #### 2.13 Lives
 The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
 
-#
-
 ## Non-Functional Requirements
 
 ### 1. Game mode
@@ -183,21 +176,14 @@ The lives are the chances the player has to beat the game. If he has no lives an
 - Reverse game mode:
   
   In this game mode, the player takes control of the red ghost and has the objective to catch Pac-Man accompanied with the three other ghosts. Pac-Man has three lives as the original game and it has its own pattern. The player wins if Pac-Man has no lives left but he loses if it eats all the dots.
-
-### 2. Boss stage
-
-**A stage dedicated for a boss:**
-- An unique music for this level
-- To be decided
   
-### 3. Options in the game
+### 2. Options in the game
 
-**Options available in the game:**
+**Settings in the game:**
 - Music : Give the possibility to put on/off the music of the game.
 - Sound effect : Give the possibility to put on/off the sound effect of the game.
 - Character : Give the possibility to select one of the available skin implemented in the game.
 
-#
 
 ## Use Cases
 
@@ -233,8 +219,6 @@ Here's a description of what the game would look like in the player's sight.
 
 ![Diagram](diagram_functional.png)
 
-#
-
 ## Assumptions and Constraints
 
 ### Assumptions
@@ -247,7 +231,6 @@ Here's a description of what the game would look like in the player's sight.
 - Not deliver the final product on time.
 - Make the game not working/launching on the customer's hardware.
 - To not credit regarding the copyrights. 
-
 
 ## Glossary
 
