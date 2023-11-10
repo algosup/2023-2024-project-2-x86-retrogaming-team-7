@@ -107,6 +107,7 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 #### Description
 
 For this project we need to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.
+As well as DOSBox, NASM [^7] will also be required for the project.
 
 #### Acceptance Criteria
 
@@ -277,3 +278,5 @@ Here's a description of what the game would look like in the player's sight.
 [^5]: DOSBox is a simulator of the MS-DOS environment. 
 
 [^6]: An Operating System (OS) is the low-level software that supports a computer's basic functions, such as scheduling tasks and controlling peripherals.
+
+[^7]: The Netwide Assembler (NASM) is an assembler and disassembler for the Intel x86 architecture. It can be used to write 16-bit, 32-bit (IA-32) and 64-bit (x86-64) programs.
