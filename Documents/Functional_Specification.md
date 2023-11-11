@@ -1,7 +1,7 @@
 
 # Functional Specification Document
 
-## x86x16bits Retro-gaming
+## x86-16bits Retro-gaming
 
 - [Functional Specification Document](#functional-specification-document)
   - [x86x16bits Retro-gaming](#x86x16bits-retro-gaming)
@@ -22,13 +22,13 @@
       - [2.1 Main menu](#21-main-menu)
       - [2.2 Start](#22-start)
       - [2.3 Game over](#23-game-over)
-      - [2.4 "Control" menu as the settings](#24-control-menu-as-the-settings)
+      - [2.4 Settings in menu](#24-settings-in-menu)
       - [2.5 Credits](#25-credits)
       - [2.6 Map](#26-map)
       - [2.7 Pac-Man](#27-pac-man)
       - [2.8 Collisions/Hitboxes](#28-collisionshitboxes)
       - [2.9 Enemies](#29-enemies)
-      - [2.10 Dots](#210-dots)
+      - [2.10 Pellets & Power Pellets](#210-pellets--power-pellets)
       - [2.11 Score](#211-score)
       - [2.12 Bonus](#212-bonus)
       - [2.13 Lives](#213-lives)
@@ -39,7 +39,7 @@
   - [Use Cases](#use-cases)
     - [Personae](#personae)
   - [Design](#design)
-  - [Assumptions and Constraints](#assumptions-and-constraints)
+  - [Assumptions & Constraints](#assumptions--constraints)
     - [Assumptions](#assumptions)
     - [Constraints](#constraints)
   - [Risks](#risks)
@@ -48,31 +48,28 @@
 ---
 
 
-**| Member of the project |**
-
+| **Member of the project** ||
+|:-|:-|
 | Name | Role |
-| :--- | ---: |
-| Guillaume DESPAUX | Project Manager
-| Michel RIFF | Program Manager
-| Lucas AUBARD | Technical Lead
-| Enzo GUILLOUCHE | Junior Software Engineer
-| Elone DELILLE | Junior Software Engineer
-| Ian LAURENT | Quality Assurance
+| Guillaume DESPAUX | Project Manager |
+| Michel RIFF | Program Manager |
+| Lucas AUBARD | Technical Lead |
+| Enzo GUILLOUCHE | Junior Software Engineer |
+| Elone DELILLE | Junior Software Engineer |
+| Ian LAURENT | Quality Assurance |
 
 
 ## Project Overview
 
-ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS [^4] (x86-16bits) and in assembly language [^1].
-This project started on Monday November 6th and its deadline is on Thursday December 21st.
+ALGOSUP asked us to recreate an old video game, which is the game called "Pac-Man". We will make it with some features, in an environment called MS-DOS [^1] (x86-16bits) and in assembly language [^2].
+This project debuted on Monday the 6th of November, and its deadline is Thursday the 21st of December 2023.
 
 ---
- So what is Pac-Man ? 
+Pac-Man overview.
 
 ![PAC-MAN](https://openseauserdata.com/files/7980c0c921ad90ecb7deadf1aefeda41.png)
 
-Pac-Man is a maze-based and a single player video game set in a brightly colored, released in 1980 in Japan. The player takes control of a yellow character, known as Pac-Man. The objective of the game is to clear all the dots from the maze while avoiding four colorful ghosts who are out to catch Pac-Man. The player earns points by consuming dots and, occasionally, larger dots, which temporarily turn the ghosts vulnerable, then Pac-Man can eat them to earn more points. The player can play until he loses all his lives.
-
-
+Pac-Man is a game created in 1980 in Japan, it's a single-player video game where the player takes control of a yellow character also known as Pac-Man, to which the player's goal will be to collect all the points represented as pellets in a Maze. This yellow character is followed by ghosts whose main goal is to catch Pac-man. If Pac-Man gets caught by a ghost the game pauses and both Pac-Man and the ghosts return to their initial starting points. Pac-man has three lives and if he loses all three lives the game ends and the points are lost. In the Game there are some features such as "super points" which are distinguished on the map with a larger pellet, this points will allow Pac-Man to be the one chasing the ghosts and allow him to win more points if he manages to catch one or more.
 
 ## Project Scope
 
@@ -95,10 +92,10 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
 - To make the game smooth and playable.
-- To make a compatible game with all the Operating Systems [^6].
+- To make a compatible game with all the Operating Systems [^3].
 
-#### Non-Goals (features we want to add)
-- To add boss stages.
+#### Non-Goals
+- Implementing levels with a "Boss" for a more challenging level
 
 ## Functional Requirements
 
@@ -106,12 +103,12 @@ Pac-Man is a maze-based and a single player video game set in a brightly colored
 
 #### Description
 
-For this project we were asked to use the software DOSBox [^5] which is a simulator of a MS-DOS environment.As well as DOSBox, NASM [^7] will also be required for the project.
+For this project we were asked to use the software DOSBOX [^4] which is a simulator of the MS-DOS environment. In addition to DOSbox, NASM [^5] was part of the initial requirement.
 
 #### Acceptance Criteria
 
-- Each system will have to use this software to launch the final product.
-- The DOSBox emulator will be integrated into an installer, which will be supplied when the final product will be launched. 
+- The final product must run on this software in order for it to be valid.
+- The DOSbox emulator will have to integrated into an installer which will ease the download of the final product.
 
 ### 2. Pac-Man
 
@@ -121,7 +118,7 @@ We need to create a game which contains the same mechanics of gameplay than the 
 
 ##### Acceptance Criteria
 
-- The game must be complete with no issues, crashs, bugs or glitchs during all the user's experience.
+- The final product must not have any issues, crashes, system failures, or glitches throughout the whole user's experience.
 
 #### 2.1 Main menu
 The main menu is the first page that you land on when you launch the game. This page allows the player to either play or to access to the settings. 
@@ -132,52 +129,58 @@ Once the game starts, the player will be able to play until he loses all his liv
 #### 2.3 Game over
 If the player loses all his lives, he will be redirected to the main menu.
 
-#### 2.4 "Control" menu as the settings
-The settings will be accessible from the main menu, it will allows to customise the player's key binds. 
+#### 2.4 Settings in menu
+The settings will be accessible from the main menu, which will allow the user to customize the key binds.
 
 #### 2.5 Credits
 The credits are accessible from the main menu, they serve to credit the people who worked on the project, from close or far.
 
 #### 2.6 Map
-When the player starts the game, it will take place in a map. The whole map deals with all the maze, and it will all be displayed on the screen. 
+The map is an environment in which the player moves up and down, left and right, while eating pellets and avoiding the ghosts that try to catch them. It contains several labyrinth-like walls that test the player's speed of execution.
 
 #### 2.7 Pac-Man
-The famous character Pac-Man is the playable one in the game. The player who controls him can change his direction, while he's moving, in 4 directions (up, left, right and down), he also can eat dots by just going on them.
+The player will have the possibility to control the movements of the yellow character known as Pac-Man in the maze, the player will have control over the 4 directions (up, down, left, and right).
 
 #### 2.8 Collisions/Hitboxes 
-In Pac-Man, the payable character has hitboxes[^2] with the map, the objects he can interact with, the enemies. 
+In Pac-Man, the payable character has hitboxes[^6] with the map, the objects he can interact with, the enemies. 
 
 #### 2.9 Enemies 
-The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern[^3].
+The enemies are the 4 ghosts in the game, each has a special color to discern it from the others. Their goal is to follow Pac-Man and catch him, and each ghost has its own pattern[^7].
 
-#### 2.10 Dots
-The dots are the points that Pac-Man eats during the game. The player has to eat all of them to success the level and increase the score. The power pellets make the ghosts vulnerable. There are 244 dots and 4 power pellets (located on the corners of the map).
+| Ghosts | Name |
+|:-|-:|
+|![blinky](img/blinky.png)|Blinky|
+|![blinky](img/pinky.png)|Pinky|
+|![blinky](img/inky.png)|Inky|
+|![blinky](img/clyde.png)|Clyde|
+
+#### 2.10 Pellets & Power Pellets
+The pellets are the points that Pac-Man eats during the game. The player has to eat all of them to success the level and increase the score. The power pellets make the ghosts vulnerable. There are 244 pellets and 4 power pellets.
 
 #### 2.11 Score
-The score shows the points the player earned during the game. The little dots earn 10 points, the power pellets earn 30 points when the player eats a vulnerable ghost (until 1600 points, depending on the consecutive ghost eats), he earns 200 points; and a bonus earns from 100 points to 5000. A highscore can be displayed on the screen, the player could want to beat it. 
-
+The score is displayed on the screen, for each pellet that Pac-Man eats, the player's score will increase by 10 points, for each power pellet the player will increase its score by 30 points. As for the ghosts, every time a player eats a power pellet and catches a ghost, the player's score will increase by 200, depending on the number of ghosts the player catches in their vulnerable state. Every ghost that will be caught, will allow the player to gain more points every time. The highest score of the previous games will be displayed next to the game score which will allow the player to see its progression from the previous games.
 
 #### 2.12 Bonus
-In Pac-Man, the bonus are the objects which appear on the map, they just earn points.
+In Pac-Man, the bonus is the objects that appear on the map, which they allow to earn points every time Pac-Man eats it.
 
 #### 2.13 Lives
-The lives are the chances the player has to beat the game. If he has no lives anymore, it's game over. If the player earns 10,000 points, he gets another life.
+The lives are the chances that the player has to complete the game, when the player launches the game he will initially have 3 lives, everytime that Pac-Man gets caught by a ghost he loses one life and returns to the original position keeping he's score and the progression on the map. Everytime the player reaches 10 thousand points the player will be rewarded with an extra life. If the player runs out of lives the game will be over and he will have to start the game over.
 
 ### Sprites
 | Name | Sprite |
 | :--- | ---: |
-| Main menu | ![mainmenu](image-1.png) |
-| Map | ![map](https://i.pinimg.com/236x/2d/76/b5/2d76b5fbf93a4f0d6f5e4dda97d40580.jpg) |
-| Pac-Man | ![pacman](https://upload.wikimedia.org/wikipedia/commons/a/a8/Original_PacMan.png) |
-| Ghosts | ![ghosts](https://external-preview.redd.it/GHNcBEnZeJVMMZkOK9snAwDMOxGdiToO-18lPVx4ykA.jpg?auto=webp&s=1c033bfe52028ad8addab5e7cb09e4e817193dd3) |
-| Dots | ![dots](image-2.png) |
-| High-score | ![highscore](https://highscoresave.com/media/image/5e/cf/ae/pengo_multigame_kit_highscoresaves_5_1mhgEHUHhWPyRK.png) |
-| Lives | ![lives](image.png) |
-| Bonus | ![bonus](https://static.wikia.nocookie.net/pacman/images/2/25/Fruits_Points.png/revision/latest/scale-to-width-down/256?cb=20210921001546) | 
+| Main menu | ![main menu](img/main_menu.png) |
+| Map | ![map](img/map.jpg) |
+| Pac-Man | ![pac-man](img/PacMan.png) |
+| Ghosts | ![ghosts](img/ghosts_names.jpg) |
+| Pellet and power pellet | ![pellet and power pellet](img/pellet_power_pellet.png) |
+| High-score | ![highscore](img/high_score.png) |
+| Lives | ![lives](img/lives.png) |
+| Bonus | ![bonus](img/bonus_fruits.png) | 
 
-This is how the game would look like:
+Here is a general idea of what the final product will look like: (because our game won't exactly look alike to what is shown in the photo)
 
-![game](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX4WkTq3cFwdLFLVv-tG117URwp-gL8e0f_5G8EwA1GgfU5ClGkqu78HGjXoVdQ6NjR98&usqp=CAU)
+![game](img/resume.png)
 
 
 ## Non-Functional Requirements
@@ -188,30 +191,30 @@ This is how the game would look like:
 
 - Multiplayer game mode:
   
-  This game mode is based on two player, one control Pac-Man with the original objective, the other player takes control of one of the ghosts and has the objective to catch the other player accompanied with the other ghosts. Both players control their character with the same keyboard.
+  This game mode is based on a two player version, The first player will be able to control Pac-Man, the other player will have the possibility to take control of one of the ghosts this players goal will be, Pac-Man whom is controled by the first player. Both players control will have control of their characters with the same keyboard with different control keys.
 
 - Reverse game mode:
   
-  In this game mode, the player takes control of the red ghost and has the objective to catch Pac-Man accompanied with the three other ghosts. Pac-Man has three lives as the original game and it has its own pattern. The player wins if Pac-Man has no lives left but he loses if it eats all the dots.
+  In this game mode, the player takes control of the red ghost with the goal of catching Pac-Man with the three other ghosts. Pac-Man has will have three lives as just like the original game and it has will have its own pattern. The player wins will win if Pac-Man has no lives left but he loses if it eats all the pellets.
 
 - Timed game mode:
   
-  This game mode is like the original one but with a limited time determined which is reduced further the player wins level.
+  This game mode is like the original one version but with a limited time. This time limit will decrease as the player goes up a level.
   
-### 2. Options in the game
+### 2. Game options
 
-**Settings in game:**
-- Music : Give the possibility to put on/off the music of the game.
-- Sound effect : Give the possibility to put on/off the sound effect of the game.
-- Character : Give the possibility to select one of the available skin implemented in the game.
-- Keybind : Give the possibility to configure the keybinds as the player want. 
-  - Default key binds for the first player moves :
+**Game settings:**
+- Music : Possibility of switching on/off the music of the game.
+- Sound effect : Possibility of switching on/off the sound effects of the game.
+- Character : Possibility to select one of the available skins available in the game.
+- Keybind : Possibility to configure the keybinds as the player want.
+  - Default keybinds for the first player moves :
     - **Up Arrow**: Move the Pac-Man character upward.
     - **Down Arrow**: Move the Pac-Man character downward.
     - **Left Arrow**: Move the Pac-Man character to the left.
     - **Right Arrow**: Move the Pac-Man character to the right.
 
-  - Default key binds for the second player moves:
+  - Default keybinds for the second player moves (AZERTY keyboard) :
     - **Z**: Move the Ghost character upward.
     - **S**: Move the Ghost character downward.
     - **Q**: Move the Ghost character to the left.
@@ -247,35 +250,41 @@ Goals and Motivations:
 
 ## Design
 
-Here's a description of what the game would look like in the player's sight. 
+Here is the UML case diagram from the users' point of view, grouping the basic functionalities of the supposedly final product.
 
-![Diagram](diagram_functional.png)
+![Diagram](img/diagram_functional.png)
 
-## Assumptions and Constraints
+## Assumptions & Constraints
 
 ### Assumptions
-- The game would be download, it would run without any Internet connection. 
+- The game will be available to download on GitHub and once the game installed, the game will be able to run without the need to be connected to the internet.
 ### Constraints
 - The game has to run on DOSBox. 
 
 ## Risks
 
-- Not deliver the final product on time.
-- Make the game not working/launching on the customer's hardware.
-- To not credit regarding the copyrights. 
+- Not being able to deliver the final product on due date.
+- The final product not working on the customer's device.
+- To not credit regarding the copyrights.
+- The game interactions such as game control or opening menu not functioning.
+- Going over the limit of 16 bits.
+- Customer not satisfied with the final product.
 
 ## Glossary
 
-[^1]:  Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
+[^1]: MS-DOS is an Operating System for x86-based PCs mostly developed by Microsoft.
 
-[^2]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
+[^2]:  Assembly language is a low-level programming language that is used to write programs for a computer's central processing unit (CPU). It is a human-readable representation of machine code making it easier for programmers to write and understand low-level code while still having a one-to-one correspondence with the actual machine code.
 
-[^3]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
+[^3]: An Operating System (OS) is the low-level software that supports a computer's basic functions, such as scheduling tasks and controlling peripherals.
 
-[^4]: MS-DOS is an Operating System for x86-based PCs mostly developed by Microsoft.
+[^4]: DOSBox is a simulator of the MS-DOS environment. 
 
-[^5]: DOSBox is a simulator of the MS-DOS environment. 
+[^5]: The Netwide Assembler (NASM) is an assembler and disassembler for the Intel x86 architecture. It can be used to write 16-bit, 32-bit (IA-32) and 64-bit (x86-64) programs.
 
-[^6]: An Operating System (OS) is the low-level software that supports a computer's basic functions, such as scheduling tasks and controlling peripherals.
+[^6]: A hitbox is an invisible shape bounding all or part of a model (in a video game, etc.) used in collision detection to determine whether another object collides with the model.
 
-[^7]: The Netwide Assembler (NASM) is an assembler and disassembler for the Intel x86 architecture. It can be used to write 16-bit, 32-bit (IA-32) and 64-bit (x86-64) programs.
+[^7]: In software engineering, a pattern is a reusable behavior of a Non-Playable Character (NPC), which can be overuse by the player to beat a boss for example.
+
+
+
