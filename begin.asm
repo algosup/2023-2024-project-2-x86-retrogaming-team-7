@@ -75,6 +75,7 @@ debug_option:
     mov ah, 0x0E
     mov si, levelMessage
     call print_string
+    call wait_for_escape
 
     jmp hang  ; Hang after displaying level message
 
@@ -218,29 +219,28 @@ invalid_input:
 ;                       CHANGE KEY BINDING
 ;==================================================================
 change_key_binding:
-    change_key_binding:
     ; Clear the screen
-    mov ah, 0x00  ; Function code for clearing the screen
-    mov al, 0x03  ; Mode for clear screen (for example, text mode)
-    int 10h       ; Call BIOS interrupt for video services
+    call clear_screen
 
     ; Display the prompt message
-    mov ah, 09h           ; Function number for displaying string
+    mov ah, 09h
     lea dx, prompt_new_key_msg
-    int 21h               ; Call DOS interrupt to display the message
+    int 21h
+
     ; Output the option name
-    ; Calculate the offset based on the user's choice
     movzx bx, byte [choice] ; Zero-extend the byte value to a word
     dec bx                 ; Subtract 1 since choices are 1-based
     shl bx, 4              ; Multiply by 16 (shift left by 4)
-
-    ; Now load the effective address using the calculated offset
     lea si, [optionStrings + bx] ; Load address of the selected option string
     call print_string
-    ; Wait for key press
+
+    ; Wait for key press and store the new key
     mov ah, 00h
     int 16h
     mov [newKey], al
+
+    ; Call update_settings to apply the change
+    call update_settings
     ret
 
 ;==================================================================
@@ -248,30 +248,38 @@ change_key_binding:
 ;==================================================================
 update_settings:
     ; Open the file in write mode
-    mov ah, 0x3D          ; Function: Open existing file
+    mov ah, 0x3D
     mov al, 2             ; Access mode: Read/Write
     lea dx, filename
     int 0x21
-    jc error              ; Jump if carry flag is set (error)
+    jc error
     mov [fileHandle], ax
 
     ; Read current settings into buffer
-    mov ah, 0x3F          ; Function: Read from file or device
+    mov ah, 0x3F
     mov bx, [fileHandle]
     lea dx, [buffer]
-    mov cx, 1024          ; Number of bytes to read
+    mov cx, 1024
     int 0x21
-    jc error              ; Jump if carry flag is set (error)
+    jc error
     mov [readBytes], ax
 
-    ; Find the line to modify based on user's choice
-    mov si, 0             ; Source index for buffer iteration
-    mov di, 0             ; Destination index for buffer modification
-    mov cx, [readBytes]   ; Number of bytes to process
-    mov bl, [choice]      ; User's choice (1-based)
-    xor bh, bh            ; Clear upper byte of bx
-    dec bl                ; Adjust for 0-based indexing
-    mov bp, 0             ; Line counter
+    ; Write modified buffer back to the file
+    mov ah, 0x40
+    mov bx, [fileHandle]
+    lea dx, [buffer]
+    mov cx, [readBytes]
+    int 0x21
+    jc error
+
+    ; Close the file
+    mov ah, 0x3E
+    mov bx, [fileHandle]
+    int 0x21
+    jc error
+
+    ret
+
 
 find_line:
     ; If you want to compare the lower byte of bp with bl
@@ -303,7 +311,7 @@ modify_line:
 
     ; Replace the key
     mov al, [newKey]
-    mov [buffer + di - 1], al  ; Replace character before '='
+    mov [es:di - 1], al   ; Replace character before '='
 
     ; Write modified buffer back to the file
     mov ah, 0x40          ; Function: Write to file or device
