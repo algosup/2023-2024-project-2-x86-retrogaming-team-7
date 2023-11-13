@@ -218,10 +218,16 @@ invalid_input:
 ;                       CHANGE KEY BINDING
 ;==================================================================
 change_key_binding:
-    ; Display prompt
-    mov ah, 09h
+    change_key_binding:
+    ; Clear the screen
+    mov ah, 0x00  ; Function code for clearing the screen
+    mov al, 0x03  ; Mode for clear screen (for example, text mode)
+    int 10h       ; Call BIOS interrupt for video services
+
+    ; Display the prompt message
+    mov ah, 09h           ; Function number for displaying string
     lea dx, prompt_new_key_msg
-    int 21h
+    int 21h               ; Call DOS interrupt to display the message
     ; Output the option name
     ; Calculate the offset based on the user's choice
     movzx bx, byte [choice] ; Zero-extend the byte value to a word
