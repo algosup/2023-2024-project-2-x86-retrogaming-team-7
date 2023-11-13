@@ -56,35 +56,7 @@
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Final product||November 6th, 2023|November 13th, 2023|<span style=color:green>**2%**</span>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-
-<div style="position: relative; height: 100px;">
-  <div style="width: 40px; height: 40px; background-color: yellow; border-radius: 50%; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); animation: eat 0.5s infinite;"></div>
-</div>
-
-<style>
-  @keyframes eat {
-    0%, 100% {
-      clip-path: polygon(50% 0%, 100% 0%, 50% 100%, 0% 0%);
-    }
-    50% {
-      clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 0%);
-    }
-  }
-</style>
-
-</body>
-</html>
-
+>|Final product||November 6th, 2023|November 13th, 2023|<span style=color:green>**15%**</span>
 
 
 
