@@ -193,6 +193,9 @@ get_choice:
     int 21h           ; Call DOS interrupt
     mov [choice], al  ; Store the input character in 'choice'
 
+    cmp al, 0x11B
+    je _start
+
     ; Validate input (assuming options are 1-8)
     cmp al, '1'       ; Compare with '1'
     jb invalid_input  ; Jump if below '1'
