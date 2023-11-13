@@ -173,10 +173,9 @@ process_buffer:
     cmp byte [buffer + si], '=' ; Check if current character is '='
     jne increment_si   ; Jump if not '='
 
-    ; Output newline when '=' is found
-    lea dx, newLine
-    mov ah, 0x09     ; Function to display string
-    int 0x21         ; Call interrupt
+    ; Continue processing characters after '=' until newline
+    cmp byte [buffer + si], 0x0D ; Check for carriage return (newline)
+    je increment_si    ; Jump if newline is found
 
 increment_si:
     inc si           ; Move to the next character
@@ -221,12 +220,15 @@ change_key_binding:
     lea dx, prompt_new_key_msg
     int 21h
     ; Output the option name
-    movzx bx, byte [choice]
-    dec bx
-    shl bx, 4
-    lea si, [optionStrings + bx]
+    ; Calculate the offset based on the user's choice
+    movzx bx, byte [choice] ; Zero-extend the byte value to a word
+    dec bx                 ; Subtract 1 since choices are 1-based
+    shl bx, 4              ; Multiply by 16 (shift left by 4)
+
+    ; Now load the effective address using the calculated offset
+    lea si, [optionStrings + bx] ; Load address of the selected option string
     call print_string
-    ; Wait for key press and store the new key
+    ; Wait for key press
     mov ah, 00h
     int 16h
     mov [newKey], al
@@ -237,31 +239,79 @@ change_key_binding:
 ;==================================================================
 update_settings:
     ; Open the file in write mode
-    mov ah, 0x3D ; Function: Open existing file
-    mov al, 1    ; Access mode: Write only
+    mov ah, 0x3D          ; Function: Open existing file
+    mov al, 2             ; Access mode: Read/Write
     lea dx, filename
     int 0x21
-    jc error ; Jump if carry flag is set (error)
+    jc error              ; Jump if carry flag is set (error)
     mov [fileHandle], ax
 
     ; Read current settings into buffer
-    mov ah, 0x3F ; Function: Read from file or device
+    mov ah, 0x3F          ; Function: Read from file or device
     mov bx, [fileHandle]
     lea dx, [buffer]
-    mov cx, 1024 ; Number of bytes to read
+    mov cx, 1024          ; Number of bytes to read
     int 0x21
-    jc error ; Jump if carry flag is set (error)
+    jc error              ; Jump if carry flag is set (error)
     mov [readBytes], ax
 
-    ; Modify the appropriate line in the buffer
-    mov si, 0         ; Source index for buffer iteration
-    mov cx, [readBytes]  ; Number of bytes to process
-    xor di, di        ; Destination index for buffer modification
-    mov bl, [choice]  ; Option number
-    mov bh, 0
-    lea bp, [optionLengths] ; Address of option lengths array
+    ; Find the line to modify based on user's choice
+    mov si, 0             ; Source index for buffer iteration
+    mov di, 0             ; Destination index for buffer modification
+    mov cx, [readBytes]   ; Number of bytes to process
+    mov bl, [choice]      ; User's choice (1-based)
+    xor bh, bh            ; Clear upper byte of bx
+    dec bl                ; Adjust for 0-based indexing
+    mov bp, 0             ; Line counter
 
-    ; Loop through each character in the buffer
+find_line:
+    ; If you want to compare the lower byte of bp with bl
+    movzx bx, bl       ; Zero extend bl to bx
+    cmp bp, bx         ; Now compare bp with bx
+
+    ; or, if you only need to compare the lower bytes of both
+    mov ah, bl         ; Move bl into ah
+    cmp bh, ah         ; Compare the lower bytes of bp (bh) with ah
+    je modify_line
+    ; Increment line counter on newline
+    cmp byte [buffer + si], 0x0A  ; Line feed
+    je inc_line
+    ; Skip to next character
+    inc si
+    loop find_line
+    jmp error             ; Line not found
+
+inc_line:
+    inc bp
+    inc si
+    loop find_line
+
+modify_line:
+    ; Find the '=' character
+    mov al, '='
+    repne scasb
+    jne error             ; '=' not found
+
+    ; Replace the key
+    mov al, [newKey]
+    mov [buffer + di - 1], al  ; Replace character before '='
+
+    ; Write modified buffer back to the file
+    mov ah, 0x40          ; Function: Write to file or device
+    mov bx, [fileHandle]
+    lea dx, [buffer]
+    mov cx, [readBytes]   ; Number of bytes to write
+    int 0x21
+    jc error              ; Jump if carry flag is set (error)
+
+    ; Close the file
+    mov ah, 0x3E
+    mov bx, [fileHandle]
+    int 0x21
+    jc error
+
+    ret
+
 modify_loop:
     dec cx
     jz close_file
