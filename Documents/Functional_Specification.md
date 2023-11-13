@@ -161,7 +161,7 @@ The pellets are the points that Pac-Man eats during the game. The player has to 
 The score is displayed on the screen, for each pellet that Pac-Man eats, the player's score will increase by 10 points, for each power pellet the player will increase its score by 30 points. As for the ghosts, every time a player eats a power pellet and catches a ghost, the player's score will increase by 200, depending on the number of ghosts the player catches in their vulnerable state. Every ghost that will be caught, will allow the player to gain more points every time. The highest score of the previous games will be displayed next to the game score which will allow the player to see its progression from the previous games.
 
 #### 2.12 Bonus
-In Pac-Man, the bonus is the objects that appear on the map, which they allow to earn points every time Pac-Man eats it.
+In Pac-Man, the bonus are the objects such as the fruits, that appears on the map allowing the player to earn bonus points every time Pac-Man eats it.
 
 #### 2.13 Lives
 The lives are the chances that the player has to complete the game, when the player launches the game he will initially have 3 lives, everytime that Pac-Man gets caught by a ghost he loses one life and returns to the original position keeping he's score and the progression on the map. Everytime the player reaches 10 thousand points the player will be rewarded with an extra life. If the player runs out of lives the game will be over and he will have to start the game over.
@@ -267,7 +267,7 @@ Here is the UML case diagram from the users' point of view, grouping the basic f
 
 ### Assumptions
 - The game will be available to download on GitHub and once the game installed, the game will be able to run without the need to be connected to the internet.
-- This game will be available to be download from Google Drive.
+- This game will be available to be download from Google Drive link as well.
 ### Constraints
 - The game has to run on DOSBox. 
 
