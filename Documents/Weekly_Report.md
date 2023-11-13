@@ -3,28 +3,30 @@
 1. Introduction:
 - This week was the kick-off of this project, this project was introduced to us on Monday the 6th of November by Franck. This project was to create a classic game in Assembly more precisely the game Pac-Man. At first, we did a scrum meeting to analyze the project and then started working on different tasks taking into consideration each team member's role.
 2. Accomplishments:
-- Our program manager start to fill the functional specification document.
+- Our program manager started to fill the functional specification document.
 - As for the team member that is responsible for the Quality assurance, he worked on the first version of the test plan.
-- The development team started by working with the team members who were working on the functional specification to create the concept of the game without starting to develop it. Thinking of what we would like the include in the game and what should not be included in the game. In addition to that the development team started to read and try to understand how the Assembly language works with online documents but also the book that Franck gave to us mid of week.
+- The development team started by working with the team members who were working on the functional specification to create the concept of the game without starting to develop it. Thinking of what we would like the include in the game and what should not be included in the game. In addition, development team started to read and try understanding how the Assembly language works, with the help of online documents but also the book that Franck gave to us mid of week.
 3. Challenges:
-- One of the first challenges that we had to face as a team was to install the apps that we all needed, Lucas being the tech lead, has a Macintosh device and the rest of the team member has Windows devices. We are currently looking to find a solution.
+- One of the first challenges that we had to face as a team was to install the apps that we all needed, Lucas being the tech lead, he has a Macintosh device and the rest of the team member has Windows devices. We are currently looking to find a solution.
 4. Plans for Next Week:
 - We will start the technical specification.
 - Spread out all aspects with the technical leader and assign a deadline for each task.
 5. Conclusion:
-- To conclude this week, we are finishing off the technical specification and working on the test plan as soon as the Quality assurance and the Project manager have validated the functional specification we will go into the phase of development. This week was the kick-off of the project meaning that we were all integrated into a new team than the previous project, meaning that we had to learn to work together to ensure harmony in the team, getting to know the strengths of each team member but also understanding their limits. To describe this week in a few words it would be: Productive, time optimizing, team working, team building.
+- To conclude this week, we are finishing off the functional specification and working on the test plan, as soon as the Quality assurance and the Project manager have validated the functional specification we will go into the phase of development. This week was the kick-off of the project meaning that we were all integrated into a new team than the previous project. We had to learn to work together to ensure a harmony in the team, getting to know the strengths of each team member but also understanding their limits. To describe this week in a few words it would be: Productive, time optimizing, team working and team building.
 6. KPI's
 >KPI's template 
 >
 >Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
+>---
 >>|Task name|Start|Deadline|Completion in percent|
 >>|:-:|:-:|:-:|:-:|
->Completion in percent legend :
+>>---
+>**<u>Completion in percent legend :</u>**
 >
-><span style=color:green>Complete in time</span>
+><span style=color:green>On schedule</span>
 >
-><span style=color:orange>Late but always in time</span>
+><span style=color:orange>Just under the wire (behind the planned time)</span>
 >
 ><span style=color:red>Deadline crossed</span>
 
@@ -42,16 +44,47 @@
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Technical specification|||November 27th, 2023|<span style=color:orange></span>|
+>|Technical specification|Fill the technical specification document|November 13th, 2023|November 27th, 2023|<span style=color:white>**0%**</span>|
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Test plan|||December 8th, 2023|<span style=color:orange></span>|
+>|Test plan|Assurence of the quality of the overall|November 10th, 2023|December 8th, 2023|<span style=color:green>**5%**</span>|
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Working prototype||November 6th, 2023|November 13th, 2023|<span style=color:orange></span>|
+>|Working prototype|||November 10th, 2023|<span style=color:white>**0%**</span>|
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Final product||November 6th, 2023|November 13th, 2023|<span style=color:orange></span>|
+>|Final product||November 6th, 2023|November 13th, 2023|<span style=color:green>**2%**</span>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div style="position: relative; height: 100px;">
+  <div style="width: 40px; height: 40px; background-color: yellow; border-radius: 50%; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); animation: eat 0.5s infinite;"></div>
+</div>
+
+<style>
+  @keyframes eat {
+    0%, 100% {
+      clip-path: polygon(50% 0%, 100% 0%, 50% 100%, 0% 0%);
+    }
+    50% {
+      clip-path: polygon(50% 0%, 100% 0%, 100% 100%, 0% 100%, 50% 0%);
+    }
+  }
+</style>
+
+</body>
+</html>
+
+
+
+
