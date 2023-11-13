@@ -39,6 +39,8 @@ _start:
     mov si, CapsLockMessage
     call print_string
 
+
+waiting_for_key:
     ; Wait for key press
     mov ah, 0x00
     int 0x16  ; BIOS keyboard service
@@ -55,6 +57,7 @@ _start:
     cmp al, '3'
     je option_setting
 
+    jmp waiting_for_key
 hang:
     jmp hang
 
