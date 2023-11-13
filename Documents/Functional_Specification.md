@@ -34,7 +34,7 @@
       - [2.13 Lives](#213-lives)
     - [Sprites](#sprites)
   - [Non-Functional Requirements](#non-functional-requirements)
-    - [1. Game mode](#1-game-mode)
+    - [1. Game Mode](#1-game-mode)
     - [2. Game Settings](#2-game-settings)
   - [Use Cases](#use-cases)
     - [Personae](#personae)
@@ -187,7 +187,7 @@ Here is a general idea of what the final product will look like :
 
 ## Non-Functional Requirements
 
-### 1. Game mode
+### 1. Game Mode
 
 **Different game modes :**
 
