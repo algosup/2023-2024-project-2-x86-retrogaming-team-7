@@ -149,10 +149,10 @@ The enemies are the 4 ghosts in the game, each has a special color to discern it
 
 | Ghosts | Name |
 |:-|-:|
-|![blinky](img/blinky.png)|Blinky|
-|![blinky](img/pinky.png)|Pinky|
-|![blinky](img/inky.png)|Inky|
-|![blinky](img/clyde.png)|Clyde|
+|![blinky](img/Blinky.png)|Blinky|
+|![blinky](img/Pinky.png)|Pinky|
+|![blinky](img/Inky.png)|Inky|
+|![blinky](img/Clyde.png)|Clyde|
 
 #### 2.10 Pellets & Power Pellets
 The pellets are the points that Pac-Man eats during the game. The player has to eat all of them to success the level and increase the score. The power pellets make the ghosts vulnerable. There are 244 pellets and 4 power pellets.
