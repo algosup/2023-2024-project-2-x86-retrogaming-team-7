@@ -35,7 +35,7 @@
     - [Sprites](#sprites)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Game mode](#1-game-mode)
-    - [2. Game options](#2-game-options)
+    - [2. Game Settings](#2-game-settings)
   - [Use Cases](#use-cases)
     - [Personae](#personae)
   - [Design](#design)
@@ -87,7 +87,7 @@ Pac-Man is a game created in 1980 in Japan, it's a single-player video game wher
 ## Project Goals
 
 #### Goals
-- To change the playable character (play other skins of Pac-Man).
+- Allows the player to select the apparence of the caracter.
 - To implement music.
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
@@ -103,12 +103,12 @@ Pac-Man is a game created in 1980 in Japan, it's a single-player video game wher
 
 #### Description
 
-For this project we were asked to use the software DOSBOX [^4] which is a simulator of the MS-DOS environment. In addition to DOSbox, NASM [^5] was part of the initial requirement.
+For this project we were asked to use the software DOSBox [^4] which is a simulator of the MS-DOS environment. In addition to DOSBox, NASM [^5] was part of the initial requirement.
 
 #### Acceptance Criteria
 
 - The final product must run on this software in order for it to be valid.
-- The DOSbox emulator will have to integrated into an installer which will ease the download of the final product.
+- The DOSBox emulator will have to integrated into an installer which will ease the download of the final product.
 
 ### 2. Pac-Man
 
@@ -178,7 +178,9 @@ The lives are the chances that the player has to complete the game, when the pla
 | Lives | ![lives](img/lives.png) |
 | Bonus | ![bonus](img/bonus_fruits.png) | 
 
-Here is a general idea of what the final product will look like: (because our game won't exactly look alike to what is shown in the photo)
+---
+
+Here is a general idea of what the final product will look like :
 
 ![game](img/resume.png)
 
@@ -201,9 +203,8 @@ Here is a general idea of what the final product will look like: (because our ga
   
   This game mode is like the original one version but with a limited time. This time limit will decrease as the player goes up a level.
   
-### 2. Game options
+### 2. Game Settings
 
-**Game settings:**
 - Music : Possibility of switching on/off the music of the game.
 - Sound effect : Possibility of switching on/off the sound effects of the game.
 - Character : Possibility to select one of the available skins available in the game.
@@ -214,10 +215,18 @@ Here is a general idea of what the final product will look like: (because our ga
     - **Left Arrow**: Move the Pac-Man character to the left.
     - **Right Arrow**: Move the Pac-Man character to the right.
 
-  - Default keybinds for the second player moves (AZERTY keyboard) :
+
+When the player launch the game, he will be asked if he want to play with AZERTY or QWERTY keyboard :
+  - Default keybinds for the second player moves (if AZERTY keyboard) :
     - **Z**: Move the Ghost character upward.
     - **S**: Move the Ghost character downward.
     - **Q**: Move the Ghost character to the left.
+    - **D**: Move the Ghost character to the right.
+  
+    - Default keybinds for the second player moves (if QWERTY keyboard) :
+    - **W**: Move the Ghost character upward.
+    - **S**: Move the Ghost character downward.
+    - **A**: Move the Ghost character to the left.
     - **D**: Move the Ghost character to the right.
 
 ## Use Cases
@@ -244,7 +253,7 @@ Background: Trevor is an avid gamer with extensive experience playing a variety 
 
 Goals and Motivations:
 -Seeks a Pac-Man game that offers a challenging and competitive experience.
--Enjoys discovering easter eggs and hidden features in games.
+-Likes to discover different versions of popular games.
 -Desires a game that provides a sense of accomplishment and mastery.
 ```
 
@@ -258,6 +267,7 @@ Here is the UML case diagram from the users' point of view, grouping the basic f
 
 ### Assumptions
 - The game will be available to download on GitHub and once the game installed, the game will be able to run without the need to be connected to the internet.
+- This game will be available to be download from Google Drive.
 ### Constraints
 - The game has to run on DOSBox. 
 
