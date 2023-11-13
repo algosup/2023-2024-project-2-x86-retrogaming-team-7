@@ -43,8 +43,8 @@ _start:
     mov ah, 0x00
     int 0x16  ; BIOS keyboard service
 
-    ; Check if 'b' was pressed
-    cmp al, 'b'
+    ; Check if 'B' was pressed
+    cmp al, 'B'
     je debug_option
     cmp al, 0x1B
     je exit_program
