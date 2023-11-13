@@ -223,7 +223,7 @@ When the player launch the game, he will be asked if he want to play with AZERTY
     - **Q**: Move the Ghost character to the left.
     - **D**: Move the Ghost character to the right.
   
-    - Default keybinds for the second player moves (if QWERTY keyboard) :
+  - Default keybinds for the second player moves (if QWERTY keyboard) :
     - **W**: Move the Ghost character upward.
     - **S**: Move the Ghost character downward.
     - **A**: Move the Ghost character to the left.
