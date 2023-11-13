@@ -4,14 +4,14 @@
 ## x86-16bits Retro-gaming
 
 - [Functional Specification Document](#functional-specification-document)
-  - [x86x16bits Retro-gaming](#x86x16bits-retro-gaming)
+  - [x86-16bits Retro-gaming](#x86-16bits-retro-gaming)
   - [Project Overview](#project-overview)
   - [Project Scope](#project-scope)
       - [Project in scope](#project-in-scope)
       - [Project out of scope](#project-out-of-scope)
   - [Project Goals](#project-goals)
       - [Goals](#goals)
-      - [Non-Goals (features we want to add)](#non-goals-features-we-want-to-add)
+      - [Non-Goals](#non-goals)
   - [Functional Requirements](#functional-requirements)
     - [1. x86-16bits environment](#1-x86-16bits-environment)
       - [Description](#description)
@@ -28,18 +28,18 @@
       - [2.7 Pac-Man](#27-pac-man)
       - [2.8 Collisions/Hitboxes](#28-collisionshitboxes)
       - [2.9 Enemies](#29-enemies)
-      - [2.10 Pellets & Power Pellets](#210-pellets--power-pellets)
+      - [2.10 Pellets \& Power Pellets](#210-pellets--power-pellets)
       - [2.11 Score](#211-score)
       - [2.12 Bonus](#212-bonus)
       - [2.13 Lives](#213-lives)
     - [Sprites](#sprites)
   - [Non-Functional Requirements](#non-functional-requirements)
     - [1. Game mode](#1-game-mode)
-    - [2. Options in the game](#2-options-in-the-game)
+    - [2. Game options](#2-game-options)
   - [Use Cases](#use-cases)
     - [Personae](#personae)
   - [Design](#design)
-  - [Assumptions & Constraints](#assumptions--constraints)
+  - [Assumptions \& Constraints](#assumptions--constraints)
     - [Assumptions](#assumptions)
     - [Constraints](#constraints)
   - [Risks](#risks)
@@ -69,7 +69,7 @@ Pac-Man overview.
 
 ![PAC-MAN](https://openseauserdata.com/files/7980c0c921ad90ecb7deadf1aefeda41.png)
 
-Pac-Man is a game created in 1980 in Japan, it's a single-player video game where the player takes control of a yellow character also known as Pac-Man, to which the player's goal will be to collect all the points represented as pellets in a Maze. This yellow character is followed by ghosts whose main goal is to catch Pac-man. If Pac-Man gets caught by a ghost the game pauses and both Pac-Man and the ghosts return to their initial starting points. Pac-man has three lives and if he loses all three lives the game ends and the points are lost. In the Game there are some features such as "super points" which are distinguished on the map with a larger pellet, this points will allow Pac-Man to be the one chasing the ghosts and allow him to win more points if he manages to catch one or more.
+Pac-Man is a game created in 1980 in Japan, it's a single-player video game where the player takes control of a yellow character also known as Pac-Man, where the player's goal will be to collect all the points represented as pellets in a Maze. This yellow character is followed by ghosts whose main goal is to catch Pac-man. If Pac-Man gets caught by a ghost the game pauses and both Pac-Man and the ghosts return to their initial starting points. Pac-man has three lives and if he loses all three lives the game ends and the points are lost. In the Game there are some features such as "super points" which are distinguished on the map with a larger pellet, this points will allow Pac-Man to be the one chasing the ghosts and allow him to win more points if he manages to catch one or more.
 
 ## Project Scope
 
@@ -195,7 +195,7 @@ Here is a general idea of what the final product will look like: (because our ga
 
 - Reverse game mode:
   
-  In this game mode, the player takes control of the red ghost with the goal of catching Pac-Man with the three other ghosts. Pac-Man has will have three lives as just like the original game and it has will have its own pattern. The player wins will win if Pac-Man has no lives left but he loses if it eats all the pellets.
+  In this game mode, the player takes control of the red ghost with the goal of catching Pac-Man with the three other ghosts. Pac-Man will have three lives as just like the original game and it will have its own pattern. The player will win if Pac-Man has no lives left but he loses if it eats all the pellets.
 
 - Timed game mode:
   
