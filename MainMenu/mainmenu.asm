@@ -13,35 +13,55 @@ section .text
     global _start
 
 _start:
-    mov ah, 00h
-    mov al, 13h
-    int 10h
-    call clearScreen
     call main_menu
-
+    
 main_menu:
-    mov al, mainWelcome
+    mov ax, 0x0003
     int 0x10
-    loop main_menu
-
-clearScreen:
-    mov bx, 0xA000
-    mov es, bx
-    mov di, 0
-    mov cx, 200*320
-    rep stosb 
+    mov ah, 0x0E
+    mov si, mainWelcome
+    call print_string
+    call wait_for_escape
     ret
 
-startGame:
+print_string:
+    next_char:
+        lodsb
+        cmp al, '$'
+        je end_string
+        int 0x10
+        jmp next_char
+    end_string:
+        ret
+
+wait_for_escape:
+    ; Wait for key press in a loop until 'Escape' is pressed
+    wait_loop:
+        mov ah, 0x00
+        int 0x16  ; BIOS keyboard service
+        cmp al, 0x1B
+        je _start  ; Jump to start if Escape key is pressed
+        jmp wait_loop  ; Otherwise, keep waiting
+
+; clear_screen:
+;     mov ah, 0x00
+;     mov al, 0
+;     mov bh, 0x07
+;     mov cx, 0
+;     mov dx, 184Fh
+;     int 0x10
+;     ret
+
+; startGame:
 
 
-settings:
+; settings:
 
 
-keyBinding:
+; keyBinding:
 
 
-programEnd:
-    mov ah, 4Ch     
-    xor al, al      
-    int 21h
+; programEnd:
+;     mov ah, 4Ch     
+;     xor al, al      
+;     int 21h
