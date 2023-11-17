@@ -1,6 +1,7 @@
 org 100h
 
 section .data
+    ; set all the printed strings ont the mai
     mainWelcome db 'Welcome to Pac-Man$'
     settingsChoice db 'Settings$'
     startChoice db 'Start$'
@@ -21,6 +22,7 @@ _start:
 main_menu:
     mov al, mainWelcome
     int 0x10
+    loop main_menu
 
 clearScreen:
     mov bx, 0xA000
@@ -37,3 +39,9 @@ settings:
 
 
 keyBinding:
+
+
+programEnd:
+    mov ah, 4Ch     
+    xor al, al      
+    int 21h
