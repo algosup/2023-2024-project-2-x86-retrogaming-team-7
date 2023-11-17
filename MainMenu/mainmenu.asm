@@ -2,7 +2,10 @@ org 100h
 
 section .data
     mainWelcome db 'Welcome to Pac-Man$'
-
+    settingsChoice db 'Settings$'
+    startChoice db 'Start$'
+    exitChoice db 'Exit$'
+    
 section .bss
 
 section .text
