@@ -83,6 +83,7 @@ print_string:
         lodsb
         cmp al, '$'
         je end_string
+        mov ah, 0x0C     ; Default color attribute (red)
         int 0x10
         jmp next_char
     end_string:
