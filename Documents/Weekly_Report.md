@@ -102,7 +102,7 @@
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Technical specification|Fill the technical specification document|November 13th, 2023|November 27th, 2023|<span style=color:white>**0%**</span>|
+>|Technical specification|Fill the technical specification document|November 13th, 2023|November 27th, 2023|<span style=color:green>**40%**</span>|
 >>|Task name|Start|Deadline|Completion in percent|
 >>|:-:|:-:|:-:|:-:|
 >>|||||
@@ -121,7 +121,7 @@
 >>|Task name|Start|Deadline|Completion in percent|
 >>|:-:|:-:|:-:|:-:|
 >>|Functional specification|November 6th, 2023|November 13th, 2023|<span style=color:orange>**100%**</span>|
->>|Technical specification|November 13th, 2023|November 27th, 2023|<span style=color:white>**0%**</span>|
+>>|Technical specification|November 13th, 2023|November 27th, 2023|<span style=color:green>**40%**</span>|
 >>|Test plan|November 10th, 2023|December 8th, 2023|<span style=color:green>**5%**</span>|
 >>|Working prototype||November 10th, 2023|<span style=color:white>**0%**</span>|
 
