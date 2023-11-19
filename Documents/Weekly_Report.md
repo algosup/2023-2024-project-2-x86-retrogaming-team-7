@@ -73,10 +73,10 @@ This week's focus revolves around assembly work, delving into the intricacies of
 The primary challenge encountered during this period was gaining a profound understanding of the assembly architecture.
 4. Plans for Next Week:
 - Finalize the technical specification for the project.
-- Commence the implementation of maps.
+- Start to implements the different maps for the different stages of the final product.
 - Integrate Pac-Man into the map, incorporating collision detection with walls.
 5. Conclusion:
-In summary, the team has made significant strides in achieving key milestones, overcoming challenges, and is well-poised to tackle the upcoming tasks outlined for the next week. The synergy between project management, technical leadership, and individual contributions has been instrumental in the project's success thus far.
+In summary, the team has made significant strides in achieving key milestones, understand the tools that we will be working on and the language that we will use, understanding the different roles that exists in a project, overcoming challenges, and is well-poised to tackle the upcoming tasks outlined for the next week. The synergy between project management, technical leadership, and individual contributions has been instrumental in the project's success thus far.
 
 6. KPI's
 >KPI's template 
