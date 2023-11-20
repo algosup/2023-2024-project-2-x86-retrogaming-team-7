@@ -2,14 +2,14 @@
 
 ## Team Members
 
-| Name               | Role                  | Responsibilities                   |
-|--------------------|-----------------------|-------------------------------------|
-| Guillaume DESPAUX    | Project Manager        | Project Planning, Resource Allocation, Stakeholder Communication, Risk Management                        |
-| Michel RIFF          | Program Manager        | Program-level Planning, Alignment with Business Goals, Cross-Team Coordination                           |
-| Lucas AUBARD         | Technical Leader       | System Architecture, Game Engine, Overall Technical Oversight, Coordination with Team Members            |
-| Enzo GUILLOUCHE      | Software Engineer      | Code Implementation, Code Review                                                                         |
-| Elone DELILLE        | Software Engineer      | Code Implementation, Code Review                                                                         | 
-| Ian LAURENT          | QA/Test Engineer       | Testing Strategy, Test Case Design, Debugging Support, Performance Testing                               |
+| Name              | Role              | Responsibilities                                                                              |
+| ----------------- | ----------------- | --------------------------------------------------------------------------------------------- |
+| Guillaume DESPAUX | Project Manager   | Project Planning, Resource Allocation, Stakeholder Communication, Risk Management             |
+| Michel RIFF       | Program Manager   | Program-level Planning, Alignment with Business Goals, Cross-Team Coordination                |
+| Lucas AUBARD      | Technical Leader  | System Architecture, Game Engine, Overall Technical Oversight, Coordination with Team Members |
+| Enzo GUILLOUCHE   | Software Engineer | Code Implementation, Code Review                                                              |
+| Elone DELILLE     | Software Engineer | Code Implementation, Code Review                                                              |
+| Ian LAURENT       | QA/Test Engineer  | Testing Strategy, Test Case Design, Debugging Support, Performance Testing                    |
 
 ## Table of Contents
 - [Pac-Man Game Technical Specification](#pac-man-game-technical-specification)
@@ -136,7 +136,16 @@
     - [11.1 Compatibility Updates](#111-compatibility-updates)
       - [11.1.1 DOSBox Updates](#1111-dosbox-updates)
       - [11.1.2 NASM Updates](#1112-nasm-updates)
-  - [12. Conclusion](#12-conclusion)
+  - [12. Function explanations](#12-function-explanations)
+    - [12.1 Main Menu](#121-main-menu)
+    - [12.2 Change key bindings](#122-change-key-bindings)
+    - [12.3 Sound and Music](#123-sound-and-music)
+    - [12.4 Animation](#124-animation)
+    - [12.5 Move Pac-Man](#125-move-pac-man)
+    - [12.6 Collision Detection](#126-collision-detection)
+    - [12.7 Scoring System](#127-scoring-system)
+    - [12.8 Ghosts patterns](#128-ghosts-patterns)
+  - [13. Conclusion](#13-conclusion)
 
 ## 1. Introduction
 
@@ -556,7 +565,187 @@ Regularly check for updates to DOSBox and ensure compatibility with the latest v
 #### 11.1.2 NASM Updates
 Monitor updates to NASM and assess their impact on the assembly code. Ensure that the game code remains compatible with newer versions of NASM to maintain optimal performance and address any changes in syntax or behavior.
 
-## 12. Conclusion
+## 12. Function explanations
+
+### 12.1 Main Menu
+**Function: Display Main Menu**
+
+*Description:*
+The "display main menu" function is responsible for presenting the primary user interface of the program, showcasing a menu of available options for the user to interact with. This function is crucial for providing a navigational structure and guiding users through the  functionalities of the game.
+
+*Steps:*
+1. **Load Menu Content:** The relevant data and text for the main menu are loaded into memory. This may include strings for menu items, graphics, and any other visual elements.
+   
+2. **Set Display Coordinates:** The code positions the cursor or sets display coordinates to the location where the main menu should be rendered on the screen. This ensures proper placement of the menu.
+
+3. **Output to Display:** Using display-related instructions, the code outputs the menu content to the display. This may involve printing strings, rendering graphics, or a combination of both.
+
+4. **User Interaction:** The code may include mechanisms for detecting user input, such as keyboard or mouse events, allowing the user to navigate through the menu and select desired options.
+
+### 12.2 Change key bindings
+**Function: Change Keybinds in Settings Menu**
+
+*Description:*
+The "change keybinds" function in the settings menu allows players to customize the controls by reassigning keybindings for specific actions in the Pac-Man game. This functionality enhances player accessibility and accommodates individual preferences for input methods.
+
+*Implementation:*
+The assembly code for changing keybinds involves capturing user input, validating the selected keybinds, and updating the game's control configuration. This function contributes to a personalized gaming experience, ensuring that players can comfortably navigate the Pac-Man maze using their preferred keys.
+
+*User Interface Interaction:*
+1. **Menu Navigation:** Enable users to navigate to the settings menu from the main menu, highlighting the option to change keybinds.
+
+2. **Display Current Keybinds:** Present the current keybindings on the screen, providing users with a reference for the actions associated with each key.
+
+3. **Capture User Input:** Implement mechanisms to capture user input, allowing players to select and change specific keybindings for actions such as moving Pac-Man, or accessing menus
+
+4. **Validation:** Perform validation checks to ensure that the selected keybindings are valid and do not conflict with existing controls or system limitations.
+
+*Persistence:*
+Consider implementing a mechanism to persistently store the customized keybindings, allowing players to retain their preferences across gaming sessions.
+
+*Feedback Mechanism:*
+Provide feedback to users, confirming that their keybinding changes have been successfully applied. This may include on-screen messages or visual indicators.
+
+*Integration with Main Menu:*
+Integrate the "change keybinds" function seamlessly into the main menu and settings menu, ensuring a cohesive and intuitive user experience.
+
+### 12.3 Sound and Music
+
+**Function: Sound and Music**
+
+*Description:*
+The "Sound and Music" function is responsible for enhancing the auditory experience of the Pac-Man game, providing players with immersive sound effects and background music. This function contributes to the overall atmosphere of the game, heightening engagement and complementing the visual elements.
+
+*Implementation:*
+The assembly code for the sound and music function involves playing specific sound effects for various in-game events and maintaining a continuous loop of background music. It interfaces with the audio hardware to produce the desired sounds and music.
+
+*Key Auditory Elements:*
+1. **Pac-Man Movement Sounds:** Implement sound effects corresponding to Pac-Man's movement, creating audio feedback as it navigates the maze and consumes pellets.
+
+2. **Ghost Sounds:** Include distinct sounds for ghost movement, capturing, and any other interactions with Pac-Man. Differentiate between normal and vulnerable ghost states.
+
+3. **Pellet and Power-Up Sounds:** Provide audio feedback for pellet consumption, power-up activation, and any other events related to game elements.
+
+4. **Game Events:** Implement sound effects for key game events such as level transitions, winning, losing, and other significant occurrences.
+
+5. **Background Music:** Maintain a continuous loop of background music that complements the pace and mood of the game.
+
+*Dynamic Sound Control:*
+Allow for dynamic control of sound volume, allowing players to adjust audio levels in the game's settings. This enhances user customization and accommodates individual preferences.
+
+*Integration with Game Logic:*
+Integrate the sound and music function seamlessly into the main game logic to ensure synchronization with in-game events. Trigger sound effects at the appropriate moments to enhance the player experience.
+
+*Efficient Resource Usage:*
+Optimize the code for efficient resource usage, considering the limitations of the target platform's audio hardware. Efficient memory management and playback mechanisms contribute to a smoother gaming experience.
+
+### 12.4 Animation
+**Function: Pac-Man and Ghosts Animation**
+
+*Description:*
+The "Pac-Man and Ghosts Animation" function is responsible for creating visually engaging animations for the movement and interactions of Pac-Man and the ghosts within the game. This function enhances the overall gaming experience by providing smooth and dynamic visual feedback to players as they navigate the maze, consume pellets, and interact with various game elements.
+
+*Implementation:*
+The assembly code for the animation function involves updating the graphical representation of Pac-Man and ghosts on the screen based on their current positions, actions, and game state. Animation frames are displayed sequentially, creating the illusion of continuous movement and actions.
+
+*Key Animation Elements:*
+1. **Pac-Man Animation:** Implement frames for Pac-Man's mouth movement, simulating the iconic "eating" animation as it consumes pellets and power-ups.
+
+2. **Ghosts Animation:** Define frames for each ghost's movement, including variations for different states such as normal movement, vulnerability (when Pac-Man consumes a power-up), and defeat (when Pac-Man captures a ghost).
+
+3. **Power-Up Effects:** Incorporate visual effects during the power-up period, such as flashing animations or changes in color for both Pac-Man and ghosts.
+
+*Smooth Transitions:*
+Ensure that animations transition smoothly between frames to avoid visual glitches or abrupt changes. This can be achieved through proper timing and synchronization with the game loop.
+
+*Integration with Game Logic:*
+Integrate the animation function seamlessly into the main game logic to ensure synchronization with the overall game loop. Animation updates should occur at a rate that complements the frame rate of the game.
+
+*Optimization:*
+Optimize the animation code for efficiency, considering the hardware capabilities of the target platform. This may involve techniques such as sprite rendering, double buffering, or other graphical optimization strategies.
+
+### 12.5 Move Pac-Man
+**Function: Move Pac-Man with Arrow Keys**
+
+*Description:*
+The "move Pac-Man with arrow keys" function is responsible for handling user input to control the movement of Pac-Man within the game environment. This function is essential for enabling player interaction and responsiveness in guiding Pac-Man through the maze.
+
+*Implementation:*
+The assembly code for moving Pac-Man involves capturing input from arrow keys, updating Pac-Man's position based on the user's input, and ensuring proper boundary checks to prevent Pac-Man from moving beyond the game boundaries.
+
+*Steps:*
+1. **Capture Arrow Key Input:** The code captures input from arrow keys, typically using interrupts or polling mechanisms to detect key presses.
+
+2. **Update Pac-Man's Position:** Based on the arrow key input, the code updates Pac-Man's position within the game environment. This involves adjusting coordinates or indices that represent Pac-Man's current location.
+
+3. **Boundary Checks:** Ensure that Pac-Man does not move beyond the boundaries of the game. Implement checks to prevent Pac-Man from going out of bounds or colliding with walls.
+
+4. **Render Updated Position:** If applicable, use display-related instructions to render Pac-Man at its updated position on the screen.
+
+### 12.6 Collision Detection
+**Function: Handle Collision in the Maze**
+
+*Description:*
+The "collision" function is responsible for detecting and handling collisions between Pac-Man and various elements within the maze. This function is crucial for enforcing game rules, such as determining if Pac-Man has collided with walls, pellets, ghosts, or other game objects. Collision handling plays a pivotal role in the dynamics of the game and influences Pac-Man's progression.
+
+*Implementation:*
+The assembly code for collision handling involves checking Pac-Man's current position against the maze layout and other game elements. Based on these checks, the code determines the appropriate action to take, such as updating the game state, awarding points, or triggering specific events.
+
+*Elements Considered for Collision:*
+1. **Walls:** Check if Pac-Man has collided with maze walls, preventing movement in the blocked direction.
+   
+2. **Pellets:** Determine if Pac-Man has consumed a pellet, leading to score increments and potential game state changes.
+
+3. **Ghosts:** Implement collision checks with ghosts, which may result in life loss.
+
+4. **Fruit and Power-Ups:** Handle collisions with special items that grant Pac-Man unique abilities or bonuses.
+
+5. **Portals or Tunnels:** Consider any maze features that allow Pac-Man to move between different areas.
+
+*Event Handling:*
+Depending on the type of collision detected, the code may trigger specific events such as updating the score, adjusting the game state, initiating animations, or handling Pac-Man's interactions with other game elements.
+
+*Collision Resolution:*
+The collision function must resolve the impact of the collision appropriately, whether it involves stopping Pac-Man's movement, updating the game state, or initiating special effects.
+
+*Integration with Game Loop:*
+The collision function is typically integrated into the broader game loop, ensuring that collision checks occur regularly and interact seamlessly with other aspects of the game, such as user input and rendering.
+
+### 12.7 Scoring System
+
+**Function: Scoring System**
+
+*Description:*
+The "scoring" function in Pac-Man is responsible for managing the player's score as they navigate the maze, consume pellets, and interact with various game elements. This function contributes to the overall gaming experience by rewarding players for successful gameplay and achieving specific milestones.
+
+*Implementation:*
+The assembly code for the scoring function involves tracking and updating the player's score based on their interactions with the game. The scoring system in Pac-Man typically includes point allocations for consuming pellets, power-ups, and ghosts, among other elements.
+
+*Key Scoring Elements:*
+1. **Pellet Consumption:** Award points to the player for each pellet or small dot consumed during gameplay.
+
+2. **Power-Up Consumption:** Implement scoring logic for when Pac-Man consumes power-ups, which often leads to temporary ghost vulnerability and additional points.
+
+3. **Ghost Consumption:** Assign points for successfully consuming ghosts, especially when they are vulnerable after the player consumes a power-up.
+
+4. **Fruit Consumption:** Integrate scoring for collecting fruits that appear periodically in the maze, offering additional point bonuses.
+
+*Multiplier Mechanism:*
+Consider implementing a multiplier mechanism to enhance the scoring system's depth. For example, consecutive successful actions could lead to increased point multipliers, encouraging players to maintain a streak of successful moves.
+
+*Score Display:*
+Integrate the scoring system with the game's user interface, ensuring that the player's current score is prominently displayed on the screen. This provides instant feedback on their progress and performance.
+
+*Integration with Game Loop:*
+Ensure seamless integration of the scoring function into the main game loop, allowing for continuous and real-time updates to the player's score as they progress through the game.
+
+*Persistence:*
+Implement a mechanism to persistently store the player's high scores, allowing for competition and recognition of achievements across multiple gaming sessions.
+
+### 12.8 Ghosts patterns
+
+
+## 13. Conclusion
 
 In conclusion, this technical specification serves as a comprehensive guide for the development of the Pac-Man game in Assembly language using NASM and running on DOSBox. It encompasses essential details ranging from system requirements and game mechanics to the intricacies of code organization, graphics rendering, and input handling.
 
