@@ -21,6 +21,7 @@
   - [2. System Architecture](#2-system-architecture)
     - [2.1 High-Level Overview](#21-high-level-overview)
     - [2.2 Block Diagram](#22-block-diagram)
+    - [2.3 Architecture Diagram](#23-architecture-diagram)
   - [3. Game Components](#3-game-components)
     - [3.1 Graphics Module](#31-graphics-module)
       - [3.1.1 Overview](#311-overview)
@@ -212,6 +213,10 @@ The block diagram illustrates the relationships and interactions between key com
 - **Game Logic**: This module governs the game's behavior, including Pac-Man's movements, ghost behavior, scoring, and level progression. It interacts closely with the Game Core to ensure a cohesive gaming experience.
 
 - The block diagram serves as a guide for developers, offering a clear understanding of the architectural relationships and aiding in the efficient development and maintenance of the Pac-Man game.
+
+### 2.3 Architecture Diagram
+
+![Architecture Diagram](img/Diagram_Architecture.png)
 
 
 ## 3. Game Components
