@@ -167,18 +167,14 @@ print_string:
 wait_for_key_one:
     wait_loop:
         mov ah, 0x00
-        int 0x16          ; BIOS keyboard service to wait for a keypress
-        cmp ah, 48h     ; Compare the scan code in AH with the UP key's scan code
-        je wait_loop    ; If UP key is pressed, and we are on page one, jump into the loop again
-        cmp ah, 50h     ; Compare the scan code in AH with the DOWN key's scan code
-        je display_main_menu_two    ; If DOWN key is pressed, and we are on page one, jump page two
-        ; cmp ah, 4Bh     ; Compare the scan code in AH with the LEFT key's scan code
-        ; je display_main_menu_two     ; If LEFT key is pressed,
-        ; cmp ah, 4Dh     ; Compare the scan code in AH with the RIGHT key's scan code
-        ; je     ; If RIGHT key is pressed,
-        cmp ah, 0x01    ; Compare the scan code in AH with the Escape key's scan code
-        je done           ; If Escape key is pressed, exit the loop
-        jmp wait_loop     ; Otherwise, keep waiting
+        int 0x16                        ; BIOS keyboard service to wait for a keypress
+        cmp ah, 48h                     ; Compare the scan code in AH with the UP key's scan code
+        je wait_loop                    ; If UP key is pressed, and we are on page one, jump into the loop again
+        cmp ah, 50h                     ; Compare the scan code in AH with the DOWN key's scan code
+        je display_main_menu_two        ; If DOWN key is pressed, and we are on page one, jump page two
+        cmp ah, 0x1C                    ; Compare the scan code in AH with the Enter key's scan code
+        je game_start                   ; If Enter key is pressed, start the game
+        jmp wait_loop                   ; Otherwise, keep waiting
 wait_for_key_two:
     wait_loop_two:
         mov ah, 0x00
@@ -187,20 +183,20 @@ wait_for_key_two:
         je display_main_menu_one        ; If UP key is pressed, and we are on page one, jump into the loop again
         cmp ah, 50h                     ; Compare the scan code in AH with the DOWN key's scan code
         je display_main_menu_three      ; If DOWN key is pressed, and we are on page one, jump page three
-        cmp ah, 0x01                    ; Compare the scan code in AH with the Escape key's scan code
-        je done                         ; If Escape key is pressed, exit the loop
+        cmp ah, 0x1C                    ; Compare the scan code in AH with the Enter key's scan code
+        je help_menu                    ; If Enter key is pressed, start the game
         jmp wait_loop_two               ; Otherwise, keep waiting
 wait_for_key_third:
     wait_loop_third:
         mov ah, 0x00
-        int 0x16                    ; BIOS keyboard service to wait for a keypress
-        cmp ah, 48h                 ; Compare the scan code in AH with the UP key's scan code
-        je display_main_menu_two    ; If UP key is pressed, and we are on page one, jump into the loop again
-        cmp ah, 50h                 ; Compare the scan code in AH with the DOWN key's scan code
-        je wait_loop_third                ; If DOWN key is pressed, and we are on page one, jump page two
-        cmp ah, 0x01                ; Compare the scan code in AH with the Escape key's scan code
-        je done                     ; If Escape key is pressed, exit the loop
-        jmp wait_loop_third               ; Otherwise, keep waiting
+        int 0x16                        ; BIOS keyboard service to wait for a keypress
+        cmp ah, 48h                     ; Compare the scan code in AH with the UP key's scan code
+        je display_main_menu_two        ; If UP key is pressed, and we are on page one, jump into the loop again
+        cmp ah, 50h                     ; Compare the scan code in AH with the DOWN key's scan code
+        je wait_loop_third              ; If DOWN key is pressed, and we are on page one, jump page two
+        cmp ah, 0x1C                   ; Compare the scan code in AH with the Enter key's scan code
+        je done                         ; If Escape key is pressed, exit the loop
+        jmp wait_loop_third             ; Otherwise, keep waiting
 
 initialize_part:
     mov ah, 0x00
@@ -213,7 +209,21 @@ initialize_part:
     mov bh, 07h  ; Attribute (7 = light gray on black)
     int 10h      ; Call interrupt
     ret
+
+;=======================================================
+;                   START THE GAME
+;=======================================================
+game_start:
+    call done
+
+;=======================================================
+;                   HELP MENU
+;=======================================================
+help_menu:
+    call done
+
 done:
     mov ax, 03h
     int 21h
     int 20h
+
