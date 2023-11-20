@@ -145,6 +145,7 @@
     - [12.6 Collision Detection](#126-collision-detection)
     - [12.7 Scoring System](#127-scoring-system)
     - [12.8 Ghosts patterns](#128-ghosts-patterns)
+    - [12.9 Game over and high score](#129-game-over-and-high-score)
   - [13. Conclusion](#13-conclusion)
 
 ## 1. Introduction
@@ -743,6 +744,41 @@ Ensure seamless integration of the scoring function into the main game loop, all
 Implement a mechanism to persistently store the player's high scores, allowing for competition and recognition of achievements across multiple gaming sessions.
 
 ### 12.8 Ghosts patterns
+
+
+### 12.9 Game over and high score
+**Function: Game Over and High Score**
+
+*Description:*
+The "Game Over and High Score" function is responsible for handling events and displaying relevant information when the player's game session ends, either due to losing all lives or completing the game. Additionally, this function manages the recording and display of high scores, adding a competitive and rewarding element to the gameplay experience.
+
+*Implementation:*
+The assembly code for the Game Over and High Score function involves updating the user interface to reflect the end of the game, displaying scores, and checking for high score achievements. It also manages the input and storage of player initials for high score records.
+
+*Game Over Handling:*
+1. **Display Game Over Screen:** Present a screen indicating the end of the game session, accompanied by appropriate graphics and text.
+
+2. **Score Display:** Show the player's final score prominently on the Game Over screen to provide immediate feedback on their performance.
+
+3. **Player Feedback:** Optionally, include messages or animations to convey the outcome of the game, such as "Game Over" or "Congratulations."
+
+*High Score Mechanism:*
+1. **Check High Score:** Compare the player's final score with the existing high scores. If the player's score qualifies as a high score, proceed to record and display it.
+
+2. **Player Input:** Allow the player to input their initials for the high score record. Capture and validate the input to ensure it conforms to any specified constraints.
+
+3. **Update High Scores:** If the player achieves a high score, update the high scores table by inserting their score along with the corresponding initials. Implement sorting to maintain the order of high scores.
+
+4. **Display High Scores:** Show the current high scores table on the screen, including the player's newly recorded score if applicable.
+
+*Integration with Game Logic:*
+Integrate the Game Over and High Score function seamlessly into the main game loop, ensuring that it is triggered appropriately when the game concludes. The function should provide a smooth transition from gameplay to the Game Over screen.
+
+*User Interaction:*
+Implement mechanisms for user interaction during the Game Over screen, allowing players to navigate menus, retry the game, or exit to the main menu.
+
+*Efficient Resource Usage:*
+Optimize the code for efficient resource usage, especially when handling graphics, text, and high score data.
 
 
 ## 13. Conclusion
