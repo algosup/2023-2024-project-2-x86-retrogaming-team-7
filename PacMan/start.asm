@@ -74,8 +74,8 @@ section .text
 gameloop:
 
     ; If ghost goes to the right, then display pacman_right_1
-    cmp word [xVelocity], 1
-    jne .ghost_left
+    cmp word [xVelocity], -1
+    je .ghost_left
     mov si, pacman_right_1
     jmp .display_ghost
     
@@ -104,8 +104,7 @@ gameloop:
 ;erase the ghost
     mov al, 0xFF
     call clearGhost
-
-;change the position
+    ; Move the ghost to the right or to the left
     mov bx, [xPos]
     add bx, [xVelocity]
     mov [xPos], bx
@@ -113,7 +112,8 @@ gameloop:
 ;change direction
     cmp word [xPos],320 - SPRITEW
     jb .noflip
-    neg word [xVelocity]
+    mov bx, 0
+    mov [xVelocity], bx
     .noflip:
     jmp gameloop
 
@@ -134,6 +134,7 @@ gameloop:
 
 ;THE FUNCTIONS :
 
+;
 ;!!!PARAMETERS!!!;
 ;to select the color to use to fill, you need this color into 'al'
 clearScreen:
