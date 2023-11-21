@@ -43,6 +43,7 @@
     - [Assumptions](#assumptions)
     - [Constraints](#constraints)
   - [Risks](#risks)
+  - [Future improvement](#future-improvement)
   - [Glossary](#glossary)
 
 ---
@@ -87,10 +88,10 @@ Pac-Man is a game created in 1980 in Japan, it's a single-player video game wher
 ## Project Goals
 
 #### Goals
-- Allows the player to select the apparence of the caracter.
 - To implement music.
 - To give the possibility to change the difficulty or the game mode in the settings.
 - To create new maps.
+- create random patterns for the ghosts.
 - To make the game smooth and playable.
 - To make a compatible game with all the Operating Systems [^3].
 
@@ -275,10 +276,14 @@ Here is the UML case diagram from the users' point of view, grouping the basic f
 
 - Not being able to deliver the final product on due date.
 - The final product not working on the customer's device.
-- To not credit regarding the copyrights.
 - The game interactions such as game control or opening menu not functioning.
 - Going over the limit of 16 bits.
 - Customer not satisfied with the final product.
+
+## Future improvement
+
+- Allows the player to select the apparence of the caracter.
+- Implement the patterns of the ghosts of the original Pac-Man.
 
 ## Glossary
 
