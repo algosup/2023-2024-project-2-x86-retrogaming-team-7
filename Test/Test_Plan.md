@@ -6,24 +6,24 @@ This test plan will allow to clearly follow up and understand the different issu
 
 >|Process|Description|Status|Expected result|Actual result|Comment|
 >|:-|:-|:-|:-|:-|:-|
->|**Functional specification**||||||
->|**Technical specification**||||||
+>|**Functional specification**|Verify is all it's content is right and that there is no grammer or spelling mistakes|Completed|All content is correct and that every functional specification is detailed and clear enough|Missed some points but kept the essential ideas and some minor english mistakes|In the overall the document was good however needed some clearity and needed to add some extra specifications to make it even more clear.|
+>|**Technical specification**||Work in progess||||
 >|**Project charter**||||||
->|**Weekly report**||||||
+>|**Weekly report**||Work in progress|Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|||
 >><details>
 >>  <summary>Weeks</summary>
 >>
 >>  |Week|Status|Comment|     
 >>  |:-:|:-:|:-:|     
->>  |45|Complete|:-:|     
->>  |46|Complete|:-:|     
+>>  |1|Complete|Some minor changes regarding the content|     
+>>  |2|Complete|Very few changes|     
 >></details>
 
 ## Post Development (Game)
 
 >|Category|Description|Status|Expected result|Actual result|Comment|
 >|:--:|:--:|:--:|:--:|:--:|:--:|
->|**Game test**|General chekc of playability & if the game respects all the criterias|||||||
+>|**Game test**|General check of playability & if the game respects all the criterias|||||||
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
@@ -38,6 +38,7 @@ This test plan will allow to clearly follow up and understand the different issu
 >|**Controlability**|Check if the buttons from the instructions work correctly, if all buttons corresponds to what it is supposingly controling|||||
 >><details>
 >>  <summary>Unit tasks of controlability</summary>
+
 >>  
 >>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
