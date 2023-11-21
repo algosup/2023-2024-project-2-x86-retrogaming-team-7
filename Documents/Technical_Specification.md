@@ -749,7 +749,27 @@ Ensure seamless integration of the scoring function into the main game loop, all
 Implement a mechanism to persistently store the player's high scores, allowing for competition and recognition of achievements across multiple gaming sessions.
 
 ### 12.8 Ghosts patterns
+**Function: Random Pathfinding for Ghosts**
 
+*Description:*
+The "Random Pathfinding for Ghosts" function is responsible for defining a simple movement pattern for ghosts in the Pac-Man game, wherein they move randomly within the maze. This function contributes to the unpredictability of ghost movements, adding an element of challenge for the player.
+
+*Implementation:*
+The assembly code for the random pathfinding function involves generating random directions for ghost movement and ensuring that the ghosts do not collide with walls or move out of bounds.
+
+*Key Elements:*
+1. **Random Direction Generation:** Implement logic to generate random movement directions for ghosts. This may involve selecting from available directions at maze intersections.
+
+2. **Collision Checks:** Ensure that the generated random direction is valid by performing collision checks with maze walls. Ghosts should not move through walls or out of bounds.
+
+3. **Update Ghost Positions:** Modify the positions of ghosts based on the randomly generated directions. Update ghost coordinates to reflect the new positions within the maze.
+
+4. **Consideration for Ghost States:** Optionally, factor in the current state of ghosts, such as whether they are in a vulnerable state (after Pac-Man consumes a power-up) or normal state.
+
+*Ghost Movement Logic:*
+1. **Random Movement:** Define the main logic for random movement, allowing ghosts to choose a random direction at each intersection or decision point.
+
+2. **Integration with Game Logic:** Integrate the random pathfinding function into the overall game logic, ensuring that it operates within the game loop and contributes to the dynamic nature of ghost movements.
 
 ### 12.9 Game over and high score
 **Function: Game Over and High Score**
