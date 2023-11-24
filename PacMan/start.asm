@@ -1,180 +1,182 @@
-org 100h
- 
-%define SPRITEW 8
+org 100h    
+
 section .data
+    yPos dw 200                 ; the starting y coordinate of the sprite
+    xPos dw 0                   ; the starting x coordinate of the sprite
+    yVelocity dw 320            ; to go from one line to another
+    xVelocity dw 1              ; horizontal speed
+    direction db 'R'            ; Current direction (R, L, U, D)
 
-xPos dw 0 
-xVelocity dw 1
+    currentPacmanSprite dd pacman_right_1 ; the current sprite to be displayed
 
+    pacman_right_1  db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0x0E, 0x0E, 0xFF, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF, 0xFF
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF, 0xFF
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
 
-pacman_right_1  db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0x0C, 0x0C, 0xFF, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF, 0xFF
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF, 0xFF, 0xFF
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
+    pacman_up_1     db 0x0E, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x0E
+                    db 0x0E, 0x0E, 0xFF, 0xFF, 0xFF, 0xFF, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0xFF, 0xFF, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
 
-pacman_right_2  db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0x0C, 0x0C, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0x04, 0x04, 0x04
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
+    pacman_left_1   db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0xFF, 0x0E, 0x0E
+                    db 0xFF, 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0xFF, 0xFF, 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
 
-pacman_right_3  db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0x0C, 0x0C, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
-
-pacman_left_1   db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0xFF, 0x0C, 0x0C
-                db 0xFF, 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0xFF, 0xFF, 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
-
-pacman_left_2   db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x04, 0x04, 0x04, 0x04, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
-
-pacman_left_3   db 0xFF, 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0xFF
-                db 0xFF, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0xFF, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C
-                db 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x0C, 0x04
-                db 0xFF, 0x04, 0x0C, 0x0C, 0x0C, 0x0C, 0x04, 0xFF
-
+    pacman_down_1   db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0xFF
+                    db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0xFF, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0x0E, 0xFF, 0xFF, 0x0E, 0x0E, 0x0E
+                    db 0x0E, 0x0E, 0xFF, 0xFF, 0xFF, 0xFF, 0x0E, 0x0E
+                    db 0x0E, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x0E
+    
 section .text
- 
-   mov ah, 00h  ; Set video mode
-   mov al, 13h  ; Set video mode 13h (320x200 256 colors)
-   int 10h       ; Call BIOS interrupt
 
-    ; Clear the screen to black
-    mov al, 0xFF        ;Color to fill
-    call clearScreen    ;Call the function
+    _start:
 
-gameloop:
-
-    ; If ghost goes to the right, then display pacman_right_1
-    cmp word [xVelocity], -1
-    je .ghost_left
-    mov si, pacman_right_1
-    jmp .display_ghost
-    
-    .ghost_left:
-    mov si, pacman_left_1
-
-    .display_ghost:
-    mov di, [xPos]
-    mov bx, 0x0C
-    call displayGhost
-;waiting...
-    mov cx, 0xFFFF  ;wait 1/10 of a second
-    waitloop1:      ;this is a loop label
-    loop waitloop1  ;loop until cx = 0
-    mov cx, 0x0001  ;wait 1/10 of a second
-    waitloop2:      ;this is a loop label
-    loop waitloop2  ;loop until cx = 0
-    mov cx, 0x0001  ;wait 1/10 of a second
-    waitloop3:      ;this is a loop label
-    loop waitloop3  ;loop until cx = 0
-    mov cx, 0x0001  ;wait 1/10 of a second
-    waitloop4:      ;this is a loop label
-    loop waitloop4  ;loop until cx = 0
+    mov ah, 00h                 ; set video mode requirement
+    mov al, 13h                 ; set video mode option to 320 x 200 256 colors
+    int 10h                     ; interupt the process
     
 
-;erase the ghost
-    mov al, 0xFF
-    call clearGhost
-    ; Move the ghost to the right or to the left
-    mov bx, [xPos]
+mainLoop:
+
+    mov al, 0FFh                ; select the color of the background
+    call clearScreen            ; set the backround to the selected color
+
+    ; Display the sprite:
+    mov si, [currentPacmanSprite]             ; select the sprite to be displayed
+    mov di, [xPos]              ; set the original coordinate of the sprite
+    call drawPacman             ; call the function to display the sprite
+
+    ; This loop is to slow down the animation
+    mov cx, 30000               ; 20000 is the time we wait before moving the sprite
+    waitloop:                   ; cx is a loop register
+    loop waitloop               ; once count = 0 exit the loop
+
+    ; Read the direction of the sprite
+    ; Move the sprite in the direction of the key pressed
+
+    call waitForKey
+    ; Check if a key is pressed
+    cmp al, 100                ; 'd' in ascii is 100
+    je right                    ; If 'd' is pressed, jump to label 'right'
+    cmp al, 113                 ; 'q' in ascii is 113
+    je left                     ; If 'q' is pressed, jump to label 'left'
+    cmp al, 122                ; 'z' in ascii is 122
+    je up                       ; If 'z' is pressed, jump to label 'up'
+    cmp al, 115                 ; 's' in ascii is 115
+    je down                     ; If 's' is pressed, jump to label 'down'
+
+    ; Exit the program if the escape key is pressed
+    cmp al, 27                  ; ASCII value of escape key
+    je exit                     ; go to the exit function if the comparison return an equal
+    jmp mainLoop                ; else return to the main loop
+
+    ;dos box default video mode
+    mov ax, 03h                 ; set into video mode
+    int 21h                     ; call DOS interupt
+
+    int 20h                     ; quit 
+
+    ; procedures:
+
+    ; need to set the color of filling in al
+    clearScreen:
+    mov ax, 0xA000              ; set the video memory segment to 0xA000
+    mov es, ax                  
+    mov di, 0                   ; set the destination index to 0 (starting position in video memory)
+    mov cx, 200*320             ; set the count register to the total number of pixel on the screen
+    rep stosb                   ; repeat the store byte operation (set byte to a specific color)
+    ret                         ; return to the main function
+
+    ; si must have the sprite address
+    ; di must have the target address
+    drawPacman:
+    mov ax, 0xA000              ; memory location of the video mode
+    mov es, ax
+    mov dx, 8                   ; set the destination index to 8 (starting position in video memory)
+    .eachLine:                  ; loop till each line of the sprite is printed
+        mov cx, 8               ; setthe count register to 8 (number of pixel to copy per line)
+        rep movsb               ; repeat the move byte action (copying pixel)
+        add di, 320-8           ; move the destination index to the next line (320 pixel per line)
+        dec dx                  ; decrement the loop counter (dx) and jump to .eachLine if not zero
+        jnz .eachLine
+        ret                     ; return to the main loop
+
+    right:
+    ; Move the sprite to the right
+    mov word [currentPacmanSprite], pacman_right_1 ; select the sprite to be displayed
+    cmp word [xVelocity], 0     ; check if velocity is positif
+    jl .reverse                 ; if not go to sub procedure .reverse
+    mov bx, [xPos]              ; the position is increased by the speed of the character (here 1)
     add bx, [xVelocity]
-    mov [xPos], bx
-
-;change direction
-    cmp word [xPos],320 - SPRITEW
-    jb .noflip
-    mov bx, 0
-    mov [xVelocity], bx
-    .noflip:
-    jmp gameloop
+    mov [xPos], bx              ; update the new position and speed of the character
+    jmp mainLoop                ; return to the main loop
+    .reverse:
+        neg word [xVelocity]    ; reverse the value of velocity to 1
+        jmp right               ; return to the procedure right
 
 
-;reset the keyboard buffer and then wait for a keypress :
-   mov ax, 0C01h ;
-   int 21h
- 
-;dos box default video mode
-   mov ax, 03h
-   int 21h
- 
-   int 20h ;quit
+    left:
+    ; Move the sprite to the left
+    mov word [currentPacmanSprite], pacman_left_1 ; select the sprite to be displayed
+    cmp word [xVelocity], 0     ; check if velocity is negatif
+    jg .reverse                 ; if not go to sub procedure .reverse
+    mov bx, [xPos]              ; the position is increased by the speed of the character (here -1)
+    add bx, [xVelocity]
+    mov [xPos], bx              ; update the new position and speed of the character       ; select the sprite to be displayed
+    jmp mainLoop                ; return to the main loop
+    .reverse:
+        neg word [xVelocity]    ; reverse the value of velocity to -1
+        jmp left                ; return to the procedure left 
 
+    up:
+    ; Move the sprite upward
+    mov word [currentPacmanSprite], pacman_up_1 ; select the sprite to be displayed
+    cmp word [yVelocity], 0     ; check the value of velocity
+    jg .reverse                 ; if the value is positive go to sub procedure .reverse
+    mov bx, [xPos]              ; the position is increased by the speed of the sprite to go to the next line (here 320)
+    add bx, [yVelocity]
+    mov [xPos], bx              ; update the position and speed of the sprite
+    jmp mainLoop                ; return to the main loop
+    .reverse:
+        neg word [yVelocity]    ; negate the value of velocity to -320
+        jmp up                  ; return to the procedure up
 
+    down:
+    ; Move the sprite downward
+    mov word [currentPacmanSprite], pacman_down_1 ; select the sprite to be displayed
+    cmp word [yVelocity], 0     ; check the value of velocity
+    jl .reverse                 ; if the value is negative go to sub procedure .reverse
+    mov bx, [xPos]              ; the position is increased by the speed of the sprite to go to the next line (here -320)
+    add bx, [yVelocity]
+    mov [xPos], bx              ; update the position and speed of the sprite 
+    jmp mainLoop                ; return to the main loop
+    .reverse:
+        neg word [yVelocity]    ; negate the value of velocity to +320
+        jmp down                ; return to the procedure down
 
+waitForKey:
+    mov ah, 0x00                 ; BIOS function to read keyboard input
+    int 16h                      ; Call BIOS interrupt
+    ret
 
-
-;THE FUNCTIONS :
-
-;
-;!!!PARAMETERS!!!;
-;to select the color to use to fill, you need this color into 'al'
-clearScreen:
-mov bx, 0xA000
-mov es, bx
-mov di, 0
-mov cx, 200*320
-rep stosb
-ret 
-
-;!!!PARAMETERS!!!;
-;to select the color to use to fill, you need this color into 'al'
-;to select the sprite to print, you need to put the sprite address in 'si'
-clearGhost:
-mov di, [xPos]
-push ax
-mov ax, 0xA000
-mov es, ax
-pop ax
-mov dx, 8
-.eachLine:
-    mov cx, 8
-    rep stosb
-    add di, 320-8
-    dec dx
-    jnz .eachLine
-ret
-
-;!!!PARAMETERS!!!;
-;to select the sprite to print, you need to put the sprite address in 'si'
-;to select the position to display, you need to put the position in 'di'
-;to select the color of the ghost , you need to put the color into 'bx'
-displayGhost:
-mov ax, 0xA000
-mov es, ax
-mov dx, 8
-       eachLine:
-       mov cx, 8
-       rep movsb
-       add di, 320-8
-       dec dx
-       jnz eachLine
-ret
+exit:                       ; If escape key is pressed, jump to label 'exit'
+    mov ah, 4ch                 ; DOS function to exit program
+    int 21h                     ; Call DOS interrupt
