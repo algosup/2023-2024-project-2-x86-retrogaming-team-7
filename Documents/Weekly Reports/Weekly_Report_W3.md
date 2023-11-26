@@ -75,7 +75,7 @@ Reflecting on the challenges faced this week, it's evident that precision in pla
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Working prototype|Product core features for initial testing|November 6th, 2023|December 11th, 2023|<span style=color:green>**18%**</span>|
+>|Working prototype|Product core features for initial testing|November 6th, 2023|December 11th, 2023|<span style=color:green>**17%**</span>|
 >><details>
 >>  <summary>Details for Working prototype</summary>
 >>  
@@ -94,7 +94,7 @@ Reflecting on the challenges faced this week, it's evident that precision in pla
 
 >|Aspect name|Description|Start|Deadline|Completion in percent|
 >|:-:|:-:|:-:|:-:|:-:|
->|Final product|Overview of the full project|November 6th, 2023| December 21th, 2023|<span style=color:green>**42%**</span>|
+>|Final product|Overview of the full project|November 6th, 2023| December 21th, 2023|<span style=color:green>**17%**</span>|
 >><details>
 >>  <summary>Details for Final product</summary>
 >>  
@@ -103,7 +103,7 @@ Reflecting on the challenges faced this week, it's evident that precision in pla
 >>  |Functional specification|November 6th, 2023|November 13th, 2023|<span style=color:orange>**100%**</span>|
 >>  |Technical specification|November 13th, 2023|November 27th, 2023|<span style=color:orange>**90%**</span>|
 >>  |Test plan|November 10th, 2023|December 8th, 2023|<span style=color:green>**10%**</span>|
->>  |Working prototype|November 6th, 2023|December 11th, 2023|<span style=color:green>**18%**</span>|
+>>  |Working prototype|November 6th, 2023|December 11th, 2023|<span style=color:green>**17%**</span>|
 >>  |High Score||December 8th, 2023|<span style=color:white>**0%**</span>|
 >>  |Implement game over menu||December 17th, 2023|<span style=color:white>**0%**</span>|
 >>  |Implement key binds||December 17th, 2023|<span style=color:white>**0%**</span>|
