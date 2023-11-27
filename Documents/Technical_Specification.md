@@ -118,7 +118,7 @@
       - [9.1.1 Grid-Based Movement](#911-grid-based-movement)
       - [9.1.2 Directional Constraints](#912-directional-constraints)
     - [9.2 Pellets and Power-Ups](#92-pellets-and-power-ups)
-      - [9.2.1 Pellet Consumption](#921-pellet-consumption)
+      - [9.2.1 Pellet Ingestion](#921-pellet-ingestion)
       - [9.2.2 Power-Up Effects](#922-power-up-effects)
     - [9.3 Ghost Behavior](#93-ghost-behavior)
       - [9.3.1 Patrol and Chase Modes](#931-patrol-and-chase-modes)
@@ -151,6 +151,8 @@
     - [12.8 Ghosts patterns](#128-ghosts-patterns)
     - [12.9 Game over and high score](#129-game-over-and-high-score)
   - [13. Conclusion](#13-conclusion)
+  - [14. Glossary](#14-glossary)
+  - [Glossary for Pac-Man Game Technical Specification](#glossary-for-pac-man-game-technical-specification)
 </details>
 
 ## 1. Introduction
@@ -169,7 +171,7 @@ The Pac-Man game will be a reimagination that captures the essence of the origin
 
 - **Game Logic:** Algorithms governing Pac-Man's behavior, ghost movement, scoring, and level progression will be refined to accommodate the new features.
 
-- **NASM and DOSBox:** The development will utilize NASM for low-level programming, and the game will run in a DOS environment using DOSBox, providing a nostalgic yet compatible platform.
+- **NASM[#NASM](#1000) and DOSBox:** The development will utilize NASM for low-level programming, and the game will run in a DOS environment using DOSBox, providing a nostalgic yet compatible platform.
 
 The scope also includes:
 
@@ -186,7 +188,6 @@ The scope also includes:
 - **Documentation:** Comprehensive documentation standards within the code and in external documentation, ensuring clarity and ease of understanding.
 
 The project aims to deliver a captivating and feature-rich Pac-Man game that not only respects the classic gameplay but introduces innovative elements to captivate modern audiences.
-s
 
 ## 2. System Architecture
 
@@ -477,7 +478,7 @@ Clearly visualize ghost movements and behaviors through animated sprites. Each g
 Incorporate sound effects for key game events, such as Pac-Man eating pellets, ghosts approaching, and power-up activations. Audio cues enhance the gaming experience and provide feedback on in-game actions.
 
 #### 8.4.2 Background Music
-Include background music that complements the retro theme of the game. The music should be non-intrusive and loop seamlessly, contributing to the overall atmosphere without distracting from gameplay.
+Include background music that complements the retro theme of the game. The music should be non-intrusive and loop seamlessly, contributing to the overall atmosphere without distracting the gameplay.
 
 ### 8.5 Menus and Screens
 
@@ -513,7 +514,7 @@ Implement directional constraints to prevent Pac-Man from moving through walls o
 
 ### 9.2 Pellets and Power-Ups
 
-#### 9.2.1 Pellet Consumption
+#### 9.2.1 Pellet Ingestion
 Define the rules for Pac-Man consuming pellets as he moves through the maze. Each pellet consumed contributes to the player's score. Special considerations for different types of pellets, such as regular pellets and larger power pellets, will be implemented.
 
 #### 9.2.2 Power-Up Effects
@@ -551,7 +552,7 @@ Smoothly transition between levels, updating the maze layout and increasing the 
 #### 9.6.2 Game Completion
 Define the criteria for completing the game, such as reaching a specific number of levels or achieving a target overall score. Celebrate the player's success and provide options for replay or returning to the main menu.
 
-This comprehensive overview of game logic and mechanics outlines the core elements of Pac-Man's movement, pellet consumption, ghost AI behavior, game over conditions, scoring, and game progression. Implementing these mechanics will contribute to an engaging and authentic Pac-Man experience for players.
+This comprehensive overview of game logic and mechanics outlines the core elements of Pac-Man's movement, pellet consumption, ghost behavior, game over conditions, scoring, and game progression. Implementing these mechanics will contribute to an engaging and authentic Pac-Man experience for players.
 
 ## 10. Documentation
 
@@ -817,3 +818,128 @@ The emphasis on clear and concise code comments aims to enhance code readability
 The outlined approach to future enhancements focuses on maintaining playability with updates to DOSBox or NASM, optimizing code performance, and keeping documentation up-to-date. By fostering community engagement and staying vigilant for emerging trends, the project aims to evolve in a way that aligns with the retro gaming experience while embracing advancements in the emulation environment.
 
 As this document serves as a roadmap for the development team, adherence to the outlined strategies will contribute to the successful implementation, testing, and maintenance of the Pac-Man game. The commitment to transparency, thorough documentation, and adaptability to potential changes ensures the longevity and accessibility of the project for developers and players alike.
+
+## 14. Glossary
+1. **Assembly Language (ASM):**
+   - Low-level programming language that is closely related to machine code.
+   - Used for programming a computer at its most basic level, dealing with registers, memory, and processor instructions directly.
+## Glossary for Pac-Man Game Technical Specification
+
+1. **Assembly Language (ASM):**
+   - Low-level programming language that is closely related to machine code.
+   - Used for programming a computer at its most basic level, dealing with registers, memory, and processor instructions directly.
+
+2. **NASM (Netwide Assembler):**
+   - A popular x86 assembly language compiler.
+   - Used to translate assembly language source code into machine code.
+
+3. **DOSBox:**
+   - An x86 emulator with DOS.
+   - Used to run DOS-based games and applications on modern operating systems.
+
+4. **Game Loop:**
+   - The main program loop that repeatedly processes input, updates game state, and renders the game graphics.
+
+5. **Graphics Mode:**
+   - The screen resolution and color depth in which the game graphics are displayed.
+
+6. **Tile-based Rendering:**
+   - Graphics rendering technique where the screen is divided into tiles, and game graphics are created by combining and arranging these tiles.
+
+7. **Character Set:**
+   - A set of symbols, including Pac-Man and ghosts, used to represent characters and objects in the game.
+
+8. **Sprite:**
+   - A 2D image or animation that can be moved independently on the screen.
+
+9. **Collision Detection:**
+   - The process of determining if two or more game objects have intersected.
+
+10. **Player Input Handling:**
+    - Code responsible for processing keyboard or joystick input to control Pac-Man's movement.
+
+11. **Game State:**
+    - The current condition of the game, including the positions and states of all game elements.
+
+12. **Maze Generation Algorithm:**
+    - An algorithm that generates the layout of the maze for each level.
+
+13. **Ghost AI (Artificial Intelligence):**
+    - The logic that controls the movement of ghosts, making them chase or evade Pac-Man based on certain rules.
+
+14. **Score Tracking:**
+    - Mechanism to keep track of the player's score based on actions such as eating pellets and consuming ghosts.
+
+15. **Level Progression:**
+    - The advancement from one maze layout to the next, increasing in difficulty.
+
+16. **Sound Effects and Music:**
+    - Code responsible for playing audio cues, including background music and sound effects.
+
+17. **Game Over Screen:**
+    - The display that appears when the player loses all lives or completes all levels.
+
+18. **High Score Table:**
+    - A table that records and displays the highest scores achieved by players.
+
+19. **Interrupts:**
+    - Events that cause the processor to temporarily halt its current execution and jump to a specific routine, often used for handling input or updating the screen.
+
+20. **Debugging Tools:**
+    - Tools and techniques used to identify and fix errors or bugs in the game code.
+
+2. **NASM (Netwide Assembler):**
+   - A popular x86 assembly language compiler.
+   - Used to translate assembly language source code into machine code.
+
+3. **DOSBox:**
+   - An x86 emulator with DOS.
+   - Used to run DOS-based games and applications on modern operating systems.
+
+4. **Game Loop:**
+   - The main program loop that repeatedly processes input, updates game state, and renders the game graphics.
+
+5. **Graphics Mode:**
+   - The screen resolution and color depth in which the game graphics are displayed.
+
+6. **Tile-based Rendering:**
+   - Graphics rendering technique where the screen is divided into tiles, and game graphics are created by combining and arranging these tiles.
+
+7. **Character Set:**
+   - A set of symbols, including Pac-Man and ghosts, used to represent characters and objects in the game.
+
+8. **Sprite:**
+   - A 2D image or animation that can be moved independently on the screen.
+
+9. **Collision Detection:**
+   - The process of determining if two or more game objects have intersected.
+
+10. **Player Input Handling:**
+    - Code responsible for processing keyboard or joystick input to control Pac-Man's movement.
+
+11. **Game State:**
+    - The current condition of the game, including the positions and states of all game elements.
+
+12. **Maze Generation Algorithm:**
+    - An algorithm that generates the layout of the maze for each level.
+
+13. **Score Tracking:**
+    - Mechanism to keep track of the player's score based on actions such as eating pellets and consuming ghosts.
+
+14. **Level Progression:**
+    - The advancement from one maze layout to the next, increasing in difficulty.
+
+15. **Sound Effects and Music:**
+    - Code responsible for playing audio cues, including background music and sound effects.
+
+16. **Game Over Screen:**
+    - The display that appears when the player loses all lives or completes all levels.
+
+17. **High Score Table:**
+    - A table that records and displays the highest scores achieved by players.
+
+18. **Interrupts:**
+    - Events that cause the processor to temporarily halt its current execution and jump to a specific routine, often used for handling input or updating the screen.
+
+19. **Debugging Tools:**
+    - Tools and techniques used to identify and fix errors or bugs in the game code.
