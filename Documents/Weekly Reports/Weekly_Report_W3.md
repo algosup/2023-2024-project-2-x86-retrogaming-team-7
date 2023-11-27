@@ -1,7 +1,7 @@
 # Weekly Report of Team 7
 ## Weekly Report - Week of November 20, 2023
 1. Introduction:
-This week's productivity unfortunately did not meet our expectations. The objectives I set turned out to be somewhat inaccurate, leading to a deviation from our initial project expectations. It's crucial for us to analyze and address these issues to ensure smoother progress in the future.
+This week we've had UI/UX design classes, these classes allowed us to understand more about the users point of view and how it can affect the perception of the final product, which is why these new skills will be usefull to us for our final product. This week's productivity unfortunately did not meet our expectations and the objectives that were set turned out to be somehow inaccurate which lead to deviation from our initial project plan. It's crucial for us to analyze and address these issues to ensure smoother progress in the future.
 2. Accomplishments:
 - We successfully completed the sprite designs, achieving the visual elements necessary for our project.
 - The main menu has been finalized, providing a user-friendly interface for our game.
@@ -13,7 +13,7 @@ This week's productivity unfortunately did not meet our expectations. The object
 - Our primary focus for the upcoming week is to refine our approach to deadlines. We aim to establish a more accurate and logical timeline for project milestones.
 - Additionally, we plan to finalize the technical specifications and ensure their timely submission. Clear documentation is crucial for project cohesion.
 5. Conclusion:
-Reflecting on the challenges faced this week, it's evident that precision in planning and coordination is key to project success. As we move forward, we are committed to learning from these experiences and implementing improvements. Open communication and a proactive approach will be essential in overcoming upcoming challenges and ensuring the project's overall success.
+For this third week into this project, we had to find a balance between project work and the classes, as mentioned there were some challenges faced this week, it's evident that precision in planning and coordination is key to project success. As we move forward, it is important to learn from these experiences to keep the project moving. Open communication and a proactive approach will be essential in overcoming upcoming challenges and ensuring the project's overall success.
 
 6. KPI's
 >KPI's template 
