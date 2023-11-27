@@ -12,6 +12,9 @@
 | Ian LAURENT       | QA/Test Engineer  | Testing Strategy, Test Case Design, Debugging Support, Performance Testing                    |
 
 ## Table of Contents
+<details>
+<summary>Details</summary>
+
 - [Pac-Man Game Technical Specification](#pac-man-game-technical-specification)
   - [Team Members](#team-members)
   - [Table of Contents](#table-of-contents)
@@ -148,6 +151,7 @@
     - [12.8 Ghosts patterns](#128-ghosts-patterns)
     - [12.9 Game over and high score](#129-game-over-and-high-score)
   - [13. Conclusion](#13-conclusion)
+</details>
 
 ## 1. Introduction
 
@@ -216,7 +220,7 @@ The block diagram illustrates the relationships and interactions between key com
 
 ### 2.3 Architecture Diagram
 
-![Architecture Diagram](img/Diagram_Architecture.png)
+![Architecture Diagram](img/architecture_diagram.png)
 
 
 ## 3. Game Components
@@ -234,9 +238,7 @@ The Graphics Module is a critical component responsible for rendering the visual
 - **Scalability:** Ensures scalability to accommodate additional graphics features introduced in the enhanced version, such as new characters, power-ups, or environmental elements.
 
 #### 3.1.3 Graphics Architecture 
-[Insert Graphics Architecture Diagram Here]
-
-The graphics architecture diagram will detail the internal structure of the Graphics Module, illustrating the flow of rendering processes, the relationship between sprite components, and any data flow for animations.
+![graphic Diagram](img/graphic_diagram.png)
 
 ### 3.2 Input Handling
 
