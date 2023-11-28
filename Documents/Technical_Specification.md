@@ -171,7 +171,7 @@ The Pac-Man game will be a reimagination that captures the essence of the origin
 
 - **Game Logic:** Algorithms governing Pac-Man's behavior, ghost movement, scoring, and level progression will be refined to accommodate the new features.
 
-- **NASM[#NASM](#1000) and DOSBox:** The development will utilize NASM for low-level programming, and the game will run in a DOS environment using DOSBox, providing a nostalgic yet compatible platform.
+- **NASM and DOSBox:** The development will utilize NASM for low-level programming, and the game will run in a DOS environment using DOSBox, providing a nostalgic yet compatible platform.
 
 The scope also includes:
 
