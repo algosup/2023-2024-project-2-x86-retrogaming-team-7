@@ -158,6 +158,155 @@ display_arrow_menu:
             jmp .wait_for_key                ; Otherwise, keep waiting
 
         
+
+
+
+print_string:
+    next_char:
+        lodsb
+        cmp al, '$'
+        je end_string
+        int 0x10
+        jmp next_char
+    end_string:
+        ret
+
+
+
+;=======================================================
+;                   START THE GAME
+;=======================================================
+game_start:
+    call done
+
+;=======================================================
+;                   SETTINGS MENU
+;=======================================================
+section .data
+    ; set all the printed strings on the mai
+    mainSettings db 'Settings of the game', 0x0D, 0x0A, '$'
+    musicSetting db 'Music'
+    musicDot db '   . . . . . . . . . . . . . . .', 0x0D, 0x0A, '$'
+    soundSetting db 'Sound Effect'
+    soundDot db '  . . . . . . . . . . . .', 0x0D, 0x0A, '$'
+    skinsSetting db 'Skins'
+    skinsDot db '   . . . . . . . . . . . . . . .', 0x0D, 0x0A, '$'
+    keybindSetting db 'Keybinding', 0x0D, 0x0A, '$'
+    backButton db 'Back', 0x0D, 0x0A, '$'
+    onOption db 'ON', 0x0D, 0x0A, '$'
+    offOption db 'OFF', 0x0D, 0x0A, '$'
+
+settings_menu: ; ip = cs:0296
+    call initialize_part
+    ; Display Settngs Menu
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 3           ; dh = row
+    mov dl, 31          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, mainSettings
+    mov ah, 0x0E
+    call print_string
+    ; Display Musci Setting
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 9          ; dh = row
+    mov ch, dh
+    mov dl, 20         ; dl = column
+    int 0x10            ; set cursor position
+    mov si, musicSetting
+    mov ah, 0x0E
+    call print_string
+    call setOnValue
+
+    ; Display Soud Setting
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 11           ; dh = row
+    mov ch, dh
+    mov dl, 20          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, soundSetting
+    mov ah, 0x0E
+    call print_string
+    call setOnValue
+    
+    ; Display Skins
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 13           ; dh = row
+    mov dl, 20          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, skinsSetting
+    mov ah, 0x0E
+    call print_string
+
+    ; Display Keybinding
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 15          ; dh = row
+    mov dl, 20          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, keybindSetting
+    mov ah, 0x0E
+    call print_string
+
+    ; Display Back Button
+    mov ah, 0x02        ; set cursor positio
+    
+    n
+    mov bh, 0x00        ; page number
+    mov dh, 17          ; dh = row
+    mov dl, 20          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, backButton
+    mov ah, 0x0E
+    call print_string
+    ; Display Arrow
+    call display_arrow_option
+
+setOnValue:
+    ; Display ON
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, ch          ; dh = row
+    mov dl, 59          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, onOption
+    mov ah, 0x0E
+    call print_string
+    ret
+
+setOffValue:
+    ; Display ON
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, ch          ; dh = row
+    mov dl, 59          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, offOption
+    mov ah, 0x0E
+    call print_string
+    ret
+
+editValue:
+    call removeValue
+    call changeValue
+    jmp display_arrow_option
+removeValue:
+; Display ON
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, cl          ; dh = row
+    mov dl, 59          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, delArrow
+    mov ah, 0x0E
+    call print_string
+    ret
+
+changeValue:
+    
 display_arrow_option:
     cmp cl, 5
     jb .set_arrow
@@ -228,11 +377,13 @@ display_arrow_option:
         jmp display_arrow_option
 
     .equal_arrow:
-        ; cmp cl, 9
-        ; je game_start
-        ; cmp cl, 11
-        ; je settings_menu
+        cmp cl, 9
+        je editValue
+        cmp cl, 11
+        je editValue
         ; cmp cl, 13
+        ; je exit_menu
+        ; cmp cl, 15
         ; je exit_menu
         cmp cl, 17
         je main_menu
@@ -246,99 +397,8 @@ display_arrow_option:
         cmp ah, 50h                     ; Compare the scan code in AH with the DOWN key's scan code       
         je  .add_arrow
         cmp ah, 0x1C      ; Compare the scan code in AH with the Enter key's scan code
-        je .equal_arrow                
+        je  .equal_arrow                
         jmp .wait_for_key                ; Otherwise, keep waiting
-
-
-
-print_string:
-    next_char:
-        lodsb
-        cmp al, '$'
-        je end_string
-        int 0x10
-        jmp next_char
-    end_string:
-        ret
-
-
-
-;=======================================================
-;                   START THE GAME
-;=======================================================
-game_start:
-    call done
-
-;=======================================================
-;                   SETTINGS MENU
-;=======================================================
-section .data
-    ; set all the printed strings on the mai
-    mainSettings db 'Settings of the game', 0x0D, 0x0A, '$'
-    musicSetting db 'Music', 0x0D, 0x0A, '$'
-    soundSetting db 'Sound Effect', 0x0D, 0x0A, '$'
-    skinsSetting db 'Skins', 0x0D, 0x0A, '$'
-    keybindSetting db 'Keybinding', 0x0D, 0x0A, '$'
-    backButton db 'Back', 0x0D, 0x0A, '$'
-settings_menu: ; ip = cs:0296
-    call initialize_part
-    ; Display Settngs Menu
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 3           ; dh = row
-    mov dl, 31          ; dl = column
-    int 0x10            ; set cursor position
-    mov si, mainSettings
-    mov ah, 0x0E
-    call print_string
-    ; Display Musci Setting
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 9          ; dh = row
-    mov dl, 20         ; dl = column
-    int 0x10            ; set cursor position
-    mov si, musicSetting
-    mov ah, 0x0E
-    call print_string
-    ; Display Soud Setting
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 11           ; dh = row
-    mov dl, 20          ; dl = column
-    int 0x10            ; set cursor position
-    mov si, soundSetting
-    mov ah, 0x0E
-    call print_string
-    ; Display Skins
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 13           ; dh = row
-    mov dl, 20          ; dl = column
-    int 0x10            ; set cursor position
-    mov si, skinsSetting
-    mov ah, 0x0E
-    call print_string
-    ; Display Keybinding
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 15          ; dh = row
-    mov dl, 20          ; dl = column
-    int 0x10            ; set cursor position
-    mov si, keybindSetting
-    mov ah, 0x0E
-    call print_string
-    ; Display Back Button
-    mov ah, 0x02        ; set cursor position
-    mov bh, 0x00        ; page number
-    mov dh, 17          ; dh = row
-    mov dl, 20          ; dl = column
-    int 0x10            ; set cursor position
-    mov si, backButton
-    mov ah, 0x0E
-    call print_string
-    ; Display Arrow
-    call display_arrow_option
-
         
 
 ;=======================================================
