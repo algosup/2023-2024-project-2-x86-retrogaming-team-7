@@ -1,0 +1,121 @@
+
+- NASM Map file ---------------------------------------------------------------
+
+Source file:  start.asm
+Output file:  start.com
+
+-- Program origin -------------------------------------------------------------
+
+00000100
+
+-- Sections (summary) ---------------------------------------------------------
+
+Vstart            Start             Stop              Length    Class     Name
+             100               100               2D6  000001D6  progbits  .text
+             2D8               2D8               5EA  00000312  progbits  .data
+             5EC               5EC               5ED  00000001  nobits    .bss
+
+-- Sections (detailed) --------------------------------------------------------
+
+---- Section .text ------------------------------------------------------------
+
+class:     progbits
+length:                 1D6
+start:                  100
+align:     not defined
+follows:   not defined
+vstart:                 100
+valign:    not defined
+vfollows:  not defined
+
+---- Section .data ------------------------------------------------------------
+
+class:     progbits
+length:                 312
+start:                  2D8
+align:                    4
+follows:   not defined
+vstart:                 2D8
+valign:    not defined
+vfollows:  not defined
+
+---- Section .bss -------------------------------------------------------------
+
+class:     nobits
+length:                   1
+start:                  5EC
+align:     not defined
+follows:   not defined
+vstart:                 5EC
+valign:                   4
+vfollows:  not defined
+
+-- Symbols --------------------------------------------------------------------
+
+---- Section .text ------------------------------------------------------------
+
+Real              Virtual           Name
+             100               100  start
+             10A               10A  gameloop
+             119               119  waitloop
+             127               127  clearScreen
+             135               135  read_character_key_was_pressed
+             140               140  handle_input
+             156               156  clearSprite
+             164               164  clearSprite.eachLine
+             171               171  move_right
+             185               185  move_right.skip_move_right
+             186               186  move_left
+             199               199  move_left.skip_move_left
+             19A               19A  move_up
+             1AD               1AD  move_up.skip_move_up
+             1AE               1AE  move_down
+             1C2               1C2  move_down.skip_move_down
+             1C3               1C3  pacman_Right
+             1DB               1DB  pacman_Right.pacmanRightOpen
+             1E6               1E6  pacman_Right.pacmanRightSemiOpen
+             1F1               1F1  pacman_Right.pacmanRightClose
+             1FC               1FC  pacman_Left
+             214               214  pacman_Left.pacmanLeftOpen
+             21F               21F  pacman_Left.pacmanLeftSemiOpen
+             22A               22A  pacman_Left.pacmanLeftClose
+             235               235  pacman_Up
+             24D               24D  pacman_Up.pacmanUpOpen
+             258               258  pacman_Up.pacmanUpSemiOpen
+             263               263  pacman_Up.pacmanUpClose
+             26E               26E  pacman_Down
+             286               286  pacman_Down.pacmanDownOpen
+             291               291  pacman_Down.pacmanDownSemiOpen
+             29C               29C  pacman_Down.pacmanDownClose
+             2A7               2A7  draw_sprite
+             2C8               2C8  draw_sprite.draw_line
+
+---- Section .data ------------------------------------------------------------
+
+Real              Virtual           Name
+             2D8               2D8  xPos
+             2DA               2DA  xVelocity
+             2DC               2DC  yPos
+             2DE               2DE  spritew
+             2E0               2E0  spriteh
+             2E2               2E2  old_XPOS
+             2E4               2E4  old_YPOS
+             2E6               2E6  currentSprite
+             2EA               2EA  pacman_right_1
+             32A               32A  pacman_right_2
+             36A               36A  pacman_right_3
+             3AA               3AA  pacman_left_1
+             3EA               3EA  pacman_left_2
+             42A               42A  pacman_left_3
+             46A               46A  pacman_down_1
+             4AA               4AA  pacman_down_2
+             4EA               4EA  pacman_down_3
+             52A               52A  pacman_up_1
+             56A               56A  pacman_up_2
+             5AA               5AA  pacman_up_3
+
+---- Section .bss -------------------------------------------------------------
+
+Real              Virtual           Name
+             5EC               5EC  keyPressed
+
