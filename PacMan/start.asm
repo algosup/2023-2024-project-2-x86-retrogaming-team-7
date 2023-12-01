@@ -23,6 +23,7 @@ old_XPOS dw 0
 old_YPOS dw 0
 
 currentSprite dd pacman_right_1
+actualKeystroke dw 4Dh
 
 pacman_right_1  db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E
                 db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x04
@@ -132,16 +133,6 @@ pacman_up_3     db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x04, 0xFF
                 db 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x0E, 0x04
                 db 0xFF, 0xFF, 0x0E, 0x0E, 0x0E, 0x0E, 0x04, 0xFF
 
-; ----------------------------------------------------------------------------------------------------------
-; Open a file
-; ----------------------------------------------------------------------------------------------------------
-
-; .data
-;     Filename db "FILE.EXT",0
-;     Filehandle  dw 0 
-; ----------------------------------------------------------------------------------------------------------
-; ----------------------------------------------------------------------------------------------------------
-
 section .bss
 keyPressed resb 1  ; Réserve un byte pour l'état de la touche
 section .text
@@ -183,24 +174,14 @@ clearScreen:
 
 ; Fonction pour lire la touche pressée
 read_character_key_was_pressed:
+    mov ah, 01h        ; Check if a key has been pressed (non-blocking)
+    int 16h
+    jz continue_movement ; If no key pressed, continue current movement
+
+    ; Read the keystroke
     mov ah, 00h
     int 16h
-    cmp ah, 0E0h
-    jne handle_input
-    int 16h
-
-handle_input:
-    cmp ah, 4Dh   ; Touche Droite   ;4DH
-    je move_right
-    cmp ah, 4Bh  ; Touche Gauche   ;4BH
-    je move_left
-    cmp ah, 48h  ; Touche Haut  ;48H
-    je move_up
-    cmp ah, 50h  ; Touche Bas  ;50h
-    je move_down
-    ret
-
-    ret
+    mov [actualKeystroke], ah  ; Store the new direction
 
 clearSprite:
     mov di, [xPos]
@@ -217,25 +198,8 @@ clearSprite:
         jnz .eachLine
     ret
 
-; ----------------------------------------------------------------------------------------------------------
-; Open a file
-; ----------------------------------------------------------------------------------------------------------
-
-; OpenFile(DOS)
-; mov ah, 3dh 
-; mov al, 0           ; Read (1 : write, 2 : read/write)
-; mov ax, cs          ; Segment base to Filename
-; mov ds, ax
-; mov dx, [filename]  ; 0 terminated string
-; ; ds:dx = "filename.ext",0
-; int 21h 
-; jc .error 
-; mov [filehandle], ax
-
-; ----------------------------------------------------------------------------------------------------------
-; ----------------------------------------------------------------------------------------------------------
-
 move_right:
+    mov word [actualKeystroke], 4Dh
     call pacman_Right
     mov bx, [xPos]
     add bx, 2
@@ -245,6 +209,7 @@ move_right:
 .skip_move_right:
     ret
 move_left:
+    mov word [actualKeystroke], 4Bh
     call pacman_Left
     mov bx, [xPos]
     sub bx, 2
@@ -255,6 +220,7 @@ move_left:
     ret
 
 move_up:
+    mov word [actualKeystroke], 48h
     call pacman_Up
     mov bx, [yPos]
     sub bx, 2
@@ -265,6 +231,7 @@ move_up:
     ret
 
 move_down:
+    mov word [actualKeystroke], 50h
     call pacman_Down
     mov bx, [yPos]
     add bx, 2
@@ -274,6 +241,29 @@ move_down:
 .skip_move_down:
     ret
 
+continue_movement:
+    mov ax, [actualKeystroke]
+    cmp ax, 4Dh
+    je .move_right
+    cmp ax, 4Bh
+    je .move_left
+    cmp ax, 48h
+    je .move_up
+    cmp ax, 50h
+    je .move_down
+    ret
+    .move_right:
+        call move_right
+        ret
+    .move_left:
+        call move_left
+        ret
+    .move_up:
+        call move_up
+        ret
+    .move_down:
+        call move_down
+        ret
 
 pacman_Right:
     cmp word [currentSprite], pacman_right_1
