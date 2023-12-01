@@ -147,6 +147,7 @@ start:
        
     
     gameloop:
+    xor al, al
     call clearScreen  ; Clear the entire screen
     call clearSprite  ; Clear the old sprite before drawing a new one
     call draw_sprite
@@ -242,14 +243,14 @@ move_down:
     ret
 
 continue_movement:
-    mov ax, [actualKeystroke]
-    cmp ax, 4Dh
+    mov al, [actualKeystroke]
+    cmp al, 4Dh
     je .move_right
-    cmp ax, 4Bh
+    cmp al, 4Bh
     je .move_left
-    cmp ax, 48h
+    cmp al, 48h
     je .move_up
-    cmp ax, 50h
+    cmp al, 50h
     je .move_down
     ret
     .move_right:
@@ -264,6 +265,7 @@ continue_movement:
     .move_down:
         call move_down
         ret
+    ret
 
 pacman_Right:
     cmp word [currentSprite], pacman_right_1

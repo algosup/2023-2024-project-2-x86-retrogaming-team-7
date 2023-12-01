@@ -11,16 +11,16 @@ Output file:  start.com
 -- Sections (summary) ---------------------------------------------------------
 
 Vstart            Start             Stop              Length    Class     Name
-             100               100               305  00000205  progbits  .text
-             308               308               61C  00000314  progbits  .data
-             61C               61C               61D  00000001  nobits    .bss
+             100               100               304  00000204  progbits  .text
+             304               304               618  00000314  progbits  .data
+             618               618               619  00000001  nobits    .bss
 
 -- Sections (detailed) --------------------------------------------------------
 
 ---- Section .text ------------------------------------------------------------
 
 class:     progbits
-length:                 205
+length:                 204
 start:                  100
 align:     not defined
 follows:   not defined
@@ -32,10 +32,10 @@ vfollows:  not defined
 
 class:     progbits
 length:                 314
-start:                  308
+start:                  304
 align:                    4
 follows:   not defined
-vstart:                 308
+vstart:                 304
 valign:    not defined
 vfollows:  not defined
 
@@ -43,10 +43,10 @@ vfollows:  not defined
 
 class:     nobits
 length:                   1
-start:                  61C
+start:                  618
 align:     not defined
 follows:   not defined
-vstart:                 61C
+vstart:                 618
 valign:                   4
 vfollows:  not defined
 
@@ -57,70 +57,70 @@ vfollows:  not defined
 Real              Virtual           Name
              100               100  start
              10A               10A  gameloop
-             119               119  waitloop
-             127               127  clearScreen
-             135               135  read_character_key_was_pressed
-             145               145  clearSprite
-             153               153  clearSprite.eachLine
-             160               160  move_right
-             17A               17A  move_right.skip_move_right
-             17B               17B  move_left
-             194               194  move_left.skip_move_left
-             195               195  move_up
-             1AE               1AE  move_up.skip_move_up
-             1AF               1AF  move_down
-             1C9               1C9  move_down.skip_move_down
-             1CA               1CA  continue_movement
-             1E2               1E2  continue_movement.move_right
-             1E6               1E6  continue_movement.move_left
-             1EA               1EA  continue_movement.move_up
-             1EE               1EE  continue_movement.move_down
-             1F2               1F2  pacman_Right
-             20A               20A  pacman_Right.pacmanRightOpen
-             215               215  pacman_Right.pacmanRightSemiOpen
-             220               220  pacman_Right.pacmanRightClose
-             22B               22B  pacman_Left
-             243               243  pacman_Left.pacmanLeftOpen
-             24E               24E  pacman_Left.pacmanLeftSemiOpen
-             259               259  pacman_Left.pacmanLeftClose
-             264               264  pacman_Up
-             27C               27C  pacman_Up.pacmanUpOpen
-             287               287  pacman_Up.pacmanUpSemiOpen
-             292               292  pacman_Up.pacmanUpClose
-             29D               29D  pacman_Down
-             2B5               2B5  pacman_Down.pacmanDownOpen
-             2C0               2C0  pacman_Down.pacmanDownSemiOpen
-             2CB               2CB  pacman_Down.pacmanDownClose
-             2D6               2D6  draw_sprite
-             2F7               2F7  draw_sprite.draw_line
+             11B               11B  waitloop
+             129               129  clearScreen
+             137               137  read_character_key_was_pressed
+             147               147  clearSprite
+             155               155  clearSprite.eachLine
+             162               162  move_right
+             17C               17C  move_right.skip_move_right
+             17D               17D  move_left
+             196               196  move_left.skip_move_left
+             197               197  move_up
+             1B0               1B0  move_up.skip_move_up
+             1B1               1B1  move_down
+             1CB               1CB  move_down.skip_move_down
+             1CC               1CC  continue_movement
+             1E0               1E0  continue_movement.move_right
+             1E4               1E4  continue_movement.move_left
+             1E8               1E8  continue_movement.move_up
+             1EC               1EC  continue_movement.move_down
+             1F1               1F1  pacman_Right
+             209               209  pacman_Right.pacmanRightOpen
+             214               214  pacman_Right.pacmanRightSemiOpen
+             21F               21F  pacman_Right.pacmanRightClose
+             22A               22A  pacman_Left
+             242               242  pacman_Left.pacmanLeftOpen
+             24D               24D  pacman_Left.pacmanLeftSemiOpen
+             258               258  pacman_Left.pacmanLeftClose
+             263               263  pacman_Up
+             27B               27B  pacman_Up.pacmanUpOpen
+             286               286  pacman_Up.pacmanUpSemiOpen
+             291               291  pacman_Up.pacmanUpClose
+             29C               29C  pacman_Down
+             2B4               2B4  pacman_Down.pacmanDownOpen
+             2BF               2BF  pacman_Down.pacmanDownSemiOpen
+             2CA               2CA  pacman_Down.pacmanDownClose
+             2D5               2D5  draw_sprite
+             2F6               2F6  draw_sprite.draw_line
 
 ---- Section .data ------------------------------------------------------------
 
 Real              Virtual           Name
-             308               308  xPos
-             30A               30A  xVelocity
-             30C               30C  yPos
-             30E               30E  spritew
-             310               310  spriteh
-             312               312  old_XPOS
-             314               314  old_YPOS
-             316               316  currentSprite
-             31A               31A  actualKeystroke
-             31C               31C  pacman_right_1
-             35C               35C  pacman_right_2
-             39C               39C  pacman_right_3
-             3DC               3DC  pacman_left_1
-             41C               41C  pacman_left_2
-             45C               45C  pacman_left_3
-             49C               49C  pacman_down_1
-             4DC               4DC  pacman_down_2
-             51C               51C  pacman_down_3
-             55C               55C  pacman_up_1
-             59C               59C  pacman_up_2
-             5DC               5DC  pacman_up_3
+             304               304  xPos
+             306               306  xVelocity
+             308               308  yPos
+             30A               30A  spritew
+             30C               30C  spriteh
+             30E               30E  old_XPOS
+             310               310  old_YPOS
+             312               312  currentSprite
+             316               316  actualKeystroke
+             318               318  pacman_right_1
+             358               358  pacman_right_2
+             398               398  pacman_right_3
+             3D8               3D8  pacman_left_1
+             418               418  pacman_left_2
+             458               458  pacman_left_3
+             498               498  pacman_down_1
+             4D8               4D8  pacman_down_2
+             518               518  pacman_down_3
+             558               558  pacman_up_1
+             598               598  pacman_up_2
+             5D8               5D8  pacman_up_3
 
 ---- Section .bss -------------------------------------------------------------
 
 Real              Virtual           Name
-             61C               61C  keyPressed
+             618               618  keyPressed
 
