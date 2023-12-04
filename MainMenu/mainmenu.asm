@@ -254,7 +254,7 @@ settings_menu: ; ip = cs:0296
     ; Display Back Button
     mov ah, 0x02        ; set cursor positio
     
-    n
+    
     mov bh, 0x00        ; page number
     mov dh, 17          ; dh = row
     mov dl, 20          ; dl = column
