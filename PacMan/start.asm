@@ -705,7 +705,19 @@ read_character_key_was_pressed:
     ; Read the keystroke
     mov ah, 00h
     int 16h
+    cmp ah, 4Dh
+    je update_keystroke
+    cmp ah, 4Bh
+    je update_keystroke
+    cmp ah, 48h
+    je update_keystroke
+    cmp ah, 50h
+    je update_keystroke
+    jmp continue_movement
+
+update_keystroke:
     mov [actualKeystroke], ah  ; Store the new direction
+    jmp continue_movement
 
 clearSprite:
     ; Set up the graphics segment
