@@ -11,16 +11,16 @@ Output file:  start.com
 -- Sections (summary) ---------------------------------------------------------
 
 Vstart            Start             Stop              Length    Class     Name
-             100               100               304  00000204  progbits  .text
-             304               304               618  00000314  progbits  .data
-             618               618               619  00000001  nobits    .bss
+             100               100               309  00000209  progbits  .text
+             30C               30C              1801  000014F5  progbits  .data
+            1804              1804              1805  00000001  nobits    .bss
 
 -- Sections (detailed) --------------------------------------------------------
 
 ---- Section .text ------------------------------------------------------------
 
 class:     progbits
-length:                 204
+length:                 209
 start:                  100
 align:     not defined
 follows:   not defined
@@ -31,11 +31,11 @@ vfollows:  not defined
 ---- Section .data ------------------------------------------------------------
 
 class:     progbits
-length:                 314
-start:                  304
+length:                14F5
+start:                  30C
 align:                    4
 follows:   not defined
-vstart:                 304
+vstart:                 30C
 valign:    not defined
 vfollows:  not defined
 
@@ -43,10 +43,10 @@ vfollows:  not defined
 
 class:     nobits
 length:                   1
-start:                  618
+start:                 1804
 align:     not defined
 follows:   not defined
-vstart:                 618
+vstart:                1804
 valign:                   4
 vfollows:  not defined
 
@@ -57,70 +57,123 @@ vfollows:  not defined
 Real              Virtual           Name
              100               100  start
              10A               10A  gameloop
-             11B               11B  waitloop
-             129               129  clearScreen
-             137               137  read_character_key_was_pressed
-             147               147  clearSprite
-             155               155  clearSprite.eachLine
-             162               162  move_right
-             17C               17C  move_right.skip_move_right
-             17D               17D  move_left
-             196               196  move_left.skip_move_left
-             197               197  move_up
-             1B0               1B0  move_up.skip_move_up
-             1B1               1B1  move_down
-             1CB               1CB  move_down.skip_move_down
-             1CC               1CC  continue_movement
-             1E0               1E0  continue_movement.move_right
-             1E4               1E4  continue_movement.move_left
-             1E8               1E8  continue_movement.move_up
-             1EC               1EC  continue_movement.move_down
-             1F1               1F1  pacman_Right
-             209               209  pacman_Right.pacmanRightOpen
-             214               214  pacman_Right.pacmanRightSemiOpen
-             21F               21F  pacman_Right.pacmanRightClose
-             22A               22A  pacman_Left
-             242               242  pacman_Left.pacmanLeftOpen
-             24D               24D  pacman_Left.pacmanLeftSemiOpen
-             258               258  pacman_Left.pacmanLeftClose
-             263               263  pacman_Up
-             27B               27B  pacman_Up.pacmanUpOpen
-             286               286  pacman_Up.pacmanUpSemiOpen
-             291               291  pacman_Up.pacmanUpClose
-             29C               29C  pacman_Down
-             2B4               2B4  pacman_Down.pacmanDownOpen
-             2BF               2BF  pacman_Down.pacmanDownSemiOpen
-             2CA               2CA  pacman_Down.pacmanDownClose
-             2D5               2D5  draw_sprite
-             2F6               2F6  draw_sprite.draw_line
+             116               116  waitloop
+             124               124  clearScreen
+             132               132  read_character_key_was_pressed
+             142               142  clearSprite
+             157               157  clearSprite.clear_line
+             167               167  move_right
+             181               181  move_right.skip_move_right
+             182               182  move_left
+             19B               19B  move_left.skip_move_left
+             19C               19C  move_up
+             1B5               1B5  move_up.skip_move_up
+             1B6               1B6  move_down
+             1D0               1D0  move_down.skip_move_down
+             1D1               1D1  continue_movement
+             1E5               1E5  continue_movement.move_right
+             1E9               1E9  continue_movement.move_left
+             1ED               1ED  continue_movement.move_up
+             1F1               1F1  continue_movement.move_down
+             1F6               1F6  pacman_Right
+             20E               20E  pacman_Right.pacmanRightOpen
+             219               219  pacman_Right.pacmanRightSemiOpen
+             224               224  pacman_Right.pacmanRightClose
+             22F               22F  pacman_Left
+             247               247  pacman_Left.pacmanLeftOpen
+             252               252  pacman_Left.pacmanLeftSemiOpen
+             25D               25D  pacman_Left.pacmanLeftClose
+             268               268  pacman_Up
+             280               280  pacman_Up.pacmanUpOpen
+             28B               28B  pacman_Up.pacmanUpSemiOpen
+             296               296  pacman_Up.pacmanUpClose
+             2A1               2A1  pacman_Down
+             2B9               2B9  pacman_Down.pacmanDownOpen
+             2C4               2C4  pacman_Down.pacmanDownSemiOpen
+             2CF               2CF  pacman_Down.pacmanDownClose
+             2DA               2DA  draw_sprite
+             2FB               2FB  draw_sprite.draw_line
 
 ---- Section .data ------------------------------------------------------------
 
 Real              Virtual           Name
-             304               304  xPos
-             306               306  xVelocity
-             308               308  yPos
-             30A               30A  spritew
-             30C               30C  spriteh
-             30E               30E  old_XPOS
-             310               310  old_YPOS
-             312               312  currentSprite
-             316               316  actualKeystroke
-             318               318  pacman_right_1
-             358               358  pacman_right_2
-             398               398  pacman_right_3
-             3D8               3D8  pacman_left_1
-             418               418  pacman_left_2
-             458               458  pacman_left_3
-             498               498  pacman_down_1
-             4D8               4D8  pacman_down_2
-             518               518  pacman_down_3
-             558               558  pacman_up_1
-             598               598  pacman_up_2
-             5D8               5D8  pacman_up_3
+             30C               30C  xPos
+             30E               30E  xVelocity
+             310               310  yPos
+             312               312  mazePoseX
+             314               314  mazePoseY
+             316               316  spritew
+             318               318  spriteh
+             31A               31A  old_XPOS
+             31C               31C  old_YPOS
+             31E               31E  currentSprite
+             322               322  actualKeystroke
+             324               324  ext_angle_tl
+             364               364  ext_angle_tr
+             3A4               3A4  ext_border_strait_top
+             3E4               3E4  ext_border_strait_down
+             424               424  triangle_right
+             464               464  ext_border_square_tl
+             4A4               4A4  ext_border_square_tr
+             4E4               4E4  ext_border_circle_tl
+             524               524  ext_border_circle_tr
+             564               564  int_ghost_spawn_tl
+             5A4               5A4  int_ghost_spawn_strait_top
+             5E4               5E4  int_ghost_spawn_tr
+             624               624  ext_angle_bl
+             664               664  ext_angle_br
+             6A4               6A4  ext_border_strait_left
+             6E4               6E4  ext_border_strait_right
+             724               724  triangle_left
+             764               764  ext_border_square_bl
+             7A4               7A4  ext_border_square_br
+             7E4               7E4  ext_border_circle_bl
+             824               824  ext_border_circle_br
+             864               864  int_ghost_spawn_bl
+             8A4               8A4  int_ghost_spawn_strait_bottom
+             8E4               8E4  int_ghost_spawn_br
+             924               924  int_big_rectangle_tl
+             964               964  int_big_rectangle_left
+             9A4               9A4  int_big_rectangle_bl
+             9E4               9E4  int_slim_left
+             A24               A24  int_slim_hori_middle
+             A64               A64  int_slim_right
+             AA4               AA4  int_angle_tl
+             AE4               AE4  int_angle_tr
+             B24               B24  int_big_tl
+             B64               B64  int_big_tr
+             BA4               BA4  int_ghost_out_left
+             BE4               BE4  int_ghost_out_right
+             C24               C24  int_big_rectangle_tr
+             C64               C64  int_big_rectangle_right
+             CA4               CA4  int_big_rectangle_br
+             CE4               CE4  int_slim_up
+             D24               D24  int_slim_verti_middle
+             D64               D64  int_slim_down
+             DA4               DA4  int_angle_bl
+             DE4               DE4  int_angle_br
+             E24               E24  int_big_bl
+             E64               E64  int_big_br
+             EA4               EA4  int_big_left
+             EE4               EE4  int_big_right
+             F24               F24  int_triangle_up
+             F64               F64  empty
+             FA4               FA4  mazeSprite
+            1501              1501  pacman_right_1
+            1541              1541  pacman_right_2
+            1581              1581  pacman_right_3
+            15C1              15C1  pacman_left_1
+            1601              1601  pacman_left_2
+            1641              1641  pacman_left_3
+            1681              1681  pacman_down_1
+            16C1              16C1  pacman_down_2
+            1701              1701  pacman_down_3
+            1741              1741  pacman_up_1
+            1781              1781  pacman_up_2
+            17C1              17C1  pacman_up_3
 
 ---- Section .bss -------------------------------------------------------------
 
 Real              Virtual           Name
-             618               618  keyPressed
+            1804              1804  keyPressed
 
