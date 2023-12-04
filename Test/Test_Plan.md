@@ -26,8 +26,8 @@ This test plan will allow to clearly follow up and understand the different issu
 >> |**Function explanations**|For the client to know how the product works he will have to know the back end of every action that is possible on the game.|Every action is listed on this part and explaned how it works.|...|...|W.I.P.|Good|
 >> |**Conclusion**|Conclusion will wrap up all the aspects of the technical specification|It will also allow the client to be satisfied about all the technical part of the final product.|...|...|W.I.P.|Good| 
 >></details>
-> |||||||
-> |-|-|-|-|-|-|
+>|Process|Description|Status|Expected result|Actual result|Comment|
+>|:-|:-|:-|:-|:-|:-|
 > |**Project charter**|The project charter should be a short document that explains the project in clear, concise wording for high-levelmanagement|Work in progress|...|...|...|...|
 > |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|Work in progress|The overall content should be honest and correct reporting the evolution of the team work of the week|Work in progress|Some minor modifications on different weekly reports but in overall was good|
 >><details>
