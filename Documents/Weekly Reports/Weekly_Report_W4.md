@@ -9,9 +9,9 @@ This week, we made significant progress, accomplishing most of our planned tasks
 - Faced difficulties in completing the maze implementation, struggling with the tile-by-tile process.
 4. Plans for Next Week:
 - Our primary focus for the upcoming week will be the integration of the maze.
-- Once accomplished, it will be a significant advancement, impacting collision detection and scoring.
+- Once accomplished, it will be a great impact for these features : collision detection and scoring.
 5. Conclusion:
-Despite the challenge with the maze implementation, our achievements in menu design and character movements set a solid foundation. We look forward to overcoming the maze hurdle in the next week and further advancing our project.
+Despite the challenge with the maze implementation, our achievements in menu design and character movements has set a solid foundation. We are looking forward to overcome the maze hurdle in the up coming week.
 
 
 6. KPI's
