@@ -158,8 +158,6 @@ start:
        
     
     gameloop:
-    xor al, al
-    call clearScreen  ; Clear the entire screen
     call clearSprite  ; Clear the old sprite before drawing a new one
     call draw_sprite
     call read_character_key_was_pressed
