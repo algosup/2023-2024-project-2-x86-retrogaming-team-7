@@ -4,10 +4,10 @@ This test plan will allow to clearly follow up and understand the different issu
 
 ## Pre-development
 
->|Process|Description|Status|Expected result|Actual result|Comment|
->|:-|:-|:-|:-|:-|:-|
->|**Functional specification**|Verify is all it's content is right and that there is no grammer or spelling mistakes|Completed|All content is correct and that every functional specification is detailed and clear enough|Missed some points but kept the essential ideas and some minor english mistakes|In the overall the document was good however needed some clearity and needed to add some extra specifications to make it even more clear.|
->|**Technical specification**|Work in progess
+>|Process|Description|Status|Expected result|Actual result|Comment|Time took|
+>|:-|:-|:-|:-|:-|:-|:-|
+>|**Functional specification**|Verify is all it's content is right and that there is no grammer or spelling mistakes|**<span style = color:green>Completed</span>**|All content is correct and that every functional specification is detailed and clear enough|Missed some points but kept the essential ideas and some minor english mistakes|In the overall the document was good however needed some clearity and needed to add some extra specifications to make it even more clear.|3 hours|
+>|**Technical specification**| Verify that the document is a detailed blueprint of a product development project. It translates complex business requirements into an understandable plan of action for the team, bridging the gap between non-technical stakeholders and developers. |**<span style = color:green>Completed</span>**|Every aspect of the technical side is clear and that the document gives enough details without giving too much.|Some parts were too detailed and ambigeous to the reader. It was a little bit confusing to read it and understand the use of the detail for the final product.|Changes were done and the document is much more understandable then before and changed some syntaxical errors.| 4 hours|
 >><details>
 >>  <summary>Details technical specification</summary>
 >>  
@@ -26,10 +26,10 @@ This test plan will allow to clearly follow up and understand the different issu
 >> |**Function explanations**|For the client to know how the product works he will have to know the back end of every action that is possible on the game.|Every action is listed on this part and explaned how it works.|...|...|W.I.P.|Good|
 >> |**Conclusion**|Conclusion will wrap up all the aspects of the technical specification|It will also allow the client to be satisfied about all the technical part of the final product.|...|...|W.I.P.|Good| 
 >></details>
->|Process|Description|Status|Expected result|Actual result|Comment|
->|:-|:-|:-|:-|:-|:-|
-> |**Project charter**|The project charter should be a short document that explains the project in clear, concise wording for high-levelmanagement|Work in progress|...|...|...|...|
-> |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|Work in progress|The overall content should be honest and correct reporting the evolution of the team work of the week|Work in progress|Some minor modifications on different weekly reports but in overall was good|
+>|Process|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:-|:-|:-|:-|:-|:-|:-|
+> |**Project charter**|The project charter should be a short document that explains the project in clear, concise wording for high-levelmanagement|**<span style = color:Orange>Work in progress</span>**|...|...|...|...|...|
+> |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|Work in progress|The overall content should be honest and correct reporting the evolution of the team work of the week|**<span style = color:Orange>Work in progress</span>**|Some minor modifications on different weekly reports but in overall was good| 1 hour per week|
 >><details>
 >>  <summary>Weeks</summary>
 >>
@@ -44,7 +44,7 @@ This test plan will allow to clearly follow up and understand the different issu
 ## Development
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->|sprite |All sprite are good| Done|all alike|
+>|Sprites |Verify that all sprite are corresponding and not pissing any pixels|**<span style = color:green>Completed</span>**|all sprites are corresponding to what was expected|Some colors conversion problems but resolved.|Some difficulties on finding the right color pallet for the right environement that we are working on| 3 hours|
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
@@ -55,102 +55,102 @@ This test plan will allow to clearly follow up and understand the different issu
 >> |||||||||
 >> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & )
 
-## Post Development (Game)
+## Post Development (Final product)
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Game test**|General check of playability & if the game respects all the criterias|||||||
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Controlability**|Check if the buttons from the instructions work correctly, if all buttons corresponds to what it is supposingly controling|||||
 >><details>
 >>  <summary>Unit tasks of controlability</summary>
 
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
->|**Loading**|Verify if the loading works|||Loading time not too long||
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>|**Loading**|Verify if the loading works|||Loading time not too long|||
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>  |Loading animation|Test number|Test|Loading time not too long|Status|Expected result|Actual result|Comment|
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Effects**|Display of the pac man opening and closing||Animations of the ghost and pac man should be in the maze and not affecting the map except the points|||
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Visual**|Verify if the visual is generaly clear and pleasing||Animations of the ghost and pac man should be in the maze and not affecting the map except the points|||
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>  |Verify is the classic pac man is reconizable|Test number|Test|Description|Status|Expected result|Actual result|Comment|
 >>  |Map should be in the limits of the scree|Test number|Test|Description|Status|Expected result|Actual result|Comment|
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Content**|Content of the original game meaning 4 ghosts, pac man, fruits, points super points|||
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>  |Level indicator is correct||||||||
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Features**|Verify is the classic pac man is reconizable||Animations of the ghost and pac man should be in the maze and not affecting the map except the points|||
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
 >---
 
->|Category|Description|Status|Expected result|Actual result|Comment|
->|:--:|:--:|:--:|:--:|:--:|:--:|
+>|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|**Buffers**|Verify is the classic pac man is reconizable||Animations of the ghost and pac man should be in the maze and not affecting the map except the points|||
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
 >---
