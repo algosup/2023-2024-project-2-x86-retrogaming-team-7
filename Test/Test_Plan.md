@@ -7,9 +7,9 @@ This test plan will allow to clearly follow up and understand the different issu
 >|Process|Description|Status|Expected result|Actual result|Comment|
 >|:-|:-|:-|:-|:-|:-|
 >|**Functional specification**|Verify is all it's content is right and that there is no grammer or spelling mistakes|Completed|All content is correct and that every functional specification is detailed and clear enough|Missed some points but kept the essential ideas and some minor english mistakes|In the overall the document was good however needed some clearity and needed to add some extra specifications to make it even more clear.|
->|**Technical specification**||Work in progess||||
+>|**Technical specification**|Work in progess
 >><details>
->>  <summary>Details</summary>
+>>  <summary>Details technical specification</summary>
 >>  
 >>  |Part|Description|Test|Expected result|Actual result|Status|Comment|
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
@@ -26,18 +26,34 @@ This test plan will allow to clearly follow up and understand the different issu
 >> |**Function explanations**|For the client to know how the product works he will have to know the back end of every action that is possible on the game.|Every action is listed on this part and explaned how it works.|...|...|W.I.P.|Good|
 >> |**Conclusion**|Conclusion will wrap up all the aspects of the technical specification|It will also allow the client to be satisfied about all the technical part of the final product.|...|...|W.I.P.|Good| 
 >></details>
->---
->|**Project charter**||||||
->|:-:|:-:|:-:|:-:|:-:|:-:|
->|**Weekly report**||Work in progress|Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|||
+> |||||||
+> |-|-|-|-|-|-|
+> |**Project charter**|The project charter should be a short document that explains the project in clear, concise wording for high-levelmanagement|Work in progress|...|...|...|...|
+> |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|Work in progress|The overall content should be honest and correct reporting the evolution of the team work of the week|Work in progress|Some minor modifications on different weekly reports but in overall was good|
 >><details>
 >>  <summary>Weeks</summary>
 >>
 >>  |Week|Status|Comment|     
 >>  |:-:|:-:|:-:|     
 >>  |1|Complete|Some minor changes regarding the content|     
->>  |2|Complete|Very few changes|     
+>>  |2|Complete|Very few changes| 
+>>  |3|Complete|Some changes on the words used|
+>>  |4|Complete|Some changes on the conclusion|    
 >></details>
+
+## Development
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>|sprite |All sprite are good| Done|all alike|
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> |Sprite|1|Visual check of the Ghosts sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>**| No visual difference and that every color is alike.|Some color conversion problems but fixed|Had some hard time converting the colors from the platform "asprite" to HEX colors, however we filtered the colors on the platform and modified the colors to the desired one in HEX form.
+>> |Sprite|2|Visual check of the Pac-man sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** | No visual difference and that every color is alike.|There was no visual difference and every color was alike.|Every sprite is corresponding to what was expected
+>> |||||||||
+>> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & )
 
 ## Post Development (Game)
 
