@@ -10,9 +10,9 @@ org 100h
 %define SPRITEH 8
 section .data
 
-xPos dw 100
+xPos dw 0
 xVelocity dw 1
-yPos dw 100
+yPos dw 0
 
 spritew dw 8
 
