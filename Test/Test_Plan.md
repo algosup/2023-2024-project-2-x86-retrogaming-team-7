@@ -29,7 +29,7 @@ This test plan will allow to clearly follow up and understand the different issu
 >|Process|Description|Status|Expected result|Actual result|Comment|Time spent|
 >|:-|:-|:-|:-|:-|:-|:-|
 > |**Project charter**|The project charter should be a short document that explains the project in clear, concise wording for high-levelmanagement|**<span style = color:Orange>Work in progress</span>**|...|...|...|...|...|
-> |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|Work in progress|The overall content should be honest and correct reporting the evolution of the team work of the week|**<span style = color:Orange>Work in progress</span>**|Some minor modifications on different weekly reports but in overall was good| 1 hour per week|
+> |**Weekly report**| Every week has to be reported of the progress of the team containing the acheivements and the overall progression of the work.|**<span style = color:Orange>Work in progress</span>**|The overall content should be honest and correct reporting the evolution of the team work of the week|**<span style = color:Orange>Work in progress</span>**|Some minor modifications on different weekly reports but in overall was good| 1 hour per week|
 >><details>
 >>  <summary>Weeks</summary>
 >>
@@ -45,17 +45,87 @@ This test plan will allow to clearly follow up and understand the different issu
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >|Sprites |Verify that all sprite are corresponding and not pissing any pixels|**<span style = color:green>Completed</span>**|all sprites are corresponding to what was expected|Some colors conversion problems but resolved.|Some difficulties on finding the right color pallet for the right environement that we are working on| 3 hours|
+>
+>> <details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> |Sprite|1|Visual check of the Ghosts sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>**| No visual difference and that every color is alike.|Some color conversion problems but fixed|Had some hard time converting the colors from the platform "asprite" to HEX colors, however we filtered the colors on the platform and modified the colors to the desired one in HEX form.|N.A.
+>> |Sprite|2|Visual check of the Pac-man sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** | No visual difference and that every color is alike.|There was no visual difference and every color was alike.|Every sprite is corresponding to what was expected|N.A
+>> </details>
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>Movements|da
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
->> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> |Sprite|1|Visual check of the Ghosts sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>**| No visual difference and that every color is alike.|Some color conversion problems but fixed|Had some hard time converting the colors from the platform "asprite" to HEX colors, however we filtered the colors on the platform and modified the colors to the desired one in HEX form.
->> |Sprite|2|Visual check of the Pac-man sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** | No visual difference and that every color is alike.|There was no visual difference and every color was alike.|Every sprite is corresponding to what was expected
->> |||||||||
->> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & )
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & )|Pac man stays within the screen and doesn't have any issue of teleportation.|The sprite of Pac-man tends to flicker as it moves around the screen.|**<span style = color:green>Fixed</span>**
+>> |Movements of Pac-Man|2|Pull code from Github desktop and try the movements of Pac-Man on the map verify the controlability of the sprite. Use arrows on the keyboard to see if it's going the same direction as wanted|Chekc if the movements of Pac-man corresponds to the directions instructed by the keyboard arrows|**<span style = color:Green>Completed</span>**|Pac-Man moves in the direction wanted.| Pac man moves in the directed wanted on the screen with one press of the button(One click on the arrow key moves Pac-man to the end of the screen)| Direction works however when long pressed on one button Sprite disapears from screen!|**<span style = color:green>Fixed</span>**
+>></details>
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+> Main menu 
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> Main menu|1|Pull the code from github and look if the main menu is functional and visualy pleasing|check if the main menu buttons are functional, leads to another page, and are controlable with the arrows of the keyboard|**<span style = color:Orange>Work in progress</span>**|The main menu should be contrable and functional. In a general point of view it is visualy pleasing.|The main menu is contrable it is possible to move around from one button to another with the arrows.|Non complete due to the the main menu being nothing but a screen with three buttons and not visualy pleasing. In addition the buttons aren't functional they do not lead to another page such as the game or the settings|**<span style = color:Orange>Work in progress</span>**
+>></details>
+
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+> Settings muenu|da
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> Settings menu|1|
+>></details>
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>Exit menu|da
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> Exit  menu|1| 
+>></details>
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>Movements|da
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> Score system|
+>></details>
+
+> |Category|Description|Status|Expected result|Acutal result|Comment|Time|
+>|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>Movements|da
+>><details>
+>> <summary>Unit tests of the development phase</summary>
+>>
+>> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
+>> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+>> Maze
+>></details>
 
 ## Post Development (Final product)
+
+The following tests will be made after that the final product is assembled togther, these tests will allow to decide if either the product is ready to be launched or not. These tests will make sure that there is no technical issues. These tests are based on what was promised in the functional specification and pushs the limits of the code before presenting the final product to the client.
 
 >|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
