@@ -233,6 +233,6 @@ With the detection of an issue the team will be able to fix the issue quickly be
 > Concerned part|Issue description |Status|Comments
 > |:-:|:-:|:-:|:-:|
 >  Maze|Circled areas aren't correct | **<span style = color:Orange>Work in progress</span>** | Map visuel aren't exactly what was expected.
-> [^1]: ![image](https://github.com/algosup/2023-2024-project-2-x86-retrogaming-team-7/assets/147847949/227d5b50-5dfb-472e-abaa-9a60137da0e6)
+> [^1]: ![image](https://github.com/algosup/2023-2024-project-2-x86-retrogaming-team-7/assets/147847949/227d5b50-5dfb-472e-abaa-9a60137da0e6) |
 
 
