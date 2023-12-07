@@ -2,7 +2,7 @@
 - NASM Map file ---------------------------------------------------------------
 
 Source file:  start.asm
-Output file:  START.com
+Output file:  start.com
 
 -- Program origin -------------------------------------------------------------
 
@@ -56,43 +56,43 @@ vfollows:  not defined
 
 Real              Virtual           Name
              100               100  start
-             110               110  gameloop
-             11C               11C  waitloop
-             12A               12A  clearScreen
-             138               138  read_character_key_was_pressed
-             15B               15B  update_keystroke
-             162               162  clearSprite
-             177               177  clearSprite.clear_line
-             187               187  move_right
-             1A1               1A1  move_right.skip_move_right
-             1A2               1A2  move_left
-             1BB               1BB  move_left.skip_move_left
-             1BC               1BC  move_up
-             1D5               1D5  move_up.skip_move_up
-             1D6               1D6  move_down
-             1F0               1F0  move_down.skip_move_down
-             1F1               1F1  continue_movement
-             205               205  continue_movement.move_right
-             209               209  continue_movement.move_left
-             20D               20D  continue_movement.move_up
-             211               211  continue_movement.move_down
-             216               216  pacman_Right
-             22E               22E  pacman_Right.pacmanRightOpen
-             239               239  pacman_Right.pacmanRightSemiOpen
-             244               244  pacman_Right.pacmanRightClose
-             24F               24F  pacman_Left
-             267               267  pacman_Left.pacmanLeftOpen
-             272               272  pacman_Left.pacmanLeftSemiOpen
-             27D               27D  pacman_Left.pacmanLeftClose
-             288               288  pacman_Up
-             2A0               2A0  pacman_Up.pacmanUpOpen
-             2AB               2AB  pacman_Up.pacmanUpSemiOpen
-             2B6               2B6  pacman_Up.pacmanUpClose
-             2C1               2C1  pacman_Down
-             2D9               2D9  pacman_Down.pacmanDownOpen
-             2E4               2E4  pacman_Down.pacmanDownSemiOpen
-             2EF               2EF  pacman_Down.pacmanDownClose
-             2FA               2FA  draw_sprite
+             10C               10C  gameloop
+             118               118  waitloop
+             126               126  clearScreen
+             134               134  read_character_key_was_pressed
+             157               157  update_keystroke
+             15E               15E  clearSprite
+             173               173  clearSprite.clear_line
+             183               183  move_right
+             19D               19D  move_right.skip_move_right
+             19E               19E  move_left
+             1B7               1B7  move_left.skip_move_left
+             1B8               1B8  move_up
+             1D1               1D1  move_up.skip_move_up
+             1D2               1D2  move_down
+             1EC               1EC  move_down.skip_move_down
+             1ED               1ED  continue_movement
+             201               201  continue_movement.move_right
+             205               205  continue_movement.move_left
+             209               209  continue_movement.move_up
+             20D               20D  continue_movement.move_down
+             212               212  pacman_Right
+             22A               22A  pacman_Right.pacmanRightOpen
+             235               235  pacman_Right.pacmanRightSemiOpen
+             240               240  pacman_Right.pacmanRightClose
+             24B               24B  pacman_Left
+             263               263  pacman_Left.pacmanLeftOpen
+             26E               26E  pacman_Left.pacmanLeftSemiOpen
+             279               279  pacman_Left.pacmanLeftClose
+             284               284  pacman_Up
+             29C               29C  pacman_Up.pacmanUpOpen
+             2A7               2A7  pacman_Up.pacmanUpSemiOpen
+             2B2               2B2  pacman_Up.pacmanUpClose
+             2BD               2BD  pacman_Down
+             2D5               2D5  pacman_Down.pacmanDownOpen
+             2E0               2E0  pacman_Down.pacmanDownSemiOpen
+             2EB               2EB  pacman_Down.pacmanDownClose
+             2F6               2F6  draw_sprite
              31B               31B  draw_sprite.draw_line
              329               329  drawWalls
              32C               32C  drawWalls.eachLine
