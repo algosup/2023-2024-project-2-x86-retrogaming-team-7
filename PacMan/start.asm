@@ -6,9 +6,12 @@ org 100h
 %define SCREEN_WIDTH 320
 %define SCREEN_HEIGHT 200
 
-
 %define SPRITEW 8
 %define SPRITEH 8
+
+%define MAZERLIMIT 151
+%define MAZEBLIMIT 32
+
 section .data
 
 xPos dw 0
@@ -16,7 +19,6 @@ xVelocity dw 1
 yPos dw 80
 
 spritew dw 8
-
 spriteh dw 8
 
 old_XPOS dw 0
@@ -136,7 +138,7 @@ move_right:
     call pacman_Right
     mov bx, [xPos]
     add bx, 3/2
-    cmp bx, SCREEN_WIDTH - SPRITEW 
+    cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
     jae .skip_move_right
     mov [xPos], bx
 .skip_move_right:
@@ -146,7 +148,7 @@ move_left:
     call pacman_Left
     mov bx, [xPos]
     sub bx, 3/2
-    cmp bx, 0
+    cmp bx, SPRITEW
     jbe .skip_move_left
     mov [xPos], bx
 .skip_move_left:
@@ -157,7 +159,7 @@ move_up:
     call pacman_Up
     mov bx, [yPos]
     sub bx, 3/2
-    cmp bx, 0
+    cmp bx, SPRITEW
     jbe .skip_move_up
     mov [yPos], bx
 .skip_move_up:
@@ -168,7 +170,7 @@ move_down:
     call pacman_Down
     mov bx, [yPos]
     add bx, 3/2
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
+    cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
     jae .skip_move_down
     mov [yPos], bx
 .skip_move_down:
