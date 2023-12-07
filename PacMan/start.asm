@@ -60,8 +60,9 @@ start:
     mov ah, 00h
     mov al, 13h
     int 10h
-    mov si, [currentSprite]
+    call clearScreen
     call Maze
+    mov si, [currentSprite]
     
     gameloop:
     call clearSprite
@@ -329,7 +330,7 @@ drawWalls:
         dec ax
         mov [Row], ax
         cmp ax, 0
-        je end
+        je gameloop
         mov ax, 22
         mov [Column], ax
         mov ax, [PixelPerTileRow] 
@@ -658,5 +659,3 @@ drawWalls:
                mov si, int_ghost_spawn_strait_right
                call drawWalls
                jmp wallchoice
-end:
-    jmp gameloop
