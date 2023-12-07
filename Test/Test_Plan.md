@@ -103,7 +103,7 @@ This test plan will allow to clearly follow up and understand the different issu
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Movements|da
+>ScoringMovements|da
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
@@ -114,13 +114,13 @@ This test plan will allow to clearly follow up and understand the different issu
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Movements|da
+>Maze|da
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Maze
+>> Maze [^1]
 >></details>
 
 ## Post Development (Final product)
@@ -228,3 +228,10 @@ The following tests will be made after that the final product is assembled togth
 
 This allows the team to have a dfferent point of view of the product. 
 With the detection of an issue the team will be able to fix the issue quickly before the official launch of the product. -->
+
+## Images 
+> Concerned part|Issue description |Status|Comments
+> |:-:|:-:|:-:|:-:|
+> [^1]: Maze|Circled areas aren't correct | **<span style = color:Orange>Work in progress</span>** | Map visuel aren't exactly what was expected.
+> ![Maze-issue](Img/Maze-issue.png)
+
