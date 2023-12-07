@@ -114,13 +114,13 @@ This test plan will allow to clearly follow up and understand the different issu
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Maze|da
+>Maze|Make sure that the Maze is correct without any design flow.|Maze is correct that all the pixels are where they are supposed to be and that the overall is visually pleasing|**<span style = color:Orange>Work in progress</span>**|
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Maze [^1]
+>> Maze [^1] |1| First check on the visual of the Maze and verify if the design of the Maze is correct and that there is no flows in the design.|The Maze has to have no flows to allow Pac-Man and the ghosts to move inside of the intended spaces. Check that the Maze looks alike to the skateched design on Asprite.|**<span style = color:Red>Issue</span>**|Looks alike and visualy pleasing| some flows in the design with some borders being inverted.|Image shows the different design flows.|**<span style = color:Orange>Work in progress</span>**
 >></details>
 
 ## Post Development (Final product)
@@ -234,5 +234,9 @@ With the detection of an issue the team will be able to fix the issue quickly be
 > |:-:|:-:|:-:|:-:|
 >  Maze|Circled areas aren't correct | **<span style = color:Orange>Work in progress</span>** | Map visuel aren't exactly what was expected.
 > [^1]: ![image](https://github.com/algosup/2023-2024-project-2-x86-retrogaming-team-7/assets/147847949/227d5b50-5dfb-472e-abaa-9a60137da0e6) |
+
+> Concerned part|Issue description |Status|Comments
+> |:-:|:-:|:-:|:-:|
+> 
 
 
