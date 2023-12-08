@@ -291,7 +291,6 @@ setOffValue:
 
 editValue:
     call removeValue
-    call changeValue
     jmp display_arrow_option
 removeValue:
 ; Display ON
@@ -305,7 +304,7 @@ removeValue:
     call print_string
     ret
 
-changeValue:
+
     
 display_arrow_option:
     cmp cl, 5

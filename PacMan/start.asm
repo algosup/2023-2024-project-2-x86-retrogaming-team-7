@@ -6,9 +6,12 @@ org 100h
 %define SCREEN_WIDTH 320
 %define SCREEN_HEIGHT 200
 
-
 %define SPRITEW 8
 %define SPRITEH 8
+
+%define MAZERLIMIT 151
+%define MAZEBLIMIT 32
+
 section .data
 
 xPos dw 0
@@ -16,7 +19,6 @@ xVelocity dw 1
 yPos dw 80
 
 spritew dw 8
-
 spriteh dw 8
 
 old_XPOS dw 0
@@ -24,30 +26,30 @@ old_XPOS dw 0
 old_YPOS dw 0
 
 currentSprite dd pacman_right_1
-actualKeystroke dw 4Dh
+actualKeystroke dw 0
 
-mazeSprite      db 0,2,2,2,2,2,2,2,2,2,1,0,2,2,2,2,2,2,2,2,2,1
-                db 14,49,49,49,49,49,49,49,49,49,14,15,49,49,49,49,49,49,49,49,49,15
-                db 14,49,24,25,26,49,24,25,26,49,14,15,49,24,25,26,49,24,25,26,49,15
-                db 14,49,36,37,38,49,36,37,38,49,12,13,49,36,37,38,49,36,37,38,49,15
-                db 14,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,15
-                db 14,49,27,28,29,49,39,49,27,28,32,33,28,29,49,39,49,27,28,29,49,15
-                db 14,49,49,49,49,49,40,49,49,49,46,47,49,49,49,40,49,49,49,49,49,15
-                db 12,3,3,3,0,49,4,28,29,49,44,45,49,27,28,16,49,0,3,3,3,13
-                db 49,49,49,49,14,49,40,49,49,49,49,49,49,49,49,40,49,15,49,49,49,49
-                db 2,2,2,2,18,49,41,49,9,10,34,35,10,11,49,41,49,17,2,2,2,2
-                db 49,49,49,49,49,49,49,49,15,49,49,49,49,14,49,49,49,49,49,49,49,49
-                db 3,3,3,3,6,49,39,49,21,22,22,22,22,23,49,39,49,5,3,3,3,3
-                db 49,49,49,49,14,49,40,49,49,49,49,49,49,49,49,40,49,15,49,49,49,49
-                db 0,2,2,2,18,49,41,49,27,28,32,33,28,29,49,41,49,17,2,2,2,1
-                db 14,49,49,49,49,49,49,49,49,49,46,47,49,49,49,49,49,49,49,49,49,15
-                db 14,49,27,28,31,49,27,28,29,49,44,45,49,27,28,29,49,30,28,29,49,15
-                db 14,49,49,49,40,49,49,49,49,49,49,49,49,49,49,49,49,40,49,49,49,15
-                db 4,28,29,49,41,49,39,49,27,28,32,33,28,29,49,39,49,41,49,27,28,15
-                db 14,49,49,49,49,49,40,49,49,49,46,47,49,49,49,40,49,49,49,49,49,15
-                db 14,49,27,28,28,28,48,28,29,49,44,45,49,27,28,48,28,28,28,29,49,15
-                db 14,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,49,15
-                db 12,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,13
+mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
+                db 14,54,54,54,54,54,54,54,54,54,15,14,54,54,54,54,54,54,54,54,54,15
+                db 14,55,24,25,26,54,24,25,26,54,15,14,54,24,25,26,54,24,25,26,55,15
+                db 14,54,36,37,38,54,36,37,38,54,19,20,54,36,37,38,54,36,37,38,54,15
+                db 14,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,15
+                db 14,54,27,28,29,54,39,54,27,28,32,33,28,29,54,39,54,27,28,29,54,15
+                db 14,54,54,54,54,54,40,54,54,54,46,47,54,54,54,40,54,54,54,54,54,15
+                db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
+                db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
+                db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
+                db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
+                db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
+                db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
+                db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
+                db 14,54,54,54,54,54,54,54,54,54,46,47,54,54,54,54,54,54,54,54,54,15
+                db 14,54,27,28,31,54,27,28,29,54,44,45,54,27,28,29,54,30,28,29,54,15
+                db 14,54,54,54,40,54,54,54,54,54,54,54,54,54,54,54,54,40,54,54,54,15
+                db 53,28,29,54,41,54,39,54,27,28,32,33,28,29,54,39,54,41,54,27,28,52
+                db 14,54,54,54,54,54,40,54,54,54,46,47,54,54,54,40,54,54,54,54,54,15
+                db 14,55,27,28,28,28,48,28,29,54,44,45,54,27,28,48,28,28,28,29,55,15
+                db 14,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,54,15
+                db 12, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,13
 
     Column dw 22
     Row dw 22
@@ -62,7 +64,6 @@ start:
     int 10h
     call clearScreen
     call Maze
-    mov si, [currentSprite]
     
     gameloop:
     call clearSprite
@@ -134,43 +135,43 @@ clearSprite:
 
 move_right:
     mov word [actualKeystroke], 4Dh
-    call pacman_Right
     mov bx, [xPos]
     add bx, 3/2
-    cmp bx, SCREEN_WIDTH - SPRITEW 
+    cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
     jae .skip_move_right
+    call pacman_Right
     mov [xPos], bx
 .skip_move_right:
     ret
 move_left:
     mov word [actualKeystroke], 4Bh
-    call pacman_Left
     mov bx, [xPos]
     sub bx, 3/2
-    cmp bx, 0
+    cmp bx, SPRITEW
     jbe .skip_move_left
+    call pacman_Left
     mov [xPos], bx
 .skip_move_left:
     ret
 
 move_up:
     mov word [actualKeystroke], 48h
-    call pacman_Up
     mov bx, [yPos]
     sub bx, 3/2
-    cmp bx, 0
+    cmp bx, SPRITEW
     jbe .skip_move_up
+    call pacman_Up
     mov [yPos], bx
 .skip_move_up:
     ret
 
 move_down:
     mov word [actualKeystroke], 50h
-    call pacman_Down
     mov bx, [yPos]
     add bx, 3/2
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
+    cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
     jae .skip_move_down
+    call pacman_Down
     mov [yPos], bx
 .skip_move_down:
     ret
@@ -284,7 +285,9 @@ pacman_Right:
         mov si, [currentSprite]
         ret
 
+
 draw_sprite:
+    mov si, [currentSprite]
     mov ax, [xPos]
     mov [old_XPOS], ax
     mov ax, [yPos]
@@ -443,13 +446,25 @@ drawWalls:
             je DrawINT_BIG_RECTANGLE_MIDDLE_RIGHT
             cmp al, 48
             je DrawTRIANGLE_UP
-            cmp al, 51
-            je DrawINT_GHOST_SPAWN_STRAIT_LEFT
             cmp al, 50
             je DrawINT_GHOST_SPAWN_STRAIT_RIGHT
+            cmp al, 51
+            je DrawINT_GHOST_SPAWN_STRAIT_LEFT
+            cmp al, 52
+            je DrawEXT_TRIANGLE_LEFT
+            cmp al, 53
+            je DrawEXT_TRIANGLE_RIGHT
+            cmp al, 54
+            je Draw_PELLET
+            cmp al, 55
+            je Draw_SUPER_PELLET
             ret
           ; ===================================
-    
+          
+          
+          
+          
+
           drawEmpty:
                mov si, empty
                call drawWalls
@@ -657,5 +672,21 @@ drawWalls:
                jmp wallchoice
           DrawINT_GHOST_SPAWN_STRAIT_RIGHT:
                mov si, int_ghost_spawn_strait_right
+               call drawWalls
+               jmp wallchoice
+          DrawEXT_TRIANGLE_LEFT:
+               mov si, ext_triangle_left
+               call drawWalls
+               jmp wallchoice
+          DrawEXT_TRIANGLE_RIGHT:
+               mov si, ext_triangle_right
+               call drawWalls
+               jmp wallchoice
+          Draw_PELLET:
+               mov si, pellet
+               call drawWalls
+               jmp wallchoice
+          Draw_SUPER_PELLET:
+               mov si, power_pellet
                call drawWalls
                jmp wallchoice
