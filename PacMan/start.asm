@@ -14,9 +14,10 @@ org 100h
 
 section .data
 
-xPos dw 0
+xPos dw 84
 xVelocity dw 1
-yPos dw 80
+yPos dw 96
+nPos db 0
 
 spritew dw 8
 spriteh dw 8
@@ -25,7 +26,7 @@ old_XPOS dw 0
 
 old_YPOS dw 0
 
-currentSprite dd pacman_right_1
+currentSprite dd pacman_right_3
 actualKeystroke dw 0
 
 mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
@@ -40,7 +41,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
                 db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
-                db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
+                db 49,49,49,49,14,54,40,54,54,54,49,49,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,46,47,54,54,54,54,54,54,54,54,54,15
                 db 14,54,27,28,31,54,27,28,29,54,44,45,54,27,28,29,54,30,28,29,54,15
@@ -139,15 +140,24 @@ move_right:
     add bx, 3/2
     cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
     jae .skip_move_right
+    ;call .checkCollisionR
     call pacman_Right
     mov [xPos], bx
 .skip_move_right:
     ret
+; .checkCollisionR:
+;      mov ah, 0DH
+;      mov dx, bx
+;      mov cx, [yPos]
+;      int 10h
+;      call detectColor
+;      ret
+     
 move_left:
     mov word [actualKeystroke], 4Bh
     mov bx, [xPos]
     sub bx, 3/2
-    cmp bx, SPRITEW
+    cmp bx, SPRITEW - 1
     jbe .skip_move_left
     call pacman_Left
     mov [xPos], bx
@@ -158,7 +168,7 @@ move_up:
     mov word [actualKeystroke], 48h
     mov bx, [yPos]
     sub bx, 3/2
-    cmp bx, SPRITEW
+    cmp bx, SPRITEW - 1
     jbe .skip_move_up
     call pacman_Up
     mov [yPos], bx
@@ -169,7 +179,7 @@ move_down:
     mov word [actualKeystroke], 50h
     mov bx, [yPos]
     add bx, 3/2
-    cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
+    cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH + 1
     jae .skip_move_down
     call pacman_Down
     mov [yPos], bx
@@ -285,6 +295,13 @@ pacman_Right:
         mov si, [currentSprite]
         ret
 
+; detectColor:
+;      cmp al, 0x37        ; compare if the location is blue
+;      je .stopMovement
+;      ret
+;      .stopMovement:
+;         mov word [actualKeystroke], 0   ; set the direction to 0 -> Pac-man doesn't move anymore
+;         ret
 
 draw_sprite:
     mov si, [currentSprite]

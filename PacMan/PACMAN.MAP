@@ -12,8 +12,8 @@ Output file:  start.com
 
 Vstart            Start             Stop              Length    Class     Name
              100               100               6BF  000005BF  progbits  .text
-             6C0               6C0              2AFE  0000243E  progbits  .data
-            2B00              2B00              2B01  00000001  nobits    .bss
+             6C0               6C0              2D7F  000026BF  progbits  .data
+            2D80              2D80              2D81  00000001  nobits    .bss
 
 -- Sections (detailed) --------------------------------------------------------
 
@@ -31,7 +31,7 @@ vfollows:  not defined
 ---- Section .data ------------------------------------------------------------
 
 class:     progbits
-length:                243E
+length:                26BF
 start:                  6C0
 align:                    4
 follows:   not defined
@@ -43,10 +43,10 @@ vfollows:  not defined
 
 class:     nobits
 length:                   1
-start:                 2B00
+start:                 2D80
 align:     not defined
 follows:   not defined
-vstart:                2B00
+vstart:                2D80
 valign:                   4
 vfollows:  not defined
 
@@ -297,22 +297,33 @@ Real              Virtual           Name
             2840              2840  ext_triangle_left
             2880              2880  ext_triangle_right
             28C0              28C0  empty
-            2900              2900  xPos
-            2902              2902  xVelocity
-            2904              2904  yPos
-            2906              2906  spritew
-            2908              2908  spriteh
-            290A              290A  old_XPOS
-            290C              290C  old_YPOS
-            290E              290E  currentSprite
-            2912              2912  actualKeystroke
-            2914              2914  mazeSprite
-            2AF8              2AF8  Column
-            2AFA              2AFA  Row
-            2AFC              2AFC  PixelPerTileRow
+            2900              2900  number1
+            2940              2940  number2
+            2980              2980  number3
+            29C0              29C0  number4
+            2A00              2A00  number5
+            2A40              2A40  number6
+            2A80              2A80  number7
+            2AC0              2AC0  number8
+            2B00              2B00  number9
+            2B40              2B40  number0
+            2B80              2B80  xPos
+            2B82              2B82  xVelocity
+            2B84              2B84  yPos
+            2B86              2B86  nPos
+            2B87              2B87  spritew
+            2B89              2B89  spriteh
+            2B8B              2B8B  old_XPOS
+            2B8D              2B8D  old_YPOS
+            2B8F              2B8F  currentSprite
+            2B93              2B93  actualKeystroke
+            2B95              2B95  mazeSprite
+            2D79              2D79  Column
+            2D7B              2D7B  Row
+            2D7D              2D7D  PixelPerTileRow
 
 ---- Section .bss -------------------------------------------------------------
 
 Real              Virtual           Name
-            2B00              2B00  keyPressed
+            2D80              2D80  keyPressed
 
