@@ -6,7 +6,7 @@ These test are all seperated by categories and all the details of all the tests 
 To allow the other members to see clearly the technical issues that was encountierd, Images (screen shots) are all shown in the Image section at the bottom of this document.
 
 ## Pre-development
-In this phase, the main goal is to see if every aspect before development is correctly done, main requirements such as the technical specification or the functional specification have to be quality assured before sending these documents to the client. These "tests" are meant to prevet any mistakes that could have been slipped in for ay reason.
+In this phase, the main goal is to see if every aspect before development is correctly done, main requirements such as the technical specification or the functional specification have to be quality assured before sending these documents to the client. These "tests" are meant to prevet any mistakes that could have been slipped in for any reason.
 >|Process|Description|Status|Expected result|Actual result|Comment|Time took|
 >|:-|:-|:-|:-|:-|:-|:-|
 >|**Functional specification**|Verify is all it's content is right and that there is no grammer or spelling mistakes|**<span style = color:green>Completed</span>**|All content is correct and that every functional specification is detailed and clear enough|Missed some points but kept the essential ideas and some minor english mistakes|In the overall the document was good however needed some clearity and needed to add some extra specifications to make it even more clear.|3 hours|
@@ -56,6 +56,9 @@ In this phase, the main goal is to see if every aspect before development is cor
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >> |Sprite|1|Visual check of the Ghosts sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>**| No visual difference and that every color is alike.|Some color conversion problems but fixed|Had some hard time converting the colors from the platform "asprite" to HEX colors, however we filtered the colors on the platform and modified the colors to the desired one in HEX form.|N.A.
 >> |Sprite|2|Visual check of the Pac-man sprites making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** | No visual difference and that every color is alike.|There was no visual difference and every color was alike.|Every sprite is corresponding to what was expected|N.A
+>> Sprite|3|Visual check of all the fruits sprites, making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** |All the fruit sprites should look alike|Looks alike|No comments good|N.A.
+>> Sprite|4|Visual check of all the pellets and the super pellets sprites, making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** |All the sprites should look alike|No visual difference| good|N.A.
+>> Sprite|5|Visual check of all the Maze sprite, making sure that they look the same as the one we decided to implement|Look side to side the prototyped sprites and the coded version of the sprite, verify if there is any eye catching difference. Copy code of each sprite and paste in VS code to open each sprite on DOSbox.|**<span style = color:green>Completed</span>** |The Maze sprite should look alike|Maze sprite is correct|Correct however have to check how it looks like on DOSbox|N.A.
 >> </details>
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
@@ -66,13 +69,13 @@ In this phase, the main goal is to see if every aspect before development is cor
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & )|Pac man stays within the screen and doesn't have any issue of teleportation.|The sprite of Pac-man tends to flicker as it moves around the screen.|**<span style = color:green>Fixed</span>**
+>> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & smaller screen)|Pac man stays within the screen and doesn't have any issue of teleportation.|The sprite of Pac-man tends to flicker as it moves around the screen.|**<span style = color:green>Fixed</span>**|
 >> |Movements of Pac-Man|2|Pull code from Github desktop and try the movements of Pac-Man on the map verify the controlability of the sprite. Use arrows on the keyboard to see if it's going the same direction as wanted|Chekc if the movements of Pac-man corresponds to the directions instructed by the keyboard arrows|**<span style = color:Green>Completed</span>**|Pac-Man moves in the direction wanted.| Pac man moves in the directed wanted on the screen with one press of the button(One click on the arrow key moves Pac-man to the end of the screen)| Direction works however when long pressed on one button Sprite disapears from screen!|**<span style = color:green>Fixed</span>**|
 >></details>
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-> Main menu|As the main menu is the first page that every user will land on, the tests are based on two  main ideas, functionality and visuals.|**<span style = color:Orange>Work in progress</span>**|The main menu should be fully functional with buttons that works and the user can navicate on the screen with the keys.|
+> Main menu|As the main menu is the first page that every user will land on, the tests are based on two  main ideas, functionality and visuals.|**<span style = color:Orange>Work in progress</span>**|The main menu should be fully functional with buttons that works and the user can navicate on the screen with the keys.|Everything is contralable however the visual doesn't meet the expectations|Still a lot of work has to be done|30 min
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
@@ -80,44 +83,41 @@ In this phase, the main goal is to see if every aspect before development is cor
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >> Main menu|1|Pull the code from github and look if the main menu is functional and visualy pleasing|check if the main menu buttons are functional, leads to another page, and are controlable with the arrows of the keyboard|**<span style = color:Orange>Work in progress</span>**|The main menu should be contrable and functional. In a general point of view it is visualy pleasing.|The main menu is contrable it is possible to move around from one button to another with the arrows.|Non complete due to the the main menu being nothing but a screen with three buttons and not visualy pleasing. In addition the buttons aren't functional they do not lead to another page such as the game or the settings|**<span style = color:Orange>Work in progress</span>**
 >></details>
-
-
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-> Settings muenu|da
+> Settings menu|Check if the settings are fully functional and does what it is supposed to do=change settings such as keybinds, volume etc.|**<span style = color:Orange>Work in progress</span>**|All the settings are corret, user can navigate and modify to their prefered settings|Not completed yet|Work in progress.|N.A.
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Settings menu|1|
+>> Settings menu|1|Check if the button actions does what it is supposed to do|click on and keybind modification and check if it modified the keybinds|**<span style = color:Orange>Work in progress</span>**|All the modification of keybinds corresponds to what the user wants|Not developed yet|Work in progress|N.A.
 >></details>
-
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Exit menu|da
+>Exit|a button should allow the user to exit the game, this button should be fully functional|**<span style = color:Orange>Work in progress</span>**|When the button is pressed it quits the game|...|...|N.A.
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Exit  menu|1| 
+>> Exit  menu|1|Click on exit button|Check if it does the command it is supposed to do|Quits the game|...|work in progress|N.A.
 >></details>
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->ScoringMovements|da
+>Scoring|Scoring will bedisplayed on the screen during the game and the number of points should correspond to the actual points|**<span style = color:Orange>Work in progress</span>**|Scoring evolves each pellet, Fruit, ghost, ingested by Pac-Man.|Work in progress|...|N.A.
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Score system|
+>> Score system|1|check the sprites display number|Check for pixel missing or any color problem|**<span style = color:Orange>Work in progress</span>**|No visible difference|...|...|N.A.
 >></details>
 
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Maze|Make sure that the Maze is correct without any design flow.|Maze is correct that all the pixels are where they are supposed to be and that the overall is visually pleasing|**<span style = color:Orange>Work in progress</span>**|
+>Maze|Make sure that the Maze is correct without any design flow.|Maze is correct that all the pixels are where they are supposed to be and that the overall is visually pleasing|**<span style = color:Orange>Work in progress</span>**|...|...|N.A.
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
@@ -144,26 +144,31 @@ The following tests will be made after that the final product is assembled togth
 
 >|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->|**Controlability**|Check if the buttons from the instructions work correctly, if all buttons corresponds to what it is supposingly controling|||||
+>|**Controlability**|Check if the buttons from the instructions work correctly, if all buttons corresponds to what it is supposingly controling|**<span style = color:Orange>Work in progress</span>**|All controlable aspects of the final product should be functional|...|...|...
 >><details>
 >>  <summary>Unit tasks of controlability</summary>
-
 >>  
 >>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>
+>>  |Pac-Man|1|Press left|When game launched press left arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn left with sprite change with animation|...|...|...
+>>  |Pac-Man|2|Press right|When game launched press right arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn right with sprite change with animation|...|...|...
+>>  |Pac-Man|3|Press up|When game launched press up arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn upwards with sprite change with animation|...|...|...
+>>  |Pac-Man|4|Press down|When game launched press down arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn downwards with sprite change with animation|...|...|...
+>> Navigation|1|Press down|in main menu and other menu press down button|**<span style = color:Orange>Work in progress</span>**|The possibility to select a button changes to the one under or scrolls to the top one|...|...|...
+>> Navigation|2|Press up|in main menu and other menu press up button|**<span style = color:Orange>Work in progress</span>**|The possibility to select a button changes to the one on top or scrolls to the bottom one|...|...|...
+>> Navigation|3|Press enter|in main menu and other menu press enter button|**<span style = color:Orange>Work in progress</span>**|Will allow the user to select the button that was selected|...|...|...
 >></details>
 >---
 
 >|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->|**Loading**|Verify if the loading works|||Loading time not too long|||
+>|**Loading**|Verify if the loading works|**<span style = color:Orange>Work in progress</span>**|Loading time not too long|...|...|...|
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
 >>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>  |Loading animation|Test number|Test|Loading time not too long|Status|Expected result|Actual result|Comment|
+>>  |Loading animation|1|time the loading time to launch the game|Loading time not too long|**<span style = color:Orange>Work in progress</span>**|...|...|...|
 >></details>
 >---
 
