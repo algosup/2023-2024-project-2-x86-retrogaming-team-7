@@ -135,43 +135,43 @@ clearSprite:
 
 move_right:
     mov word [actualKeystroke], 4Dh
-    call pacman_Right
     mov bx, [xPos]
     add bx, 3/2
     cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
     jae .skip_move_right
+    call pacman_Right
     mov [xPos], bx
 .skip_move_right:
     ret
 move_left:
     mov word [actualKeystroke], 4Bh
-    call pacman_Left
     mov bx, [xPos]
     sub bx, 3/2
     cmp bx, SPRITEW
     jbe .skip_move_left
+    call pacman_Left
     mov [xPos], bx
 .skip_move_left:
     ret
 
 move_up:
     mov word [actualKeystroke], 48h
-    call pacman_Up
     mov bx, [yPos]
     sub bx, 3/2
     cmp bx, SPRITEW
     jbe .skip_move_up
+    call pacman_Up
     mov [yPos], bx
 .skip_move_up:
     ret
 
 move_down:
     mov word [actualKeystroke], 50h
-    call pacman_Down
     mov bx, [yPos]
     add bx, 3/2
     cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
     jae .skip_move_down
+    call pacman_Down
     mov [yPos], bx
 .skip_move_down:
     ret
@@ -284,6 +284,7 @@ pacman_Right:
         mov word [currentSprite], pacman_down_3
         mov si, [currentSprite]
         ret
+
 
 draw_sprite:
     mov si, [currentSprite]
