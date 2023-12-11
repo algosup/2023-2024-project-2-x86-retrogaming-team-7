@@ -150,8 +150,6 @@ move_right:
 .no_collision:
     mov bx, [xPos]
     add bx, 1
-    cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
-    jae .end
     call pacman_Right
     mov [xPos], bx
 .end:
@@ -166,8 +164,6 @@ move_left:
 .no_collision:
     mov bx, [xPos]
     sub bx, 1
-    cmp bx, SPRITEW
-    jbe .end
     call pacman_Left
     mov [xPos], bx
 .end:
@@ -183,8 +179,6 @@ move_up:
 .no_collision:
     mov bx, [yPos]
     sub bx, 1
-    cmp bx, SPRITEW
-    jbe .end
     call pacman_Up
     mov [yPos], bx
 .end:
@@ -200,8 +194,6 @@ move_down:
 .no_collision:
     mov bx, [yPos]
     add bx, 1
-    cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
-    jae .end
     call pacman_Down
     mov [yPos], bx
 .end:
@@ -235,7 +227,7 @@ checkCollision:
     ret
 
 check_right:
-    add ax, SPRITEH
+    add ax, SPRITEH + 1
     jmp check_position
 
 check_left:
@@ -247,7 +239,7 @@ check_up:
     jmp check_position
 
 check_down:
-    add bx, SPRITEH
+    add bx, SPRITEH + 1
 
 check_position:
     ; Convert position to screen buffer index
