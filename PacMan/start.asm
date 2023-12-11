@@ -1,5 +1,3 @@
-org 100h
-
 [map all pacman.map]
 %include "sprite.asm"
 
@@ -59,12 +57,13 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
 section .bss
 keyPressed resb 1
 section .text
-start:
-    mov ah, 00h
-    mov al, 13h
-    int 10h
+start_game:
+    mov ah, 0x00    ; BIOS function code for setting video mode
+    mov al, 0x03    ; Video mode 0x03 (text mode)
+    int 0x10        ; Call BIOS interrupt to set video mode
     call clearScreen
     call Maze
+    call gameloop
     
     gameloop:
     call clearSprite

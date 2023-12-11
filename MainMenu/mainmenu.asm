@@ -1,4 +1,7 @@
 org 100h
+
+%include "start.asm"
+
 section .data
     ; set all the printed strings ont the mai
     mainWelcome db 'Welcome to Pac-Man', 0x0D, 0x0A, '$'
@@ -10,8 +13,6 @@ section .data
 
 section .bss
 section .text
-    global _start
-_start:
 
 ;=======================================================
 ;                   MAIN MENU
@@ -139,7 +140,7 @@ display_arrow_menu:
 
         .equal_arrow:
             cmp cl, 9
-            je game_start
+            je playChoice
             cmp cl, 11
             je settings_menu
             cmp cl, 13
@@ -176,9 +177,8 @@ print_string:
 ;=======================================================
 ;                   START THE GAME
 ;=======================================================
-game_start:
-    call done
-
+playChoice:
+    call start_game
 ;=======================================================
 ;                   SETTINGS MENU
 ;=======================================================
@@ -409,5 +409,5 @@ exit_menu:
 
 done:
     mov ax, 03h
-    int 21h
     int 20h
+    int 21h
