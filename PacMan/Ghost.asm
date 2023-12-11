@@ -451,7 +451,6 @@ draw_pinky:
 
 
 random_event_ghost:
-   
     mov     ah, 00h   ; interrupt to get system timer in CX:DX 
     int     1Ah
     mov     [PRN], dx
@@ -463,8 +462,7 @@ random_event_ghost:
     mov     ah, 02h   ; call interrupt to display a value in DL
     int     21h    
     ret
-
-
+    
     ; ----------------
     ; inputs: none  (modifies PRN seed variable)
     ; clobbers: DX.  returns: AX = next random number
