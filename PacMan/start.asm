@@ -14,9 +14,9 @@ org 100h
 
 section .data
 
-xPos dw 0
+xPos dw 84
 xVelocity dw 1
-yPos dw 80
+yPos dw 96
 
 spritew dw 8
 spriteh dw 8
@@ -25,7 +25,13 @@ old_XPOS dw 0
 
 old_YPOS dw 0
 
-currentSprite dd pacman_right_1
+xPosGhost dw 84
+oldGhost_XPOS dw 0
+yPosGhost dw 80
+oldGhost_YPOS dw 0
+    
+currentSpriteBlinky dd blinky_right_1
+currentSprite dd pacman_right_2
 actualKeystroke dw 0
 
 mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
@@ -40,7 +46,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
                 db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
-                db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
+                db 49,49,49,49,14,54,40,54,54,54,49,49,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,46,47,54,54,54,54,54,54,54,54,54,15
                 db 14,54,27,28,31,54,27,28,29,54,44,45,54,27,28,29,54,30,28,29,54,15
@@ -68,6 +74,7 @@ start:
     gameloop:
     call clearSprite
     call draw_sprite
+    call draw_ghost
     call read_character_key_was_pressed
 
     mov cx, 64000
@@ -135,70 +142,128 @@ clearSprite:
 
 move_right:
     mov word [actualKeystroke], 4Dh
+    call checkCollision
+    cmp ax, 0
+    je .no_collision
+    ret
+
+.no_collision:
     mov bx, [xPos]
-    add bx, 3/2
+    add bx, 1
     cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
-    jae .skip_move_right
+    jae .end
     call pacman_Right
     mov [xPos], bx
-.skip_move_right:
+.end:
     ret
 move_left:
     mov word [actualKeystroke], 4Bh
+    call checkCollision
+    cmp ax, 0
+    je .no_collision
+    ret
+
+.no_collision:
     mov bx, [xPos]
-    sub bx, 3/2
+    sub bx, 1
     cmp bx, SPRITEW
-    jbe .skip_move_left
+    jbe .end
     call pacman_Left
     mov [xPos], bx
-.skip_move_left:
+.end:
     ret
 
 move_up:
     mov word [actualKeystroke], 48h
+    call checkCollision
+    cmp ax, 0
+    je .no_collision
+    ret
+
+.no_collision:
     mov bx, [yPos]
-    sub bx, 3/2
+    sub bx, 1
     cmp bx, SPRITEW
-    jbe .skip_move_up
+    jbe .end
     call pacman_Up
     mov [yPos], bx
-.skip_move_up:
+.end:
     ret
 
 move_down:
     mov word [actualKeystroke], 50h
+    call checkCollision
+    cmp ax, 0
+    je .no_collision
+    ret
+
+.no_collision:
     mov bx, [yPos]
-    add bx, 3/2
+    add bx, 1
     cmp bx, SCREEN_HEIGHT - MAZEBLIMIT - SPRITEH 
-    jae .skip_move_down
+    jae .end
     call pacman_Down
     mov [yPos], bx
-.skip_move_down:
+.end:
     ret
 
 continue_movement:
     mov al, [actualKeystroke]
     cmp al, 4Dh
-    je .move_right
+    je move_right
     cmp al, 4Bh
-    je .move_left
+    je move_left
     cmp al, 48h
-    je .move_up
+    je move_up
     cmp al, 50h
-    je .move_down
+    je move_down
+    cmp al, 0
+    je read_character_key_was_pressed
     ret
-    .move_right:
-        call move_right
-        ret
-    .move_left:
-        call move_left
-        ret
-    .move_up:
-        call move_up
-        ret
-    .move_down:
-        call move_down
-        ret
+
+checkCollision:
+    mov ax, [xPos]
+    mov bx, [yPos]
+    cmp word [actualKeystroke], 4Dh  ; Right
+    je check_right
+    cmp word [actualKeystroke], 4Bh  ; Left
+    je check_left
+    cmp word [actualKeystroke], 48h  ; Up
+    je check_up
+    cmp word [actualKeystroke], 50h  ; Down
+    je check_down
+    ret
+
+check_right:
+    add ax, SPRITEH
+    jmp check_position
+
+check_left:
+    sub ax, SPRITEW - 6
+    jmp check_position
+
+check_up:
+    sub bx, SPRITEW - 6
+    jmp check_position
+
+check_down:
+    add bx, SPRITEH
+
+check_position:
+    ; Convert position to screen buffer index
+    imul bx, SCREEN_WIDTH
+    add bx, ax
+    mov si, bx
+    mov ax, 0A000h
+    mov es, ax
+    mov al, es:[si]
+    cmp al, 0x37
+    je collision_detected
+    xor ax, ax  ; No collision
+    ret
+
+collision_detected:
+    mov ax, 1  ; Collision detected
     ret
 
 pacman_Right:
@@ -222,7 +287,7 @@ pacman_Right:
         mov si, [currentSprite]
         ret
 
-    pacman_Left:
+pacman_Left:
     cmp word [currentSprite], pacman_left_1
     je .pacmanLeftSemiOpen
     cmp word [currentSprite], pacman_left_2
@@ -243,7 +308,7 @@ pacman_Right:
         mov si, [currentSprite]
         ret
 
-    pacman_Up:
+pacman_Up:
     cmp word [currentSprite], pacman_up_1
     je .pacmanUpSemiOpen
     cmp word [currentSprite], pacman_up_2
@@ -264,7 +329,7 @@ pacman_Right:
         mov si, [currentSprite]
         ret
     
-    pacman_Down:
+pacman_Down:
     cmp word [currentSprite], pacman_down_1
     je .pacmanDownSemiOpen
     cmp word [currentSprite], pacman_down_2
@@ -284,7 +349,126 @@ pacman_Right:
         mov word [currentSprite], pacman_down_3
         mov si, [currentSprite]
         ret
+        
 
+blinky_right:
+    cmp word [currentSpriteBlinky], blinky_right_1
+    je .blinkyRightSemiOpen
+    cmp word [currentSpriteBlinky], blinky_right_2
+    je .blinkyRightOpen
+    cmp word [currentSpriteBlinky], blinky_right_3
+    je .blinkyRightClose
+
+    .blinkyRightOpen:
+       mov word [currentSpriteBlinky], blinky_right_1
+       mov si, [currentSpriteBlinky]
+       ret
+    .blinkyRightSemiOpen:
+        mov word [currentSpriteBlinky], blinky_right_2
+        mov si, [currentSpriteBlinky]
+        ret
+    .blinkyRightClose:
+        mov word [currentSpriteBlinky], blinky_right_3
+        mov si, [currentSpriteBlinky]
+        ret
+
+blinky_left:
+    cmp word [currentSpriteBlinky], blinky_left_1
+    je .blinkyLeftSemiOpen
+    cmp word [currentSpriteBlinky], blinky_left_2
+    je .blinkyLeftClose
+    cmp word [currentSpriteBlinky], blinky_left_3
+    je .blinkyLeftOpen
+
+    .blinkyLeftOpen:
+       mov word [currentSpriteBlinky], blinky_left_1
+       mov si, [currentSpriteBlinky]
+       ret
+    .blinkyLeftSemiOpen:
+        mov word [currentSpriteBlinky], blinky_left_2
+        mov si, [currentSpriteBlinky]
+        ret
+    .blinkyLeftClose:
+        mov word [currentSprite], blinky_left_3
+        mov si, [currentSprite]
+        ret
+
+blinky_up:
+    cmp word [currentSpriteBlinky], blinky_up_1
+    je .blinkyUpSemiOpen
+    cmp word [currentSpriteBlinky], blinky_up_2
+    je .blinkyUpClose
+    cmp word [currentSpriteBlinky], blinky_up_3
+    je .blinkyUpOpen
+
+    .blinkyUpOpen:
+       mov word [currentSpriteBlinky], blinky_up_1
+       mov si, [currentSpriteBlinky]
+       ret
+    .blinkyUpSemiOpen:
+        mov word [currentSpriteBlinky], blinky_up_2
+        mov si, [currentSpriteBlinky]
+        ret
+    .blinkyUpClose:
+        mov word [currentSpriteBlinky], blinky_up_3
+        mov si, [currentSpriteBlinky]
+        ret
+    
+blinky_down:
+    cmp word [currentSpriteBlinky], blinky_down_1
+    je .blinkyDownSemiOpen
+    cmp word [currentSpriteBlinky], blinky_down_2
+    je .blinkyDownClose
+    cmp word [currentSpriteBlinky], blinky_down_3
+    je .blinkyDownOpen
+
+    .blinkyDownOpen:
+       mov word [currentSpriteBlinky], blinky_down_1
+       mov si, [currentSpriteBlinky]
+       ret
+    .blinkyDownSemiOpen:
+        mov word [currentSpriteBlinky], blinky_down_2
+        mov si, [currentSpriteBlinky]
+        ret
+    .blinkyDownClose:
+        mov word [currentSpriteBlinky], blinky_down_3
+        mov si, [currentSpriteBlinky]
+        ret
+
+move_right_ghost:
+     mov bx, [xPosGhost]
+     add bx, 1
+     cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
+     jae .skip_move_right
+     call blinky_right
+     mov [xPosGhost], bx
+.skip_move_right:
+     ret
+     
+     
+
+
+draw_ghost:
+     mov si, [currentSpriteBlinky]
+     mov ax, [xPosGhost]
+     mov [oldGhost_XPOS], ax
+     mov ax, [yPosGhost]
+     mov [oldGhost_YPOS], ax
+     mov ax, 0A000h
+     mov es, ax
+     mov ax, [yPosGhost]
+     imul ax, 320
+     add ax, [xPosGhost] 
+     mov di, ax
+     mov cx, SPRITEH
+.draw_line:
+    push cx
+    mov cx, SPRITEW
+    rep movsb
+    pop cx
+    add di, 320 - SPRITEW
+    loop .draw_line
+    ret
 
 draw_sprite:
     mov si, [currentSprite]
