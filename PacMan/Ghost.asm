@@ -1,4 +1,4 @@
-org 100h
+
 
 [map all pacman.map]
 
@@ -55,7 +55,7 @@ startG:
     ; main gameloop
 
     gameloopG:
-    call read_character_key_was_pressedG
+    call direction_ghost
 
     ; Delay to slow down the animation
     mov cx, 64000
@@ -69,13 +69,15 @@ startG:
     int 21h
 
 ; Label for read the pressed key
-read_character_key_was_pressedG:
-    mov ah, 01h        ; Check if a key has been pressed (non-blocking)
-    int 16h
-    jz continue_movementB ; If no key pressed, continue current movement
-    jz continue_movementI ; If no key pressed, continue current movement
-    jz continue_movementC ; If no key pressed, continue current movement
-    jz continue_movementP ; If no key pressed, continue current movement
+direction_ghost:
+    ; ----------------------------------------------
+    ; need to set the random behavior for the ghosts    
+    ; ----------------------------------------------
+
+    call continue_movementB ; If no key pressed, continue current movement
+    call continue_movementI ; If no key pressed, continue current movement
+    call continue_movementC ; If no key pressed, continue current movement
+    call continue_movementP ; If no key pressed, continue current movement
 
 
 clearGhost:
@@ -106,7 +108,6 @@ clearGhost:
 ; ==================================================
 
 move_rightB:
-    mov word [actualBDirection], 4Dh
     call blinky_right
     mov bx, [xPosBlinky]
     add bx, 1
@@ -117,7 +118,6 @@ move_rightB:
     ret
 
 move_leftB:
-    mov word [actualBDirection], 4Bh
     call blinky_left
     mov bx, [xPosBlinky]
     sub bx, 1
@@ -128,7 +128,6 @@ move_leftB:
     ret
 
 move_upB:
-    mov word [actualBDirection], 48h
     call blinky_up
     mov bx, [yPosBlinky]
     sub bx, 1
@@ -266,7 +265,6 @@ blinky_down:
 ; ==================================================
 
 move_rightI:
-    mov word [actualIDirection], 4Dh
     call inky_right
     mov bx, [xPosInky]
     add bx, 1
@@ -277,7 +275,6 @@ move_rightI:
     ret
 
 move_leftI:
-    mov word [actualIDirection], 4Bh
     call inky_left
     mov bx, [xPosInky]
     sub bx, 1
@@ -288,7 +285,6 @@ move_leftI:
     ret
 
 move_upI:
-    mov word [actualIDirection], 48h
     call inky_up
     mov bx, [yPosInky]
     sub bx, 1
@@ -426,7 +422,6 @@ inky_down:
 ; ==================================================
 
 move_rightC:
-    mov word [actualCDirection], 4Dh
     call inky_right
     mov bx, [xPosClyde]
     add bx, 1
@@ -437,7 +432,6 @@ move_rightC:
     ret
 
 move_leftC:
-    mov word [actualCDirection], 4Bh
     call inky_left
     mov bx, [xPosClyde]
     sub bx, 1
@@ -448,7 +442,6 @@ move_leftC:
     ret
 
 move_upC:
-    mov word [actualCDirection], 48h
     call inky_up
     mov bx, [yPosClyde]
     sub bx, 1
@@ -459,7 +452,6 @@ move_upC:
     ret
 
 move_downC:
-    mov word [actualCDirection], 50h
     call inky_down
     mov bx, [yPosClyde]
     add bx, 1
@@ -585,73 +577,70 @@ clyde_down:
 ;                PINKY MOVEMENTS
 ; ==================================================
 
-    move_rightP:
-        mov word [actualPDirection], 4Dh
-        call pinky_right
-        mov bx, [xPosBlinky]
-        add bx, 1
-        cmp bx, SCREEN_WIDTH - SPRITEW 
-        jae .skip_move_right
-        mov [xPosPinky], bx
-    .skip_move_right:
-        ret
+move_rightP:
+    call pinky_right
+    mov bx, [xPosBlinky]
+    add bx, 1
+    cmp bx, SCREEN_WIDTH - SPRITEW 
+    jae .skip_move_right
+    mov [xPosPinky], bx
+.skip_move_right:
+    ret
 
-    move_leftP:
-        mov word [actualPDirection], 4Bh
-        call pinky_left
-        mov bx, [xPosPinky]
-        sub bx, 1
-        cmp bx, 0
-        jbe .skip_move_left
-        mov [xPosPinky], bx
-    .skip_move_left:
-        ret
+move_leftP:
+    call pinky_left
+    mov bx, [xPosPinky]
+    sub bx, 1
+    cmp bx, 0
+    jbe .skip_move_left
+    mov [xPosPinky], bx
+.skip_move_left:
+    ret
 
-    move_upP:
-        mov word [actualPDirection], 48h
-        call pinky_up
-        mov bx, [yPosPinky]
-        sub bx, 1
-        cmp bx, 0
-        jbe .skip_move_up
-        mov [yPosPinky], bx
-    .skip_move_up:
-        ret
+move_upP:
+    call pinky_up
+    mov bx, [yPosPinky]
+    sub bx, 1
+    cmp bx, 0
+    jbe .skip_move_up
+    mov [yPosPinky], bx
+.skip_move_up:
+    ret
 
-    move_downP:
-        call pinky_down
-        mov bx, [yPosPinky]
-        add bx, 1
-        cmp bx, SCREEN_HEIGHT - SPRITEH 
-        jae .skip_move_down
-        mov [yPosPinky], bx
-    .skip_move_down:
-        ret
+move_downP:
+    call pinky_down
+    mov bx, [yPosPinky]
+    add bx, 1
+    cmp bx, SCREEN_HEIGHT - SPRITEH 
+    jae .skip_move_down
+    mov [yPosPinky], bx
+.skip_move_down:
+    ret
 
-    continue_movementP:
-        mov al, [actualPDirection]
-        cmp al, 4Dh
-        je .move_right
-        cmp al, 4Bh
-        je .move_left
-        cmp al, 48h
-        je .move_up
-        cmp al, 50h
-        je .move_down
+continue_movementP:
+    mov al, [actualPDirection]
+    cmp al, 4Dh
+    je .move_right
+    cmp al, 4Bh
+    je .move_left
+    cmp al, 48h
+    je .move_up
+    cmp al, 50h
+    je .move_down
+    ret
+    .move_right:
+        call move_rightP
         ret
-        .move_right:
-            call move_rightP
-            ret
-        .move_left:
-            call move_leftP
-            ret
-        .move_up:
-            call move_upP
-            ret
-        .move_down:
-            call move_downP
-            ret
+    .move_left:
+        call move_leftP
         ret
+    .move_up:
+        call move_upP
+        ret
+    .move_down:
+        call move_downP
+        ret
+    ret
 
 ; ==================================================
 ;               PINKY ANIMATIONS
@@ -853,10 +842,5 @@ draw_pinky:
     add di, 320 - SPRITEW
     loop .draw_line  ; Repeat the draw for each sprite's rows
     ret
-    
-
-
-; random_event_ghost:
-    
 
 

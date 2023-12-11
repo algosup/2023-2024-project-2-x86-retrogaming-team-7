@@ -1,3 +1,5 @@
+org 100h
+
 [map all pacman.map]
 %include "sprite.asm"
 
@@ -59,7 +61,7 @@ keyPressed resb 1
 section .text
 start_game:
     mov ah, 0x00    ; BIOS function code for setting video mode
-    mov al, 0x03    ; Video mode 0x03 (text mode)
+    mov al, 0x13    ; Video mode 0x13 
     int 0x10        ; Call BIOS interrupt to set video mode
     call clearScreen
     call Maze
