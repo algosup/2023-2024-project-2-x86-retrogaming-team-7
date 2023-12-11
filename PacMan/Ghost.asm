@@ -10,20 +10,20 @@ org 100h
 %define SPRITEH 8
 section .data
 
-xPosBlinky dw 0
+xPosBlinky dw 84
 xPosInky dw 0
 xPosClyde dw 0
 xPosPinky dw 0
 
-yPosBlinky dw 0
+yPosBlinky dw 64
 yPosInky dw 0
 yPosClyde dw 0
 yPosPinky dw 0
 
-xVelocity dw 0
+xGVelocity dw 0
 
-spritew dw 8
-spriteh dw 8
+spriteBw dw 8
+spriteBh dw 8
 
 old_XPOSBlinky dw 0
 old_XPOSInky dw 0
@@ -35,179 +35,49 @@ old_YPOSInky dw 0
 old_YPOSClyde dw 0
 old_YPOSPinky dw 0
 
+
 currentSpriteBlinky dd blinky_right_1
-actualKeystroke dw 4Dh
+currentSpriteInky dd inky_right_1
+currentSpriteClyde dd clyde_right_1
+currentSpritePinky dd pinky_right_1
 
-; ====================
-;   blinky sprites
-; ====================
-;   blinky look up
-; ====================
-blinky_up_1     db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x04
+actualGDirection dw 0
 
-blinky_up_2     db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x04
 
-blinky_up_3     db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x28, 0x04
-; ====================
-;   blinky look left
-; ====================
-blinky_left_1   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x04
-
-blinky_left_2   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x04
-
-blinky_left_3   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x00, 0x0F, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x28, 0x04
-; ====================
-;   blinky look right
-; ====================
-blinky_right_1  db 0xFF, 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28
-
-blinky_right_2  db 0xFF, 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF
-
-blinky_right_3  db 0xFF, 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0xFF
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x0F, 0xFF, 0x28, 0x0F, 0xFF, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28
-                db 0x04, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x28
-; ====================
-;   BLINKY LOOK DOWN
-; ====================
-blinky_down_1   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x04
-
-blinky_down_2   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x04
-
-blinky_down_3   db 0xFF, 0xFF, 0x28, 0x28, 0x28, 0x28, 0x04, 0xFF
-                db 0xFF, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x0F, 0x0F, 0x28, 0x0F, 0x0F, 0x28, 0x04
-                db 0x28, 0x0F, 0x00, 0x28, 0x00, 0x0F, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x28, 0x04
-                db 0xFF, 0x28, 0xFF, 0x28, 0xFF, 0x28, 0x28, 0x04
-
-section .bss
-keyPressed resb 1  ; Réserve un byte pour l'état de la touche
 section .text
-start:
-    ; Initialisation du mode vidéo
+startG:
+    ; Initialize video mode
     mov ah, 00h
     mov al, 13h
     int 10h
-    ; Boucle principale du jeu
+    ; main gameloop
 
-       
-    
-    gameloop:
-    call clearSprite  ; Clear the old sprite before drawing a new one
-    call draw_sprite
-    call read_character_key_was_pressed
-
-
+    gameloopG:
+    call read_character_key_was_pressedG
 
     ; Delay to slow down the animation
     mov cx, 64000
-    waitloop:
-        loop waitloop
-    jmp gameloop
-    ; Fin du jeu, retour au mode texte
+    waitloopG:
+        loop waitloopG
+    jmp gameloopG
+    ; End game back to text mode
     mov ax, 03h
     int 10h
     mov ax, 4C00h
     int 21h
 
-
-clearScreen:
-    mov bx, 0xA000
-    mov es, bx
-    mov di, 0
-    mov cx, 200*320
-    rep stosb
-    ret 
-
-; Fonction pour lire la touche pressée
-read_character_key_was_pressed:
+; Label for read the pressed key
+read_character_key_was_pressedG:
     mov ah, 01h        ; Check if a key has been pressed (non-blocking)
     int 16h
-    jz continue_movement ; If no key pressed, continue current movement
+    jz continue_movementG ; If no key pressed, continue current movement
 
     ; Read the keystroke
     mov ah, 00h
     int 16h
-    mov [actualKeystroke], ah  ; Store the new direction
+    mov [actualGDirection], ah  ; Store the new direction
 
-clearSprite:
+clearGhost:
     ; Set up the graphics segment
     mov ax, 0A000h
     mov es, ax
@@ -230,9 +100,8 @@ clearSprite:
     loop .clear_line       ; Repeat for each line of the sprite
     ret
     
-
-move_right:
-    mov word [actualKeystroke], 4Dh
+move_rightB:
+    mov word [actualGDirection], 4Dh
     call blinky_right
     mov bx, [xPosBlinky]
     add bx, 1
@@ -241,8 +110,9 @@ move_right:
     mov [xPosBlinky], bx
 .skip_move_right:
     ret
-move_left:
-    mov word [actualKeystroke], 4Bh
+
+move_leftB:
+    mov word [actualGDirection], 4Bh
     call blinky_left
     mov bx, [xPosBlinky]
     sub bx, 1
@@ -252,8 +122,8 @@ move_left:
 .skip_move_left:
     ret
 
-move_up:
-    mov word [actualKeystroke], 48h
+move_upB:
+    mov word [actualGDirection], 48h
     call blinky_up
     mov bx, [yPosBlinky]
     sub bx, 1
@@ -263,7 +133,7 @@ move_up:
 .skip_move_up:
     ret
 
-move_down:
+move_downB:
     call blinky_down
     mov bx, [yPosBlinky]
     add bx, 1
@@ -273,8 +143,8 @@ move_down:
 .skip_move_down:
     ret
 
-continue_movement:
-    mov al, [actualKeystroke]
+continue_movementG:
+    mov al, [actualGDirection]
     cmp al, 4Dh
     je .move_right
     cmp al, 4Bh
@@ -285,16 +155,16 @@ continue_movement:
     je .move_down
     ret
     .move_right:
-        call move_right
+        call move_rightB
         ret
     .move_left:
-        call move_left
+        call move_leftB
         ret
     .move_up:
-        call move_up
+        call move_upB
         ret
     .move_down:
-        call move_down
+        call move_downB
         ret
     ret
 
@@ -382,34 +252,229 @@ blinky_down:
         mov si, [currentSpriteBlinky]
         ret
 
-; Fonction pour effacer l'écran
-draw_sprite:
+inky_right:
+    cmp word [currentSpriteInky], inky_right_1
+    je .inkyRightSemiOpen
+    cmp word [currentSpriteInky], inky_right_2
+    je .blinkyRightOpen
+    cmp word [currentSpriteInky], inky_right_3
+    je .blinkyRightClose
+
+    .inkyRightOpen:
+       mov word [currentSpriteInky], inky_right_1
+       mov si, [currentSpriteInky]
+       ret
+    .inkyRightSemiOpen:
+        mov word [currentSpriteInky], inky_right_2
+        mov si, [currentSpriteInky]
+        ret
+    .inkyRightClose:
+        mov word [currentSpriteInky], inky_right_3
+        mov si, [currentSpriteInky]
+        ret
+
+inky_left:
+    cmp word [currentSpriteInky], inky_left_1
+    je .inkyLeftSemiOpen
+    cmp word [currentSpriteInky], inky_left_2
+    je .inkyLeftClose
+    cmp word [currentSpriteInky], inky_left_3
+    je .inkyLeftOpen
+
+    .inkyLeftOpen:
+       mov word [currentSpriteInky], inky_left_1
+       mov si, [currentSpriteInky]
+       ret
+    .inkyLeftSemiOpen:
+        mov word [currentSpriteInky], inky_left_2
+        mov si, [currentSpriteInky]
+        ret
+    .inkyLeftClose:
+        mov word [currentSpriteInky], inky_left_3
+        mov si, [currentSpriteInky]
+        ret
+
+inky_up:
+    cmp word [currentSpriteInky], inky_up_1
+    je .inkyUpSemiOpen
+    cmp word [currentSpriteInky], inky_up_2
+    je .inkyUpClose
+    cmp word [currentSpriteInky], inky_up_3
+    je .inkyUpOpen
+
+    .inkyUpOpen:
+       mov word [currentSpriteInky], inky_up_1
+       mov si, [currentSpriteInky]
+       ret
+    .inkyUpSemiOpen:
+        mov word [currentSpriteInky], inky_up_2
+        mov si, [currentSpriteInky]
+        ret
+    .inkyUpClose:
+        mov word [currentSpriteInky], inky_up_3
+        mov si, [currentSpriteInky]
+        ret
+        
+inky_down:
+    cmp word [currentSpriteInky], inky_down_1
+    je .inkyDownSemiOpen
+    cmp word [currentSpriteInky], inky_down_2
+    je .inkyDownClose
+    cmp word [currentSpriteInky], inky_down_3
+    je .inkyDownOpen
+
+    .inkyDownOpen:
+       mov word [currentSpriteInky], inky_down_1
+       mov si, [currentSpriteInky]
+       ret
+    .inkyDownSemiOpen:
+        mov word [currentSpriteInky], inky_down_2
+        mov si, [currentSpriteInky]
+        ret
+    .inkyDownClose:
+        mov word [currentSpriteInky], inky_down_3
+        mov si, [currentSpriteInky]
+        ret
+
+
+        
+
+; Label to erase the screen
+draw_blinky:
     mov si, [currentSpriteBlinky]
-    ; Avant de dessiner le sprite, sauvegardez la position actuelle
+    ; Before draw the sprite, save the current position
     mov ax, [xPosBlinky]
-    mov [old_XPOSBlinky], ax  ; Sauvegarde l'ancienne position X
+    mov [old_XPOSBlinky], ax  ;Save the old position of X
     mov ax, [yPosBlinky]
-    mov [old_YPOSBlinky], ax  ; Sauvegarde l'ancienne position Y
-    ; Réinitialise le segment graphique
+    mov [old_YPOSBlinky], ax  ;Save the old position of Y
+    ; Reset the graphic segment
     mov ax, 0A000h
     mov es, ax
-    ; Calcule l'adresse à l'écran où le sprite sera dessiné
+    ; Cacul the addresse to the screen where the sprite will be draw
     mov ax, [yPosBlinky]
-    imul ax, 320       ; Multiplie yPos par la largeur de l'écran pour obtenir l'offset
-    add ax, [xPosBlinky]     ; Ajoute xPos à l'offset
-    mov di, ax         ; DI = adresse de départ pour le dessin
-    ; Obtient l'adresse du sprite à dessiner
-    ; Définit la hauteur du sprite
-    mov cx, SPRITEH
+    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+    add ax, [xPosBlinky]     ; Add xPos to the offset
+    mov di, ax         ; DI = address for the draw 
+    ; Get the addresses's sprite to draw
+    mov cx, SPRITEH     ; Define the sprite's height
 .draw_line:
-    ; Sauvegarde CX car il est modifié par REP MOVSB
-    push cx
-    ; Définit la largeur du sprite pour la ligne actuelle
-    mov cx, SPRITEW
-    rep movsb  ; Dessine la ligne du sprite à l'écran
-    ; Restaure CX pour la prochaine ligne
-    pop cx
-    ; Ajuste DI pour la ligne suivante en prenant en compte l'offset de la largeur de l'écran
+    push cx     ; Save CX else modify by rep
+    mov cx, SPRITEW     ; Define the width for the current row
+    rep movsb  ; Print the sprite's row
+    pop cx  ; Restore CX for the next sprite's row
+    ; Adjust DI for the next rows and take in account the width offset
     add di, 320 - SPRITEW
-    loop .draw_line  ; Répète le dessin pour chaque ligne du sprite
+    loop .draw_line  ; Repeat the draw for each sprite's rows
     ret
+
+draw_inky:
+    mov si, [currentSpriteInky]
+    ; Before draw the sprite, save the current position
+    mov ax, [xPosInky]
+    mov [old_XPOSInky], ax  ;Save the old position of X
+    mov ax, [yPosInky]
+    mov [old_YPOSInky], ax  ;Save the old position of Y
+    ; Reset the graphic segment
+    mov ax, 0A000h
+    mov es, ax
+    ; Cacul the addresse to the screen where the sprite will be draw
+    mov ax, [yPosInky]
+    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+    add ax, [xPosInky]     ; Add xPos to the offset
+    mov di, ax         ; DI = address for the draw
+    ; Get the addresses's sprite to draw
+    mov cx, SPRITEH     ; Define the sprite's height
+.draw_line:
+    push cx     ; Save CX else modify by rep
+    mov cx, SPRITEW     ; Define the width for the current row
+    rep movsb  ; Print the sprite's row
+    pop cx  ; Restore CX for the next sprite's row
+    ; Adjust DI for the next rows and take in account the width offset
+    add di, 320 - SPRITEW
+    loop .draw_line  ; Repeat the draw for each sprite's rows
+    ret
+    
+draw_clyde:
+    mov si, [currentSpriteClyde]
+    ; Before draw the sprite, save the current position
+    mov ax, [xPosClyde]
+    mov [old_XPOSClyde], ax  ;Save the old position of X
+    mov ax, [yPosClyde]
+    mov [old_YPOSClyde], ax  ;Save the old position of Y
+    ; Reset the graphic segment
+    mov ax, 0A000h
+    mov es, ax
+    ; Cacul the address to the screen where the sprite will be draw
+    mov ax, [yPosClyde]
+    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+    add ax, [xPosClyde]     ; Add xPos to the offset
+    mov di, ax         ; DI = address for the draw
+    ; Get the addresses's sprite to draw
+    mov cx, SPRITEH     ; Define the sprite's height
+.draw_line:
+    push cx     ; Save CX else modify by rep
+    mov cx, SPRITEW     ; Define the width for the current row
+    rep movsb  ; Print the sprite's row
+    pop cx  ; Restore CX for the next sprite's row
+    ; Adjust DI for the next rows and take in account the width offset
+    add di, 320 - SPRITEW
+    loop .draw_line  ; Repeat the draw for each sprite's rows
+    ret
+
+draw_pinky:
+    mov si, [currentSpritePinky]
+    ; Before draw the sprite, save the current position
+    mov ax, [xPosPinky]
+    mov [old_XPOSPinky], ax  ;Save the old position of X
+    mov ax, [yPosPinky]
+    mov [old_YPOSPinky], ax  ;Save the old position of Y
+    ; Reset the graphic segment
+    mov ax, 0A000h
+    mov es, ax
+    ; Cacul the addresse to the screen where the sprite will be draw
+    mov ax, [yPosPinky]
+    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+    add ax, [xPosPinky]     ; Add xPos to the offset
+    mov di, ax         ; DI = address for the draw
+    ; Get the addresses's sprite to draw
+    mov cx, SPRITEH     ; Define the sprite's height
+.draw_line:
+    push cx     ; Save CX else modify by rep
+    mov cx, SPRITEW     ; Define the width for the current row
+    rep movsb  ; Print the sprite's row
+    pop cx  ; Restore CX for the next sprite's row
+    ; Adjust DI for the next rows and take in account the width offset
+    add di, 320 - SPRITEW
+    loop .draw_line  ; Repeat the draw for each sprite's rows
+    ret
+    
+
+
+random_event_ghost:
+   
+    mov     ah, 00h   ; interrupt to get system timer in CX:DX 
+    int     1Ah
+    mov     [PRN], dx
+    call    .CalcNew   ; -> AX is a random number
+    xor     dx, dx
+    mov     cx, 10    
+    div     cx        ; here dx contains the remainder - from 0 to 9
+    add     dl, '0'   ; to ascii from '0' to '9'
+    mov     ah, 02h   ; call interrupt to display a value in DL
+    int     21h    
+    ret
+
+
+    ; ----------------
+    ; inputs: none  (modifies PRN seed variable)
+    ; clobbers: DX.  returns: AX = next random number
+    .CalcNew:
+        mov     ax, 25173          ; LCG Multiplier
+        mul     word ptr [PRN]     ; DX:AX = LCG multiplier * seed
+        add     ax, 13849          ; Add LCG increment value
+        ; Modulo 65536, AX = (multiplier*seed+increment) mod 65536
+        mov     [PRN], ax          ; Update seed = return value
+        ret
+    
+
+

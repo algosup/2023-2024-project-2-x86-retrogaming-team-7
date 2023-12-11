@@ -21,16 +21,11 @@ yPos dw 96
 spritew dw 8
 spriteh dw 8
 
-old_XPOS dw 0
+old_XPOS dw 0            ;Pac-man's XPOS
 
-old_YPOS dw 0
+old_YPOS dw 0            ;Pac-man's YPOS
 
-xPosGhost dw 84
-oldGhost_XPOS dw 0
-yPosGhost dw 80
-oldGhost_YPOS dw 0
-    
-currentSpriteBlinky dd blinky_right_1
+
 currentSprite dd pacman_right_2
 actualKeystroke dw 0
 
@@ -74,7 +69,8 @@ start:
     gameloop:
     call clearSprite
     call draw_sprite
-    call draw_ghost
+    call clearGhost         ; Clear the old sprite before drawing a new one
+    call draw_Ghost
     call read_character_key_was_pressed
 
     mov cx, 64000
@@ -343,124 +339,9 @@ pacman_Down:
         ret
         
 
-blinky_right:
-    cmp word [currentSpriteBlinky], blinky_right_1
-    je .blinkyRightSemiOpen
-    cmp word [currentSpriteBlinky], blinky_right_2
-    je .blinkyRightOpen
-    cmp word [currentSpriteBlinky], blinky_right_3
-    je .blinkyRightClose
-
-    .blinkyRightOpen:
-       mov word [currentSpriteBlinky], blinky_right_1
-       mov si, [currentSpriteBlinky]
-       ret
-    .blinkyRightSemiOpen:
-        mov word [currentSpriteBlinky], blinky_right_2
-        mov si, [currentSpriteBlinky]
-        ret
-    .blinkyRightClose:
-        mov word [currentSpriteBlinky], blinky_right_3
-        mov si, [currentSpriteBlinky]
-        ret
-
-blinky_left:
-    cmp word [currentSpriteBlinky], blinky_left_1
-    je .blinkyLeftSemiOpen
-    cmp word [currentSpriteBlinky], blinky_left_2
-    je .blinkyLeftClose
-    cmp word [currentSpriteBlinky], blinky_left_3
-    je .blinkyLeftOpen
-
-    .blinkyLeftOpen:
-       mov word [currentSpriteBlinky], blinky_left_1
-       mov si, [currentSpriteBlinky]
-       ret
-    .blinkyLeftSemiOpen:
-        mov word [currentSpriteBlinky], blinky_left_2
-        mov si, [currentSpriteBlinky]
-        ret
-    .blinkyLeftClose:
-        mov word [currentSprite], blinky_left_3
-        mov si, [currentSprite]
-        ret
-
-blinky_up:
-    cmp word [currentSpriteBlinky], blinky_up_1
-    je .blinkyUpSemiOpen
-    cmp word [currentSpriteBlinky], blinky_up_2
-    je .blinkyUpClose
-    cmp word [currentSpriteBlinky], blinky_up_3
-    je .blinkyUpOpen
-
-    .blinkyUpOpen:
-       mov word [currentSpriteBlinky], blinky_up_1
-       mov si, [currentSpriteBlinky]
-       ret
-    .blinkyUpSemiOpen:
-        mov word [currentSpriteBlinky], blinky_up_2
-        mov si, [currentSpriteBlinky]
-        ret
-    .blinkyUpClose:
-        mov word [currentSpriteBlinky], blinky_up_3
-        mov si, [currentSpriteBlinky]
-        ret
-    
-blinky_down:
-    cmp word [currentSpriteBlinky], blinky_down_1
-    je .blinkyDownSemiOpen
-    cmp word [currentSpriteBlinky], blinky_down_2
-    je .blinkyDownClose
-    cmp word [currentSpriteBlinky], blinky_down_3
-    je .blinkyDownOpen
-
-    .blinkyDownOpen:
-       mov word [currentSpriteBlinky], blinky_down_1
-       mov si, [currentSpriteBlinky]
-       ret
-    .blinkyDownSemiOpen:
-        mov word [currentSpriteBlinky], blinky_down_2
-        mov si, [currentSpriteBlinky]
-        ret
-    .blinkyDownClose:
-        mov word [currentSpriteBlinky], blinky_down_3
-        mov si, [currentSpriteBlinky]
-        ret
-
-move_right_ghost:
-     mov bx, [xPosGhost]
-     add bx, 1
-     cmp bx, SCREEN_WIDTH - MAZERLIMIT - SPRITEW
-     jae .skip_move_right
-     call blinky_right
-     mov [xPosGhost], bx
-.skip_move_right:
-     ret
      
      
 
-
-draw_ghost:
-     mov si, [currentSpriteBlinky]
-     mov ax, [xPosGhost]
-     mov [oldGhost_XPOS], ax
-     mov ax, [yPosGhost]
-     mov [oldGhost_YPOS], ax
-     mov ax, 0A000h
-     mov es, ax
-     mov ax, [yPosGhost]
-     imul ax, 320
-     add ax, [xPosGhost] 
-     mov di, ax
-     mov cx, SPRITEH
-.draw_line:
-    push cx
-    mov cx, SPRITEW
-    rep movsb
-    pop cx
-    add di, 320 - SPRITEW
-    loop .draw_line
-    ret
 
 draw_sprite:
     mov si, [currentSprite]
@@ -866,3 +747,6 @@ drawWalls:
                mov si, power_pellet
                call drawWalls
                jmp wallchoice
+
+
+%include "Ghost.asm"
