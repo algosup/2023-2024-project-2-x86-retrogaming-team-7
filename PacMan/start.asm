@@ -69,8 +69,10 @@ start:
     gameloop:
     call clearSprite
     call draw_sprite
-    call clearGhost         ; Clear the old sprite before drawing a new one
-    call draw_Ghost
+    call draw_blinky
+    call draw_inky
+    call draw_clyde
+    call draw_pinky
     call read_character_key_was_pressed
 
     mov cx, 64000
