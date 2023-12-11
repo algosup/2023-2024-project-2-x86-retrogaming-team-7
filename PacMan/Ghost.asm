@@ -10,19 +10,32 @@ org 100h
 %define SPRITEH 8
 section .data
 
-xPos dw 0
-xVelocity dw 1
-yPos dw 0
+xPosBlinky dw 0
+xPosInky dw 0
+xPosClyde dw 0
+xPosPinky dw 0
+
+yPosBlinky dw 0
+yPosInky dw 0
+yPosClyde dw 0
+yPosPinky dw 0
+
+xVelocity dw 0
 
 spritew dw 8
-
 spriteh dw 8
 
-old_XPOS dw 0
+old_XPOSBlinky dw 0
+old_XPOSInky dw 0
+old_XPOSClyde dw 0
+old_XPOSPinky dw 0
 
-old_YPOS dw 0
+old_YPOSBlinky dw 0
+old_YPOSInky dw 0
+old_YPOSClyde dw 0
+old_YPOSPinky dw 0
 
-currentSprite dd blinky_up_1
+currentSpriteBlinky dd blinky_right_1
 actualKeystroke dw 4Dh
 
 ; ====================
@@ -153,7 +166,6 @@ start:
     mov al, 13h
     int 10h
     ; Boucle principale du jeu
-    mov si, [currentSprite]
 
        
     
@@ -161,6 +173,8 @@ start:
     call clearSprite  ; Clear the old sprite before drawing a new one
     call draw_sprite
     call read_character_key_was_pressed
+
+
 
     ; Delay to slow down the animation
     mov cx, 64000
@@ -194,60 +208,68 @@ read_character_key_was_pressed:
     mov [actualKeystroke], ah  ; Store the new direction
 
 clearSprite:
-    mov di, [xPos]
-    push ax
-    mov ax, 0xA000
+    ; Set up the graphics segment
+    mov ax, 0A000h
     mov es, ax
-    pop ax
-    mov dx, 8
-    .eachLine:
-        mov cx, 8
-        rep stosb
-        add di, 320-8
-        dec dx
-        jnz .eachLine
+
+    ; Calculate the screen offset for the old position of the sprite
+    mov ax, [old_YPOSBlinky]     ; Get the old Y position
+    imul ax, 320           ; Multiply Y position by screen width to get the offset
+    add ax, [old_XPOSBlinky]     ; Add the old X position to the offset
+    mov di, ax             ; DI = starting address for erasure
+
+    ; Define the height and width of the sprite
+    mov cx, SPRITEH        ; Sprite height
+.clear_line:
+    push cx                ; Save CX as it is modified by the loop
+    mov cx, SPRITEW        ; Sprite width for a single line
+    mov al, 0              ; Background color (usually black for Pac-Man)
+    rep stosb              ; Clear pixels with background color
+    pop cx                 ; Restore CX for the next line
+    add di, 320 - SPRITEW  ; Adjust DI to the start of the next line
+    loop .clear_line       ; Repeat for each line of the sprite
     ret
+    
 
 move_right:
     mov word [actualKeystroke], 4Dh
     call blinky_right
-    mov bx, [xPos]
-    add bx, 2
+    mov bx, [xPosBlinky]
+    add bx, 1
     cmp bx, SCREEN_WIDTH - SPRITEW 
     jae .skip_move_right
-    mov [xPos], bx
+    mov [xPosBlinky], bx
 .skip_move_right:
     ret
 move_left:
     mov word [actualKeystroke], 4Bh
     call blinky_left
-    mov bx, [xPos]
-    sub bx, 2
+    mov bx, [xPosBlinky]
+    sub bx, 1
     cmp bx, 0
     jbe .skip_move_left
-    mov [xPos], bx
+    mov [xPosBlinky], bx
 .skip_move_left:
     ret
 
 move_up:
     mov word [actualKeystroke], 48h
     call blinky_up
-    mov bx, [yPos]
-    sub bx, 2
+    mov bx, [yPosBlinky]
+    sub bx, 1
     cmp bx, 0
     jbe .skip_move_up
-    mov [yPos], bx
+    mov [yPosBlinky], bx
 .skip_move_up:
     ret
 
 move_down:
-    mov word [actualKeystroke], 50h
     call blinky_down
-    mov bx, [yPos]
-    add bx, 2
+    mov bx, [yPosBlinky]
+    add bx, 1
     cmp bx, SCREEN_HEIGHT - SPRITEH 
     jae .skip_move_down
-    mov [yPos], bx
+    mov [yPosBlinky], bx
 .skip_move_down:
     ret
 
@@ -277,103 +299,104 @@ continue_movement:
     ret
 
 blinky_right:
-    cmp word [currentSprite], blinky_right_1
+    cmp word [currentSpriteBlinky], blinky_right_1
     je .blinkyRightSemiOpen
-    cmp word [currentSprite], blinky_right_2
+    cmp word [currentSpriteBlinky], blinky_right_2
     je .blinkyRightOpen
-    cmp word [currentSprite], blinky_right_3
+    cmp word [currentSpriteBlinky], blinky_right_3
     je .blinkyRightClose
 
     .blinkyRightOpen:
-       mov word [currentSprite], blinky_right_1
-       mov si, [currentSprite]
+       mov word [currentSpriteBlinky], blinky_right_1
+       mov si, [currentSpriteBlinky]
        ret
     .blinkyRightSemiOpen:
-        mov word [currentSprite], blinky_right_2
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_right_2
+        mov si, [currentSpriteBlinky]
         ret
     .blinkyRightClose:
-        mov word [currentSprite], blinky_right_3
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_right_3
+        mov si, [currentSpriteBlinky]
         ret
 
-    blinky_left:
-    cmp word [currentSprite], blinky_left_1
+blinky_left:
+    cmp word [currentSpriteBlinky], blinky_left_1
     je .blinkyLeftSemiOpen
-    cmp word [currentSprite], blinky_left_2
+    cmp word [currentSpriteBlinky], blinky_left_2
     je .blinkyLeftClose
-    cmp word [currentSprite], blinky_left_3
+    cmp word [currentSpriteBlinky], blinky_left_3
     je .blinkyLeftOpen
 
     .blinkyLeftOpen:
-       mov word [currentSprite], blinky_left_1
-       mov si, [currentSprite]
+       mov word [currentSpriteBlinky], blinky_left_1
+       mov si, [currentSpriteBlinky]
        ret
     .blinkyLeftSemiOpen:
-        mov word [currentSprite], blinky_left_2
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_left_2
+        mov si, [currentSpriteBlinky]
         ret
     .blinkyLeftClose:
-        mov word [currentSprite], blinky_left_3
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_left_3
+        mov si, [currentSpriteBlinky]
         ret
 
-    blinky_up:
-    cmp word [currentSprite], blinky_up_1
+blinky_up:
+    cmp word [currentSpriteBlinky], blinky_up_1
     je .blinkyUpSemiOpen
-    cmp word [currentSprite], blinky_up_2
+    cmp word [currentSpriteBlinky], blinky_up_2
     je .blinkyUpClose
-    cmp word [currentSprite], blinky_up_3
+    cmp word [currentSpriteBlinky], blinky_up_3
     je .blinkyUpOpen
 
     .blinkyUpOpen:
-       mov word [currentSprite], blinky_up_1
-       mov si, [currentSprite]
+       mov word [currentSpriteBlinky], blinky_up_1
+       mov si, [currentSpriteBlinky]
        ret
     .blinkyUpSemiOpen:
-        mov word [currentSprite], blinky_up_2
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_up_2
+        mov si, [currentSpriteBlinky]
         ret
     .blinkyUpClose:
-        mov word [currentSprite], blinky_up_3
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_up_3
+        mov si, [currentSpriteBlinky]
         ret
     
-    blinky_down:
-    cmp word [currentSprite], blinky_down_1
+blinky_down:
+    cmp word [currentSpriteBlinky], blinky_down_1
     je .blinkyDownSemiOpen
-    cmp word [currentSprite], blinky_down_2
+    cmp word [currentSpriteBlinky], blinky_down_2
     je .blinkyDownClose
-    cmp word [currentSprite], blinky_down_3
+    cmp word [currentSpriteBlinky], blinky_down_3
     je .blinkyDownOpen
 
     .blinkyDownOpen:
-       mov word [currentSprite], blinky_down_1
-       mov si, [currentSprite]
+       mov word [currentSpriteBlinky], blinky_down_1
+       mov si, [currentSpriteBlinky]
        ret
     .blinkyDownSemiOpen:
-        mov word [currentSprite], blinky_down_2
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_down_2
+        mov si, [currentSpriteBlinky]
         ret
     .blinkyDownClose:
-        mov word [currentSprite], blinky_down_3
-        mov si, [currentSprite]
+        mov word [currentSpriteBlinky], blinky_down_3
+        mov si, [currentSpriteBlinky]
         ret
 
 ; Fonction pour effacer l'écran
 draw_sprite:
+    mov si, [currentSpriteBlinky]
     ; Avant de dessiner le sprite, sauvegardez la position actuelle
-    mov ax, [xPos]
-    mov [old_XPOS], ax  ; Sauvegarde l'ancienne position X
-    mov ax, [yPos]
-    mov [old_YPOS], ax  ; Sauvegarde l'ancienne position Y
+    mov ax, [xPosBlinky]
+    mov [old_XPOSBlinky], ax  ; Sauvegarde l'ancienne position X
+    mov ax, [yPosBlinky]
+    mov [old_YPOSBlinky], ax  ; Sauvegarde l'ancienne position Y
     ; Réinitialise le segment graphique
     mov ax, 0A000h
     mov es, ax
     ; Calcule l'adresse à l'écran où le sprite sera dessiné
-    mov ax, [yPos]
+    mov ax, [yPosBlinky]
     imul ax, 320       ; Multiplie yPos par la largeur de l'écran pour obtenir l'offset
-    add ax, [xPos]     ; Ajoute xPos à l'offset
+    add ax, [xPosBlinky]     ; Ajoute xPos à l'offset
     mov di, ax         ; DI = adresse de départ pour le dessin
     ; Obtient l'adresse du sprite à dessiner
     ; Définit la hauteur du sprite
