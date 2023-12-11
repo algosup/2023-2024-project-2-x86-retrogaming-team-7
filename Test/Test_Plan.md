@@ -72,7 +72,6 @@ In this phase, the main goal is to see if every aspect before development is cor
 >> |Movements of Pac-Man|1|Pull code from Github desktop and try the movements of Pac-Man on the map verify if there is no bugs on the screen (teleportation, system failure, sprite going off limits...)|Push the limits of the sprite to the limits of the screen|**<span style = color:Green>Completed</span>**|Pac-Man stays within the limits of the screen, in both formats of screen (Full screen & smaller screen)|Pac man stays within the screen and doesn't have any issue of teleportation.|The sprite of Pac-man tends to flicker as it moves around the screen.|**<span style = color:green>Fixed</span>**|
 >> |Movements of Pac-Man|2|Pull code from Github desktop and try the movements of Pac-Man on the map verify the controlability of the sprite. Use arrows on the keyboard to see if it's going the same direction as wanted|Chekc if the movements of Pac-man corresponds to the directions instructed by the keyboard arrows|**<span style = color:Green>Completed</span>**|Pac-Man moves in the direction wanted.| Pac man moves in the directed wanted on the screen with one press of the button(One click on the arrow key moves Pac-man to the end of the screen)| Direction works however when long pressed on one button Sprite disapears from screen!|**<span style = color:green>Fixed</span>**|
 >></details>
-
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 > Main menu|As the main menu is the first page that every user will land on, the tests are based on two  main ideas, functionality and visuals.|**<span style = color:Orange>Work in progress</span>**|The main menu should be fully functional with buttons that works and the user can navicate on the screen with the keys.|Everything is contralable however the visual doesn't meet the expectations|Still a lot of work has to be done|30 min
@@ -114,7 +113,6 @@ In this phase, the main goal is to see if every aspect before development is cor
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >> Score system|1|check the sprites display number|Check for pixel missing or any color problem|**<span style = color:Orange>Work in progress</span>**|No visible difference|...|...|N.A.
 >></details>
-
 > |Category|Description|Status|Expected result|Acutal result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >Maze|Make sure that the Maze is correct without any design flow.|Maze is correct that all the pixels are where they are supposed to be and that the overall is visually pleasing|**<span style = color:Orange>Work in progress</span>**|...|...|N.A.
@@ -132,13 +130,15 @@ The following tests will be made after that the final product is assembled togth
 
 >|Category|Description|Status|Expected result|Actual result|Comment|Time spent|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->|**Game test**|General check of playability & if the game respects all the criterias|||||||
+>|**Game test**|General check of playability & if the game respects all the criterias|**<span style = color:Orange>Work in progress</span>**|The final expectation of the final product is that the game is fully functional and that the user experience is pleasent. The full experience of the game should flow without any technical issues|...|...|...|
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
 >>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>
+>>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|--:|:--:|
+>>  |Visual|1|Check the visual aspect of the final product, main menu, settings menu, game etc.|Navigate throught out the game and look out for design flaws.|**<span style = color:Orange>Work in progress</span>**|No visual problem with the sprites or any other visual aspect of the final product.|...|...|...|
+>> Stress test (User experience)|1|The Tests consists of trying to overload the system with many information and look at the results|Selecting as many as functional button, continusly press on the select button...|**<span style = color:Orange>Work in progress</span>**|In the overall the User experience should be flawless and the user should not get bored or have to wait too long for a program to launch.|...|...|...
+>> CPU and Processor stress test|2|The goal of this test is to test the limits of the CPU and it's processor|Figure a way to overload the system to result into a system failure.|**<span style = color:Orange>Work in progress</span>**|In the code there should be no cracks for any system ovrload to happen, at least it should be prevented and the user should not encounter any system failure|...|...|...
 >></details>
 >---
 
@@ -154,9 +154,16 @@ The following tests will be made after that the final product is assembled togth
 >>  |Pac-Man|2|Press right|When game launched press right arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn right with sprite change with animation|...|...|...
 >>  |Pac-Man|3|Press up|When game launched press up arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn upwards with sprite change with animation|...|...|...
 >>  |Pac-Man|4|Press down|When game launched press down arrow button|**<span style = color:Orange>Work in progress</span>**|Pac-man should turn downwards with sprite change with animation|...|...|...
+>> Pac-Man|5|Press at the same time left and right keys|During the game play, press the left and right arrow simultainusly.|**<span style = color:Orange>Work in progress</span>**|No difference, or only one direction will be selected.|...|...|...
+>>
 >> Navigation|1|Press down|in main menu and other menu press down button|**<span style = color:Orange>Work in progress</span>**|The possibility to select a button changes to the one under or scrolls to the top one|...|...|...
 >> Navigation|2|Press up|in main menu and other menu press up button|**<span style = color:Orange>Work in progress</span>**|The possibility to select a button changes to the one on top or scrolls to the bottom one|...|...|...
->> Navigation|3|Press enter|in main menu and other menu press enter button|**<span style = color:Orange>Work in progress</span>**|Will allow the user to select the button that was selected|...|...|...
+>> Navigation|3|Press enter|in main menu and other screens (settings menu etc) menu press enter button|**<span style = color:Orange>Work in progress</span>**|Will allow the user to select the button that was selected|...|...|...
+>> Navigation stressed|4|Press at the same time left and right|In main menu press the left and right arrow simultainusly.|**<span style = color:Orange>Work in progress</span>**|No difference, or only one direction will be selected.|...|...|...
+>> Navigation stressed|5|Press at the same time up and down keys|In main menu and other screens (settings menu etc) press at the same time up and down button and observe the results.|**<span style = color:Orange>Work in progress</span>**|No difference, or only one direction will be selected.|...|...|...
+>>Navigation Stressed|6|Press an arrow key followed rapidly with the enter button| In main menu and other screens (settings menu etc) press and arrow key followed rapidly with the enter key and obeserve the results.|**<span style = color:Orange>Work in progress</span>**|The program should be able to follow the desires of the user and should be able to follow the speed of decision of the User.|...|...|...
+>> Navigation double press|7|Double press a key for instance arrows|In main menu double press the arrow keys and observe the results.|**<span style = color:Orange>Work in progress</span>**|There should be no particular errors in this test, the selction should be able to follow what the user wants to select.|...|...|...
+>>  Navigation double press|8|Double press a key for instance enter|In main menu double pess the enter button and observe the results|**<span style = color:Orange>Work in progress</span>**|There should be no particular errors in this test the selected button should be applied without any technical dificulties. |...|...|...
 >></details>
 >---
 
@@ -178,7 +185,7 @@ The following tests will be made after that the final product is assembled togth
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
->>  |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|Time spent|
+>>  |Process|Test number|Test|Description|Status|Expected|result|Actual result|Comment|Time spent|
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>
 >></details>
