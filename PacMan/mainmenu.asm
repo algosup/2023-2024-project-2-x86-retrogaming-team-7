@@ -138,7 +138,7 @@ display_arrow_menu:
 
         .equal_arrow:
             cmp cl, 9
-            je playChoice
+            je play_Choice
             cmp cl, 11
             je settings_menu
             cmp cl, 13
@@ -409,12 +409,6 @@ done:
     mov ax, 03h
     int 20h
     int 21h
-
-
-
-
-
-
 
 
 
