@@ -63,12 +63,20 @@ start_game:
 gameloop:
      call clearSprite
      call draw_sprite
+
      call clearGhostB
      call draw_blinky
+
+     call clearGhostI
+     call draw_inky
+
+     call clearGhostC
+     call draw_clyde
+
+     call clearGhostP
+     call draw_pinky
+
      call direction_ghost
-     ; call draw_inky
-     ; call draw_clyde
-     ; call draw_pinky
      call read_character_key_was_pressed
      mov cx, 64000
 
