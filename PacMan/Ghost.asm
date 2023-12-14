@@ -3,10 +3,10 @@
 
 section .data
 
-xPosBlinky dw 144
+xPosBlinky dw 143
 xPosInky dw 152
-xPosClyde dw 160
-xPosPinky dw 168
+xPosClyde dw 161
+xPosPinky dw 170
 
 yPosBlinky dw 96
 yPosInky dw 96
@@ -136,6 +136,12 @@ clearGhostP:
         add di, 320 - SPRITEW  ; Adjust DI to the start of the next line
         loop .clear_line
         ret       ; Repeat for each line of the sprite
+
+
+
+
+
+        
 ; ==================================================
 ;               BLINKY MOVEMENTS
 ; ==================================================
@@ -179,9 +185,6 @@ continue_movementB:
     cmp al, 50h
     je move_downB
     ret
-   
-        
-    
 
 ; ==================================================
 ;               BLINKY ANIMATIONS
@@ -271,6 +274,10 @@ blinky_down:
         mov si, [currentSpriteBlinky]
         ret
 
+
+
+
+
 ; ==================================================
 ;               INKY MOVEMENTS
 ; ==================================================
@@ -314,7 +321,6 @@ continue_movementI:
     cmp al, 50h
     je move_downI
     ret
-    
     
 ; ; ==================================================
 ; ;               INKY ANIMATIONS
@@ -404,6 +410,10 @@ inky_down:
         mov si, [currentSpriteInky]
         ret
 
+
+
+
+
 ; ; ==================================================
 ; ;                CLYDE MOVEMENTS  
 ; ; ==================================================
@@ -456,9 +466,9 @@ clyde_right:
     cmp word [currentSpriteClyde], clyde_right_1
     je .clydeRightSemiOpen
     cmp word [currentSpriteClyde], clyde_right_2
-    je .clydeRightOpen
-    cmp word [currentSpriteClyde], clyde_right_3
     je .clydeRightClose
+    cmp word [currentSpriteClyde], clyde_right_3
+    je .clydeRightOpen
 
     .clydeRightOpen:
        mov word [currentSpriteClyde], clyde_right_1
@@ -535,7 +545,11 @@ clyde_down:
         mov word [currentSpriteClyde], clyde_down_3
         mov si, [currentSpriteClyde]
         ret
-        
+
+
+
+
+
 ; ; ==================================================
 ; ;                PINKY MOVEMENTS
 ; ; ==================================================
@@ -579,7 +593,6 @@ continue_movementP:
     cmp al, 50h
     je move_downP
     ret
-    
 
 ; ==================================================
 ;               PINKY ANIMATIONS
