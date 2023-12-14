@@ -1,13 +1,6 @@
 
 
-[map all pacman.map]
 
-%define SCREEN_WIDTH 320
-%define SCREEN_HEIGHT 200
-
-
-%define SPRITEW 8
-%define SPRITEH 8
 section .data
 
 xPosBlinky dw 144
@@ -47,26 +40,6 @@ actualCDirection dw 0
 actualPDirection dw 0
 
 section .text
-startG:
-    ; Initialize video mode
-    mov ah, 00h
-    mov al, 13h
-    int 10h
-    ; main gameloop
-
-    gameloopG:
-    call direction_ghost
-
-    ; Delay to slow down the animation
-    mov cx, 64000
-    waitloopG:
-        loop waitloopG
-    jmp gameloopG
-    ; End game back to text mode
-    mov ax, 03h
-    int 10h
-    mov ax, 4C00h
-    int 21h
 
 ; Label for read the pressed key
 direction_ghost:
@@ -74,13 +47,13 @@ direction_ghost:
     ; need to set the random behavior for the ghosts    
     ; ----------------------------------------------
 
-    call continue_movementB ; If no key pressed, continue current movement
-    call continue_movementI ; If no key pressed, continue current movement
-    call continue_movementC ; If no key pressed, continue current movement
-    call continue_movementP ; If no key pressed, continue current movement
+    jmp continue_movementB ; If no key pressed, continue current movement
+    ; call continue_movementI ; If no key pressed, continue current movement
+    ; call continue_movementC ; If no key pressed, continue current movement
+    ; call continue_movementP ; If no key pressed, continue current movement
 
 
-clearGhost:
+clearGhostB:
     ; Set up the graphics segment
     mov ax, 0A000h
     mov es, ax
@@ -100,77 +73,57 @@ clearGhost:
     rep stosb              ; Clear pixels with background color
     pop cx                 ; Restore CX for the next line
     add di, 320 - SPRITEW  ; Adjust DI to the start of the next line
-    loop .clear_line       ; Repeat for each line of the sprite
-    ret
+    loop .clear_line
+    ret       ; Repeat for each line of the sprite
+    
     
 ; ==================================================
 ;               BLINKY MOVEMENTS
 ; ==================================================
 
 move_rightB:
-    call blinky_right
     mov bx, [xPosBlinky]
     add bx, 1
-    cmp bx, SCREEN_WIDTH - SPRITEW 
-    jae .skip_move_right
+    call blinky_right
     mov [xPosBlinky], bx
-.skip_move_right:
     ret
+
 
 move_leftB:
-    call blinky_left
     mov bx, [xPosBlinky]
     sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_left
+    call blinky_left
     mov [xPosBlinky], bx
-.skip_move_left:
     ret
-
 move_upB:
-    call blinky_up
     mov bx, [yPosBlinky]
     sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_up
+    call blinky_up
     mov [yPosBlinky], bx
-.skip_move_up:
-    ret
+
 
 move_downB:
-    call blinky_down
     mov bx, [yPosBlinky]
     add bx, 1
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
-    jae .skip_move_down
+    call blinky_down
     mov [yPosBlinky], bx
-.skip_move_down:
-    ret
+
 
 continue_movementB:
+    mov bl, 5
+    mov [actualBDirection], bl
     mov al, [actualBDirection]
     cmp al, 4Dh
-    je .move_right
-    cmp al, 4Bh
-    je .move_left
+    je move_rightB
+    cmp al, 5
+    je move_leftB
     cmp al, 48h
-    je .move_up
+    je move_upB
     cmp al, 50h
-    je .move_down
-    ret
-    .move_right:
-        call move_rightB
-        ret
-    .move_left:
-        call move_leftB
-        ret
-    .move_up:
-        call move_upB
-        ret
-    .move_down:
-        call move_downB
-        ret
-    ret
+    je move_downB
+   
+        
+    
 
 ; ==================================================
 ;               BLINKY ANIMATIONS
@@ -264,477 +217,477 @@ blinky_down:
 ;               INKY MOVEMENTS
 ; ==================================================
 
-move_rightI:
-    call inky_right
-    mov bx, [xPosInky]
-    add bx, 1
-    cmp bx, SCREEN_WIDTH - SPRITEW 
-    jae .skip_move_right
-    mov [xPosInky], bx
-.skip_move_right:
-    ret
+; move_rightI:
+;     call inky_right
+;     mov bx, [xPosInky]
+;     add bx, 1
+;     cmp bx, SCREEN_WIDTH - SPRITEW 
+;     jae .skip_move_right
+;     mov [xPosInky], bx
+; .skip_move_right:
+;     ret
 
-move_leftI:
-    call inky_left
-    mov bx, [xPosInky]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_left
-    mov [xPosInky], bx
-.skip_move_left:
-    ret
+; move_leftI:
+;     call inky_left
+;     mov bx, [xPosInky]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_left
+;     mov [xPosInky], bx
+; .skip_move_left:
+;     ret
 
-move_upI:
-    call inky_up
-    mov bx, [yPosInky]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_up
-    mov [yPosInky], bx
-.skip_move_up:
-    ret
+; move_upI:
+;     call inky_up
+;     mov bx, [yPosInky]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_up
+;     mov [yPosInky], bx
+; .skip_move_up:
+;     ret
 
-move_downI:
-    call inky_down
-    mov bx, [yPosInky]
-    add bx, 1
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
-    jae .skip_move_down
-    mov [yPosInky], bx
-.skip_move_down:
-    ret
+; move_downI:
+;     call inky_down
+;     mov bx, [yPosInky]
+;     add bx, 1
+;     cmp bx, SCREEN_HEIGHT - SPRITEH 
+;     jae .skip_move_down
+;     mov [yPosInky], bx
+; .skip_move_down:
+;     ret
 
-continue_movementI:
-    mov al, [actualIDirection]
-    cmp al, 4Dh
-    je .move_right
-    cmp al, 4Bh
-    je .move_left
-    cmp al, 48h
-    je .move_up
-    cmp al, 50h
-    je .move_down
-    ret
-    .move_right:
-        call move_rightI
-        ret
-    .move_left:
-        call move_leftI
-        ret
-    .move_up:
-        call move_upI
-        ret
-    .move_down:
-        call move_downI
-        ret
-    ret
+; continue_movementI:
+;     mov al, [actualIDirection]
+;     cmp al, 4Dh
+;     je .move_right
+;     cmp al, 4Bh
+;     je .move_left
+;     cmp al, 48h
+;     je .move_up
+;     cmp al, 50h
+;     je .move_down
+;     ret
+;     .move_right:
+;         call move_rightI
+;         ret
+;     .move_left:
+;         call move_leftI
+;         ret
+;     .move_up:
+;         call move_upI
+;         ret
+;     .move_down:
+;         call move_downI
+;         ret
+;     ret
     
-; ==================================================
-;               INKY ANIMATIONS
-; ==================================================
+; ; ==================================================
+; ;               INKY ANIMATIONS
+; ; ==================================================
 
-inky_right:
-    cmp word [currentSpriteInky], inky_right_1
-    je .inkyRightSemiOpen
-    cmp word [currentSpriteInky], inky_right_2
-    je .inkyRightOpen
-    cmp word [currentSpriteInky], inky_right_3
-    je .inkyRightClose
+; inky_right:
+;     cmp word [currentSpriteInky], inky_right_1
+;     je .inkyRightSemiOpen
+;     cmp word [currentSpriteInky], inky_right_2
+;     je .inkyRightOpen
+;     cmp word [currentSpriteInky], inky_right_3
+;     je .inkyRightClose
 
-    .inkyRightOpen:
-       mov word [currentSpriteInky], inky_right_1
-       mov si, [currentSpriteInky]
-       ret
-    .inkyRightSemiOpen:
-        mov word [currentSpriteInky], inky_right_2
-        mov si, [currentSpriteInky]
-        ret
-    .inkyRightClose:
-        mov word [currentSpriteInky], inky_right_3
-        mov si, [currentSpriteInky]
-        ret
+;     .inkyRightOpen:
+;        mov word [currentSpriteInky], inky_right_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .inkyRightSemiOpen:
+;         mov word [currentSpriteInky], inky_right_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .inkyRightClose:
+;         mov word [currentSpriteInky], inky_right_3
+;         mov si, [currentSpriteInky]
+;         ret
 
-inky_left:
-    cmp word [currentSpriteInky], inky_left_1
-    je .inkyLeftSemiOpen
-    cmp word [currentSpriteInky], inky_left_2
-    je .inkyLeftClose
-    cmp word [currentSpriteInky], inky_left_3
-    je .inkyLeftOpen
+; inky_left:
+;     cmp word [currentSpriteInky], inky_left_1
+;     je .inkyLeftSemiOpen
+;     cmp word [currentSpriteInky], inky_left_2
+;     je .inkyLeftClose
+;     cmp word [currentSpriteInky], inky_left_3
+;     je .inkyLeftOpen
 
-    .inkyLeftOpen:
-       mov word [currentSpriteInky], inky_left_1
-       mov si, [currentSpriteInky]
-       ret
-    .inkyLeftSemiOpen:
-        mov word [currentSpriteInky], inky_left_2
-        mov si, [currentSpriteInky]
-        ret
-    .inkyLeftClose:
-        mov word [currentSpriteInky], inky_left_3
-        mov si, [currentSpriteInky]
-        ret
+;     .inkyLeftOpen:
+;        mov word [currentSpriteInky], inky_left_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .inkyLeftSemiOpen:
+;         mov word [currentSpriteInky], inky_left_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .inkyLeftClose:
+;         mov word [currentSpriteInky], inky_left_3
+;         mov si, [currentSpriteInky]
+;         ret
 
-inky_up:
-    cmp word [currentSpriteInky], inky_up_1
-    je .inkyUpSemiOpen
-    cmp word [currentSpriteInky], inky_up_2
-    je .inkyUpClose
-    cmp word [currentSpriteInky], inky_up_3
-    je .inkyUpOpen
+; inky_up:
+;     cmp word [currentSpriteInky], inky_up_1
+;     je .inkyUpSemiOpen
+;     cmp word [currentSpriteInky], inky_up_2
+;     je .inkyUpClose
+;     cmp word [currentSpriteInky], inky_up_3
+;     je .inkyUpOpen
 
-    .inkyUpOpen:
-       mov word [currentSpriteInky], inky_up_1
-       mov si, [currentSpriteInky]
-       ret
-    .inkyUpSemiOpen:
-        mov word [currentSpriteInky], inky_up_2
-        mov si, [currentSpriteInky]
-        ret
-    .inkyUpClose:
-        mov word [currentSpriteInky], inky_up_3
-        mov si, [currentSpriteInky]
-        ret
+;     .inkyUpOpen:
+;        mov word [currentSpriteInky], inky_up_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .inkyUpSemiOpen:
+;         mov word [currentSpriteInky], inky_up_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .inkyUpClose:
+;         mov word [currentSpriteInky], inky_up_3
+;         mov si, [currentSpriteInky]
+;         ret
         
-inky_down:
-    cmp word [currentSpriteInky], inky_down_1
-    je .inkyDownSemiOpen
-    cmp word [currentSpriteInky], inky_down_2
-    je .inkyDownClose
-    cmp word [currentSpriteInky], inky_down_3
-    je .inkyDownOpen
+; inky_down:
+;     cmp word [currentSpriteInky], inky_down_1
+;     je .inkyDownSemiOpen
+;     cmp word [currentSpriteInky], inky_down_2
+;     je .inkyDownClose
+;     cmp word [currentSpriteInky], inky_down_3
+;     je .inkyDownOpen
 
-    .inkyDownOpen:
-       mov word [currentSpriteInky], inky_down_1
-       mov si, [currentSpriteInky]
-       ret
-    .inkyDownSemiOpen:
-        mov word [currentSpriteInky], inky_down_2
-        mov si, [currentSpriteInky]
-        ret
-    .inkyDownClose:
-        mov word [currentSpriteInky], inky_down_3
-        mov si, [currentSpriteInky]
-        ret
+;     .inkyDownOpen:
+;        mov word [currentSpriteInky], inky_down_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .inkyDownSemiOpen:
+;         mov word [currentSpriteInky], inky_down_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .inkyDownClose:
+;         mov word [currentSpriteInky], inky_down_3
+;         mov si, [currentSpriteInky]
+;         ret
 
-; ==================================================
-;                CLYDE MOVEMENTS  
-; ==================================================
+; ; ==================================================
+; ;                CLYDE MOVEMENTS  
+; ; ==================================================
 
-move_rightC:
-    call inky_right
-    mov bx, [xPosClyde]
-    add bx, 1
-    cmp bx, SCREEN_WIDTH - SPRITEW 
-    jae .skip_move_right
-    mov [xPosClyde], bx
-.skip_move_right:
-    ret
+; move_rightC:
+;     call inky_right
+;     mov bx, [xPosClyde]
+;     add bx, 1
+;     cmp bx, SCREEN_WIDTH - SPRITEW 
+;     jae .skip_move_right
+;     mov [xPosClyde], bx
+; .skip_move_right:
+;     ret
 
-move_leftC:
-    call inky_left
-    mov bx, [xPosClyde]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_left
-    mov [xPosClyde], bx
-.skip_move_left:
-    ret
+; move_leftC:
+;     call inky_left
+;     mov bx, [xPosClyde]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_left
+;     mov [xPosClyde], bx
+; .skip_move_left:
+;     ret
 
-move_upC:
-    call inky_up
-    mov bx, [yPosClyde]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_up
-    mov [yPosClyde], bx
-.skip_move_up:
-    ret
+; move_upC:
+;     call inky_up
+;     mov bx, [yPosClyde]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_up
+;     mov [yPosClyde], bx
+; .skip_move_up:
+;     ret
 
-move_downC:
-    call inky_down
-    mov bx, [yPosClyde]
-    add bx, 1
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
-    jae .skip_move_down
-    mov [yPosClyde], bx
-.skip_move_down:
-    ret
+; move_downC:
+;     call inky_down
+;     mov bx, [yPosClyde]
+;     add bx, 1
+;     cmp bx, SCREEN_HEIGHT - SPRITEH 
+;     jae .skip_move_down
+;     mov [yPosClyde], bx
+; .skip_move_down:
+;     ret
 
-continue_movementC:
-    mov al, [actualCDirection]
-    cmp al, 4Dh
-    je .move_right
-    cmp al, 4Bh
-    je .move_left
-    cmp al, 48h
-    je .move_up
-    cmp al, 50h
-    je .move_down
-    ret
-    .move_right:
-        call move_rightC
-        ret
-    .move_left:
-        call move_leftC
-        ret
-    .move_up:
-        call move_upC
-        ret
-    .move_down:
-        call move_downC
-        ret
-    ret
-; ==================================================
-;                CLYDE ANIMATIONS  
-; ==================================================
+; continue_movementC:
+;     mov al, [actualCDirection]
+;     cmp al, 4Dh
+;     je .move_right
+;     cmp al, 4Bh
+;     je .move_left
+;     cmp al, 48h
+;     je .move_up
+;     cmp al, 50h
+;     je .move_down
+;     ret
+;     .move_right:
+;         call move_rightC
+;         ret
+;     .move_left:
+;         call move_leftC
+;         ret
+;     .move_up:
+;         call move_upC
+;         ret
+;     .move_down:
+;         call move_downC
+;         ret
+;     ret
+; ; ==================================================
+; ;                CLYDE ANIMATIONS  
+; ; ==================================================
 
-clyde_right:
-    cmp word [currentSpriteInky], clyde_right_1
-    je .clydeRightSemiOpen
-    cmp word [currentSpriteInky], clyde_right_2
-    je .clydeRightOpen
-    cmp word [currentSpriteInky], clyde_right_3
-    je .clydeRightClose
+; clyde_right:
+;     cmp word [currentSpriteInky], clyde_right_1
+;     je .clydeRightSemiOpen
+;     cmp word [currentSpriteInky], clyde_right_2
+;     je .clydeRightOpen
+;     cmp word [currentSpriteInky], clyde_right_3
+;     je .clydeRightClose
 
-    .clydeRightOpen:
-       mov word [currentSpriteInky], clyde_right_1
-       mov si, [currentSpriteInky]
-       ret
-    .clydeRightSemiOpen:
-        mov word [currentSpriteInky], clyde_right_2
-        mov si, [currentSpriteInky]
-        ret
-    .clydeRightClose:
-        mov word [currentSpriteInky], clyde_right_3
-        mov si, [currentSpriteInky]
-        ret
+;     .clydeRightOpen:
+;        mov word [currentSpriteInky], clyde_right_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .clydeRightSemiOpen:
+;         mov word [currentSpriteInky], clyde_right_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .clydeRightClose:
+;         mov word [currentSpriteInky], clyde_right_3
+;         mov si, [currentSpriteInky]
+;         ret
 
-clyde_left:
-    cmp word [currentSpriteInky], clyde_left_1
-    je .clydeLeftSemiOpen
-    cmp word [currentSpriteInky], clyde_left_2
-    je .clydeLeftClose
-    cmp word [currentSpriteInky], clyde_left_3
-    je .clydeLeftOpen
+; clyde_left:
+;     cmp word [currentSpriteInky], clyde_left_1
+;     je .clydeLeftSemiOpen
+;     cmp word [currentSpriteInky], clyde_left_2
+;     je .clydeLeftClose
+;     cmp word [currentSpriteInky], clyde_left_3
+;     je .clydeLeftOpen
 
-    .clydeLeftOpen:
-       mov word [currentSpriteInky], clyde_left_1
-       mov si, [currentSpriteInky]
-       ret
-    .clydeLeftSemiOpen:
-        mov word [currentSpriteInky], clyde_left_2
-        mov si, [currentSpriteInky]
-        ret
-    .clydeLeftClose:
-        mov word [currentSpriteInky], clyde_left_3
-        mov si, [currentSpriteInky]
-        ret
+;     .clydeLeftOpen:
+;        mov word [currentSpriteInky], clyde_left_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .clydeLeftSemiOpen:
+;         mov word [currentSpriteInky], clyde_left_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .clydeLeftClose:
+;         mov word [currentSpriteInky], clyde_left_3
+;         mov si, [currentSpriteInky]
+;         ret
 
-clyde_up:
-    cmp word [currentSpriteInky], clyde_up_1
-    je .clydeUpSemiOpen
-    cmp word [currentSpriteInky], clyde_up_2
-    je .clydeUpClose
-    cmp word [currentSpriteInky], clyde_up_3
-    je .clydeUpOpen
+; clyde_up:
+;     cmp word [currentSpriteInky], clyde_up_1
+;     je .clydeUpSemiOpen
+;     cmp word [currentSpriteInky], clyde_up_2
+;     je .clydeUpClose
+;     cmp word [currentSpriteInky], clyde_up_3
+;     je .clydeUpOpen
 
-    .clydeUpOpen:
-       mov word [currentSpriteInky], clyde_up_1
-       mov si, [currentSpriteInky]
-       ret
-    .clydeUpSemiOpen:
-        mov word [currentSpriteInky], clyde_up_2
-        mov si, [currentSpriteInky]
-        ret
-    .clydeUpClose:
-        mov word [currentSpriteInky], clyde_up_3
-        mov si, [currentSpriteInky]
-        ret
+;     .clydeUpOpen:
+;        mov word [currentSpriteInky], clyde_up_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .clydeUpSemiOpen:
+;         mov word [currentSpriteInky], clyde_up_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .clydeUpClose:
+;         mov word [currentSpriteInky], clyde_up_3
+;         mov si, [currentSpriteInky]
+;         ret
         
-clyde_down:
-    cmp word [currentSpriteInky], clyde_down_1
-    je .clydeDownSemiOpen
-    cmp word [currentSpriteInky], clyde_down_2
-    je .clydeDownClose
-    cmp word [currentSpriteInky], clyde_down_3
-    je .clydeDownOpen
+; clyde_down:
+;     cmp word [currentSpriteInky], clyde_down_1
+;     je .clydeDownSemiOpen
+;     cmp word [currentSpriteInky], clyde_down_2
+;     je .clydeDownClose
+;     cmp word [currentSpriteInky], clyde_down_3
+;     je .clydeDownOpen
 
-    .clydeDownOpen:
-       mov word [currentSpriteInky], clyde_down_1
-       mov si, [currentSpriteInky]
-       ret
-    .clydeDownSemiOpen:
-        mov word [currentSpriteInky], clyde_down_2
-        mov si, [currentSpriteInky]
-        ret
-    .clydeDownClose:
-        mov word [currentSpriteInky], clyde_down_3
-        mov si, [currentSpriteInky]
-        ret
+;     .clydeDownOpen:
+;        mov word [currentSpriteInky], clyde_down_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .clydeDownSemiOpen:
+;         mov word [currentSpriteInky], clyde_down_2
+;         mov si, [currentSpriteInky]
+;         ret
+;     .clydeDownClose:
+;         mov word [currentSpriteInky], clyde_down_3
+;         mov si, [currentSpriteInky]
+;         ret
         
-; ==================================================
-;                PINKY MOVEMENTS
-; ==================================================
+; ; ==================================================
+; ;                PINKY MOVEMENTS
+; ; ==================================================
 
-move_rightP:
-    call pinky_right
-    mov bx, [xPosBlinky]
-    add bx, 1
-    cmp bx, SCREEN_WIDTH - SPRITEW 
-    jae .skip_move_right
-    mov [xPosPinky], bx
-.skip_move_right:
-    ret
+; move_rightP:
+;     call pinky_right
+;     mov bx, [xPosBlinky]
+;     add bx, 1
+;     cmp bx, SCREEN_WIDTH - SPRITEW 
+;     jae .skip_move_right
+;     mov [xPosPinky], bx
+; .skip_move_right:
+;     ret
 
-move_leftP:
-    call pinky_left
-    mov bx, [xPosPinky]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_left
-    mov [xPosPinky], bx
-.skip_move_left:
-    ret
+; move_leftP:
+;     call pinky_left
+;     mov bx, [xPosPinky]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_left
+;     mov [xPosPinky], bx
+; .skip_move_left:
+;     ret
 
-move_upP:
-    call pinky_up
-    mov bx, [yPosPinky]
-    sub bx, 1
-    cmp bx, 0
-    jbe .skip_move_up
-    mov [yPosPinky], bx
-.skip_move_up:
-    ret
+; move_upP:
+;     call pinky_up
+;     mov bx, [yPosPinky]
+;     sub bx, 1
+;     cmp bx, 0
+;     jbe .skip_move_up
+;     mov [yPosPinky], bx
+; .skip_move_up:
+;     ret
 
-move_downP:
-    call pinky_down
-    mov bx, [yPosPinky]
-    add bx, 1
-    cmp bx, SCREEN_HEIGHT - SPRITEH 
-    jae .skip_move_down
-    mov [yPosPinky], bx
-.skip_move_down:
-    ret
+; move_downP:
+;     call pinky_down
+;     mov bx, [yPosPinky]
+;     add bx, 1
+;     cmp bx, SCREEN_HEIGHT - SPRITEH 
+;     jae .skip_move_down
+;     mov [yPosPinky], bx
+; .skip_move_down:
+;     ret
 
-continue_movementP:
-    mov al, [actualPDirection]
-    cmp al, 4Dh
-    je .move_right
-    cmp al, 4Bh
-    je .move_left
-    cmp al, 48h
-    je .move_up
-    cmp al, 50h
-    je .move_down
-    ret
-    .move_right:
-        call move_rightP
-        ret
-    .move_left:
-        call move_leftP
-        ret
-    .move_up:
-        call move_upP
-        ret
-    .move_down:
-        call move_downP
-        ret
-    ret
+; continue_movementP:
+;     mov al, [actualPDirection]
+;     cmp al, 4Dh
+;     je .move_right
+;     cmp al, 4Bh
+;     je .move_left
+;     cmp al, 48h
+;     je .move_up
+;     cmp al, 50h
+;     je .move_down
+;     ret
+;     .move_right:
+;         call move_rightP
+;         ret
+;     .move_left:
+;         call move_leftP
+;         ret
+;     .move_up:
+;         call move_upP
+;         ret
+;     .move_down:
+;         call move_downP
+;         ret
+;     ret
 
-; ==================================================
-;               PINKY ANIMATIONS
-; ==================================================
+; ; ==================================================
+; ;               PINKY ANIMATIONS
+; ; ==================================================
 
-pinky_right:
-    cmp word [currentSpritePinky], pinky_right_1
-    je .pinkyRightSemiOpen
-    cmp word [currentSpritePinky], pinky_right_2
-    je .pinkyRightOpen
-    cmp word [currentSpriteInky], pinky_right_3
-    je .pinkyRightClose
+; pinky_right:
+;     cmp word [currentSpritePinky], pinky_right_1
+;     je .pinkyRightSemiOpen
+;     cmp word [currentSpritePinky], pinky_right_2
+;     je .pinkyRightOpen
+;     cmp word [currentSpriteInky], pinky_right_3
+;     je .pinkyRightClose
 
-    .pinkyRightOpen:
-       mov word [currentSpritePinky], pinky_right_1
-       mov si, [currentSpritePinky]
-       ret
-    .pinkyRightSemiOpen:
-        mov word [currentSpritePinky], pinky_right_2
-        mov si, [currentSpritePinky]
-        ret
-    .pinkyRightClose:
-        mov word [currentSpritePinky], pinky_right_3
-        mov si, [currentSpritePinky]
-        ret
+;     .pinkyRightOpen:
+;        mov word [currentSpritePinky], pinky_right_1
+;        mov si, [currentSpritePinky]
+;        ret
+;     .pinkyRightSemiOpen:
+;         mov word [currentSpritePinky], pinky_right_2
+;         mov si, [currentSpritePinky]
+;         ret
+;     .pinkyRightClose:
+;         mov word [currentSpritePinky], pinky_right_3
+;         mov si, [currentSpritePinky]
+;         ret
 
-pinky_left:
-    cmp word [currentSpritePinky], pinky_left_1
-    je .pinkyLeftSemiOpen
-    cmp word [currentSpritePinky], pinky_left_2
-    je .pinkyLeftClose
-    cmp word [currentSpritePinky], pinky_left_3
-    je .pinkyLeftOpen
+; pinky_left:
+;     cmp word [currentSpritePinky], pinky_left_1
+;     je .pinkyLeftSemiOpen
+;     cmp word [currentSpritePinky], pinky_left_2
+;     je .pinkyLeftClose
+;     cmp word [currentSpritePinky], pinky_left_3
+;     je .pinkyLeftOpen
 
-    .pinkyLeftOpen:
-       mov word [currentSpritePinky], pinky_left_1
-       mov si, [currentSpritePinky]
-       ret
-    .pinkyLeftSemiOpen:
-        mov word [currentSpritePinky], pinky_left_2
-        mov si, [currentSpritePinky]
-        ret
-    .pinkyLeftClose:
-        mov word [currentSpritePinky], pinky_left_3
-        mov si, [currentSpritePinky]
-        ret
+;     .pinkyLeftOpen:
+;        mov word [currentSpritePinky], pinky_left_1
+;        mov si, [currentSpritePinky]
+;        ret
+;     .pinkyLeftSemiOpen:
+;         mov word [currentSpritePinky], pinky_left_2
+;         mov si, [currentSpritePinky]
+;         ret
+;     .pinkyLeftClose:
+;         mov word [currentSpritePinky], pinky_left_3
+;         mov si, [currentSpritePinky]
+;         ret
 
-pinky_up:
-    cmp word [currentSpritePinky], pinky_up_1
-    je .pinkyUpSemiOpen
-    cmp word [currentSpritePinky], pinky_up_2
-    je .pinkyUpClose
-    cmp word [currentSpritePinky], pinky_up_3
-    je .pinkyUpOpen
+; pinky_up:
+;     cmp word [currentSpritePinky], pinky_up_1
+;     je .pinkyUpSemiOpen
+;     cmp word [currentSpritePinky], pinky_up_2
+;     je .pinkyUpClose
+;     cmp word [currentSpritePinky], pinky_up_3
+;     je .pinkyUpOpen
 
-    .pinkyUpOpen:
-       mov word [currentSpritePinky], pinky_up_1
-       mov si, [currentSpriteInky]
-       ret
-    .pinkyUpSemiOpen:
-        mov word [currentSpritePinky], pinky_up_2
-        mov si, [currentSpritePinky]
-        ret
-    .pinkyUpClose:
-        mov word [currentSpritePinky], pinky_up_3
-        mov si, [currentSpritePinky]
-        ret
+;     .pinkyUpOpen:
+;        mov word [currentSpritePinky], pinky_up_1
+;        mov si, [currentSpriteInky]
+;        ret
+;     .pinkyUpSemiOpen:
+;         mov word [currentSpritePinky], pinky_up_2
+;         mov si, [currentSpritePinky]
+;         ret
+;     .pinkyUpClose:
+;         mov word [currentSpritePinky], pinky_up_3
+;         mov si, [currentSpritePinky]
+;         ret
         
-pinky_down:
-    cmp word [currentSpritePinky], pinky_down_1
-    je .pinkyDownSemiOpen
-    cmp word [currentSpritePinky], pinky_down_2
-    je .pinkyDownClose
-    cmp word [currentSpritePinky], pinky_down_3
-    je .pinkyDownOpen
+; pinky_down:
+;     cmp word [currentSpritePinky], pinky_down_1
+;     je .pinkyDownSemiOpen
+;     cmp word [currentSpritePinky], pinky_down_2
+;     je .pinkyDownClose
+;     cmp word [currentSpritePinky], pinky_down_3
+;     je .pinkyDownOpen
 
-    .pinkyDownOpen:
-       mov word [currentSpritePinky], pinky_down_1
-       mov si, [currentSpritePinky]
-       ret
-    .pinkyDownSemiOpen:
-        mov word [currentSpritePinky], pinky_down_2
-        mov si, [currentSpritePinky]
-        ret
-    .pinkyDownClose:
-        mov word [currentSpritePinky], pinky_down_3
-        mov si, [currentSpritePinky]
-        ret
+;     .pinkyDownOpen:
+;        mov word [currentSpritePinky], pinky_down_1
+;        mov si, [currentSpritePinky]
+;        ret
+;     .pinkyDownSemiOpen:
+;         mov word [currentSpritePinky], pinky_down_2
+;         mov si, [currentSpritePinky]
+;         ret
+;     .pinkyDownClose:
+;         mov word [currentSpritePinky], pinky_down_3
+;         mov si, [currentSpritePinky]
+;         ret
         
-; ==================================================
-;                DRAW GHOSTS
-; ==================================================
+; ; ==================================================
+; ;                DRAW GHOSTS
+; ; ==================================================
 
-; Label to erase the screen
+; ; Label to erase the screen
 draw_blinky:
     mov si, [currentSpriteBlinky]
     ; Before draw the sprite, save the current position
@@ -762,85 +715,85 @@ draw_blinky:
     loop .draw_line  ; Repeat the draw for each sprite's rows
     ret
 
-draw_inky:
-    mov si, [currentSpriteInky]
-    ; Before draw the sprite, save the current position
-    mov ax, [xPosInky]
-    mov [old_XPOSInky], ax  ;Save the old position of X
-    mov ax, [yPosInky]
-    mov [old_YPOSInky], ax  ;Save the old position of Y
-    ; Reset the graphic segment
-    mov ax, 0A000h
-    mov es, ax
-    ; Cacul the addresse to the screen where the sprite will be draw
-    mov ax, [yPosInky]
-    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
-    add ax, [xPosInky]     ; Add xPos to the offset
-    mov di, ax         ; DI = address for the draw
-    ; Get the addresses's sprite to draw
-    mov cx, SPRITEH     ; Define the sprite's height
-.draw_line:
-    push cx     ; Save CX else modify by rep
-    mov cx, SPRITEW     ; Define the width for the current row
-    rep movsb  ; Print the sprite's row
-    pop cx  ; Restore CX for the next sprite's row
-    ; Adjust DI for the next rows and take in account the width offset
-    add di, 320 - SPRITEW
-    loop .draw_line  ; Repeat the draw for each sprite's rows
-    ret
+; draw_inky:
+;     mov si, [currentSpriteInky]
+;     ; Before draw the sprite, save the current position
+;     mov ax, [xPosInky]
+;     mov [old_XPOSInky], ax  ;Save the old position of X
+;     mov ax, [yPosInky]
+;     mov [old_YPOSInky], ax  ;Save the old position of Y
+;     ; Reset the graphic segment
+;     mov ax, 0A000h
+;     mov es, ax
+;     ; Cacul the addresse to the screen where the sprite will be draw
+;     mov ax, [yPosInky]
+;     imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+;     add ax, [xPosInky]     ; Add xPos to the offset
+;     mov di, ax         ; DI = address for the draw
+;     ; Get the addresses's sprite to draw
+;     mov cx, SPRITEH     ; Define the sprite's height
+; .draw_line:
+;     push cx     ; Save CX else modify by rep
+;     mov cx, SPRITEW     ; Define the width for the current row
+;     rep movsb  ; Print the sprite's row
+;     pop cx  ; Restore CX for the next sprite's row
+;     ; Adjust DI for the next rows and take in account the width offset
+;     add di, 320 - SPRITEW
+;     loop .draw_line  ; Repeat the draw for each sprite's rows
+;     ret
     
-draw_clyde:
-    mov si, [currentSpriteClyde]
-    ; Before draw the sprite, save the current position
-    mov ax, [xPosClyde]
-    mov [old_XPOSClyde], ax  ;Save the old position of X
-    mov ax, [yPosClyde]
-    mov [old_YPOSClyde], ax  ;Save the old position of Y
-    ; Reset the graphic segment
-    mov ax, 0A000h
-    mov es, ax
-    ; Cacul the address to the screen where the sprite will be draw
-    mov ax, [yPosClyde]
-    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
-    add ax, [xPosClyde]     ; Add xPos to the offset
-    mov di, ax         ; DI = address for the draw
-    ; Get the addresses's sprite to draw
-    mov cx, SPRITEH     ; Define the sprite's height
-.draw_line:
-    push cx     ; Save CX else modify by rep
-    mov cx, SPRITEW     ; Define the width for the current row
-    rep movsb  ; Print the sprite's row
-    pop cx  ; Restore CX for the next sprite's row
-    ; Adjust DI for the next rows and take in account the width offset
-    add di, 320 - SPRITEW
-    loop .draw_line  ; Repeat the draw for each sprite's rows
-    ret
+; draw_clyde:
+;     mov si, [currentSpriteClyde]
+;     ; Before draw the sprite, save the current position
+;     mov ax, [xPosClyde]
+;     mov [old_XPOSClyde], ax  ;Save the old position of X
+;     mov ax, [yPosClyde]
+;     mov [old_YPOSClyde], ax  ;Save the old position of Y
+;     ; Reset the graphic segment
+;     mov ax, 0A000h
+;     mov es, ax
+;     ; Cacul the address to the screen where the sprite will be draw
+;     mov ax, [yPosClyde]
+;     imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+;     add ax, [xPosClyde]     ; Add xPos to the offset
+;     mov di, ax         ; DI = address for the draw
+;     ; Get the addresses's sprite to draw
+;     mov cx, SPRITEH     ; Define the sprite's height
+; .draw_line:
+;     push cx     ; Save CX else modify by rep
+;     mov cx, SPRITEW     ; Define the width for the current row
+;     rep movsb  ; Print the sprite's row
+;     pop cx  ; Restore CX for the next sprite's row
+;     ; Adjust DI for the next rows and take in account the width offset
+;     add di, 320 - SPRITEW
+;     loop .draw_line  ; Repeat the draw for each sprite's rows
+;     ret
 
-draw_pinky:
-    mov si, [currentSpritePinky]
-    ; Before draw the sprite, save the current position
-    mov ax, [xPosPinky]
-    mov [old_XPOSPinky], ax  ;Save the old position of X
-    mov ax, [yPosPinky]
-    mov [old_YPOSPinky], ax  ;Save the old position of Y
-    ; Reset the graphic segment
-    mov ax, 0A000h
-    mov es, ax
-    ; Cacul the addresse to the screen where the sprite will be draw
-    mov ax, [yPosPinky]
-    imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
-    add ax, [xPosPinky]     ; Add xPos to the offset
-    mov di, ax         ; DI = address for the draw
-    ; Get the addresses's sprite to draw
-    mov cx, SPRITEH     ; Define the sprite's height
-.draw_line:
-    push cx     ; Save CX else modify by rep
-    mov cx, SPRITEW     ; Define the width for the current row
-    rep movsb  ; Print the sprite's row
-    pop cx  ; Restore CX for the next sprite's row
-    ; Adjust DI for the next rows and take in account the width offset
-    add di, 320 - SPRITEW
-    loop .draw_line  ; Repeat the draw for each sprite's rows
-    ret
+; draw_pinky:
+;     mov si, [currentSpritePinky]
+;     ; Before draw the sprite, save the current position
+;     mov ax, [xPosPinky]
+;     mov [old_XPOSPinky], ax  ;Save the old position of X
+;     mov ax, [yPosPinky]
+;     mov [old_YPOSPinky], ax  ;Save the old position of Y
+;     ; Reset the graphic segment
+;     mov ax, 0A000h
+;     mov es, ax
+;     ; Cacul the addresse to the screen where the sprite will be draw
+;     mov ax, [yPosPinky]
+;     imul ax, 320       ;  Multiply yPos par the width of screen to get the offset
+;     add ax, [xPosPinky]     ; Add xPos to the offset
+;     mov di, ax         ; DI = address for the draw
+;     ; Get the addresses's sprite to draw
+;     mov cx, SPRITEH     ; Define the sprite's height
+; .draw_line:
+;     push cx     ; Save CX else modify by rep
+;     mov cx, SPRITEW     ; Define the width for the current row
+;     rep movsb  ; Print the sprite's row
+;     pop cx  ; Restore CX for the next sprite's row
+;     ; Adjust DI for the next rows and take in account the width offset
+;     add di, 320 - SPRITEW
+;     loop .draw_line  ; Repeat the draw for each sprite's rows
+;     ret
 
 

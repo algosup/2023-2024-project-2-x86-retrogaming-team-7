@@ -9,7 +9,7 @@ section .data
     arrow db '->', 0x0d, 0x0A, '$'
     delArrow db '  ', 0x0d, 0x0A, '$' ; Can we avoid that ???? I don't know but that work :D
 
-section .bss
+
 section .text
 
 ;=======================================================

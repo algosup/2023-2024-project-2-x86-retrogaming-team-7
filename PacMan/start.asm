@@ -19,8 +19,6 @@ yPos dw 144
 old_XPOS dw 0            ;Pac-man's XPOS
 old_YPOS dw 0            ;Pac-man's YPOS
 
-
-
 currentSprite dd pacman_right_2
 actualKeystroke dw 0
 
@@ -65,10 +63,12 @@ start_game:
 gameloop:
      call clearSprite
      call draw_sprite
+     call clearGhostB
      call draw_blinky
-     call draw_inky
-     call draw_clyde
-     call draw_pinky
+     call direction_ghost
+     ; call draw_inky
+     ; call draw_clyde
+     ; call draw_pinky
      call read_character_key_was_pressed
      mov cx, 64000
 
@@ -256,9 +256,7 @@ check_position:
      .collision_detected:
           mov ax, 1  ; Collision detected
           ret
-; teleport:
-;      mov ax, [xPos]
-;      mov bx, [yPos]
+
      
 pacman_Right:
      cmp word [currentSprite], pacman_right_1
@@ -626,10 +624,10 @@ DrawINT_BIG_RECTANGLE_TL:
      call drawWalls
      jmp wallchoice
 ; ====================================
-     DrawINT_BIG_RECTANGLE_MIDDLE_TOP:
-          mov si, int_big_rectangle_middle_top
-          call drawWalls
-          jmp wallchoice
+DrawINT_BIG_RECTANGLE_MIDDLE_TOP:
+     mov si, int_big_rectangle_middle_top
+     call drawWalls
+     jmp wallchoice
 DrawINT_BIG_RECTANGLE_TR:
      mov si, int_big_rectangle_tr
      call drawWalls
@@ -746,6 +744,7 @@ Draw_SUPER_PELLET:
      mov si, power_pellet
      call drawWalls
      jmp wallchoice
+
 
 
 %include "Ghost.asm"
