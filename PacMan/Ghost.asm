@@ -34,9 +34,9 @@ currentSpriteInky dd inky_right_1
 currentSpriteClyde dd clyde_right_1
 currentSpritePinky dd pinky_right_1
 
-actualBDirection dw 4Dh
-actualIDirection dw 4Dh
-actualCDirection dw 48h
+actualBDirection dw 4Bh
+actualIDirection dw 48h
+actualCDirection dw 4Dh
 actualPDirection dw 50h
 
 section .text
@@ -178,6 +178,7 @@ continue_movementB:
     je move_upB
     cmp al, 50h
     je move_downB
+    ret
    
         
     
@@ -312,6 +313,7 @@ continue_movementI:
     je move_upI
     cmp al, 50h
     je move_downI
+    ret
     
     
 ; ; ==================================================
@@ -444,93 +446,94 @@ continue_movementC:
     je move_upC
     cmp al, 50h
     je move_downC
+    ret
     
 ; ; ==================================================
 ; ;                CLYDE ANIMATIONS  
 ; ; ==================================================
 
 clyde_right:
-    cmp word [currentSpriteInky], clyde_right_1
+    cmp word [currentSpriteClyde], clyde_right_1
     je .clydeRightSemiOpen
-    cmp word [currentSpriteInky], clyde_right_2
+    cmp word [currentSpriteClyde], clyde_right_2
     je .clydeRightOpen
-    cmp word [currentSpriteInky], clyde_right_3
+    cmp word [currentSpriteClyde], clyde_right_3
     je .clydeRightClose
 
     .clydeRightOpen:
-       mov word [currentSpriteInky], clyde_right_1
-       mov si, [currentSpriteInky]
+       mov word [currentSpriteClyde], clyde_right_1
+       mov si, [currentSpriteClyde]
        ret
     .clydeRightSemiOpen:
-        mov word [currentSpriteInky], clyde_right_2
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_right_2
+        mov si, [currentSpriteClyde]
         ret
     .clydeRightClose:
-        mov word [currentSpriteInky], clyde_right_3
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_right_3
+        mov si, [currentSpriteClyde]
         ret
 
 clyde_left:
-    cmp word [currentSpriteInky], clyde_left_1
+    cmp word [currentSpriteClyde], clyde_left_1
     je .clydeLeftSemiOpen
-    cmp word [currentSpriteInky], clyde_left_2
+    cmp word [currentSpriteClyde], clyde_left_2
     je .clydeLeftClose
-    cmp word [currentSpriteInky], clyde_left_3
+    cmp word [currentSpriteClyde], clyde_left_3
     je .clydeLeftOpen
 
     .clydeLeftOpen:
-       mov word [currentSpriteInky], clyde_left_1
-       mov si, [currentSpriteInky]
+       mov word [currentSpriteClyde], clyde_left_1
+       mov si, [currentSpriteClyde]
        ret
     .clydeLeftSemiOpen:
-        mov word [currentSpriteInky], clyde_left_2
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_left_2
+        mov si, [currentSpriteClyde]
         ret
     .clydeLeftClose:
-        mov word [currentSpriteInky], clyde_left_3
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_left_3
+        mov si, [currentSpriteClyde]
         ret
 
 clyde_up:
-    cmp word [currentSpriteInky], clyde_up_1
+    cmp word [currentSpriteClyde], clyde_up_1
     je .clydeUpSemiOpen
-    cmp word [currentSpriteInky], clyde_up_2
+    cmp word [currentSpriteClyde], clyde_up_2
     je .clydeUpClose
-    cmp word [currentSpriteInky], clyde_up_3
+    cmp word [currentSpriteClyde], clyde_up_3
     je .clydeUpOpen
 
     .clydeUpOpen:
-       mov word [currentSpriteInky], clyde_up_1
-       mov si, [currentSpriteInky]
+       mov word [currentSpriteClyde], clyde_up_1
+       mov si, [currentSpriteClyde]
        ret
     .clydeUpSemiOpen:
-        mov word [currentSpriteInky], clyde_up_2
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_up_2
+        mov si, [currentSpriteClyde]
         ret
     .clydeUpClose:
-        mov word [currentSpriteInky], clyde_up_3
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_up_3
+        mov si, [currentSpriteClyde]
         ret
         
 clyde_down:
-    cmp word [currentSpriteInky], clyde_down_1
+    cmp word [currentSpriteClyde], clyde_down_1
     je .clydeDownSemiOpen
-    cmp word [currentSpriteInky], clyde_down_2
+    cmp word [currentSpriteClyde], clyde_down_2
     je .clydeDownClose
-    cmp word [currentSpriteInky], clyde_down_3
+    cmp word [currentSpriteClyde], clyde_down_3
     je .clydeDownOpen
 
     .clydeDownOpen:
-       mov word [currentSpriteInky], clyde_down_1
-       mov si, [currentSpriteInky]
+       mov word [currentSpriteClyde], clyde_down_1
+       mov si, [currentSpriteClyde]
        ret
     .clydeDownSemiOpen:
-        mov word [currentSpriteInky], clyde_down_2
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_down_2
+        mov si, [currentSpriteClyde]
         ret
     .clydeDownClose:
-        mov word [currentSpriteInky], clyde_down_3
-        mov si, [currentSpriteInky]
+        mov word [currentSpriteClyde], clyde_down_3
+        mov si, [currentSpriteClyde]
         ret
         
 ; ; ==================================================
@@ -538,7 +541,7 @@ clyde_down:
 ; ; ==================================================
 
 move_rightP:
-    mov bx, [xPosBlinky]
+    mov bx, [xPosPinky]
     add bx, 1
     call pinky_right
     mov [xPosPinky], bx
@@ -575,6 +578,7 @@ continue_movementP:
     je move_upP
     cmp al, 50h
     je move_downP
+    ret
     
 
 ; ==================================================

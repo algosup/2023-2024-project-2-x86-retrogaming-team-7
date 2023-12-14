@@ -63,7 +63,7 @@ start_game:
 gameloop:
      call clearSprite
      call draw_sprite
-
+     
      call clearGhostB
      call draw_blinky
 
