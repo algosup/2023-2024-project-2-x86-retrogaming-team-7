@@ -10,15 +10,15 @@
 %define SPRITEH 8
 section .data
 
-xPosBlinky dw 80
-xPosInky dw 71
-xPosClyde dw 89
-xPosPinky dw 98
+xPosBlinky dw 144
+xPosInky dw 152
+xPosClyde dw 160
+xPosPinky dw 168
 
-yPosBlinky dw 80
-yPosInky dw 80
-yPosClyde dw 80
-yPosPinky dw 80
+yPosBlinky dw 96
+yPosInky dw 96
+yPosClyde dw 96
+yPosPinky dw 96
 
 xGVelocity dw 0
 
