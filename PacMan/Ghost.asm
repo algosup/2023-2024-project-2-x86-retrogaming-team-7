@@ -147,31 +147,20 @@ clearGhostP:
 ; ==================================================
 
 move_rightB:
-    mov bx, [xPosBlinky]
-    add bx, 1
     call blinky_right
-    mov [xPosBlinky], bx
     ret
-
 
 move_leftB:
-    mov bx, [xPosBlinky]
-    sub bx, 1
     call blinky_left
-    mov [xPosBlinky], bx
     ret
-move_upB:
-    mov bx, [yPosBlinky]
-    sub bx, 1
-    call blinky_up
-    mov [yPosBlinky], bx
 
+move_upB:
+    call blinky_up
+    ret
 
 move_downB:
-    mov bx, [yPosBlinky]
-    add bx, 1
     call blinky_down
-    mov [yPosBlinky], bx
+    ret
 
 
 continue_movementB:
@@ -283,31 +272,19 @@ blinky_down:
 ; ==================================================
 
 move_rightI:
-    mov bx, [xPosInky]
-    add bx, 1
     call inky_right
-    mov [xPosInky], bx
     ret
 
 move_leftI:
-    mov bx, [xPosInky]
-    sub bx, 1
     call inky_left
-    mov [xPosInky], bx
     ret
 
 move_upI:
-    mov bx, [yPosInky]
-    sub bx, 1
     call inky_up
-    mov [yPosInky], bx
     ret
 
 move_downI:
-    mov bx, [yPosInky]
-    add bx, 1
     call inky_down
-    mov [yPosInky], bx
     ret
 
 continue_movementI:
@@ -419,31 +396,19 @@ inky_down:
 ; ; ==================================================
 
 move_rightC:
-    mov bx, [xPosClyde]
-    add bx, 1
     call clyde_right
-    mov [xPosClyde], bx
     ret
 
 move_leftC:
-    mov bx, [xPosClyde]
-    sub bx, 1
     call clyde_left
-    mov [xPosClyde], bx
     ret
 
 move_upC:
-    mov bx, [yPosClyde]
-    sub bx, 1
     call clyde_up
-    mov [yPosClyde], bx
     ret
 
 move_downC:
-    mov bx, [yPosClyde]
-    add bx, 1
     call clyde_down
-    mov [yPosClyde], bx
     ret
 
 continue_movementC:
@@ -555,31 +520,19 @@ clyde_down:
 ; ; ==================================================
 
 move_rightP:
-    mov bx, [xPosPinky]
-    add bx, 1
     call pinky_right
-    mov [xPosPinky], bx
     ret
 
 move_leftP:
-    mov bx, [xPosPinky]
-    sub bx, 1
     call pinky_left
-    mov [xPosPinky], bx
     ret
 
 move_upP:
-    mov bx, [yPosPinky]
-    sub bx, 1
     call pinky_up
-    mov [yPosPinky], bx
     ret
 
 move_downP:
-    mov bx, [yPosPinky]
-    add bx, 1
     call pinky_down
-    mov [yPosPinky], bx
     ret
 
 continue_movementP:

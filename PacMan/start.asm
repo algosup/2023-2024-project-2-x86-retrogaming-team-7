@@ -61,21 +61,25 @@ start_game:
      call gameloop
     
 gameloop:
-     call check_collision
+     call check_collision_pacman
      call clearSprite
      call draw_sprite
 
-     ; call clearGhostB
-     ; call draw_blinky
-     
-     ; call clearGhostI
-     ; call draw_inky
+     call check_collision_ghost_Blinky
+     call clearGhostB
+     call draw_blinky
 
-     ; call clearGhostC
-     ; call draw_clyde
+     call check_collision_ghost_Inky
+     call clearGhostI
+     call draw_inky
 
-     ; call clearGhostP
-     ; call draw_pinky
+     call check_collision_ghost_Clyde
+     call clearGhostC
+     call draw_clyde
+
+     call check_collision_ghost_Pinky
+     call clearGhostP
+     call draw_pinky
 
      call direction_ghost
      call read_character_key_was_pressed
@@ -177,19 +181,60 @@ move_down:
      ret
 
 
-check_collision:
+check_collision_pacman:
      cmp word [actualKeystroke], 4Dh  ; Right
-     je check_right
+     je check_right_pac
      cmp word [actualKeystroke], 4Bh  ; Left
-     je check_left
+     je check_left_pac
      cmp word [actualKeystroke], 48h  ; Up
-     je check_up
+     je check_up_pac
      cmp word [actualKeystroke], 50h  ; Down
-     je check_down
+     je check_down_pac
+     ret
+check_collision_ghost_Blinky:
+     cmp word [actualBDirection], 4Dh  ; Right
+     je check_right_blinky
+     cmp word [actualBDirection], 4Bh  ; Left
+     je check_left_blinky
+     cmp word [actualBDirection], 48h  ; Up
+     je check_up_blinky
+     cmp word [actualBDirection], 50h  ; Down
+     je check_down_blinky
+     ret
+
+check_collision_ghost_Inky:
+     cmp word [actualIDirection], 4Dh  ; Right
+     je check_right_inky
+     cmp word [actualIDirection], 4Bh  ; Left
+     je check_left_inky
+     cmp word [actualIDirection], 48h  ; Up
+     je check_up_inky
+     cmp word [actualIDirection], 50h  ; Down
+     je check_down_inky
      ret
 
 
+check_collision_ghost_Clyde:
+     cmp word [actualCDirection], 4Dh  ; Right
+     je check_right_clyde
+     cmp word [actualCDirection], 4Bh  ; Left
+     je check_left_clyde
+     cmp word [actualCDirection], 48h  ; Up
+     je check_up_clyde
+     cmp word [actualCDirection], 50h  ; Down
+     je check_down_clyde
+     ret
 
+check_collision_ghost_Pinky:
+     cmp word [actualPDirection], 4Dh  ; Right
+     je check_right_pinky
+     cmp word [actualPDirection], 4Bh  ; Left
+     je check_left_pinky
+     cmp word [actualPDirection], 48h  ; Up
+     je check_up_pinky
+     cmp word [actualPDirection], 50h  ; Down
+     je check_down_pinky
+     ret
 pacman_Right:
      cmp word [currentSprite], pacman_right_1
      je .pacmanRightSemiOpen
