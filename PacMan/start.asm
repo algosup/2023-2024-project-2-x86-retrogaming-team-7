@@ -61,20 +61,21 @@ start_game:
      call gameloop
     
 gameloop:
+     call check_collision
      call clearSprite
      call draw_sprite
+
+     ; call clearGhostB
+     ; call draw_blinky
      
-     call clearGhostB
-     call draw_blinky
+     ; call clearGhostI
+     ; call draw_inky
 
-     call clearGhostI
-     call draw_inky
+     ; call clearGhostC
+     ; call draw_clyde
 
-     call clearGhostC
-     call draw_clyde
-
-     call clearGhostP
-     call draw_pinky
+     ; call clearGhostP
+     ; call draw_pinky
 
      call direction_ghost
      call read_character_key_was_pressed
@@ -158,66 +159,25 @@ continue_movement:
      cmp al, 0
      je read_character_key_was_pressed
 
-move_right:
-     mov word [actualKeystroke], 4Dh
-     call check_collision
-     cmp ax, 0
-     je .no_collision
-     ret
-     .no_collision:
-          mov bx, [xPos]
-          add bx, 1
-          call pacman_Right
-          mov [xPos], bx
-     .end:
+move_right:  
+     call pacman_Right
      ret
 
 move_left:
-     mov word [actualKeystroke], 4Bh
-     call check_collision
-     cmp ax, 0
-     je .no_collision
+     call pacman_Left
      ret
-     .no_collision:
-          mov bx, [xPos]
-          sub bx, 1
-          call pacman_Left
-          mov [xPos], bx
-     .end:
-     ret
+    
 
 move_up:
-     mov word [actualKeystroke], 48h
-     call check_collision
-     cmp ax, 0
-     je .no_collision
-     ret
-     .no_collision:
-          mov bx, [yPos]
-          sub bx, 1
-          call pacman_Up
-          mov [yPos], bx
-     .end:
+     call pacman_Up
      ret
 
 move_down:
-     mov word [actualKeystroke], 50h
-     call check_collision
-     cmp ax, 0
-     je .no_collision
-     ret
-     .no_collision:
-          mov bx, [yPos]
-          add bx, 1
-          call pacman_Down
-          mov [yPos], bx
-     .end:
+     call pacman_Down
      ret
 
 
 check_collision:
-     mov ax, [xPos]
-     mov bx, [yPos]
      cmp word [actualKeystroke], 4Dh  ; Right
      je check_right
      cmp word [actualKeystroke], 4Bh  ; Left
@@ -226,30 +186,175 @@ check_collision:
      je check_up
      cmp word [actualKeystroke], 50h  ; Down
      je check_down
+     ret
 
 
 check_right:
-     add ax, SPRITEH + 1 ;    check hitbox top right
-     ; add bx, SPRITEW     ;    + this check hitbox bottom right
-     jmp check_position
-
+     .check_right_1:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEH + 1 ;    check hitbox top right
+          call check_detection
+          cmp cl, 0
+          je .check_right_2
+          ret
+     .check_right_2:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEH + 1 ;    check hitbox top right
+          add bx, 3
+          call check_detection
+          cmp cl, 0
+          je .check_right_3
+          ret
+     .check_right_3:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEH + 1 ;    check hitbox top right
+          add bx, 4
+          call check_detection
+          cmp cl, 0
+          je .check_right_4
+          ret
+     .check_right_4: 
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add bx, SPRITEW     ;    + this check hitbox bottom right
+          call check_detection
+          cmp cl, 0
+          je .check_right_over
+          ret
+     .check_right_over:
+          mov bx, [xPos]
+          add bx, 1
+          mov [xPos], bx
+          ret  
+     
 check_left:
-     sub ax, 2
-     ; add bx, SPRITEW     ;    + this check hitbox bottom left
-     jmp check_position
-
+     .check_left_1:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub ax, 2
+          call check_detection
+          cmp cl, 0
+          je .check_left_2
+          ret
+     .check_left_2:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub ax, 2
+          add bx, 3
+          call check_detection
+          cmp cl, 0
+          je .check_left_3
+          ret
+     .check_left_3:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub ax, 2
+          add bx, 4
+          call check_detection
+          cmp cl, 0
+          je .check_left_4
+          ret
+     .check_left_4:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add bx, SPRITEW     ;    + this check hitbox bottom left
+          call check_detection
+          cmp cl, 0
+          je .check_left_over
+          ret
+     .check_left_over:
+          mov bx, [xPos]
+          sub bx, 1
+          mov [xPos], bx
+          ret
 check_up:
-     sub bx, 2
-     ; add ax, SPRITEW     ;    + this check hitbox top right
-     jmp check_position
-
+     .check_up_1:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub bx, 2
+          call check_detection
+          cmp cl, 0
+          je .check_up_2
+          ret
+     .check_up_2:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub bx, 2
+          add ax, 3
+          call check_detection
+          cmp cl, 0
+          je .check_up_3
+          ret
+     .check_up_3:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub bx, 2
+          add ax, 4
+          call check_detection
+          cmp cl, 0
+          je .check_up_4
+          ret
+     .check_up_4:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEW     ;    + this check hitbox top right
+          call check_detection
+          cmp cl, 0
+          je .check_up_over
+          ret
+     .check_up_over:
+          mov bx, [yPos]
+          sub bx, 1
+          mov [yPos], bx
+          ret
 check_down:
-     add bx, SPRITEW + 1
-     ; add ax, SPRITEW     ;    + this check hitbox top right
-     jmp check_position
+     .check_down_1:
+          mov ax, [xPos]
+          mov bx, [yPos] 
+          add bx, SPRITEW + 1
+          call check_detection
+          cmp cl, 0
+          je .check_down_2
+          ret
+     .check_down_2:
+          mov ax, [xPos]
+          mov bx, [yPos] 
+          add bx, SPRITEW + 1
+          add ax, 3
+          call check_detection
+          cmp cl, 0
+          je .check_down_3
+          ret
+     .check_down_3:
+          mov ax, [xPos]
+          mov bx, [yPos] 
+          add bx, SPRITEW + 1
+          add ax, 4
+          call check_detection
+          cmp cl, 0
+          je .check_down_4
+          ret
+     .check_down_4:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEW     ;    + this check hitbox top right
+          call check_detection
+          cmp cl, 0
+          je .check_down_over
+          ret
+     .check_down_over:
+          mov bx, [yPos]
+          add bx, 1
+          mov [yPos], bx
+          ret
+
+     
 
 
-check_position:
+check_detection:
      ; Convert position to screen buffer index
      imul bx, SCREEN_WIDTH
      add bx, ax
@@ -258,12 +363,13 @@ check_position:
      mov es, ax
      mov al, es:[si]
      cmp al, 0x37
-     je .collision_detected
-     xor ax, ax  ; No collision
+     je .collision
+     xor cl, cl
      ret
-     .collision_detected:
-          mov ax, 1  ; Collision detected
+     .collision: ; Collision do not exist
+          mov cl, 1 ; Collision detected
           ret
+
 
      
 pacman_Right:
