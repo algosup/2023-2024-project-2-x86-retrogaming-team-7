@@ -18,11 +18,39 @@ check_detection_walls:
           ret
 
 
-
-
+check_detection_empty:
+     ; Convert position to screen buffer index
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x00
+     je .collision
+     xor cl, cl
+     ret
+     .collision: ; Collision do not exist
+          mov cl, 1 ; Collision detected
+          ret
 ;=================================================
 ;              PACMAN COLLISIONS
 ;=================================================
+
+
+
+check_collision_pacman:
+     cmp word [actualKeystroke], 4Dh  ; Right
+     je check_right_pac
+     cmp word [actualKeystroke], 4Bh  ; Left
+     je check_left_pac
+     cmp word [actualKeystroke], 48h  ; Up
+     je check_up_pac
+     cmp word [actualKeystroke], 50h  ; Down
+     je check_down_pac
+     ret
+
+
 
 check_right_pac:
      .check_right_pac_0:
@@ -95,14 +123,15 @@ check_right_pac:
           call check_detection_walls
           cmp cl, 0
           je .check_right_pac_over
-          ret
-     
+          ret         
      .check_right_pac_over:
           mov bx, [xPos]
           add bx, 1
           mov [xPos], bx
-          ret  
+          ret
      
+     return:
+          ret
 check_left_pac:
      .check_left_pac_0:
           mov ax, [xPos]
@@ -333,6 +362,7 @@ check_down_pac:
         cmp cl, 0
         je .check_down_pac_over
         ret
+
     .check_down_pac_over:
         mov bx, [yPos]
         add bx, 1
@@ -347,7 +377,19 @@ check_down_pac:
 ;=================================================
 
 
+check_collision_ghost_Blinky:
+     cmp word [actualBDirection], 4Dh  ; Right
+     je check_right_blinky
+     cmp word [actualBDirection], 4Bh  ; Left
+     je check_left_blinky
+     cmp word [actualBDirection], 48h  ; Up
+     je check_up_blinky
+     cmp word [actualBDirection], 50h  ; Down
+     je check_down_blinky
+     ret
 
+
+     
 
 check_right_blinky:
      .check_right_blinky_0:
@@ -670,6 +712,19 @@ check_down_blinky:
 ;=================================================
 ;              INKY COLLISIONS
 ;=================================================
+
+
+
+check_collision_ghost_Inky:
+     cmp word [actualIDirection], 4Dh  ; Right
+     je check_right_inky
+     cmp word [actualIDirection], 4Bh  ; Left
+     je check_left_inky
+     cmp word [actualIDirection], 48h  ; Up
+     je check_up_inky
+     cmp word [actualIDirection], 50h  ; Down
+     je check_down_inky
+     ret
 
 
 
@@ -997,6 +1052,18 @@ check_down_inky:
 
 
 
+check_collision_ghost_Clyde:
+     cmp word [actualCDirection], 4Dh  ; Right
+     je check_right_clyde
+     cmp word [actualCDirection], 4Bh  ; Left
+     je check_left_clyde
+     cmp word [actualCDirection], 48h  ; Up
+     je check_up_clyde
+     cmp word [actualCDirection], 50h  ; Down
+     je check_down_clyde
+     ret
+
+
 
 check_right_clyde:
      .check_right_clyde_0:
@@ -1322,6 +1389,18 @@ check_down_clyde:
 
 
 
+check_collision_ghost_Pinky:
+     cmp word [actualPDirection], 4Dh  ; Right
+     je check_right_pinky
+     cmp word [actualPDirection], 4Bh  ; Left
+     je check_left_pinky
+     cmp word [actualPDirection], 48h  ; Up
+     je check_up_pinky
+     cmp word [actualPDirection], 50h  ; Down
+     je check_down_pinky
+     ret
+
+
 
 check_right_pinky:
      .check_right_pinky_0:
@@ -1638,3 +1717,69 @@ check_down_pinky:
         mov [yPosPinky], bx
         ret
 
+tunnel_horizontal:
+     mov ax, [xPos]
+     cmp ax, 66
+     jb .to_right
+     cmp ax, 246
+     ja .to_left
+     ret
+     .to_right:
+          mov word [xPos], 244
+          ret
+     .to_left:
+          mov word [xPos], 70
+          ret
+
+tunnel_horizontal_blinky:
+     mov ax, [xPosBlinky]
+          cmp ax, 66
+          jb .to_right
+          cmp ax, 246
+          ja .to_left
+          ret
+          .to_right:
+               mov word [xPosBlinky], 244
+               ret
+          .to_left:
+               mov word [xPosBlinky], 70
+               ret
+tunnel_horizontal_inky:
+     mov ax, [xPosInky]
+     cmp ax, 66
+     jb .to_right
+     cmp ax, 246
+     ja .to_left
+     ret
+     .to_right:
+          mov word [xPosInky], 244
+          ret
+     .to_left:
+          mov word [xPosInky], 70
+          ret
+tunnel_horizontal_clyde:
+     mov ax, [xPosClyde]
+     cmp ax, 66
+     jb .to_right
+     cmp ax, 246
+     ja .to_left
+     ret
+     .to_right:
+          mov word [xPosClyde], 244
+          ret
+     .to_left:
+          mov word [xPosClyde], 70
+          ret
+tunnel_horizontal_pinky:
+     mov ax, [xPosPinky]
+     cmp ax, 66
+     jb .to_right
+     cmp ax, 246
+     ja .to_left
+     ret
+     .to_right:
+          mov word [xPosPinky], 244
+          ret
+     .to_left:
+          mov word [xPosPinky], 70
+          ret

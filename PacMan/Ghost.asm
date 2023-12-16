@@ -147,10 +147,12 @@ clearGhostP:
 ; ==================================================
 
 move_rightB:
+    call tunnel_horizontal_blinky
     call blinky_right
     ret
 
 move_leftB:
+    call tunnel_horizontal_blinky
     call blinky_left
     ret
 
@@ -272,10 +274,12 @@ blinky_down:
 ; ==================================================
 
 move_rightI:
+    call tunnel_horizontal_inky
     call inky_right
     ret
 
 move_leftI:
+    call tunnel_horizontal_inky
     call inky_left
     ret
 
@@ -396,10 +400,12 @@ inky_down:
 ; ; ==================================================
 
 move_rightC:
+    call tunnel_horizontal_clyde
     call clyde_right
     ret
 
 move_leftC:
+    call tunnel_horizontal_clyde
     call clyde_left
     ret
 
@@ -520,10 +526,12 @@ clyde_down:
 ; ; ==================================================
 
 move_rightP:
+    call tunnel_horizontal_pinky
     call pinky_right
     ret
 
 move_leftP:
+    call tunnel_horizontal_pinky
     call pinky_left
     ret
 

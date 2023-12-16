@@ -13,15 +13,17 @@ org 100h
 %define MAZE_HEIGHT 176
 
 section .data
-xPos dw 160
+xPos dw 160       ;tunnel left = 72 (x) 96y            ;tunnel right = 240 (x)96y              
 xVelocity dw 1
-yPos dw 144
+yPos dw 144                  
 old_XPOS dw 0            ;Pac-man's XPOS
 old_YPOS dw 0            ;Pac-man's YPOS
 
 currentSprite dd pacman_right_2
-actualKeystroke dw 0
 
+actualKeystroke dw 0
+waitingKeystroke dw 0
+canturn db 0
 mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,15,14,54,54,54,54,54,54,54,54,54,15
                 db 14,55,24,25,26,54,24,25,26,54,15,14,54,24,25,26,54,24,25,26,55,15
@@ -32,7 +34,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
                 db 49,49,49,49,14,54,40,49,49,49,49,49,49,49,49,40,54,15,49,49,49,49
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
-                db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
+                db 49,49,49,49,49,54,54,54,49,49,49,49,49,49,54,54,54,49,49,49,49,49                     ; db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
                 db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
@@ -163,11 +165,21 @@ continue_movement:
      cmp al, 0
      je read_character_key_was_pressed
 
-move_right:  
-     call pacman_Right
+move_right:
+     call tunnel_horizontal
+                              ; mov ax, [canturn]                       ; can reduce the frame rate
+                              ; cmp ax, 8                               ; can reduce the frame rate
+                              ; jne .skip_move_right                    ; can reduce the frame rate
+     call pacman_Right                       
+                              ; xor ax, ax                              ; can reduce the frame rate
+                              ; mov [canturn], ax                       ; can reduce the frame rate
      ret
-
+                              ; .skip_move_right:
+                              ;      inc ax                             ; can reduce the frame rate
+                              ;      mov [canturn], ax                  ; can reduce the frame rate
+                              ;      ret
 move_left:
+     call tunnel_horizontal
      call pacman_Left
      ret
     
@@ -181,60 +193,7 @@ move_down:
      ret
 
 
-check_collision_pacman:
-     cmp word [actualKeystroke], 4Dh  ; Right
-     je check_right_pac
-     cmp word [actualKeystroke], 4Bh  ; Left
-     je check_left_pac
-     cmp word [actualKeystroke], 48h  ; Up
-     je check_up_pac
-     cmp word [actualKeystroke], 50h  ; Down
-     je check_down_pac
-     ret
-check_collision_ghost_Blinky:
-     cmp word [actualBDirection], 4Dh  ; Right
-     je check_right_blinky
-     cmp word [actualBDirection], 4Bh  ; Left
-     je check_left_blinky
-     cmp word [actualBDirection], 48h  ; Up
-     je check_up_blinky
-     cmp word [actualBDirection], 50h  ; Down
-     je check_down_blinky
-     ret
 
-check_collision_ghost_Inky:
-     cmp word [actualIDirection], 4Dh  ; Right
-     je check_right_inky
-     cmp word [actualIDirection], 4Bh  ; Left
-     je check_left_inky
-     cmp word [actualIDirection], 48h  ; Up
-     je check_up_inky
-     cmp word [actualIDirection], 50h  ; Down
-     je check_down_inky
-     ret
-
-
-check_collision_ghost_Clyde:
-     cmp word [actualCDirection], 4Dh  ; Right
-     je check_right_clyde
-     cmp word [actualCDirection], 4Bh  ; Left
-     je check_left_clyde
-     cmp word [actualCDirection], 48h  ; Up
-     je check_up_clyde
-     cmp word [actualCDirection], 50h  ; Down
-     je check_down_clyde
-     ret
-
-check_collision_ghost_Pinky:
-     cmp word [actualPDirection], 4Dh  ; Right
-     je check_right_pinky
-     cmp word [actualPDirection], 4Bh  ; Left
-     je check_left_pinky
-     cmp word [actualPDirection], 48h  ; Up
-     je check_up_pinky
-     cmp word [actualPDirection], 50h  ; Down
-     je check_down_pinky
-     ret
 pacman_Right:
      cmp word [currentSprite], pacman_right_1
      je .pacmanRightSemiOpen
