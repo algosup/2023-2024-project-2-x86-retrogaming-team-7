@@ -23,7 +23,7 @@ currentSprite dd pacman_right_2
 
 actualKeystroke dw 0
 waitingKeystroke dw 0
-canturn db 0
+framerate db 0
 mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,15,14,54,54,54,54,54,54,54,54,54,15
                 db 14,55,24,25,26,54,24,25,26,54,15,14,54,24,25,26,54,24,25,26,55,15
@@ -34,7 +34,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
                 db 49,49,49,49,14,54,40,49,49,49,49,49,49,49,49,40,54,15,49,49,49,49
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
-                db 49,49,49,49,49,54,54,54,49,49,49,49,49,49,54,54,54,49,49,49,49,49                     ; db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
+                db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
                 db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
@@ -85,6 +85,7 @@ gameloop:
 
      call direction_ghost
      call read_character_key_was_pressed
+
      mov cx, 64000
 
 waitloop:
@@ -152,6 +153,7 @@ read_character_key_was_pressed:
           mov [actualKeystroke], ah  ; Store the new direction
           jmp continue_movement
           
+
 continue_movement:
      mov al, [actualKeystroke]
      cmp al, 4Dh
@@ -167,30 +169,59 @@ continue_movement:
 
 move_right:
      call tunnel_horizontal
-                              ; mov ax, [canturn]                       ; can reduce the frame rate
-                              ; cmp ax, 8                               ; can reduce the frame rate
-                              ; jne .skip_move_right                    ; can reduce the frame rate
+     mov ax, [framerate]                       ; can reduce the frame rate
+     cmp ax, 4                               ; can reduce the frame rate
+     jne .skip_move_right                    ; can reduce the frame rate
      call pacman_Right                       
-                              ; xor ax, ax                              ; can reduce the frame rate
-                              ; mov [canturn], ax                       ; can reduce the frame rate
+     xor ax, ax                              ; can reduce the frame rate
+     mov [framerate], ax                       ; can reduce the frame rate
      ret
-                              ; .skip_move_right:
-                              ;      inc ax                             ; can reduce the frame rate
-                              ;      mov [canturn], ax                  ; can reduce the frame rate
-                              ;      ret
+     .skip_move_right:
+          inc ax                             ; can reduce the frame rate
+          mov [framerate], ax                  ; can reduce the frame rate
+          ret
 move_left:
      call tunnel_horizontal
+     mov ax, [framerate]                       ; can reduce the frame rate
+     cmp ax, 4                               ; can reduce the frame rate
+     jne .skip_move_left                   ; can reduce the frame rate
      call pacman_Left
+     xor ax, ax                             ; can reduce the frame rate
+     mov [framerate], ax                       ; can reduce the frame rate
      ret
+     .skip_move_left:
+          inc ax                             ; can reduce the frame rate
+          mov [framerate], ax                  ; can reduce the frame rate
+          ret
     
 
 move_up:
+     call tunnel_horizontal
+     mov ax, [framerate]                       ; can reduce the frame rate
+     cmp ax, 4                               ; can reduce the frame rate
+     jne .skip_move_up                ; can reduce the frame rate
      call pacman_Up
+     xor ax, ax                             ; can reduce the frame rate
+     mov [framerate], ax 
      ret
+     .skip_move_up:
+          inc ax                             ; can reduce the frame rate
+          mov [framerate], ax                  ; can reduce the frame rate
+          ret
 
 move_down:
+     call tunnel_horizontal
+     mov ax, [framerate]                       ; can reduce the frame rate
+     cmp ax, 4                               ; can reduce the frame rate
+     jne .skip_move_down                ; can reduce the frame rate
      call pacman_Down
+     xor ax, ax                             ; can reduce the frame rate
+     mov [framerate], ax 
      ret
+     .skip_move_down:
+          inc ax                             ; can reduce the frame rate
+          mov [framerate], ax                  ; can reduce the frame rate
+          ret
 
 
 

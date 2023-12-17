@@ -145,6 +145,17 @@ clearGhostP:
 ; ==================================================
 ;               BLINKY MOVEMENTS
 ; ==================================================
+continue_movementB:
+    mov al, [actualBDirection]
+    cmp al, 4Dh
+    je move_rightB
+    cmp al, 4Bh
+    je move_leftB
+    cmp al, 48h
+    je move_upB
+    cmp al, 50h
+    je move_downB
+    ret
 
 move_rightB:
     call tunnel_horizontal_blinky
@@ -165,17 +176,6 @@ move_downB:
     ret
 
 
-continue_movementB:
-    mov al, [actualBDirection]
-    cmp al, 4Dh
-    je move_rightB
-    cmp al, 4Bh
-    je move_leftB
-    cmp al, 48h
-    je move_upB
-    cmp al, 50h
-    je move_downB
-    ret
 
 ; ==================================================
 ;               BLINKY ANIMATIONS
@@ -272,7 +272,17 @@ blinky_down:
 ; ==================================================
 ;               INKY MOVEMENTS
 ; ==================================================
-
+continue_movementI:
+    mov al, [actualIDirection]
+    cmp al, 4Dh
+    je move_rightI
+    cmp al, 4Bh
+    je move_leftI
+    cmp al, 48h
+    je move_upI
+    cmp al, 50h
+    je move_downI
+    ret
 move_rightI:
     call tunnel_horizontal_inky
     call inky_right
@@ -291,17 +301,7 @@ move_downI:
     call inky_down
     ret
 
-continue_movementI:
-    mov al, [actualIDirection]
-    cmp al, 4Dh
-    je move_rightI
-    cmp al, 4Bh
-    je move_leftI
-    cmp al, 48h
-    je move_upI
-    cmp al, 50h
-    je move_downI
-    ret
+
     
 ; ; ==================================================
 ; ;               INKY ANIMATIONS
@@ -398,7 +398,17 @@ inky_down:
 ; ; ==================================================
 ; ;                CLYDE MOVEMENTS  
 ; ; ==================================================
-
+continue_movementC:
+    mov al, [actualCDirection]
+    cmp al, 4Dh
+    je move_rightC
+    cmp al, 4Bh
+    je move_leftC
+    cmp al, 48h
+    je move_upC
+    cmp al, 50h
+    je move_downC
+    ret
 move_rightC:
     call tunnel_horizontal_clyde
     call clyde_right
@@ -417,17 +427,7 @@ move_downC:
     call clyde_down
     ret
 
-continue_movementC:
-    mov al, [actualCDirection]
-    cmp al, 4Dh
-    je move_rightC
-    cmp al, 4Bh
-    je move_leftC
-    cmp al, 48h
-    je move_upC
-    cmp al, 50h
-    je move_downC
-    ret
+
     
 ; ; ==================================================
 ; ;                CLYDE ANIMATIONS  
@@ -524,7 +524,17 @@ clyde_down:
 ; ; ==================================================
 ; ;                PINKY MOVEMENTS
 ; ; ==================================================
-
+continue_movementP:
+    mov al, [actualPDirection]
+    cmp al, 4Dh
+    je move_rightP
+    cmp al, 4Bh
+    je move_leftP
+    cmp al, 48h
+    je move_upP
+    cmp al, 50h
+    je move_downP
+    ret
 move_rightP:
     call tunnel_horizontal_pinky
     call pinky_right
@@ -543,17 +553,7 @@ move_downP:
     call pinky_down
     ret
 
-continue_movementP:
-    mov al, [actualPDirection]
-    cmp al, 4Dh
-    je move_rightP
-    cmp al, 4Bh
-    je move_leftP
-    cmp al, 48h
-    je move_upP
-    cmp al, 50h
-    je move_downP
-    ret
+
 
 ; ==================================================
 ;               PINKY ANIMATIONS
@@ -757,3 +757,4 @@ draw_pinky:
         ret
 
 
+%include "ghosts_behaviours.asm"
