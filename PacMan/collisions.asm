@@ -9,6 +9,8 @@ check_detection_walls:
      mov ax, 0A000h
      mov es, ax
      mov al, es:[si]
+     cmp al, 0xFF
+     je .collision
      cmp al, 0x37
      je .collision
      xor cl, cl
@@ -18,21 +20,7 @@ check_detection_walls:
           ret
 
 
-check_detection_empty:
-     ; Convert position to screen buffer index
-     imul bx, SCREEN_WIDTH
-     add bx, ax
-     mov si, bx
-     mov ax, 0A000h
-     mov es, ax
-     mov al, es:[si]
-     cmp al, 0x00
-     je .collision
-     xor cl, cl
-     ret
-     .collision: ; Collision do not exist
-          mov cl, 1 ; Collision detected
-          ret
+
 ;=================================================
 ;              PACMAN COLLISIONS
 ;=================================================
@@ -56,7 +44,7 @@ check_right_pac:
      .check_right_pac_0:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           call check_detection_walls
           cmp cl, 0
           je .check_right_pac_1
@@ -64,7 +52,7 @@ check_right_pac:
      .check_right_pac_1:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 1
           call check_detection_walls
           cmp cl, 0
@@ -73,7 +61,7 @@ check_right_pac:
      .check_right_pac_2:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 2
           call check_detection_walls
           cmp cl, 0
@@ -82,7 +70,7 @@ check_right_pac:
      .check_right_pac_3:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 3
           call check_detection_walls
           cmp cl, 0
@@ -91,7 +79,7 @@ check_right_pac:
      .check_right_pac_4:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 4
           call check_detection_walls
           cmp cl, 0
@@ -100,7 +88,7 @@ check_right_pac:
      .check_right_pac_5: 
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEW + 1
+          add ax, SPRITEW
           add bx, 5      ;    + this check hitbox bottom right
           call check_detection_walls
           cmp cl, 0
@@ -109,7 +97,7 @@ check_right_pac:
      .check_right_pac_6:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 6
           call check_detection_walls
           cmp cl, 0
@@ -118,7 +106,7 @@ check_right_pac:
      .check_right_pac_7:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 7
           call check_detection_walls
           cmp cl, 0
@@ -136,7 +124,7 @@ check_left_pac:
      .check_left_pac_0:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           call check_detection_walls
           cmp cl, 0
           je .check_left_pac_1
@@ -144,7 +132,7 @@ check_left_pac:
      .check_left_pac_1:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 1
           call check_detection_walls
           cmp cl, 0
@@ -153,7 +141,7 @@ check_left_pac:
      .check_left_pac_2:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 2
           call check_detection_walls
           cmp cl, 0
@@ -162,7 +150,7 @@ check_left_pac:
      .check_left_pac_3:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 3
           call check_detection_walls
           cmp cl, 0
@@ -172,7 +160,7 @@ check_left_pac:
      .check_left_pac_4:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 4    ;    + this check hitbox bottom left
           call check_detection_walls
           cmp cl, 0
@@ -181,7 +169,7 @@ check_left_pac:
      .check_left_pac_5:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 5
           call check_detection_walls
           cmp cl, 0
@@ -190,7 +178,7 @@ check_left_pac:
      .check_left_pac_6:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 6
           call check_detection_walls
           cmp cl, 0
@@ -199,7 +187,7 @@ check_left_pac:
      .check_left_pac_7:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 2
+          sub ax, 1
           add bx, 7
           call check_detection_walls
           cmp cl, 0
@@ -215,7 +203,7 @@ check_up_pac:
      .check_up_pac_0:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_1
@@ -224,7 +212,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 1
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_2
@@ -233,7 +221,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 2
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_3
@@ -242,7 +230,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 3
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_4
@@ -251,7 +239,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 4     ;    + this check hitbox top right
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_5
@@ -260,7 +248,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 5     ;    + this check hitbox top right
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_6
@@ -269,7 +257,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 6     ;    + this check hitbox top right
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_7
@@ -278,7 +266,7 @@ check_up_pac:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 7     ;    + this check hitbox top right
-          sub bx, 2
+          sub bx, 1
           call check_detection_walls
           cmp cl, 0
           je .check_up_pac_over
@@ -293,7 +281,7 @@ check_down_pac:
     .check_down_pac_0:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         call check_detection_walls
         cmp cl, 0
         je .check_down_pac_1
@@ -301,7 +289,7 @@ check_down_pac:
     .check_down_pac_1:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 1
         call check_detection_walls
         cmp cl, 0
@@ -310,7 +298,7 @@ check_down_pac:
     .check_down_pac_2:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 2
         call check_detection_walls
         cmp cl, 0
@@ -319,7 +307,7 @@ check_down_pac:
     .check_down_pac_3:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 3
         call check_detection_walls
         cmp cl, 0
@@ -328,7 +316,7 @@ check_down_pac:
     .check_down_pac_4:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 4
         call check_detection_walls
         cmp cl, 0
@@ -337,7 +325,7 @@ check_down_pac:
     .check_down_pac_5:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 5
         call check_detection_walls
         cmp cl, 0
@@ -346,7 +334,7 @@ check_down_pac:
     .check_down_pac_6:
         mov ax, [xPos]
         mov bx, [yPos] 
-        add bx, SPRITEW + 1
+        add bx, SPRITEW
         add ax, 6
         call check_detection_walls
         cmp cl, 0
@@ -356,7 +344,7 @@ check_down_pac:
     .check_down_pac_7:
         mov ax, [xPos]
         mov bx, [yPos]
-        add bx, SPRITEW + 1     ;    + this check hitbox top right
+        add bx, SPRITEW     ;    + this check hitbox top right
         add ax, 7 
         call check_detection_walls
         cmp cl, 0
