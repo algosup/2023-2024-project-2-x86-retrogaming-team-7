@@ -13,9 +13,9 @@ org 100h
 %define MAZE_HEIGHT 176
 
 section .data
-xPos dw 160       ;tunnel left = 72 (x) 96y            ;tunnel right = 240 (x)96y              
+xPos dw 156       ;tunnel left = 72 (x) 96y            ;tunnel right = 240 (x)96y              
 xVelocity dw 1
-yPos dw 144                  
+yPos dw 144                 
 old_XPOS dw 0            ;Pac-man's XPOS
 old_YPOS dw 0            ;Pac-man's YPOS
 
@@ -65,8 +65,6 @@ start_game:
      call gameloop
     
 gameloop:
-     call check_detection_pellets
-     call check_collision_pacman
      call clearSprite
      call draw_sprite
 
@@ -86,6 +84,8 @@ gameloop:
      call clearGhostP
      call draw_pinky
 
+     
+     call check_collision_pacman
      call direction_ghost
      call read_character_key_was_pressed
 
@@ -181,6 +181,7 @@ continue_movement:
      je read_character_key_was_pressed
 
 move_right:
+     call check_detection_pellets_right
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -194,6 +195,7 @@ move_right:
           mov [framerate], ax                  ; can reduce the frame rate
           ret
 move_left:
+     call check_detection_pellets_left
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -209,6 +211,7 @@ move_left:
     
 
 move_up:
+     call check_detection_pellets_up
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -223,6 +226,7 @@ move_up:
           ret
 
 move_down:
+     call check_detection_pellets_down
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate

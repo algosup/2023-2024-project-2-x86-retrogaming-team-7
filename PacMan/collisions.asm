@@ -25,19 +25,67 @@ check_detection_walls:
 ;=================================================
 ;              PELLETS COLLISIONS
 ;=================================================
-check_detection_pellets:
+check_detection_pellets_right:
      ; Convert position to screen buffer index
-     imul bx, SCREEN_WIDTH
-     add bx, ax
-     mov si, bx
-     mov ax, 0A000h
-     mov es, ax
-     mov al, es:[si]
-     cmp al, 0x0E
-     je .collision
-     jmp pelletsPoints
-     .collision: ; Collision do not exist
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEH
+          add bx, 4
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x42
+          je collision
           ret
+check_detection_pellets_left:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub ax, 1
+          add bx, 4
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x42
+          je collision
+          ret
+check_detection_pellets_up:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, 4
+          sub bx, 1
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x42
+          je collision
+          ret
+check_detection_pellets_down:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, 4
+          add bx, SPRITEH
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x42
+          je collision
+          ret
+
+
+collision:
+     call pelletsPoints
 
 
 ;=================================================
