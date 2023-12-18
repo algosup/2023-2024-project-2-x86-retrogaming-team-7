@@ -11,16 +11,26 @@ Output file:  menu.com
 -- Sections (summary) ---------------------------------------------------------
 
 Vstart            Start             Stop              Length    Class     Name
+<<<<<<< Updated upstream
              100               100               F19  00000E19  progbits  .text
              F1C               F1C              5181  00004265  progbits  .data
             5184              5184              5185  00000001  nobits    .bss
+=======
+             100               100              11E5  000010E5  progbits  .text
+            11E8              11E8              5442  0000425A  progbits  .data
+            5444              5444              5445  00000001  nobits    .bss
+>>>>>>> Stashed changes
 
 -- Sections (detailed) --------------------------------------------------------
 
 ---- Section .text ------------------------------------------------------------
 
 class:     progbits
+<<<<<<< Updated upstream
 length:                 E19
+=======
+length:                10E5
+>>>>>>> Stashed changes
 start:                  100
 align:     not defined
 follows:   not defined
@@ -31,11 +41,19 @@ vfollows:  not defined
 ---- Section .data ------------------------------------------------------------
 
 class:     progbits
+<<<<<<< Updated upstream
 length:                4265
 start:                  F1C
 align:                    4
 follows:   not defined
 vstart:                 F1C
+=======
+length:                425A
+start:                 11E8
+align:                    4
+follows:   not defined
+vstart:                11E8
+>>>>>>> Stashed changes
 valign:    not defined
 vfollows:  not defined
 
@@ -43,10 +61,17 @@ vfollows:  not defined
 
 class:     nobits
 length:                   1
+<<<<<<< Updated upstream
 start:                 5184
 align:     not defined
 follows:   not defined
 vstart:                5184
+=======
+start:                 5444
+align:     not defined
+follows:   not defined
+vstart:                5444
+>>>>>>> Stashed changes
 valign:                   4
 vfollows:  not defined
 
@@ -73,15 +98,10 @@ Real              Virtual           Name
              234               234  end_string
              235               235  play_Choice
              238               238  display_score
-             2A1               2A1  points
-             2B7               2B7  five
-             2CB               2CB  four
-             2D9               2D9  three
-             2E7               2E7  two
-             2F5               2F5  one
              303               303  scoringDraw
              31E               31E  scoringDraw.draw_line
              32C               32C  pelletsPoints
+<<<<<<< Updated upstream
              346               346  pelletsPoints.adding10
              351               351  spelletsPoints
              36B               36B  spelletsPoints.adding30
@@ -285,10 +305,261 @@ Real              Virtual           Name
              ED8               ED8  draw_clyde.draw_line
              EE6               EE6  draw_pinky
              F0B               F0B  draw_pinky.draw_line
+=======
+             330               330  scoreFour
+             384               384  scoreFour.printNumberZero
+             38C               38C  scoreFour.printNumberOne
+             394               394  scoreFour.printNumberTwo
+             39C               39C  scoreFour.printNumberThree
+             3A4               3A4  scoreFour.printNumberFour
+             3AC               3AC  scoreFour.printNumberFive
+             3B4               3B4  scoreFour.printNumberSix
+             3BC               3BC  scoreFour.printNumberSeven
+             3C4               3C4  scoreFour.printNumberEight
+             3CC               3CC  scoreFour.printNumberNine
+             3D4               3D4  scoreFour.end
+             3E8               3E8  scoreFour.scoreThree
+             40B               40B  scoreThree
+             458               458  scoreThree.printNumberOne
+             460               460  scoreThree.printNumberTwo
+             468               468  scoreThree.printNumberThree
+             470               470  scoreThree.printNumberFour
+             478               478  scoreThree.printNumberFive
+             480               480  scoreThree.printNumberSix
+             488               488  scoreThree.printNumberSeven
+             490               490  scoreThree.printNumberEight
+             498               498  scoreThree.printNumberNine
+             4A0               4A0  scoreThree.end
+             4B4               4B4  scoreThree.scoreTwo
+             4D7               4D7  scoreTwo
+             524               524  scoreTwo.printNumberOne
+             52C               52C  scoreTwo.printNumberTwo
+             534               534  scoreTwo.printNumberThree
+             53C               53C  scoreTwo.printNumberFour
+             544               544  scoreTwo.printNumberFive
+             54C               54C  scoreTwo.printNumberSix
+             554               554  scoreTwo.printNumberSeven
+             55C               55C  scoreTwo.printNumberEight
+             564               564  scoreTwo.printNumberNine
+             56C               56C  scoreTwo.end
+             580               580  scoreTwo.scoreOne
+             5A3               5A3  scoreOne
+             5E7               5E7  scoreOne.printNumberOne
+             5EF               5EF  scoreOne.printNumberTwo
+             5F7               5F7  scoreOne.printNumberThree
+             5FF               5FF  scoreOne.printNumberFour
+             607               607  scoreOne.printNumberFive
+             60F               60F  scoreOne.printNumberSix
+             617               617  scoreOne.printNumberSeven
+             61F               61F  scoreOne.printNumberEight
+             627               627  scoreOne.printNumberNine
+             62F               62F  scoreOne.end
+             643               643  start_game
+             655               655  gameloop
+             68B               68B  waitloop
+             699               699  clearScreen
+             6A9               6A9  clearSprite
+             6BE               6BE  clearSprite.clear_line
+             6CE               6CE  read_character_key_was_pressed
+             6FA               6FA  read_character_key_was_pressed.update_keystroke
+             700               700  pause
+             70B               70B  pause.update_pause
+             70D               70D  continue_movement
+             724               724  move_right
+             73B               73B  move_right.skip_move_right
+             740               740  move_left
+             757               757  move_left.skip_move_left
+             75C               75C  move_up
+             773               773  move_up.skip_move_up
+             778               778  move_down
+             78F               78F  move_down.skip_move_down
+             794               794  pacman_Right
+             7AC               7AC  pacman_Right.pacmanRightOpen
+             7B7               7B7  pacman_Right.pacmanRightSemiOpen
+             7C2               7C2  pacman_Right.pacmanRightClose
+             7CD               7CD  pacman_Left
+             7E5               7E5  pacman_Left.pacmanLeftOpen
+             7F0               7F0  pacman_Left.pacmanLeftSemiOpen
+             7FB               7FB  pacman_Left.pacmanLeftClose
+             806               806  pacman_Up
+             81E               81E  pacman_Up.pacmanUpOpen
+             829               829  pacman_Up.pacmanUpSemiOpen
+             834               834  pacman_Up.pacmanUpClose
+             83F               83F  pacman_Down
+             857               857  pacman_Down.pacmanDownOpen
+             862               862  pacman_Down.pacmanDownSemiOpen
+             86D               86D  pacman_Down.pacmanDownClose
+             878               878  draw_sprite
+             89D               89D  draw_sprite.draw_line
+             8AB               8AB  drawWalls
+             8AE               8AE  drawWalls.eachLine
+             8BF               8BF  nextColumn
+             8D0               8D0  nextRow
+             8F0               8F0  Maze
+             8F6               8F6  wallchoice
+             A49               A49  drawEmpty
+             A52               A52  DrawEXT_ANGLE_TL
+             A5B               A5B  DrawEXT_ANGLE_TR
+             A64               A64  DrawEXT_BORDER_STRAIT_UP
+             A6D               A6D  DrawEXT_BORDER_STRAIT_DOWN
+             A76               A76  DrawTRIANGLE_RIGHT
+             A7F               A7F  DrawEXT_BORDER_SQUARE_TL
+             A88               A88  DrawEXT_BORDER_SQUARE_TR
+             A91               A91  DrawEXT_BORDER_CIRCLE_TL
+             A9A               A9A  DrawEXT_BORDER_CIRCLE_TR
+             AA3               AA3  DrawINT_GHOST_SPAWN_TL
+             AAC               AAC  DrawINT_GHOST_SPAWN_MIDDLE_TOP
+             AB5               AB5  DrawINT_GHOST_SPAWN_TR
+             ABE               ABE  DrawEXT_ANGLE_BL
+             AC7               AC7  DrawEXT_ANGLE_BR
+             AD0               AD0  DrawEXT_BORDER_STRAIT_LEFT
+             AD9               AD9  DrawEXT_BORDER_STRAIT_RIGHT
+             AE2               AE2  DrawTRIANGLE_LEFT
+             AEB               AEB  DrawEXT_BORDER_SQUARE_BL
+             AF4               AF4  DrawEXT_BORDER_SQUARE_BR
+             AFD               AFD  DrawEXT_BORDER_CIRCLE_BL
+             B06               B06  DrawEXT_BORDER_CIRCLE_BR
+             B0F               B0F  DrawINT_GHOST_SPAWN_BL
+             B18               B18  DrawINT_GHOST_SPAWN_MIDDLE_DOWN
+             B21               B21  DrawINT_GHOST_SPAWN_BR
+             B2A               B2A  DrawINT_BIG_RECTANGLE_TL
+             B33               B33  DrawINT_BIG_RECTANGLE_MIDDLE_TOP
+             B3C               B3C  DrawINT_BIG_RECTANGLE_TR
+             B45               B45  DrawINT_SLIM_HORI_LEFT
+             B4E               B4E  DrawINT_SLIM_HORI_MIDDLE
+             B57               B57  DrawINT_SLIM_HORI_RIGHT
+             B60               B60  DrawINT_ANGLE_TL
+             B69               B69  DrawINT_ANGLE_TR
+             B72               B72  DrawINT_BIG_CORNER_TL
+             B7B               B7B  DrawINT_BIG_CORNER_TR
+             B84               B84  DrawINT_GHOST_OUT_LEFT
+             B8D               B8D  DrawINT_GHOST_OUT_RIGHT
+             B96               B96  DrawINT_BIG_RECTANGLE_BL
+             B9F               B9F  DrawINT_BIG_RECTANGLE_MIDDLE_DOWN
+             BA8               BA8  DrawINT_BIG_RECTANGLE_BR
+             BB1               BB1  DrawINT_SLIM_VERTI_UP
+             BBA               BBA  DrawINT_SLIM_VERTI_MIDDLE
+             BC3               BC3  DrawINT_SLIM_VERTI_DOWN
+             BCC               BCC  DrawINT_ANGLE_BL
+             BD5               BD5  DrawINT_ANGLE_BR
+             BDE               BDE  DrawINT_BIG_CORNER_BL
+             BE7               BE7  DrawINT_BIG_CORNER_BR
+             BF0               BF0  DrawINT_BIG_RECTANGLE_MIDDLE_LEFT
+             BF9               BF9  DrawINT_BIG_RECTANGLE_MIDDLE_RIGHT
+             C02               C02  DrawTRIANGLE_UP
+             C0B               C0B  DrawINT_GHOST_SPAWN_STRAIT_LEFT
+             C14               C14  DrawINT_GHOST_SPAWN_STRAIT_RIGHT
+             C1D               C1D  DrawEXT_TRIANGLE_LEFT
+             C26               C26  DrawEXT_TRIANGLE_RIGHT
+             C2F               C2F  Draw_PELLET
+             C38               C38  Draw_SUPER_PELLET
+             C41               C41  direction_ghost
+             C4D               C4D  clearGhostB
+             C62               C62  clearGhostB.clear_line
+             C72               C72  clearGhostI
+             C87               C87  clearGhostI.clear_line
+             C97               C97  clearGhostC
+             CAC               CAC  clearGhostC.clear_line
+             CBC               CBC  clearGhostP
+             CD1               CD1  clearGhostP.clear_line
+             CE1               CE1  continue_movementB
+             CF5               CF5  move_rightB
+             CFC               CFC  move_leftB
+             D03               D03  move_upB
+             D07               D07  move_downB
+             D0B               D0B  blinky_right
+             D23               D23  blinky_right.blinkyRightOpen
+             D2E               D2E  blinky_right.blinkyRightSemiOpen
+             D39               D39  blinky_right.blinkyRightClose
+             D44               D44  blinky_left
+             D5C               D5C  blinky_left.blinkyLeftOpen
+             D67               D67  blinky_left.blinkyLeftSemiOpen
+             D72               D72  blinky_left.blinkyLeftClose
+             D7D               D7D  blinky_up
+             D95               D95  blinky_up.blinkyUpOpen
+             DA0               DA0  blinky_up.blinkyUpSemiOpen
+             DAB               DAB  blinky_up.blinkyUpClose
+             DB6               DB6  blinky_down
+             DCE               DCE  blinky_down.blinkyDownOpen
+             DD9               DD9  blinky_down.blinkyDownSemiOpen
+             DE4               DE4  blinky_down.blinkyDownClose
+             DEF               DEF  continue_movementI
+             E03               E03  move_rightI
+             E0A               E0A  move_leftI
+             E11               E11  move_upI
+             E15               E15  move_downI
+             E19               E19  inky_right
+             E31               E31  inky_right.inkyRightOpen
+             E3C               E3C  inky_right.inkyRightSemiOpen
+             E47               E47  inky_right.inkyRightClose
+             E52               E52  inky_left
+             E6A               E6A  inky_left.inkyLeftOpen
+             E75               E75  inky_left.inkyLeftSemiOpen
+             E80               E80  inky_left.inkyLeftClose
+             E8B               E8B  inky_up
+             EA3               EA3  inky_up.inkyUpOpen
+             EAE               EAE  inky_up.inkyUpSemiOpen
+             EB9               EB9  inky_up.inkyUpClose
+             EC4               EC4  inky_down
+             EDC               EDC  inky_down.inkyDownOpen
+             EE7               EE7  inky_down.inkyDownSemiOpen
+             EF2               EF2  inky_down.inkyDownClose
+             EFD               EFD  continue_movementC
+             F11               F11  move_rightC
+             F18               F18  move_leftC
+             F1F               F1F  move_upC
+             F23               F23  move_downC
+             F27               F27  clyde_right
+             F3F               F3F  clyde_right.clydeRightOpen
+             F4A               F4A  clyde_right.clydeRightSemiOpen
+             F55               F55  clyde_right.clydeRightClose
+             F60               F60  clyde_left
+             F78               F78  clyde_left.clydeLeftOpen
+             F83               F83  clyde_left.clydeLeftSemiOpen
+             F8E               F8E  clyde_left.clydeLeftClose
+             F99               F99  clyde_up
+             FB1               FB1  clyde_up.clydeUpOpen
+             FBC               FBC  clyde_up.clydeUpSemiOpen
+             FC7               FC7  clyde_up.clydeUpClose
+             FD2               FD2  clyde_down
+             FEA               FEA  clyde_down.clydeDownOpen
+             FF5               FF5  clyde_down.clydeDownSemiOpen
+            1000              1000  clyde_down.clydeDownClose
+            100B              100B  continue_movementP
+            101F              101F  move_rightP
+            1026              1026  move_leftP
+            102D              102D  move_upP
+            1031              1031  move_downP
+            1035              1035  pinky_right
+            104D              104D  pinky_right.pinkyRightOpen
+            1058              1058  pinky_right.pinkyRightSemiOpen
+            1063              1063  pinky_right.pinkyRightClose
+            106E              106E  pinky_left
+            1086              1086  pinky_left.pinkyLeftOpen
+            1091              1091  pinky_left.pinkyLeftSemiOpen
+            109C              109C  pinky_left.pinkyLeftClose
+            10A7              10A7  pinky_up
+            10BF              10BF  pinky_up.pinkyUpOpen
+            10CA              10CA  pinky_up.pinkyUpSemiOpen
+            10D5              10D5  pinky_up.pinkyUpClose
+            10E0              10E0  pinky_down
+            10F8              10F8  pinky_down.pinkyDownOpen
+            1103              1103  pinky_down.pinkyDownSemiOpen
+            110E              110E  pinky_down.pinkyDownClose
+            1119              1119  draw_blinky
+            113E              113E  draw_blinky.draw_line
+            114C              114C  draw_inky
+            1171              1171  draw_inky.draw_line
+            117F              117F  draw_clyde
+            11A4              11A4  draw_clyde.draw_line
+            11B2              11B2  draw_pinky
+            11D7              11D7  draw_pinky.draw_line
+>>>>>>> Stashed changes
 
 ---- Section .data ------------------------------------------------------------
 
 Real              Virtual           Name
+<<<<<<< Updated upstream
              F1C               F1C  mainWelcome
              F31               F31  playChoice
              F38               F38  settingsChoice
@@ -783,9 +1054,513 @@ Real              Virtual           Name
             5165              5165  tunnel_horizontal_pinky
             5173              5173  tunnel_horizontal_pinky.to_right
             517A              517A  tunnel_horizontal_pinky.to_left
+=======
+            11E8              11E8  mainWelcome
+            11FD              11FD  playChoice
+            1204              1204  settingsChoice
+            120F              120F  exitChoice
+            1216              1216  arrow
+            121B              121B  delArrow
+            1220              1220  copyrights1
+            126E              126E  copyrights2
+            12B6              12B6  mainSettings
+            12CD              12CD  musicSetting
+            12D2              12D2  musicDot
+            12F5              12F5  soundSetting
+            1301              1301  soundDot
+            131D              131D  skinsSetting
+            1322              1322  skinsDot
+            1345              1345  keybindSetting
+            1352              1352  backButton
+            1359              1359  onOption
+            135E              135E  del
+            1364              1364  offOption
+            136A              136A  settings_menu
+            13E6              13E6  setOnValue
+            140B              140B  setOffValue
+            1430              1430  editValue
+            1435              1435  removeValue
+            1448              1448  display_arrow_option
+            1470              1470  display_arrow_option.execpt_back
+            1475              1475  display_arrow_option.execpt_front
+            147A              147A  display_arrow_option.set_arrow
+            1490              1490  display_arrow_option.display_arrow_wait
+            14A4              14A4  display_arrow_option.remove_arrow
+            14B7              14B7  display_arrow_option.add_arrow
+            14BF              14BF  display_arrow_option.sub_arrow
+            14C7              14C7  display_arrow_option.equal_arrow
+            14DE              14DE  display_arrow_option.wait_for_key
+            14F3              14F3  exit_menu
+            14F9              14F9  done
+            1500              1500  blinky_up_1
+            1540              1540  blinky_up_2
+            1580              1580  blinky_up_3
+            15C0              15C0  blinky_left_1
+            1600              1600  blinky_left_2
+            1640              1640  blinky_left_3
+            1680              1680  blinky_right_1
+            16C0              16C0  blinky_right_2
+            1700              1700  blinky_right_3
+            1740              1740  blinky_down_1
+            1780              1780  blinky_down_2
+            17C0              17C0  blinky_down_3
+            1800              1800  inky_up_1
+            1840              1840  inky_up_2
+            1880              1880  inky_up_3
+            18C0              18C0  inky_left_1
+            1900              1900  inky_left_2
+            1940              1940  inky_left_3
+            1980              1980  inky_right_1
+            19C0              19C0  inky_right_2
+            1A00              1A00  inky_right_3
+            1A40              1A40  inky_down_1
+            1A80              1A80  inky_down_2
+            1AC0              1AC0  inky_down_3
+            1B00              1B00  clyde_up_1
+            1B40              1B40  clyde_up_2
+            1B80              1B80  clyde_up_3
+            1BC0              1BC0  clyde_left_1
+            1C00              1C00  clyde_left_2
+            1C40              1C40  clyde_left_3
+            1C80              1C80  clyde_right_1
+            1CC0              1CC0  clyde_right_2
+            1D00              1D00  clyde_right_3
+            1D40              1D40  clyde_down_1
+            1D80              1D80  clyde_down_2
+            1DC0              1DC0  clyde_down_3
+            1E00              1E00  pinky_up_1
+            1E40              1E40  pinky_up_2
+            1E80              1E80  pinky_up_3
+            1EC0              1EC0  pinky_left_1
+            1F00              1F00  pinky_left_2
+            1F40              1F40  pinky_left_3
+            1F80              1F80  pinky_right_1
+            1FC0              1FC0  pinky_right_2
+            2000              2000  pinky_right_3
+            2040              2040  pinky_down_1
+            2080              2080  pinky_down_2
+            20C0              20C0  pinky_down_3
+            2100              2100  transform_ghost_1
+            2140              2140  transform_ghost_2
+            2180              2180  transform_ghost_3
+            21C0              21C0  transform_ghost_4
+            2200              2200  eatable_up_1
+            2240              2240  eatable_up_2
+            2280              2280  eatable_left_1
+            22C0              22C0  eatable_left_2
+            2300              2300  eatable_right_1
+            2340              2340  eatable_right_2
+            2380              2380  eatable_down_1
+            23C0              23C0  eatable_down_2
+            2400              2400  pacman_right_1
+            2440              2440  pacman_right_2
+            2480              2480  pacman_right_3
+            24C0              24C0  pacman_left_1
+            2500              2500  pacman_left_2
+            2540              2540  pacman_left_3
+            2580              2580  pacman_down_1
+            25C0              25C0  pacman_down_2
+            2600              2600  pacman_down_3
+            2640              2640  pacman_up_1
+            2680              2680  pacman_up_2
+            26C0              26C0  pacman_up_3
+            2700              2700  power_pellet
+            2740              2740  pellet
+            2780              2780  cherry
+            27C0              27C0  strawberry
+            2800              2800  apple
+            2840              2840  bell
+            2880              2880  ship
+            28C0              28C0  key
+            2900              2900  kiwi
+            2940              2940  watermelon
+            2980              2980  banana
+            29C0              29C0  ext_angle_tl
+            2A00              2A00  ext_angle_bl
+            2A40              2A40  ext_border_strait_left
+            2A80              2A80  ext_border_strait_right
+            2AC0              2AC0  ext_border_square_tl
+            2B00              2B00  ext_border_square_bl
+            2B40              2B40  ext_border_circle_tl
+            2B80              2B80  ext_border_circle_bl
+            2BC0              2BC0  int_ghost_spawn_tl
+            2C00              2C00  int_ghost_spawn_bl
+            2C40              2C40  ext_angle_tr
+            2C80              2C80  ext_angle_br
+            2CC0              2CC0  ext_border_strait_up
+            2D00              2D00  ext_border_strait_down
+            2D40              2D40  triangle_up
+            2D80              2D80  ext_border_square_tr
+            2DC0              2DC0  ext_border_square_br
+            2E00              2E00  ext_border_circle_tr
+            2E40              2E40  ext_border_circle_br
+            2E80              2E80  int_ghost_spawn_tr
+            2EC0              2EC0  int_ghost_spawn_br
+            2F00              2F00  int_ghost_spawn_middle_top
+            2F40              2F40  int_ghost_spawn_middle_down
+            2F80              2F80  int_big_rectangle_tl
+            2FC0              2FC0  int_big_rectangle_middle_left
+            3000              3000  int_big_rectangle_bl
+            3040              3040  int_slim_verti_up
+            3080              3080  int_slim_verti_middle
+            30C0              30C0  int_slim_verti_down
+            3100              3100  int_angle_tl
+            3140              3140  int_angle_bl
+            3180              3180  triangle_left
+            31C0              31C0  triangle_right
+            3200              3200  int_ghost_out_left
+            3240              3240  int_ghost_out_right
+            3280              3280  int_big_rectangle_tr
+            32C0              32C0  int_big_rectangle_middle_right
+            3300              3300  int_big_rectangle_br
+            3340              3340  int_slim_hori_left
+            3380              3380  int_slim_hori_middle
+            33C0              33C0  int_slim_hori_right
+            3400              3400  int_angle_tr
+            3440              3440  int_angle_br
+            3480              3480  int_big_rectangle_middle_top
+            34C0              34C0  int_big_rectangle_middle_down
+            3500              3500  int_big_corner_br
+            3540              3540  int_big_corner_bl
+            3580              3580  int_big_corner_tl
+            35C0              35C0  int_big_corner_tr
+            3600              3600  int_ghost_spawn_strait_left
+            3640              3640  int_ghost_spawn_strait_right
+            3680              3680  ext_triangle_left
+            36C0              36C0  ext_triangle_right
+            3700              3700  empty
+            3740              3740  number1
+            3780              3780  number2
+            37C0              37C0  number3
+            3800              3800  number4
+            3840              3840  number5
+            3880              3880  number6
+            38C0              38C0  number7
+            3900              3900  number8
+            3940              3940  number9
+            3980              3980  number0
+            39C0              39C0  alphabetA
+            3A00              3A00  alphabetB
+            3A40              3A40  alphabetC
+            3A80              3A80  alphabetD
+            3AC0              3AC0  alphabetE
+            3B00              3B00  alphabetF
+            3B40              3B40  alphabetG
+            3B80              3B80  alphabetH
+            3BC0              3BC0  alphabetI
+            3C00              3C00  alphabetJ
+            3C40              3C40  alphabetK
+            3C80              3C80  alphabetL
+            3CC0              3CC0  alphabetM
+            3D00              3D00  alphabetN
+            3D40              3D40  alphabetO
+            3D80              3D80  alphabetP
+            3DC0              3DC0  alphabetQ
+            3E00              3E00  alphabetR
+            3E40              3E40  alphabetS
+            3E80              3E80  alphabetT
+            3EC0              3EC0  alphabetU
+            3F00              3F00  alphabetV
+            3F40              3F40  alphabetW
+            3F80              3F80  alphabetX
+            3FC0              3FC0  alphabetY
+            4000              4000  alphabetZ
+            4040              4040  xPos
+            4042              4042  xVelocity
+            4044              4044  yPos
+            4046              4046  old_XPOS
+            4048              4048  old_YPOS
+            404A              404A  currentSprite
+            404E              404E  actualKeystroke
+            4050              4050  waitingKeystroke
+            4052              4052  framerate
+            4053              4053  mazeSprite
+            4237              4237  Column
+            4239              4239  Row
+            423B              423B  PixelPerTileRow
+            423D              423D  current_score
+            423F              423F  point_pellet
+            4241              4241  point_super_pellet
+            4243              4243  point_ghost_
+            4245              4245  point_cherry
+            4247              4247  point_strawberry
+            4249              4249  point_orange
+            424B              424B  point_apple
+            424D              424D  point_melon
+            424F              424F  point_ship
+            4251              4251  point_bell
+            4253              4253  point_key
+            4255              4255  scoreCurrentSprite
+            4257              4257  scoreFiveRecord
+            4259              4259  scoreFourRecord
+            425B              425B  scoreThreeRecord
+            425D              425D  scoreTwoRecord
+            425F              425F  scoreOneRecord
+            4261              4261  yScorePos
+            4263              4263  xScorePos
+            4265              4265  xPosBlinky
+            4267              4267  xPosInky
+            4269              4269  xPosClyde
+            426B              426B  xPosPinky
+            426D              426D  yPosBlinky
+            426F              426F  yPosInky
+            4271              4271  yPosClyde
+            4273              4273  yPosPinky
+            4275              4275  xGVelocity
+            4277              4277  spriteBw
+            4279              4279  spriteBh
+            427B              427B  old_XPOSBlinky
+            427D              427D  old_XPOSInky
+            427F              427F  old_XPOSClyde
+            4281              4281  old_XPOSPinky
+            4283              4283  old_YPOSBlinky
+            4285              4285  old_YPOSInky
+            4287              4287  old_YPOSClyde
+            4289              4289  old_YPOSPinky
+            428B              428B  currentSpriteBlinky
+            428F              428F  currentSpriteInky
+            4293              4293  currentSpriteClyde
+            4297              4297  currentSpritePinky
+            429B              429B  actualBDirection
+            429D              429D  actualIDirection
+            429F              429F  actualCDirection
+            42A1              42A1  actualPDirection
+            42A3              42A3  detectCollision
+            42A4              42A4  check_detection_walls
+            42C2              42C2  check_detection_walls.collision
+            42C8              42C8  check_detection_pellets_right
+            42EA              42EA  check_detection_pellets_left
+            430C              430C  check_detection_pellets_up
+            432E              432E  check_detection_pellets_down
+            4350              4350  collision
+            4353              4353  check_collision_pacman
+            4376              4376  check_right_pac
+            4376              4376  check_right_pac.check_right_pac_0
+            438B              438B  check_right_pac.check_right_pac_1
+            43A3              43A3  check_right_pac.check_right_pac_2
+            43BB              43BB  check_right_pac.check_right_pac_3
+            43D3              43D3  check_right_pac.check_right_pac_4
+            43EB              43EB  check_right_pac.check_right_pac_5
+            4403              4403  check_right_pac.check_right_pac_6
+            441B              441B  check_right_pac.check_right_pac_7
+            4433              4433  check_right_pac.check_right_pac_over
+            443F              443F  check_left_pac
+            443F              443F  check_left_pac.check_left_pac_0
+            4454              4454  check_left_pac.check_left_pac_1
+            446C              446C  check_left_pac.check_left_pac_2
+            4484              4484  check_left_pac.check_left_pac_3
+            449C              449C  check_left_pac.check_left_pac_4
+            44B4              44B4  check_left_pac.check_left_pac_5
+            44CC              44CC  check_left_pac.check_left_pac_6
+            44E4              44E4  check_left_pac.check_left_pac_7
+            44FC              44FC  check_left_pac.check_left_pac_over
+            4508              4508  check_up_pac
+            4508              4508  check_up_pac.check_up_pac_0
+            451D              451D  check_up_pac.check_up_pac_1
+            4535              4535  check_up_pac.check_up_pac_2
+            454D              454D  check_up_pac.check_up_pac_3
+            4565              4565  check_up_pac.check_up_pac_4
+            457D              457D  check_up_pac.check_up_pac_5
+            4595              4595  check_up_pac.check_up_pac_6
+            45AD              45AD  check_up_pac.check_up_pac_7
+            45C5              45C5  check_up_pac.check_up_pac_over
+            45D1              45D1  check_down_pac
+            45D1              45D1  check_down_pac.check_down_pac_0
+            45E6              45E6  check_down_pac.check_down_pac_1
+            45FE              45FE  check_down_pac.check_down_pac_2
+            4616              4616  check_down_pac.check_down_pac_3
+            462E              462E  check_down_pac.check_down_pac_4
+            4646              4646  check_down_pac.check_down_pac_5
+            465E              465E  check_down_pac.check_down_pac_6
+            4676              4676  check_down_pac.check_down_pac_7
+            468E              468E  check_down_pac.check_down_pac_over
+            469A              469A  check_collision_ghost_Blinky
+            46BD              46BD  check_right_blinky
+            46BD              46BD  check_right_blinky.check_right_blinky_0
+            46D2              46D2  check_right_blinky.check_right_blinky_1
+            46EA              46EA  check_right_blinky.check_right_blinky_2
+            4702              4702  check_right_blinky.check_right_blinky_3
+            471A              471A  check_right_blinky.check_right_blinky_4
+            4732              4732  check_right_blinky.check_right_blinky_5
+            474A              474A  check_right_blinky.check_right_blinky_6
+            4762              4762  check_right_blinky.check_right_blinky_7
+            477A              477A  check_right_blinky.check_right_blinky_over
+            4786              4786  check_left_blinky
+            4786              4786  check_left_blinky.check_left_blinky_0
+            479B              479B  check_left_blinky.check_left_blinky_1
+            47B3              47B3  check_left_blinky.check_left_blinky_2
+            47CB              47CB  check_left_blinky.check_left_blinky_3
+            47E3              47E3  check_left_blinky.check_left_blinky_4
+            47FB              47FB  check_left_blinky.check_left_blinky_5
+            4813              4813  check_left_blinky.check_left_blinky_6
+            482B              482B  check_left_blinky.check_left_blinky_7
+            4843              4843  check_left_blinky.check_left_blinky_over
+            484F              484F  check_up_blinky
+            484F              484F  check_up_blinky.check_up_blinky_0
+            4864              4864  check_up_blinky.check_up_blinky_1
+            487C              487C  check_up_blinky.check_up_blinky_2
+            4894              4894  check_up_blinky.check_up_blinky_3
+            48AC              48AC  check_up_blinky.check_up_blinky_4
+            48C4              48C4  check_up_blinky.check_up_blinky_5
+            48DC              48DC  check_up_blinky.check_up_blinky_6
+            48F4              48F4  check_up_blinky.check_up_blinky_7
+            490C              490C  check_up_blinky.check_up_blinky_over
+            4918              4918  check_down_blinky
+            4918              4918  check_down_blinky.check_down_blinky_0
+            492D              492D  check_down_blinky.check_down_blinky_1
+            4945              4945  check_down_blinky.check_down_blinky_2
+            495D              495D  check_down_blinky.check_down_blinky_3
+            4975              4975  check_down_blinky.check_down_blinky_4
+            498D              498D  check_down_blinky.check_down_blinky_5
+            49A5              49A5  check_down_blinky.check_down_blinky_6
+            49BD              49BD  check_down_blinky.check_down_blinky_7
+            49D5              49D5  check_down_blinky.check_down_blinky_over
+            49E1              49E1  check_collision_ghost_Inky
+            4A04              4A04  check_right_inky
+            4A04              4A04  check_right_inky.check_right_inky_0
+            4A19              4A19  check_right_inky.check_right_inky_1
+            4A31              4A31  check_right_inky.check_right_inky_2
+            4A49              4A49  check_right_inky.check_right_inky_3
+            4A61              4A61  check_right_inky.check_right_inky_4
+            4A79              4A79  check_right_inky.check_right_inky_5
+            4A91              4A91  check_right_inky.check_right_inky_6
+            4AA9              4AA9  check_right_inky.check_right_inky_7
+            4AC1              4AC1  check_right_inky.check_right_inky_over
+            4ACD              4ACD  check_left_inky
+            4ACD              4ACD  check_left_inky.check_left_inky_0
+            4AE2              4AE2  check_left_inky.check_left_inky_1
+            4AFA              4AFA  check_left_inky.check_left_inky_2
+            4B12              4B12  check_left_inky.check_left_inky_3
+            4B2A              4B2A  check_left_inky.check_left_inky_4
+            4B42              4B42  check_left_inky.check_left_inky_5
+            4B5A              4B5A  check_left_inky.check_left_inky_6
+            4B72              4B72  check_left_inky.check_left_inky_7
+            4B8A              4B8A  check_left_inky.check_left_inky_over
+            4B96              4B96  check_up_inky
+            4B96              4B96  check_up_inky.check_up_inky_0
+            4BAB              4BAB  check_up_inky.check_up_inky_1
+            4BC3              4BC3  check_up_inky.check_up_inky_2
+            4BDB              4BDB  check_up_inky.check_up_inky_3
+            4BF3              4BF3  check_up_inky.check_up_inky_4
+            4C0B              4C0B  check_up_inky.check_up_inky_5
+            4C23              4C23  check_up_inky.check_up_inky_6
+            4C3B              4C3B  check_up_inky.check_up_inky_7
+            4C53              4C53  check_up_inky.check_up_inky_over
+            4C5F              4C5F  check_down_inky
+            4C5F              4C5F  check_down_inky.check_down_inky_0
+            4C74              4C74  check_down_inky.check_down_inky_1
+            4C8C              4C8C  check_down_inky.check_down_inky_2
+            4CA4              4CA4  check_down_inky.check_down_inky_3
+            4CBC              4CBC  check_down_inky.check_down_inky_4
+            4CD4              4CD4  check_down_inky.check_down_inky_5
+            4CEC              4CEC  check_down_inky.check_down_inky_6
+            4D04              4D04  check_down_inky.check_down_inky_7
+            4D1C              4D1C  check_down_inky.check_down_inky_over
+            4D28              4D28  check_collision_ghost_Clyde
+            4D4B              4D4B  check_right_clyde
+            4D4B              4D4B  check_right_clyde.check_right_clyde_0
+            4D60              4D60  check_right_clyde.check_right_clyde_1
+            4D78              4D78  check_right_clyde.check_right_clyde_2
+            4D90              4D90  check_right_clyde.check_right_clyde_3
+            4DA8              4DA8  check_right_clyde.check_right_clyde_4
+            4DC0              4DC0  check_right_clyde.check_right_clyde_5
+            4DD8              4DD8  check_right_clyde.check_right_clyde_6
+            4DF0              4DF0  check_right_clyde.check_right_clyde_7
+            4E08              4E08  check_right_clyde.check_right_clyde_over
+            4E14              4E14  check_left_clyde
+            4E14              4E14  check_left_clyde.check_left_clyde_0
+            4E29              4E29  check_left_clyde.check_left_clyde_1
+            4E41              4E41  check_left_clyde.check_left_clyde_2
+            4E59              4E59  check_left_clyde.check_left_clyde_3
+            4E71              4E71  check_left_clyde.check_left_clyde_4
+            4E89              4E89  check_left_clyde.check_left_clyde_5
+            4EA1              4EA1  check_left_clyde.check_left_clyde_6
+            4EB9              4EB9  check_left_clyde.check_left_clyde_7
+            4ED1              4ED1  check_left_clyde.check_left_clyde_over
+            4EDD              4EDD  check_up_clyde
+            4EDD              4EDD  check_up_clyde.check_up_clyde_0
+            4EF2              4EF2  check_up_clyde.check_up_clyde_1
+            4F0A              4F0A  check_up_clyde.check_up_clyde_2
+            4F22              4F22  check_up_clyde.check_up_clyde_3
+            4F3A              4F3A  check_up_clyde.check_up_clyde_4
+            4F52              4F52  check_up_clyde.check_up_clyde_5
+            4F6A              4F6A  check_up_clyde.check_up_clyde_6
+            4F82              4F82  check_up_clyde.check_up_clyde_7
+            4F9A              4F9A  check_up_clyde.check_up_clyde_over
+            4FA6              4FA6  check_down_clyde
+            4FA6              4FA6  check_down_clyde.check_down_clyde_0
+            4FBB              4FBB  check_down_clyde.check_down_clyde_1
+            4FD3              4FD3  check_down_clyde.check_down_clyde_2
+            4FEB              4FEB  check_down_clyde.check_down_clyde_3
+            5003              5003  check_down_clyde.check_down_clyde_4
+            501B              501B  check_down_clyde.check_down_clyde_5
+            5033              5033  check_down_clyde.check_down_clyde_6
+            504B              504B  check_down_clyde.check_down_clyde_7
+            5063              5063  check_down_clyde.check_down_clyde_over
+            506F              506F  check_collision_ghost_Pinky
+            5092              5092  check_right_pinky
+            5092              5092  check_right_pinky.check_right_pinky_0
+            50A7              50A7  check_right_pinky.check_right_pinky_1
+            50BF              50BF  check_right_pinky.check_right_pinky_2
+            50D7              50D7  check_right_pinky.check_right_pinky_3
+            50EF              50EF  check_right_pinky.check_right_pinky_4
+            5107              5107  check_right_pinky.check_right_pinky_5
+            511F              511F  check_right_pinky.check_right_pinky_6
+            5137              5137  check_right_pinky.check_right_pinky_7
+            514F              514F  check_right_pinky.check_right_pinky_over
+            515B              515B  check_left_pinky
+            515B              515B  check_left_pinky.check_left_pinky_0
+            5170              5170  check_left_pinky.check_left_pinky_1
+            5188              5188  check_left_pinky.check_left_pinky_2
+            51A0              51A0  check_left_pinky.check_left_pinky_3
+            51B8              51B8  check_left_pinky.check_left_pinky_4
+            51D0              51D0  check_left_pinky.check_left_pinky_5
+            51E8              51E8  check_left_pinky.check_left_pinky_6
+            5200              5200  check_left_pinky.check_left_pinky_7
+            5218              5218  check_left_pinky.check_left_pinky_over
+            5224              5224  check_up_pinky
+            5224              5224  check_up_pinky.check_up_pinky_0
+            5239              5239  check_up_pinky.check_up_pinky_1
+            5251              5251  check_up_pinky.check_up_pinky_2
+            5269              5269  check_up_pinky.check_up_pinky_3
+            5281              5281  check_up_pinky.check_up_pinky_4
+            5299              5299  check_up_pinky.check_up_pinky_5
+            52B1              52B1  check_up_pinky.check_up_pinky_6
+            52C9              52C9  check_up_pinky.check_up_pinky_7
+            52E1              52E1  check_up_pinky.check_up_pinky_over
+            52ED              52ED  check_down_pinky
+            52ED              52ED  check_down_pinky.check_down_pinky_0
+            5302              5302  check_down_pinky.check_down_pinky_1
+            531A              531A  check_down_pinky.check_down_pinky_2
+            5332              5332  check_down_pinky.check_down_pinky_3
+            534A              534A  check_down_pinky.check_down_pinky_4
+            5362              5362  check_down_pinky.check_down_pinky_5
+            537A              537A  check_down_pinky.check_down_pinky_6
+            5392              5392  check_down_pinky.check_down_pinky_7
+            53AA              53AA  check_down_pinky.check_down_pinky_over
+            53B6              53B6  tunnel_horizontal
+            53C4              53C4  tunnel_horizontal.to_right
+            53CB              53CB  tunnel_horizontal.to_left
+            53D2              53D2  tunnel_horizontal_blinky
+            53E0              53E0  tunnel_horizontal_blinky.to_right
+            53E7              53E7  tunnel_horizontal_blinky.to_left
+            53EE              53EE  tunnel_horizontal_inky
+            53FC              53FC  tunnel_horizontal_inky.to_right
+            5403              5403  tunnel_horizontal_inky.to_left
+            540A              540A  tunnel_horizontal_clyde
+            5418              5418  tunnel_horizontal_clyde.to_right
+            541F              541F  tunnel_horizontal_clyde.to_left
+            5426              5426  tunnel_horizontal_pinky
+            5434              5434  tunnel_horizontal_pinky.to_right
+            543B              543B  tunnel_horizontal_pinky.to_left
+>>>>>>> Stashed changes
 
 ---- Section .bss -------------------------------------------------------------
 
 Real              Virtual           Name
+<<<<<<< Updated upstream
             5184              5184  keyPressed
+=======
+            5444              5444  keyPressed
+>>>>>>> Stashed changes
 
