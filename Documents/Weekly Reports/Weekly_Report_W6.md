@@ -2,7 +2,7 @@
 ## Weekly Report - Week of December 11, 2023
 1. Introduction:
 
-This week we manage to achives most of tasks we needeed to do for the week but we have after a brainstorm we conclude that the project will not be complete with all features we wanted to make. 
+This week we've managed to achieve most of the tasks we needed to do for the week. However, after a scrum meeting with the whole team, we came to a conclusion that the project with all the desired features will not be but possible, due to the short deadline we decided to concentrate on the essentials for the product to be functional.
 
 2. Accomplishments:
 - Implementation of Pac-Man's collision with walls
@@ -10,10 +10,10 @@ This week we manage to achives most of tasks we needeed to do for the week but w
 - Implementation of the four ghosts
 - Implementation of ghosts' collisions with walls
 3. Challenges:
-- We do not manage to implement random mouvement for ghosts
+- We haven't managed to implement random movements for the ghosts.
 4. Plans for Next Week:
 - Finish the interface of the game
-- Integrate points incrementation
+- Integrate points system
 - Fix the most possible bugs for a good delivery product
 5. Conclusion:
 
