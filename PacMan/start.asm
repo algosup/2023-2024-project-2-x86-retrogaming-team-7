@@ -65,6 +65,7 @@ start_game:
      call gameloop
     
 gameloop:
+     call check_detection_pellets
      call check_collision_pacman
      call clearSprite
      call draw_sprite

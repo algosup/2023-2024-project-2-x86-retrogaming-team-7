@@ -22,6 +22,23 @@ check_detection_walls:
           ret
 
 
+;=================================================
+;              PELLETS COLLISIONS
+;=================================================
+check_detection_pellets:
+     ; Convert position to screen buffer index
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x0E
+     je .collision
+     jmp pelletsPoints
+     .collision: ; Collision do not exist
+          ret
+
 
 ;=================================================
 ;              PACMAN COLLISIONS
