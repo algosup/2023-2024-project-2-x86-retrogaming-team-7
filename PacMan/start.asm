@@ -40,7 +40,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,46,47,54,54,54,54,54,54,54,54,54,15
                 db 14,54,27,28,31,54,27,28,29,54,44,45,54,27,28,29,54,30,28,29,54,15
-                db 14,54,54,54,40,54,54,54,54,54,54,49,54,54,54,54,54,40,54,54,54,15
+                db 14,54,54,54,40,54,54,54,54,54,49,49,54,54,54,54,54,40,54,54,54,15
                 db 53,28,29,54,41,54,39,54,27,28,32,33,28,29,54,39,54,41,54,27,28,52
                 db 14,54,54,54,54,54,40,54,54,54,46,47,54,54,54,40,54,54,54,54,54,15
                 db 14,55,27,28,28,28,48,28,29,54,44,45,54,27,28,48,28,28,28,29,55,15
@@ -147,6 +147,8 @@ read_character_key_was_pressed:
      je .update_keystroke
      cmp ah, 50h
      je .update_keystroke
+     cmp ah, 19h
+     je pause
      cmp ah, 01h
      je exit_menu
      jmp continue_movement
@@ -154,7 +156,15 @@ read_character_key_was_pressed:
      .update_keystroke:
           mov [actualKeystroke], ah  ; Store the new direction
           jmp continue_movement
-          
+
+pause:
+     mov ah, 00h
+     int 16h
+     cmp ah, 1Ch
+     je .update_pause
+     jmp pause
+     .update_pause:
+          jmp read_character_key_was_pressed
 
 continue_movement:
      mov al, [actualKeystroke]
