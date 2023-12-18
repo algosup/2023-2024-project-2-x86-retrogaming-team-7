@@ -51,6 +51,7 @@ Column dw 22
 Row dw 22
 PixelPerTileRow dw 7752
 
+%include "scoring.asm"
 section .bss
 keyPressed resb 1
 section .text
@@ -59,6 +60,7 @@ start_game:
      mov al, 0x13    ; Video mode 0x13 
      int 0x10        ; Call BIOS interrupt to set video mode
      call clearScreen
+     call display_score
      call Maze
      call gameloop
     
@@ -711,8 +713,6 @@ Draw_SUPER_PELLET:
      mov si, power_pellet
      call drawWalls
      jmp wallchoice
-
-
 
 %include "Ghost.asm"
 %include "collisions.asm"
