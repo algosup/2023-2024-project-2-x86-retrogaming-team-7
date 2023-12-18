@@ -1707,67 +1707,67 @@ check_down_pinky:
 
 tunnel_horizontal:
      mov ax, [xPos]
-     cmp ax, 66
+     cmp ax, 74
      jb .to_right
-     cmp ax, 246
+     cmp ax, 238
      ja .to_left
      ret
      .to_right:
-          mov word [xPos], 244
+          mov word [xPos], 238
           ret
      .to_left:
-          mov word [xPos], 70
+          mov word [xPos], 74
           ret
 
 tunnel_horizontal_blinky:
      mov ax, [xPosBlinky]
-          cmp ax, 66
+          cmp ax, 74
           jb .to_right
-          cmp ax, 246
+          cmp ax, 238
           ja .to_left
           ret
           .to_right:
-               mov word [xPosBlinky], 244
+               mov word [xPosBlinky], 238
                ret
           .to_left:
-               mov word [xPosBlinky], 70
+               mov word [xPosBlinky], 74
                ret
 tunnel_horizontal_inky:
      mov ax, [xPosInky]
-     cmp ax, 66
+     cmp ax, 74
      jb .to_right
-     cmp ax, 246
+     cmp ax, 238
      ja .to_left
      ret
      .to_right:
-          mov word [xPosInky], 244
+          mov word [xPosInky], 238
           ret
      .to_left:
-          mov word [xPosInky], 70
+          mov word [xPosInky], 74
           ret
 tunnel_horizontal_clyde:
      mov ax, [xPosClyde]
-     cmp ax, 66
+     cmp ax, 74
      jb .to_right
-     cmp ax, 246
+     cmp ax, 238
      ja .to_left
      ret
      .to_right:
-          mov word [xPosClyde], 244
+          mov word [xPosClyde], 238
           ret
      .to_left:
-          mov word [xPosClyde], 70
+          mov word [xPosClyde], 74
           ret
 tunnel_horizontal_pinky:
      mov ax, [xPosPinky]
-     cmp ax, 66
+     cmp ax, 74
      jb .to_right
-     cmp ax, 246
+     cmp ax, 238
      ja .to_left
      ret
      .to_right:
-          mov word [xPosPinky], 244
+          mov word [xPosPinky], 238
           ret
      .to_left:
-          mov word [xPosPinky], 70
+          mov word [xPosPinky], 74
           ret
