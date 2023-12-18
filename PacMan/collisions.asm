@@ -38,7 +38,9 @@ check_detection_pellets_right:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x42
-          je collision
+          je collisionP
+          cmp al, 0x2B
+          je collisionSP
           ret
 check_detection_pellets_left:
           mov ax, [xPos]
@@ -52,7 +54,9 @@ check_detection_pellets_left:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x42
-          je collision
+          je collisionP
+          cmp al, 0x2B
+          je collisionSP
           ret
 check_detection_pellets_up:
           mov ax, [xPos]
@@ -66,7 +70,9 @@ check_detection_pellets_up:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x42
-          je collision
+          je collisionP
+          cmp al, 0x2B
+          je collisionSP
           ret
 check_detection_pellets_down:
           mov ax, [xPos]
@@ -80,12 +86,17 @@ check_detection_pellets_down:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x42
-          je collision
+          je collisionP
+          cmp al, 0x2B
+          je collisionSP
           ret
 
-
-collision:
+collisionP:
      call pelletsPoints
+     ret
+collisionSP:
+     call spelletsPoints 
+     ret
 
 
 ;=================================================

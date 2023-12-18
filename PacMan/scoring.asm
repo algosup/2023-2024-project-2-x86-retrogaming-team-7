@@ -1,25 +1,22 @@
 section .data
-current_score dd 0
+current_score dd 00000
 point_pellet db 10
 point_super_pellet db 30
 point_ghost_ db 200
 point_cherry db 100
-point_strawberry db 300
-point_orange db 500
-point_apple db 700
-point_melon db 1000
-point_ship db 2000
-point_bell db 3000
-point_key db 5000
+point_strawberry dw 300
+point_orange dw 500
+point_apple dw 700
+point_melon dw 1000
+point_ship dw 2000
+point_bell dw 3000
+point_key dw 5000
 scoreCurrentSprite dd 0
-
 yScorePos dw 0
 xScorePos dw 0
 %define SPRITEW 8
 %define SPRITEH 8
-
 section .text
-
 display_score:
     ; Affiche "S"
     mov word [scoreCurrentSprite], alphabetS
@@ -27,59 +24,63 @@ display_score:
     mov word [xScorePos], 264
     mov word [yScorePos], 21
     call scoringDraw
-
     ; Affiche "C"
     mov word [scoreCurrentSprite], alphabetC
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 272  ; 10 + 8
     call scoringDraw
-
     ; Affiche "O"
     mov word [scoreCurrentSprite], alphabetO
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 280  ; 18 + 8
     call scoringDraw
-
     ; Affiche "R"
     mov word [scoreCurrentSprite], alphabetR
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 288  ; 26 + 8
     call scoringDraw
-
     ; Affiche "E"
     mov word [scoreCurrentSprite], alphabetE
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 296  ; 34 + 8
     call scoringDraw
-    
+    call points 
+    ret
+points:
     mov word [scoreCurrentSprite], number0
+    call five
+    call four
+    call three
+    call two
+    call one
+    ret
+    
+five:
     mov si, [scoreCurrentSprite]
     mov word [yScorePos], 33
     mov word [xScorePos], 264
     call scoringDraw
-
-    mov word [scoreCurrentSprite], number0
+    ret
+four:
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 272
     call scoringDraw
-
-    mov word [scoreCurrentSprite], number0
+    ret
+three:
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 280
     call scoringDraw
-
-    mov word [scoreCurrentSprite], number0
+    ret
+two:
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 288
     call scoringDraw
-
-    mov word [scoreCurrentSprite], number0
+    ret
+one:
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 296
     call scoringDraw
-
     ret
-
 scoringDraw:
     mov ax, [xScorePos]
     mov ax, [yScorePos]
@@ -102,3 +103,23 @@ scoringDraw:
         add di, 320 - SPRITEW
         loop .draw_line  ; Repeat the draw for each sprite's rows
         ret
+pelletsPoints:
+    add dword [current_score], point_pellet
+    mov dword [current_score], current_score
+    cmp dword [current_score], 00010
+    je .adding10
+    .adding10:
+        mov word [scoreCurrentSprite], number1
+        call two
+        ret
+    ret
+spelletsPoints:
+    add dword [current_score], point_super_pellet
+    mov dword [current_score], current_score
+    cmp dword [current_score], 00030
+    je .adding30
+    .adding30:
+        mov word [scoreCurrentSprite], number3
+        call two
+        jmp gameloop
+    ret
