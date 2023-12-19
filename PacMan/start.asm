@@ -94,6 +94,7 @@ gameloop:
      call draw_pinky
 
      
+     call check_number_lives
      call check_collision_pacman
      call direction_ghost
      call read_character_key_was_pressed
@@ -145,6 +146,12 @@ SetSpawnPosition:
      
      mov ax, 0
      mov [actualKeystroke], ax
+     ret
+
+check_number_lives:
+     mov ax, [lives]
+     cmp ax, 0
+     je resetMapPellet
      ret
 clearSprite:
      ; Set up the graphics segment

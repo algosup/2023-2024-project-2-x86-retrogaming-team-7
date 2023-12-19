@@ -34,10 +34,11 @@ check_detection_pacman:
      mov al, es:[si]
      cmp al, 0x0E
      je .collision
-     mov byte [hitPacMan], 0
      ret
      .collision: ; Collision do not exist
-          mov byte [hitPacMan], 1 ; Collision detected
+          mov bx, [lives]
+          dec bx
+          mov [lives], bx
           jmp SetSpawnPosition
 ;=================================================
 ;              PELLETS COLLISIONS
@@ -1905,7 +1906,7 @@ check_down_pinky:
 ;             GHOSTS TOUCH PACMAN
 ;=================================================
 ;=================================================
-;              BlINKY COLLISIONS
+;        BlINKY COLLISIONS TOUCH PACMAN
 ;=================================================
 
 
@@ -2221,7 +2222,7 @@ check_down_touch_blinky:
 
 
 ;=================================================
-;              INKY COLLISIONS
+;       INKY COLLISIONS TOUCH PACMAN
 ;=================================================
 
 
@@ -2538,7 +2539,7 @@ check_down_touch_inky:
 
 
 ;=================================================
-;              CLYDE COLLISIONS
+;        CLYDE COLLISIONS TOUCH PACMAN
 ;=================================================
 
 
@@ -2855,7 +2856,7 @@ check_down_touch_clyde:
 
 
 ;=================================================
-;              PINKY COLLISIONS
+;        PINKY COLLISIONS TOUCH PACMAN
 ;=================================================
 
 
@@ -3154,19 +3155,19 @@ check_down_touch_pinky:
         ret
     
     .check_down_touch_pinky_7:
-        mov ax, [xPosPinky]
-        mov bx, [yPosPinky]
-        add bx, SPRITEH     ;    + this check hitbox top right
-        add ax, 7 
-        call check_detection_pacman
-        cmp byte [detectCollision], 0
-        je .check_down_touch_pinky_over
-        ret
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, SPRITEH     ;    + this check hitbox top right
+          add ax, 7 
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_down_touch_pinky_over
+          ret
     .check_down_touch_pinky_over:
-        mov bx, [yPosPinky]
-        add bx, 1
-        mov [yPosPinky], bx
-        ret
+          mov bx, [yPosPinky]
+          add bx, 1
+          mov [yPosPinky], bx
+          ret
 ;=============================================
 ;                TUNNEL
 ;=============================================
