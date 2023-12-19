@@ -114,9 +114,9 @@ scoringDraw:
 pelletsPoints:
     call scoreFour
     ret
-; superPelletUpdate:
-;     call scoreFourSP
-;     ret
+superPelletUpdate:
+    call scoreFourSP
+    ret
 
 scoreFour:
     cmp word [scoreFourRecord], 9

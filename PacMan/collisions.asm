@@ -39,13 +39,10 @@ check_detection_pellets_right:
           mov al, es:[si]
           cmp al, 0x42
           je collisionP
-          ; cmp al, 0x2B
-          ; je collisionSP
           ret
 check_detection_pellets_left:
           mov ax, [xPos]
           mov bx, [yPos]
-          sub ax, 1
           add bx, 4
           imul bx, SCREEN_WIDTH
           add bx, ax
@@ -55,14 +52,11 @@ check_detection_pellets_left:
           mov al, es:[si]
           cmp al, 0x42
           je collisionP
-          ; cmp al, 0x2B
-          ; je collisionSP
           ret
 check_detection_pellets_up:
           mov ax, [xPos]
           mov bx, [yPos]
           add ax, 4
-          sub bx, 1
           imul bx, SCREEN_WIDTH
           add bx, ax
           mov si, bx
@@ -71,8 +65,6 @@ check_detection_pellets_up:
           mov al, es:[si]
           cmp al, 0x42
           je collisionP
-          ; cmp al, 0x2B
-          ; je collisionSP
           ret
 check_detection_pellets_down:
           mov ax, [xPos]
@@ -87,16 +79,76 @@ check_detection_pellets_down:
           mov al, es:[si]
           cmp al, 0x42
           je collisionP
-          ; cmp al, 0x2B
-          ; je collisionSP
           ret
 
 collisionP:
      call pelletsPoints
      ret
-; collisionSP:
-;      call spelletsPoints 
-;      ret
+collisionSP:
+     call superPelletUpdate 
+     ret
+
+
+;=================================================
+;             SUPER PELLETS COLLISIONS
+;=================================================
+check_detection_SuperPellets_right:
+     ; Convert position to screen buffer index
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, SPRITEH
+          add bx, 4
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x2B
+          je collisionSP
+          ret
+check_detection_SuperPellets_left:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          sub ax, 1
+          add bx, 4
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x2B
+          je collisionSP
+          ret
+check_detection_SuperPellets_up:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, 4
+          sub bx, 1
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x2B
+          je collisionSP
+          ret
+check_detection_SuperPellets_down:
+          mov ax, [xPos]
+          mov bx, [yPos]
+          add ax, 4
+          add bx, SPRITEH
+          imul bx, SCREEN_WIDTH
+          add bx, ax
+          mov si, bx
+          mov ax, 0A000h
+          mov es, ax
+          mov al, es:[si]
+          cmp al, 0x2B
+          je collisionSP
+          ret
 
 
 ;=================================================

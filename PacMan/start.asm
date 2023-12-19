@@ -182,6 +182,7 @@ continue_movement:
 
 move_right:
      call check_detection_pellets_right
+     call check_detection_SuperPellets_right
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -196,6 +197,7 @@ move_right:
           ret
 move_left:
      call check_detection_pellets_left
+     call check_detection_SuperPellets_left
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -212,6 +214,7 @@ move_left:
 
 move_up:
      call check_detection_pellets_up
+     call check_detection_SuperPellets_up
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
@@ -227,6 +230,7 @@ move_up:
 
 move_down:
      call check_detection_pellets_down
+     call check_detection_SuperPellets_down
      call tunnel_horizontal
      mov ax, [framerate]                       ; can reduce the frame rate
      cmp ax, 4                               ; can reduce the frame rate
