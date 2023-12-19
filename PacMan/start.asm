@@ -21,6 +21,11 @@ old_YPOS dw 0            ;Pac-man's YPOS
 xPosSpawn dw 156
 yPosSpawn dw 144
 currentSprite dd pacman_right_2
+xPoslives dw 265
+yPoslives dw 65
+old_XPOSlives dw 0          
+old_YPOSlives dw 0  
+lives_sprite dd pacman_left_1
 
 actualKeystroke dw 0
 waitingKeystroke dw 0
@@ -64,6 +69,7 @@ start_game:
      int 0x10        ; Call BIOS interrupt to set video mode
      call clearScreen
      call display_score
+     call display_lives
      call Maze
      call SetSpawnPosition
      call gameloop
@@ -94,6 +100,7 @@ gameloop:
      call draw_pinky
 
      
+     call check_lives
      call check_number_lives
      call check_collision_pacman
      call direction_ghost
@@ -151,8 +158,13 @@ SetSpawnPosition:
 check_number_lives:
      mov ax, [lives]
      cmp ax, 0
-     je resetMapPellet
-     ret
+     je .deathf
+     jne .return
+     .deathf:
+          call death
+          ret
+     .return:
+          ret  
 clearSprite:
      ; Set up the graphics segment
      mov ax, 0A000h
@@ -176,6 +188,57 @@ clearSprite:
           loop .clear_line       ; Repeat for each line of the sprite
           ret
      
+death:
+     mov word [currentSprite], pacman1_death_1
+     cmp word [currentSprite], pacman1_death_1
+     je .pacmanB
+     cmp word [currentSprite], pacman1_death_2
+     je .pacmanC
+     cmp word [currentSprite], pacman1_death_3
+     je .pacmanD
+     cmp word [currentSprite], pacman1_death_4
+     je .pacmanE
+     cmp word [currentSprite], pacman1_death_5
+     je .pacmanF
+     call .pacmanZ
+     ret
+     .pacmanZ:
+          mov word [currentSprite], pacman1_death_1
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanA:
+          mov word [currentSprite], pacman1_death_1
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanB:
+          mov word [currentSprite], pacman1_death_2
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanC:
+          mov word [currentSprite], pacman1_death_3
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanD:
+          mov word [currentSprite], pacman1_death_4
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanE:
+          mov word [currentSprite], pacman1_death_5
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp death
+     .pacmanF:
+          mov word [currentSprite], pacman1_death_6
+          mov si, [currentSprite]
+          call draw_sprite
+          jmp resetMapPellet
+
+
 read_character_key_was_pressed:
      mov ah, 01h
      int 16h
@@ -375,7 +438,82 @@ pacman_Down:
           mov si, [currentSprite]
           ret
           
+display_lives:
+     call check_lives
+     call draw_lives          ; xPoslives = 265
+     add word [xPoslives], 9
+     call draw_lives
+     add word [xPoslives], 9
+     call draw_lives
+     add word [xPoslives], 9
+     call draw_lives
+     ret
+check_lives:
+     mov ax, [lives]
+     cmp ax, 3
+     je .flives
+     cmp ax, 2
+     je .thlives
+     cmp ax, 1
+     je .tlives
+     cmp ax, 0
+     je .olives
+     .flives:
+          mov word [xPoslives], 265
+          call clear_life
+          ret          
+     .thlives:
+          mov word [xPoslives], 274
+          call clear_life
+          ret
+     .tlives:
+          mov word [xPoslives], 283
+          call clear_life
+          ret
+     .olives:
+          call death
+          ret
+     ret
+     
+draw_lives:
+     mov si, [lives_sprite]
+     mov ax, [xPoslives]
+     mov [old_XPOSlives], ax
+     mov ax, [yPoslives]
+     mov [old_YPOSlives], ax
+     mov ax, 0A000h
+     mov es, ax
+     mov ax, [yPoslives]
+     imul ax, 320
+     add ax, [xPoslives] 
+     mov di, ax
+     mov cx, SPRITEH
+     .draw_line:
+          push cx
+          mov cx, SPRITEW
+          rep movsb
+          pop cx
+          add di, 320 - SPRITEW
+          loop .draw_line
+          ret
 
+clear_life:
+     mov ax, 0A000h
+     mov es, ax
+     mov ax, [yPoslives]     ; Get the old Y position
+     imul ax, 320           ; Multiply Y position by screen width to get the offset
+     add ax, [xPoslives]     ; Add the old X position to the offset
+     mov di, ax             ; DI = starting address for erasure
+     mov cx, SPRITEH        ; Sprite height
+     .clear_line:
+          push cx                ; Save CX as it is modified by the loop
+          mov cx, SPRITEW        ; Sprite width for a single line
+          mov al, 0              ; Background color (usually black for Pac-Man)
+          rep stosb              ; Clear pixels with background color
+          pop cx                 ; Restore CX for the next line
+          add di, 320 - SPRITEW  ; Adjust DI to the start of the next line
+          loop .clear_line       ; Repeat for each line of the sprite
+          ret
 
 draw_sprite:
      mov si, [currentSprite]
