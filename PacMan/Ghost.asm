@@ -31,10 +31,10 @@ currentSpriteInky dd inky_right_1
 currentSpriteClyde dd clyde_right_1
 currentSpritePinky dd pinky_right_1
 
-actualBDirection dw 4Bh
-actualIDirection dw 48h
-actualCDirection dw 4Dh
-actualPDirection dw 50h
+actualBDirection dw 0
+actualIDirection dw 0
+actualCDirection dw 0
+actualPDirection dw 0
 
 xPosSpawnBlinky dw 143
 xPosSpawnInky dw 152
