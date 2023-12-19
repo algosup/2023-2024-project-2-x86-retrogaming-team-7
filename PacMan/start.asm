@@ -102,7 +102,7 @@ gameloop:
      call check_number_lives
      call check_collision_pacman
      call read_character_key_was_pressed
-     call ghosts_out_check
+     call ghosts_behavior
 
      mov cx, 64000
 
