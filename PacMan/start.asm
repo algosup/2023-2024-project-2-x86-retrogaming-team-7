@@ -189,7 +189,6 @@ clearSprite:
           ret
      
 death:
-     mov word [currentSprite], pacman1_death_1
      cmp word [currentSprite], pacman1_death_1
      je .pacmanB
      cmp word [currentSprite], pacman1_death_2
