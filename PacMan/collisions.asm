@@ -39,11 +39,17 @@ check_detection_pellets_right:
      mov al, es:[si]
      cmp al, 0x42
      jne no_collisionP_right
-     inc si ; Vérifier le pixel à droite
-     mov al, es:[si]
-     cmp al, 0x42
-     je collisionP
+     call erase_pellet_right ; Effacer le pellet et compter les points
+     jmp collisionP
 no_collisionP_right:
+     ret
+
+erase_pellet_right:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     inc si
+     mov es:[si], al ; Effacer le pixel suivant
      ret
 
 check_detection_pellets_left:
@@ -59,11 +65,17 @@ check_detection_pellets_left:
      mov al, es:[si]
      cmp al, 0x42
      jne no_collisionP_left
-     dec si ; Vérifier le pixel à gauche
-     mov al, es:[si]
-     cmp al, 0x42
-     je collisionP
+     call erase_pellet_left ; Effacer le pellet et compter les points
+     jmp collisionP
 no_collisionP_left:
+     ret
+
+erase_pellet_left:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     dec si
+     mov es:[si], al ; Effacer le pixel précédent
      ret
 
 check_detection_pellets_up:
@@ -79,11 +91,17 @@ check_detection_pellets_up:
      mov al, es:[si]
      cmp al, 0x42
      jne no_collisionP_up
-     sub si, SCREEN_WIDTH ; Vérifier le pixel en haut
-     mov al, es:[si]
-     cmp al, 0x42
-     je collisionP
+     call erase_pellet_up ; Effacer le pellet et compter les points
+     jmp collisionP
 no_collisionP_up:
+     ret
+
+erase_pellet_up:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     sub si, SCREEN_WIDTH
+     mov es:[si], al ; Effacer le pixel au-dessus
      ret
 
 check_detection_pellets_down:
@@ -100,11 +118,17 @@ check_detection_pellets_down:
      mov al, es:[si]
      cmp al, 0x42
      jne no_collisionP_down
-     add si, SCREEN_WIDTH ; Vérifier le pixel en bas
-     mov al, es:[si]
-     cmp al, 0x42
-     je collisionP
+     call erase_pellet_down ; Effacer le pellet et compter les points
+     jmp collisionP
 no_collisionP_down:
+     ret
+
+erase_pellet_down:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     add si, SCREEN_WIDTH
+     mov es:[si], al ; Effacer le pixel en dessous
      ret
 
 collisionP:
