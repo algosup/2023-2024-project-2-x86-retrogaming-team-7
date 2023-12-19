@@ -17,7 +17,7 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
-pelletsNumbers db 10
+pelletsNumbers db 188
 
 yScorePos dw 0
 xScorePos dw 0
@@ -849,38 +849,38 @@ drawNumbersGG:
 displayEndScore:
     mov word [scoreCurrentSprite], alphabetE
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 172
-    mov word [yScorePos], 82
+    mov word [xScorePos], 132
+    mov word [yScorePos], 78
     call scoringDraw
 
     mov word [scoreCurrentSprite], alphabetN
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 180
+    mov word [xScorePos], 140
     call scoringDraw
     
     mov word [scoreCurrentSprite], alphabetD
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 188
+    mov word [xScorePos], 148
     call scoringDraw
     ; Affiche "G"
     mov word [scoreCurrentSprite], alphabetG
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 196
+    mov word [xScorePos], 158
     call scoringDraw
 
     mov word [scoreCurrentSprite], alphabetA
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 204
+    mov word [xScorePos], 166
     call scoringDraw
 
     mov word [scoreCurrentSprite], alphabetM
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 212
+    mov word [xScorePos], 174
     call scoringDraw
 
     mov word [scoreCurrentSprite], alphabetE
     mov si, [scoreCurrentSprite]
-    mov word [xScorePos], 220
+    mov word [xScorePos], 182
     call scoringDraw
     ; Affiche "S"
     mov word [scoreCurrentSprite], alphabetS
