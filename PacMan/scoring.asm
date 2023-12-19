@@ -1,17 +1,9 @@
 section .data
-<<<<<<< Updated upstream
-current_score dd 00000
-point_pellet db 10
-point_super_pellet db 30
-point_ghost_ db 200
-point_cherry db 100
-=======
 current_score dw 0
 point_pellet dw 10
 point_super_pellet dw 30
 point_ghost_ dw 200
 point_cherry dw 100
->>>>>>> Stashed changes
 point_strawberry dw 300
 point_orange dw 500
 point_apple dw 700
@@ -19,9 +11,6 @@ point_melon dw 1000
 point_ship dw 2000
 point_bell dw 3000
 point_key dw 5000
-<<<<<<< Updated upstream
-scoreCurrentSprite dd 0
-=======
 scoreCurrentSprite dw 0
 scoreFiveRecord dw 0
 scoreFourRecord dw 0
@@ -29,7 +18,6 @@ scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
 
->>>>>>> Stashed changes
 yScorePos dw 0
 xScorePos dw 0
 %define SPRITEW 8
@@ -121,28 +109,7 @@ scoringDraw:
         add di, 320 - SPRITEW
         loop .draw_line  ; Repeat the draw for each sprite's rows
         ret
-<<<<<<< Updated upstream
-pelletsPoints:
-    add dword [current_score], point_pellet
-    mov dword [current_score], current_score
-    cmp dword [current_score], 00010
-    je .adding10
-    .adding10:
-        mov word [scoreCurrentSprite], number1
-        call two
-        ret
-    ret
-spelletsPoints:
-    add dword [current_score], point_super_pellet
-    mov dword [current_score], current_score
-    cmp dword [current_score], 00030
-    je .adding30
-    .adding30:
-        mov word [scoreCurrentSprite], number3
-        call two
-        jmp gameloop
-    ret
-=======
+
 
 pelletsPoints:
     call scoreFour
@@ -482,4 +449,3 @@ scoreOne:
 ;     mov word [yScorePos], 33
 ;     mov word [xScorePos], 288
 ;     call scoringDraw
->>>>>>> Stashed changes
