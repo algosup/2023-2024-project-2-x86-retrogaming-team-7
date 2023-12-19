@@ -1,5 +1,6 @@
 section .data
 detectCollision db 0
+hitPacMan db 0
 ;=================================================
 ;          WALLS COLLISIONS TEST
 ;=================================================
@@ -20,8 +21,24 @@ check_detection_walls:
      .collision: ; Collision do not exist
           mov byte [detectCollision], 1 ; Collision detected
           ret
-
-
+;=================================
+;      PACMAN DETECTION
+;=================================
+check_detection_pacman:
+     ; Convert position to screen buffer index
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x0E
+     je .collision
+     mov byte [hitPacMan], 0
+     ret
+     .collision: ; Collision do not exist
+          mov byte [hitPacMan], 1 ; Collision detected
+          jmp SetSpawnPosition
 ;=================================================
 ;              PELLETS COLLISIONS
 ;=================================================
@@ -1883,6 +1900,1276 @@ check_down_pinky:
         mov [yPosPinky], bx
         ret
 
+
+;=================================================
+;             GHOSTS TOUCH PACMAN
+;=================================================
+;=================================================
+;              BlINKY COLLISIONS
+;=================================================
+
+
+check_collision_Touch_Blinky:
+     
+     call check_right_touch_blinky
+     call check_left_touch_blinky
+     call check_up_touch_blinky
+     call check_down_touch_blinky
+     ret
+
+
+check_right_touch_blinky:
+     .check_right_touch_blinky_0:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_1
+          ret
+     .check_right_touch_blinky_1:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_2
+          ret
+     .check_right_touch_blinky_2:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_3
+          ret
+     .check_right_touch_blinky_3:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_4
+          ret 
+     .check_right_touch_blinky_4:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 4
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_5
+          ret
+     .check_right_touch_blinky_5: 
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH
+          add bx, 5      ;    + this check hitbox bottom right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_6
+          ret
+     .check_right_touch_blinky_6:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_7
+          ret
+     .check_right_touch_blinky_7:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_blinky_over
+          ret
+     
+     .check_right_touch_blinky_over:
+          mov bx, [xPosBlinky]
+          add bx, 1
+          mov [xPosBlinky], bx
+          ret  
+     
+check_left_touch_blinky:
+     .check_left_touch_blinky_0:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_1
+          ret
+     .check_left_touch_blinky_1:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_2
+          ret
+     .check_left_touch_blinky_2:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_3
+          ret
+     .check_left_touch_blinky_3:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_4
+          ret
+
+     .check_left_touch_blinky_4:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 4    ;    + this check hitbox bottom left
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_5
+          ret
+     .check_left_touch_blinky_5:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 5
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_6
+          ret
+     .check_left_touch_blinky_6:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_7
+          ret
+     .check_left_touch_blinky_7:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_blinky_over
+          ret
+     
+     .check_left_touch_blinky_over:
+          mov bx, [xPosBlinky]
+          sub bx, 1
+          mov [xPosBlinky], bx
+          ret
+check_up_touch_blinky:
+     .check_up_touch_blinky_0:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_1
+          ret
+     .check_up_touch_blinky_1:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_2
+          ret
+     .check_up_touch_blinky_2:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_3
+          ret
+     .check_up_touch_blinky_3:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_4
+          ret
+     .check_up_touch_blinky_4:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 4     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_5
+          ret
+     .check_up_touch_blinky_5:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 5     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_6
+          ret
+     .check_up_touch_blinky_6:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 6     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_7
+          ret
+     .check_up_touch_blinky_7:
+          mov ax, [xPosBlinky]
+          mov bx, [yPosBlinky]
+          add ax, 7     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_blinky_over
+          ret
+          
+     .check_up_touch_blinky_over:
+          mov bx, [yPosBlinky]
+          sub bx, 1
+          mov [yPosBlinky], bx
+          ret
+check_down_touch_blinky:
+    .check_down_touch_blinky_0:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_1
+        ret
+    .check_down_touch_blinky_1:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 1
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_2
+        ret
+    .check_down_touch_blinky_2:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 2
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_3
+        ret
+    .check_down_touch_blinky_3:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 3
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_4
+        ret
+    .check_down_touch_blinky_4:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 4
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_5
+        ret
+    .check_down_touch_blinky_5:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 5
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_6
+        ret
+    .check_down_touch_blinky_6:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky] 
+        add bx, SPRITEH
+        add ax, 6
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_7
+        ret
+    
+    .check_down_touch_blinky_7:
+        mov ax, [xPosBlinky]
+        mov bx, [yPosBlinky]
+        add bx, SPRITEH     ;    + this check hitbox top right
+        add ax, 7 
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_blinky_over
+        ret
+    .check_down_touch_blinky_over:
+        mov bx, [yPosBlinky]
+        add bx, 1
+        mov [yPosBlinky], bx
+        ret
+
+
+
+
+;=================================================
+;              INKY COLLISIONS
+;=================================================
+
+
+
+check_collision_Touch_Inky:
+     call check_right_touch_inky
+     call check_left_touch_inky
+     call check_up_touch_inky
+     call check_down_touch_inky
+     ret
+
+
+
+
+check_right_touch_inky:
+     .check_right_touch_inky_0:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_1
+          ret
+     .check_right_touch_inky_1:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_2
+          ret
+     .check_right_touch_inky_2:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_3
+          ret
+     .check_right_touch_inky_3:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_4
+          ret 
+     .check_right_touch_inky_4:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 4
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_5
+          ret
+     .check_right_touch_inky_5: 
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH
+          add bx, 5      ;    + this check hitbox bottom right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_6
+          ret
+     .check_right_touch_inky_6:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_7
+          ret
+     .check_right_touch_inky_7:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_inky_over
+          ret
+     
+     .check_right_touch_inky_over:
+          mov bx, [xPosInky]
+          add bx, 1
+          mov [xPosInky], bx
+          ret  
+     
+check_left_touch_inky:
+     .check_left_touch_inky_0:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_1
+          ret
+     .check_left_touch_inky_1:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_2
+          ret
+     .check_left_touch_inky_2:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_3
+          ret
+     .check_left_touch_inky_3:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_4
+          ret
+
+     .check_left_touch_inky_4:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 4    ;    + this check hitbox bottom left
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_5
+          ret
+     .check_left_touch_inky_5:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 5
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_6
+          ret
+     .check_left_touch_inky_6:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_7
+          ret
+     .check_left_touch_inky_7:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_inky_over
+          ret
+     
+     .check_left_touch_inky_over:
+          mov bx, [xPosInky]
+          sub bx, 1
+          mov [xPosInky], bx
+          ret
+check_up_touch_inky:
+     .check_up_touch_inky_0:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_1
+          ret
+     .check_up_touch_inky_1:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_2
+          ret
+     .check_up_touch_inky_2:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_3
+          ret
+     .check_up_touch_inky_3:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_4
+          ret
+     .check_up_touch_inky_4:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 4     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_5
+          ret
+     .check_up_touch_inky_5:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 5     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_6
+          ret
+     .check_up_touch_inky_6:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 6     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_7
+          ret
+     .check_up_touch_inky_7:
+          mov ax, [xPosInky]
+          mov bx, [yPosInky]
+          add ax, 7     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_inky_over
+          ret
+          
+     .check_up_touch_inky_over:
+          mov bx, [yPosInky]
+          sub bx, 1
+          mov [yPosInky], bx
+          ret
+check_down_touch_inky:
+    .check_down_touch_inky_0:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_1
+        ret
+    .check_down_touch_inky_1:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 1
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_2
+        ret
+    .check_down_touch_inky_2:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 2
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_3
+        ret
+    .check_down_touch_inky_3:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 3
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_4
+        ret
+    .check_down_touch_inky_4:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 4
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_5
+        ret
+    .check_down_touch_inky_5:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 5
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_6
+        ret
+    .check_down_touch_inky_6:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky] 
+        add bx, SPRITEH
+        add ax, 6
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_7
+        ret
+    
+    .check_down_touch_inky_7:
+        mov ax, [xPosInky]
+        mov bx, [yPosInky]
+        add bx, SPRITEH     ;    + this check hitbox top right
+        add ax, 7 
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_inky_over
+        ret
+    .check_down_touch_inky_over:
+        mov bx, [yPosInky]
+        add bx, 1
+        mov [yPosInky], bx
+        ret
+
+
+
+;=================================================
+;              CLYDE COLLISIONS
+;=================================================
+
+
+
+check_collision_Touch_Clyde:
+     call check_right_touch_clyde
+     call check_left_touch_clyde
+     call check_up_touch_clyde
+     call check_down_touch_clyde
+     ret
+
+
+
+check_right_touch_clyde:
+     .check_right_touch_clyde_0:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_1
+          ret
+     .check_right_touch_clyde_1:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_2
+          ret
+     .check_right_touch_clyde_2:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_3
+          ret
+     .check_right_touch_clyde_3:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_4
+          ret 
+     .check_right_touch_clyde_4:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 4
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_5
+          ret
+     .check_right_touch_clyde_5: 
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH
+          add bx, 5      ;    + this check hitbox bottom right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_6
+          ret
+     .check_right_touch_clyde_6:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_7
+          ret
+     .check_right_touch_clyde_7:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_clyde_over
+          ret
+     
+     .check_right_touch_clyde_over:
+          mov bx, [xPosClyde]
+          add bx, 1
+          mov [xPosClyde], bx
+          ret  
+     
+check_left_touch_clyde:
+     .check_left_touch_clyde_0:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_1
+          ret
+     .check_left_touch_clyde_1:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_2
+          ret
+     .check_left_touch_clyde_2:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_3
+          ret
+     .check_left_touch_clyde_3:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_4
+          ret
+
+     .check_left_touch_clyde_4:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 4    ;    + this check hitbox bottom left
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_5
+          ret
+     .check_left_touch_clyde_5:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 5
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_6
+          ret
+     .check_left_touch_clyde_6:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_7
+          ret
+     .check_left_touch_clyde_7:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_clyde_over
+          ret
+     
+     .check_left_touch_clyde_over:
+          mov bx, [xPosClyde]
+          sub bx, 1
+          mov [xPosClyde], bx
+          ret
+check_up_touch_clyde:
+     .check_up_touch_clyde_0:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_1
+          ret
+     .check_up_touch_clyde_1:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_2
+          ret
+     .check_up_touch_clyde_2:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_3
+          ret
+     .check_up_touch_clyde_3:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_4
+          ret
+     .check_up_touch_clyde_4:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 4     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_5
+          ret
+     .check_up_touch_clyde_5:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 5     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_6
+          ret
+     .check_up_touch_clyde_6:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 6     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_7
+          ret
+     .check_up_touch_clyde_7:
+          mov ax, [xPosClyde]
+          mov bx, [yPosClyde]
+          add ax, 7     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_clyde_over
+          ret
+          
+     .check_up_touch_clyde_over:
+          mov bx, [yPosClyde]
+          sub bx, 1
+          mov [yPosClyde], bx
+          ret
+check_down_touch_clyde:
+    .check_down_touch_clyde_0:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_1
+        ret
+    .check_down_touch_clyde_1:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 1
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_2
+        ret
+    .check_down_touch_clyde_2:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 2
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_3
+        ret
+    .check_down_touch_clyde_3:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 3
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_4
+        ret
+    .check_down_touch_clyde_4:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 4
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_5
+        ret
+    .check_down_touch_clyde_5:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 5
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_6
+        ret
+    .check_down_touch_clyde_6:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde] 
+        add bx, SPRITEH
+        add ax, 6
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_7
+        ret
+    
+    .check_down_touch_clyde_7:
+        mov ax, [xPosClyde]
+        mov bx, [yPosClyde]
+        add bx, SPRITEH     ;    + this check hitbox top right
+        add ax, 7 
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_clyde_over
+        ret
+    .check_down_touch_clyde_over:
+        mov bx, [yPosClyde]
+        add bx, 1
+        mov [yPosClyde], bx
+        ret
+
+
+
+
+;=================================================
+;              PINKY COLLISIONS
+;=================================================
+
+
+
+check_collision_Touch_Pinky:
+     call check_right_touch_pinky
+     call check_left_touch_pinky
+     call check_up_touch_pinky
+     call check_down_touch_pinky
+     ret
+
+
+
+check_right_touch_pinky:
+     .check_right_touch_pinky_0:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_1
+          ret
+     .check_right_touch_pinky_1:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_2
+          ret
+     .check_right_touch_pinky_2:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_3
+          ret
+     .check_right_touch_pinky_3:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_4
+          ret 
+     .check_right_touch_pinky_4:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 4
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_5
+          ret
+     .check_right_touch_pinky_5: 
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH
+          add bx, 5      ;    + this check hitbox bottom right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_6
+          ret
+     .check_right_touch_pinky_6:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_7
+          ret
+     .check_right_touch_pinky_7:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, SPRITEH ;    check hitbox top right
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_right_touch_pinky_over
+          ret
+     
+     .check_right_touch_pinky_over:
+          mov bx, [xPosPinky]
+          add bx, 1
+          mov [xPosPinky], bx
+          ret  
+     
+check_left_touch_pinky:
+     .check_left_touch_pinky_0:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_1
+          ret
+     .check_left_touch_pinky_1:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_2
+          ret
+     .check_left_touch_pinky_2:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_3
+          ret
+     .check_left_touch_pinky_3:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_4
+          ret
+
+     .check_left_touch_pinky_4:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 4    ;    + this check hitbox bottom left
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_5
+          ret
+     .check_left_touch_pinky_5:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 5
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_6
+          ret
+     .check_left_touch_pinky_6:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 6
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_7
+          ret
+     .check_left_touch_pinky_7:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add bx, 7
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_left_touch_pinky_over
+          ret
+     
+     .check_left_touch_pinky_over:
+          mov bx, [xPosPinky]
+          sub bx, 1
+          mov [xPosPinky], bx
+          ret
+check_up_touch_pinky:
+     .check_up_touch_pinky_0:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_1
+          ret
+     .check_up_touch_pinky_1:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 1
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_2
+          ret
+     .check_up_touch_pinky_2:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 2
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_3
+          ret
+     .check_up_touch_pinky_3:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 3
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_4
+          ret
+     .check_up_touch_pinky_4:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 4     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_5
+          ret
+     .check_up_touch_pinky_5:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 5     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_6
+          ret
+     .check_up_touch_pinky_6:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 6     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_7
+          ret
+     .check_up_touch_pinky_7:
+          mov ax, [xPosPinky]
+          mov bx, [yPosPinky]
+          add ax, 7     ;    + this check hitbox top right
+          call check_detection_pacman
+          cmp byte [detectCollision], 0
+          je .check_up_touch_pinky_over
+          ret
+          
+     .check_up_touch_pinky_over:
+          mov bx, [yPosPinky]
+          sub bx, 1
+          mov [yPosPinky], bx
+          ret
+check_down_touch_pinky:
+    .check_down_touch_pinky_0:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_1
+        ret
+    .check_down_touch_pinky_1:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 1
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_2
+        ret
+    .check_down_touch_pinky_2:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 2
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_3
+        ret
+    .check_down_touch_pinky_3:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 3
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_4
+        ret
+    .check_down_touch_pinky_4:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 4
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_5
+        ret
+    .check_down_touch_pinky_5:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 5
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_6
+        ret
+    .check_down_touch_pinky_6:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky] 
+        add bx, SPRITEH
+        add ax, 6
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_7
+        ret
+    
+    .check_down_touch_pinky_7:
+        mov ax, [xPosPinky]
+        mov bx, [yPosPinky]
+        add bx, SPRITEH     ;    + this check hitbox top right
+        add ax, 7 
+        call check_detection_pacman
+        cmp byte [detectCollision], 0
+        je .check_down_touch_pinky_over
+        ret
+    .check_down_touch_pinky_over:
+        mov bx, [yPosPinky]
+        add bx, 1
+        mov [yPosPinky], bx
+        ret
+;=============================================
+;                TUNNEL
+;=============================================
 tunnel_horizontal:
      mov ax, [xPos]
      cmp ax, 74

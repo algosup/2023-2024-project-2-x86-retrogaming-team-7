@@ -1,6 +1,3 @@
-
-
-
 section .data
 
 xPosBlinky dw 143
@@ -38,6 +35,17 @@ actualBDirection dw 4Bh
 actualIDirection dw 48h
 actualCDirection dw 4Dh
 actualPDirection dw 50h
+
+xPosSpawnBlinky dw 143
+xPosSpawnInky dw 152
+xPosSpawnClyde dw 161
+xPosSpawnPinky dw 170
+
+yPosSpawnBlinky dw 96
+yPosSpawnInky dw 96
+yPosSpawnClyde dw 96
+yPosSpawnPinky dw 96
+
 
 section .text
 

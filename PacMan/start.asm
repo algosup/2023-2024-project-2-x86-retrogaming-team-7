@@ -18,12 +18,15 @@ xVelocity dw 1
 yPos dw 144                 
 old_XPOS dw 0            ;Pac-man's XPOS
 old_YPOS dw 0            ;Pac-man's YPOS
-
+xPosSpawn dw 156
+yPosSpawn dw 144
 currentSprite dd pacman_right_2
 
 actualKeystroke dw 0
 waitingKeystroke dw 0
 framerate db 0
+gameStart db 0
+lives db 4
 mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,15,14,54,54,54,54,54,54,54,54,54,15
                 db 14,55,24,25,26,54,24,25,26,54,15,14,54,24,25,26,54,24,25,26,55,15
@@ -34,7 +37,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
                 db 49,49,49,49,14,54,40,49,49,49,49,49,49,49,49,40,54,15,49,49,49,49
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
-                db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
+                db 49,49,49,49,49,54,54,54,51,49,49,49,49,49,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
                 db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
@@ -62,6 +65,7 @@ start_game:
      call clearScreen
      call display_score
      call Maze
+     call SetSpawnPosition
      call gameloop
     
 gameloop:
@@ -70,18 +74,22 @@ gameloop:
      call draw_sprite
 
      call check_collision_ghost_Blinky
+     call check_collision_Touch_Blinky
      call clearGhostB
      call draw_blinky
-
+     
      call check_collision_ghost_Inky
+     call check_collision_Touch_Inky
      call clearGhostI
      call draw_inky
 
      call check_collision_ghost_Clyde
+     call check_collision_Touch_Clyde
      call clearGhostC
      call draw_clyde
 
      call check_collision_ghost_Pinky
+     call check_collision_Touch_Pinky
      call clearGhostP
      call draw_pinky
 
@@ -109,7 +117,35 @@ clearScreen:
      rep stosb
      ret 
     
+SetSpawnPosition:
+     mov ax, [xPosSpawn]
+     mov [xPos], ax 
+     mov ax, [yPosSpawn]
+     mov [yPos], ax
 
+     mov ax, [xPosSpawnBlinky]
+     mov [xPosBlinky], ax
+     mov ax, [yPosSpawnBlinky]
+     mov [yPosBlinky], ax 
+
+     mov ax, [xPosSpawnInky]
+     mov [xPosInky], ax 
+     mov ax, [yPosSpawnInky]
+     mov [yPosInky], ax
+
+     mov ax, [xPosSpawnClyde]
+     mov [xPosClyde], ax
+     mov ax, [yPosSpawnClyde]
+     mov [yPosClyde], ax
+     
+     mov ax, [xPosSpawnPinky]
+     mov [xPosPinky], ax
+     mov ax, [yPosSpawnPinky]
+     mov [yPosPinky], ax
+     
+     mov ax, 0
+     mov [actualKeystroke], ax
+     ret
 clearSprite:
      ; Set up the graphics segment
      mov ax, 0A000h
@@ -141,6 +177,7 @@ read_character_key_was_pressed:
     ; Read the keystroke
      mov ah, 00h
      int 16h
+     ; mov byte [gameStart], 1
      cmp ah, 4Dh
      je .update_keystroke
      cmp ah, 4Bh
@@ -354,7 +391,7 @@ draw_sprite:
           add di, 320 - SPRITEW
           loop .draw_line
           ret
-    
+     
 drawWalls:
      mov dx, 8
      .eachLine:  
