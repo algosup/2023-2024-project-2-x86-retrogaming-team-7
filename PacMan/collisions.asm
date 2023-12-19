@@ -27,68 +27,92 @@ check_detection_walls:
 ;=================================================
 check_detection_pellets_right:
      ; Convert position to screen buffer index
-          mov ax, [xPos]
-          mov bx, [yPos]
-          add ax, SPRITEH
-          add bx, 4
-          imul bx, SCREEN_WIDTH
-          add bx, ax
-          mov si, bx
-          mov ax, 0A000h
-          mov es, ax
-          mov al, es:[si]
-          cmp al, 0x42
-          je collisionP
-          ret
+     mov ax, [xPos]
+     mov bx, [yPos]
+     add ax, SPRITEH
+     add bx, 4
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_right
+     inc si ; Vérifier le pixel à droite
+     mov al, es:[si]
+     cmp al, 0x42
+     je collisionP
+no_collisionP_right:
+     ret
+
 check_detection_pellets_left:
-          mov ax, [xPos]
-          mov bx, [yPos]
-          add bx, 4
-          imul bx, SCREEN_WIDTH
-          add bx, ax
-          mov si, bx
-          mov ax, 0A000h
-          mov es, ax
-          mov al, es:[si]
-          cmp al, 0x42
-          je collisionP
-          ret
+     ; Convert position to screen buffer index
+     mov ax, [xPos]
+     mov bx, [yPos]
+     add bx, 4
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_left
+     dec si ; Vérifier le pixel à gauche
+     mov al, es:[si]
+     cmp al, 0x42
+     je collisionP
+no_collisionP_left:
+     ret
+
 check_detection_pellets_up:
-          mov ax, [xPos]
-          mov bx, [yPos]
-          add ax, 4
-          imul bx, SCREEN_WIDTH
-          add bx, ax
-          mov si, bx
-          mov ax, 0A000h
-          mov es, ax
-          mov al, es:[si]
-          cmp al, 0x42
-          je collisionP
-          ret
+     ; Convert position to screen buffer index
+     mov ax, [xPos]
+     mov bx, [yPos]
+     add ax, 4
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_up
+     sub si, SCREEN_WIDTH ; Vérifier le pixel en haut
+     mov al, es:[si]
+     cmp al, 0x42
+     je collisionP
+no_collisionP_up:
+     ret
+
 check_detection_pellets_down:
-          mov ax, [xPos]
-          mov bx, [yPos]
-          add ax, 4
-          add bx, SPRITEH
-          imul bx, SCREEN_WIDTH
-          add bx, ax
-          mov si, bx
-          mov ax, 0A000h
-          mov es, ax
-          mov al, es:[si]
-          cmp al, 0x42
-          je collisionP
-          ret
+     ; Convert position to screen buffer index
+     mov ax, [xPos]
+     mov bx, [yPos]
+     add ax, 4
+     add bx, SPRITEH
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_down
+     add si, SCREEN_WIDTH ; Vérifier le pixel en bas
+     mov al, es:[si]
+     cmp al, 0x42
+     je collisionP
+no_collisionP_down:
+     ret
 
 collisionP:
      call pelletsPoints
      ret
 collisionSP:
-     call superPelletUpdate 
+     call superPelletUpdate
      ret
-
-
 ;=================================================
 ;             SUPER PELLETS COLLISIONS
 ;=================================================

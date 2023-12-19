@@ -17,6 +17,7 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
+pelletsNumbers db 188
 
 yScorePos dw 0
 xScorePos dw 0
@@ -109,7 +110,6 @@ scoringDraw:
         add di, 320 - SPRITEW
         loop .draw_line  ; Repeat the draw for each sprite's rows
         ret
-
 
 pelletsPoints:
     call scoreFour
@@ -380,152 +380,164 @@ scoreOne:
     ret
 
 scoreFourSP:
-    cmp word [scoreFourRecord], 9
-    je .scoreThreeSP
-    add word [scoreFourRecord], 1
-    cmp word [scoreFourRecord], 0
-    je .printNumberThreeSP
-    cmp word [scoreFourRecord], 1
-    je .printNumberFourSP
-    cmp word [scoreFourRecord], 2
-    je .printNumberFiveSP
+    add word [scoreFourRecord], 3
     cmp word [scoreFourRecord], 3
-    je .printNumberSixSP
+    je .printNumberThreeSP
     cmp word [scoreFourRecord], 4
-    je .printNumberSevenSP
+    je .printNumberFourSP
     cmp word [scoreFourRecord], 5
-    je .printNumberEightSP
+    je .printNumberFiveSP
     cmp word [scoreFourRecord], 6
-    je .printNumberNineSP
+    je .printNumberSixSP
     cmp word [scoreFourRecord], 7
-    je .printNumberZeroSP
+    je .printNumberSevenSP
     cmp word [scoreFourRecord], 8
-    je .printNumberOneSP
+    je .printNumberEightSP
     cmp word [scoreFourRecord], 9
+    je .printNumberNineSP
+    cmp word [scoreFourRecord], 10
+    je .printNumberZeroSP
+    cmp word [scoreFourRecord], 11
+    je .printNumberOneSP
+    cmp word [scoreFourRecord], 12
     je .printNumberTwoSP
+
+    .printNumberThreeSP:
+    mov word [scoreCurrentSprite], number3
+    jmp .end
+
+    .printNumberFourSP:
+    mov word [scoreCurrentSprite], number4
+    jmp .end
+
+    .printNumberFiveSP:
+    mov word [scoreCurrentSprite], number5
+    jmp .end
+
+    .printNumberSixSP:
+    mov word [scoreCurrentSprite], number6
+    jmp .end
+
+    .printNumberSevenSP:
+    mov word [scoreCurrentSprite], number7
+    jmp .end
+
+    .printNumberEightSP:
+    mov word [scoreCurrentSprite], number8
+    jmp .end
+
+    .printNumberNineSP:
+    mov word [scoreCurrentSprite], number9
+    jmp .end
 
     .printNumberZeroSP:
     mov word [scoreFourRecord], 0
     mov word [scoreCurrentSprite], number0
-    jmp .callScoreThreeSP
+    jmp .nextLevel
 
     .printNumberOneSP:
     mov word [scoreFourRecord], 1
     mov word [scoreCurrentSprite], number1
-    jmp .callScoreThreeSP
+    jmp .nextLevel
 
     .printNumberTwoSP:
     mov word [scoreFourRecord], 2
     mov word [scoreCurrentSprite], number2
-    jmp .callScoreThreeSP
+    jmp .nextLevel
 
-    .printNumberThreeSP:
-    mov word [scoreCurrentSprite], number3
-    jmp .endSP
-    .printNumberFourSP:
-    mov word [scoreCurrentSprite], number4
-    jmp .endSP
-    .printNumberFiveSP:
-    mov word [scoreCurrentSprite], number5
-    jmp .endSP
-    .printNumberSixSP:
-    mov word [scoreCurrentSprite], number6
-    jmp .endSP
-    .printNumberSevenSP:
-    mov word [scoreCurrentSprite], number7
-    jmp .endSP
-    .printNumberEightSP:
-    mov word [scoreCurrentSprite], number8
-    jmp .endSP
-    .printNumberNineSP:
-    mov word [scoreCurrentSprite], number9
-    jmp .endSP
-
-    .endSP:
+    .end:
     mov si, [scoreCurrentSprite]
     mov word [yScorePos], 33
     mov word [xScorePos], 288
     call scoringDraw
     ret
 
-    .scoreThreeSP:
-    mov word [scoreFourRecord], 0
-    mov word [scoreCurrentSprite], number2
-    jmp .callScoreThreeSP
-
-    .callScoreThreeSP:
+    .nextLevel:
     mov si, [scoreCurrentSprite]
     mov word [yScorePos], 33
     mov word [xScorePos], 288
     call scoringDraw
     call scoreThreeSP
+    ret
 
 scoreThreeSP:
-    cmp word [scoreThreeRecord], 9
-    je .printNumberTwoSP
-    add word [scoreThreeRecord], 1
-    cmp word [scoreThreeRecord], 0
-    je .printNumberThreeSP
-    cmp word [scoreThreeRecord], 1
-    je .printNumberFourSP
-    cmp word [scoreThreeRecord], 2
-    je .printNumberFiveSP
+    add word [scoreThreeRecord], 3
     cmp word [scoreThreeRecord], 3
-    je .printNumberSixSP
+    je .printNumberThreeSP
     cmp word [scoreThreeRecord], 4
-    je .printNumberSevenSP
+    je .printNumberFourSP
     cmp word [scoreThreeRecord], 5
-    je .printNumberEightSP
+    je .printNumberFiveSP
     cmp word [scoreThreeRecord], 6
-    je .printNumberNineSP
+    je .printNumberSixSP
     cmp word [scoreThreeRecord], 7
-    je .printNumberZeroSP
+    je .printNumberSevenSP
     cmp word [scoreThreeRecord], 8
-    je .printNumberOneSP
+    je .printNumberEightSP
     cmp word [scoreThreeRecord], 9
+    je .printNumberNineSP
+    cmp word [scoreThreeRecord], 10
+    je .printNumberZeroSP
+    cmp word [scoreThreeRecord], 11
+    je .printNumberOneSP
+    cmp word [scoreThreeRecord], 12
     je .printNumberTwoSP
+
+    .printNumberFourSP:
+    mov word [scoreCurrentSprite], number4
+    jmp .end
+
+    .printNumberFiveSP:
+    mov word [scoreCurrentSprite], number5
+    jmp .end
+
+    .printNumberSixSP:
+    mov word [scoreCurrentSprite], number6
+    jmp .end
+
+    .printNumberSevenSP:
+    mov word [scoreCurrentSprite], number7
+    jmp .end
+
+    .printNumberEightSP:
+    mov word [scoreCurrentSprite], number8
+    jmp .end
+
+    .printNumberNineSP:
+    mov word [scoreCurrentSprite], number9
+    jmp .end
+
     .printNumberZeroSP:
     mov word [scoreThreeRecord], 0
     mov word [scoreCurrentSprite], number0
-    jmp .callScoreTwoSP
+    jmp .nextLevelSP
 
     .printNumberOneSP:
+    mov word [scoreThreeRecord], 1
     mov word [scoreCurrentSprite], number1
-    jmp .endSP    
-    .printNumberTwoSP:
-    mov word [scoreCurrentSprite], number2
-    jmp .endSP
-    .printNumberThreeSP:
-    mov word [scoreCurrentSprite], number3
-    jmp .endSP
-    .printNumberFourSP:
-    mov word [scoreCurrentSprite], number4
-    jmp .endSP
-    .printNumberFiveSP:
-    mov word [scoreCurrentSprite], number5
-    jmp .endSP
-    .printNumberSixSP:
-    mov word [scoreCurrentSprite], number6
-    jmp .endSP
-    .printNumberSevenSP:
-    mov word [scoreCurrentSprite], number7
-    jmp .endSP
-    .printNumberEightSP:
-    mov word [scoreCurrentSprite], number8
-    jmp .endSP
-    .printNumberNineSP:
-    mov word [scoreCurrentSprite], number9
-    jmp .endSP
+    jmp .nextLevelSP
 
-    .endSP:
+    .printNumberTwoSP:
+    mov word [scoreThreeRecord], 2
+    mov word [scoreCurrentSprite], number2
+    jmp .nextLevelSP
+
+    .printNumberThreeSP:
+    mov word [scoreThreeRecord], 3
+    mov word [scoreCurrentSprite], number3
+    jmp .nextLevelSP
+
+    .end:
     mov si, [scoreCurrentSprite]
     mov word [yScorePos], 33
     mov word [xScorePos], 280
     call scoringDraw
     ret
 
-    .callScoreTwoSP:
+    .nextLevelSP:
     mov si, [scoreCurrentSprite]
     mov word [yScorePos], 33
     mov word [xScorePos], 280
     call scoringDraw
+    ; call scoreTwoSP
+    ret
