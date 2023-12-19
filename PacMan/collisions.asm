@@ -68,12 +68,15 @@ erase_pellet_right:
      mov es:[si], al ; Effacer le pixel actuel
      inc si
      mov es:[si], al ; Effacer le pixel suivant
+     sub si, 320
+     mov es:[si], al
      ret
 
 check_detection_pellets_left:
      ; Convert position to screen buffer index
      mov ax, [xPos]
      mov bx, [yPos]
+     sub ax, 1
      add bx, 4
      imul bx, SCREEN_WIDTH
      add bx, ax
@@ -94,6 +97,8 @@ erase_pellet_left:
      mov es:[si], al ; Effacer le pixel actuel
      dec si
      mov es:[si], al ; Effacer le pixel précédent
+     sub si, 320
+     mov es:[si], al
      ret
 
 check_detection_pellets_up:
@@ -101,6 +106,7 @@ check_detection_pellets_up:
      mov ax, [xPos]
      mov bx, [yPos]
      add ax, 4
+     sub bx, 1
      imul bx, SCREEN_WIDTH
      add bx, ax
      mov si, bx
@@ -120,6 +126,8 @@ erase_pellet_up:
      mov es:[si], al ; Effacer le pixel actuel
      sub si, SCREEN_WIDTH
      mov es:[si], al ; Effacer le pixel au-dessus
+     sub si, 1
+     mov es:[si], al
      ret
 
 check_detection_pellets_down:
@@ -147,6 +155,8 @@ erase_pellet_down:
      mov es:[si], al ; Effacer le pixel actuel
      add si, SCREEN_WIDTH
      mov es:[si], al ; Effacer le pixel en dessous
+     sub si, 1
+     mov es:[si], al
      ret
 
 collisionP:
@@ -175,6 +185,7 @@ check_detection_SuperPellets_right:
           cmp al, 0x2B
           je collisionSP
           ret
+          
 check_detection_SuperPellets_left:
           mov ax, [xPos]
           mov bx, [yPos]
@@ -192,8 +203,8 @@ check_detection_SuperPellets_left:
 check_detection_SuperPellets_up:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, 4
-          sub bx, 1
+          add ax, 2
+          sub bx, 3
           imul bx, SCREEN_WIDTH
           add bx, ax
           mov si, bx
@@ -201,12 +212,44 @@ check_detection_SuperPellets_up:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x2B
-          je collisionSP
+          jne no_collisionSP_up
+          call erase_super_pellet_up
+          jmp collisionSP
           ret
+no_collisionSP_up:
+     ret
+erase_super_pellet_up:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel en dessous
+     sub si, 320
+     mov es:[si], al
+     sub si, 319
+     mov es:[si], al
+     add si, 320
+     mov es:[si], al
+     add si, 320
+     mov es:[si], al
+     add  si, 320
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     sub si, 320
+     mov es:[si], al
+     sub si, 320
+     mov es:[si], al
+     sub si, 320
+     mov es:[si], al
+     add si, 321
+     mov es:[si], al
+     add si, 320
+     mov es:[si], al
+     ret
+     
 check_detection_SuperPellets_down:
           mov ax, [xPos]
           mov bx, [yPos]
-          add ax, 4
+          add ax, 3
           add bx, SPRITEH
           imul bx, SCREEN_WIDTH
           add bx, ax
@@ -215,9 +258,41 @@ check_detection_SuperPellets_down:
           mov es, ax
           mov al, es:[si]
           cmp al, 0x2B
-          je collisionSP
+          jne no_collisionSP_down
+          call erase_super_pellet_down
+          jmp collisionSP
           ret
 
+no_collisionSP_down:
+     ret
+
+erase_super_pellet_down:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     add si, 1
+     mov es:[si], al
+     add si, 318
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     add si, 317
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     add si, 318
+     mov es:[si], al
+     inc si
+     mov es:[si], al
+     ret
 
 ;=================================================
 ;              PACMAN COLLISIONS
