@@ -17,7 +17,7 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
-pelletsNumbers db 188
+pelletsNumbers db 10
 
 yScorePos dw 0
 xScorePos dw 0
@@ -116,6 +116,13 @@ pelletsPoints:
     ret
 superPelletUpdate:
     call scoreFourSP
+    ret
+
+checkPelletNumber:
+    cmp byte [pelletsNumbers], 0
+    je resetMapPellet
+    jne .end
+    .end:
     ret
 
 scoreFour:
@@ -541,3 +548,370 @@ scoreThreeSP:
     call scoringDraw
     ; call scoreTwoSP
     ret
+
+
+
+;========================
+; END GAME GG
+;========================
+drawNumbersGG:
+    cmp word [scoreFiveRecord], 0
+    je .numberFiveDrawZero
+    cmp word [scoreFiveRecord], 1
+    je .numberFiveDrawOne
+    cmp word [scoreFiveRecord], 2
+    je .numberFiveDrawTwo
+    cmp word [scoreFiveRecord], 3
+    je .numberFiveDrawThree
+    cmp word [scoreFiveRecord], 4
+    je .numberFiveDrawFour
+    cmp word [scoreFiveRecord], 5
+    je .numberFiveDrawFive
+    cmp word [scoreFiveRecord], 6
+    je .numberFiveDrawSix
+    cmp word [scoreFiveRecord], 7
+    je .numberFiveDrawSeven
+    cmp word [scoreFiveRecord], 8
+    je .numberFiveDrawEight
+    cmp word [scoreFiveRecord], 9
+    je .numberFiveDrawNine
+
+    .numberFiveDrawZero:
+    mov word [scoreCurrentSprite], number0
+    jmp .beforeNumberFour
+    .numberFiveDrawOne:
+    mov word [scoreCurrentSprite], number1
+    jmp .beforeNumberFour
+    .numberFiveDrawTwo:
+    mov word [scoreCurrentSprite], number2
+    jmp .beforeNumberFour
+    .numberFiveDrawThree:
+    mov word [scoreCurrentSprite], number3
+    jmp .beforeNumberFour
+    .numberFiveDrawFour:
+    mov word [scoreCurrentSprite], number4
+    jmp .beforeNumberFour
+    .numberFiveDrawFive:
+    mov word [scoreCurrentSprite], number5
+    jmp .beforeNumberFour
+    .numberFiveDrawSix:
+    mov word [scoreCurrentSprite], number6
+    jmp .beforeNumberFour
+    .numberFiveDrawSeven:
+    mov word [scoreCurrentSprite], number7
+    jmp .beforeNumberFour
+    .numberFiveDrawEight:
+    mov word [scoreCurrentSprite], number8
+    jmp .beforeNumberFour
+    .numberFiveDrawNine:
+    mov word [scoreCurrentSprite], number9
+    jmp .beforeNumberFour
+
+    .beforeNumberFour:
+    mov si, [scoreCurrentSprite]
+    mov word [yScorePos], 100
+    mov word [xScorePos], 172
+    call scoringDraw
+
+    cmp word [scoreFourRecord], 0
+    je .numberFourDrawZero
+    cmp word [scoreFourRecord], 1
+    je .numberFourDrawOne
+    cmp word [scoreFourRecord], 2
+    je .numberFourDrawTwo
+    cmp word [scoreFourRecord], 3
+    je .numberFourDrawThree
+    cmp word [scoreFourRecord], 4
+    je .numberFourDrawFour
+    cmp word [scoreFourRecord], 5
+    je .numberFourDrawFive
+    cmp word [scoreFourRecord], 6
+    je .numberFourDrawSix
+    cmp word [scoreFourRecord], 7
+    je .numberFourDrawSeven
+    cmp word [scoreFourRecord], 8
+    je .numberFourDrawEight
+    cmp word [scoreFourRecord], 9
+    je .numberFourDrawNine
+
+    .numberFourDrawZero:
+    mov word [scoreCurrentSprite], number0
+    jmp .beforeNumberThree
+    .numberFourDrawOne:
+    mov word [scoreCurrentSprite], number1
+    jmp .beforeNumberThree
+    .numberFourDrawTwo:
+    mov word [scoreCurrentSprite], number2
+    jmp .beforeNumberThree
+    .numberFourDrawThree:
+    mov word [scoreCurrentSprite], number3
+    jmp .beforeNumberThree
+    .numberFourDrawFour:
+    mov word [scoreCurrentSprite], number4
+    jmp .beforeNumberThree
+    .numberFourDrawFive:
+    mov word [scoreCurrentSprite], number5
+    jmp .beforeNumberThree
+    .numberFourDrawSix:
+    mov word [scoreCurrentSprite], number6
+    jmp .beforeNumberThree
+    .numberFourDrawSeven:
+    mov word [scoreCurrentSprite], number7
+    jmp .beforeNumberThree
+    .numberFourDrawEight:
+    mov word [scoreCurrentSprite], number8
+    jmp .beforeNumberThree
+    .numberFourDrawNine:
+    mov word [scoreCurrentSprite], number9
+    jmp .beforeNumberThree
+
+    .beforeNumberThree:
+    mov si, [scoreCurrentSprite]
+    mov word [yScorePos], 100
+    mov word [xScorePos], 164
+    call scoringDraw
+
+    cmp word [scoreThreeRecord], 0
+    je .numberThreeDrawZero
+    cmp word [scoreThreeRecord], 1
+    je .numberThreeDrawOne
+    cmp word [scoreThreeRecord], 2
+    je .numberThreeDrawTwo
+    cmp word [scoreThreeRecord], 3
+    je .numberThreeDrawThree
+    cmp word [scoreThreeRecord], 4
+    je .numberThreeDrawFour
+    cmp word [scoreThreeRecord], 5
+    je .numberThreeDrawFive
+    cmp word [scoreThreeRecord], 6
+    je .numberThreeDrawSix
+    cmp word [scoreThreeRecord], 7
+    je .numberThreeDrawSeven
+    cmp word [scoreThreeRecord], 8
+    je .numberThreeDrawEight
+    cmp word [scoreThreeRecord], 9
+    je .numberThreeDrawNine
+
+    .numberThreeDrawZero:
+    mov word [scoreCurrentSprite], number0
+    jmp .beforeNumberTwo
+    .numberThreeDrawOne:
+    mov word [scoreCurrentSprite], number1
+    jmp .beforeNumberTwo
+    .numberThreeDrawTwo:
+    mov word [scoreCurrentSprite], number2
+    jmp .beforeNumberTwo
+    .numberThreeDrawThree:
+    mov word [scoreCurrentSprite], number3
+    jmp .beforeNumberTwo
+    .numberThreeDrawFour:
+    mov word [scoreCurrentSprite], number4
+    jmp .beforeNumberTwo
+    .numberThreeDrawFive:
+    mov word [scoreCurrentSprite], number5
+    jmp .beforeNumberTwo
+    .numberThreeDrawSix:
+    mov word [scoreCurrentSprite], number6
+    jmp .beforeNumberTwo
+    .numberThreeDrawSeven:
+    mov word [scoreCurrentSprite], number7
+    jmp .beforeNumberTwo
+    .numberThreeDrawEight:
+    mov word [scoreCurrentSprite], number8
+    jmp .beforeNumberTwo
+    .numberThreeDrawNine:
+    mov word [scoreCurrentSprite], number9
+    jmp .beforeNumberTwo
+
+    .beforeNumberTwo:
+    mov si, [scoreCurrentSprite]
+    mov word [yScorePos], 100
+    mov word [xScorePos], 156
+    call scoringDraw
+
+    cmp word [scoreTwoRecord], 0
+    je .numberTwoDrawZero
+    cmp word [scoreTwoRecord], 1
+    je .numberTwoDrawOne
+    cmp word [scoreTwoRecord], 2
+    je .numberTwoDrawTwo
+    cmp word [scoreTwoRecord], 3
+    je .numberTwoDrawThree
+    cmp word [scoreTwoRecord], 4
+    je .numberTwoDrawFour
+    cmp word [scoreTwoRecord], 5
+    je .numberTwoDrawFive
+    cmp word [scoreTwoRecord], 6
+    je .numberTwoDrawSix
+    cmp word [scoreTwoRecord], 7
+    je .numberTwoDrawSeven
+    cmp word [scoreTwoRecord], 8
+    je .numberTwoDrawEight
+    cmp word [scoreTwoRecord], 9
+    je .numberTwoDrawNine
+
+    .numberTwoDrawZero:
+    mov word [scoreCurrentSprite], number0
+    jmp .beforeNumberOne
+    .numberTwoDrawOne:
+    mov word [scoreCurrentSprite], number1
+    jmp .beforeNumberOne
+    .numberTwoDrawTwo:
+    mov word [scoreCurrentSprite], number2
+    jmp .beforeNumberOne
+    .numberTwoDrawThree:
+    mov word [scoreCurrentSprite], number3
+    jmp .beforeNumberOne
+    .numberTwoDrawFour:
+    mov word [scoreCurrentSprite], number4
+    jmp .beforeNumberOne
+    .numberTwoDrawFive:
+    mov word [scoreCurrentSprite], number5
+    jmp .beforeNumberOne
+    .numberTwoDrawSix:
+    mov word [scoreCurrentSprite], number6
+    jmp .beforeNumberOne
+    .numberTwoDrawSeven:
+    mov word [scoreCurrentSprite], number7
+    jmp .beforeNumberOne
+    .numberTwoDrawEight:
+    mov word [scoreCurrentSprite], number8
+    jmp .beforeNumberOne
+    .numberTwoDrawNine:
+    mov word [scoreCurrentSprite], number9
+    jmp .beforeNumberOne
+
+    .beforeNumberOne:
+    mov si, [scoreCurrentSprite]
+    mov word [yScorePos], 100
+    mov word [xScorePos], 148
+    call scoringDraw
+    
+    cmp word [scoreOneRecord], 0
+    je .numberOneDrawZero
+    cmp word [scoreOneRecord], 1
+    je .numberOneDrawOne
+    cmp word [scoreOneRecord], 2
+    je .numberOneDrawTwo
+    cmp word [scoreOneRecord], 3
+    je .numberOneDrawThree
+    cmp word [scoreOneRecord], 4
+    je .numberOneDrawFour
+    cmp word [scoreOneRecord], 5
+    je .numberOneDrawFive
+    cmp word [scoreOneRecord], 6
+    je .numberOneDrawSix
+    cmp word [scoreOneRecord], 7
+    je .numberOneDrawSeven
+    cmp word [scoreOneRecord], 8
+    je .numberOneDrawEight
+    cmp word [scoreOneRecord], 9
+    je .numberOneDrawNine
+
+    .numberOneDrawZero:
+    mov word [scoreCurrentSprite], number0
+    jmp .end
+    .numberOneDrawOne:
+    mov word [scoreCurrentSprite], number1
+    jmp .end
+    .numberOneDrawTwo:
+    mov word [scoreCurrentSprite], number2
+    jmp .end
+    .numberOneDrawThree:
+    mov word [scoreCurrentSprite], number3
+    jmp .end
+    .numberOneDrawFour:
+    mov word [scoreCurrentSprite], number4
+    jmp .end
+    .numberOneDrawFive:
+    mov word [scoreCurrentSprite], number5
+    jmp .end
+    .numberOneDrawSix:
+    mov word [scoreCurrentSprite], number6
+    jmp .end
+    .numberOneDrawSeven:
+    mov word [scoreCurrentSprite], number7
+    jmp .end
+    .numberOneDrawEight:
+    mov word [scoreCurrentSprite], number8
+    jmp .end
+    .numberOneDrawNine:
+    mov word [scoreCurrentSprite], number9
+    jmp .end
+
+    .end:
+    mov si, [scoreCurrentSprite]
+    mov word [yScorePos], 100
+    mov word [xScorePos], 140
+    call scoringDraw
+    ret
+
+displayEndScore:
+    mov word [scoreCurrentSprite], alphabetE
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 172
+    mov word [yScorePos], 82
+    call scoringDraw
+
+    mov word [scoreCurrentSprite], alphabetN
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 180
+    call scoringDraw
+    
+    mov word [scoreCurrentSprite], alphabetD
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 188
+    call scoringDraw
+    ; Affiche "G"
+    mov word [scoreCurrentSprite], alphabetG
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 196
+    call scoringDraw
+
+    mov word [scoreCurrentSprite], alphabetA
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 204
+    call scoringDraw
+
+    mov word [scoreCurrentSprite], alphabetM
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 212
+    call scoringDraw
+
+    mov word [scoreCurrentSprite], alphabetE
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 220
+    call scoringDraw
+    ; Affiche "S"
+    mov word [scoreCurrentSprite], alphabetS
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 140
+    mov word [yScorePos], 92
+    call scoringDraw
+    ; Affiche "C"
+    mov word [scoreCurrentSprite], alphabetC
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 148  ; 10 + 8
+    call scoringDraw
+    ; Affiche "O"
+    mov word [scoreCurrentSprite], alphabetO
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 156  ; 18 + 8
+    call scoringDraw
+    ; Affiche "R"
+    mov word [scoreCurrentSprite], alphabetR
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 164  ; 26 + 8
+    call scoringDraw
+    ; Affiche "E"
+    mov word [scoreCurrentSprite], alphabetE
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 172  ; 34 + 8
+    call scoringDraw
+    ret
+resetMapPellet:
+    mov byte [pelletsNumbers], 188
+     call clearScreen
+     call displayEndScore
+     call drawNumbersGG
+     call pause

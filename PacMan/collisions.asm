@@ -132,7 +132,9 @@ erase_pellet_down:
      ret
 
 collisionP:
+     dec word [pelletsNumbers]
      call pelletsPoints
+     call checkPelletNumber
      ret
 collisionSP:
      call superPelletUpdate

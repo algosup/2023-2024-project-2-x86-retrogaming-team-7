@@ -65,6 +65,7 @@ start_game:
      call gameloop
     
 gameloop:
+     call checkPelletNumber
      call clearSprite
      call draw_sprite
 
