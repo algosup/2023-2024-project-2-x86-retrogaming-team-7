@@ -100,7 +100,6 @@ gameloop:
      call draw_pinky
 
      
-     call check_lives
      call check_number_lives
      call check_collision_pacman
      call direction_ghost
@@ -164,6 +163,7 @@ check_number_lives:
           call death
           ret
      .return:
+          call check_lives
           ret  
 clearSprite:
      ; Set up the graphics segment
@@ -470,7 +470,6 @@ check_lives:
           call clear_life
           ret
      .olives:
-          call death
           ret
      ret
      
