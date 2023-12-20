@@ -13,6 +13,10 @@ org 100h
 %define MAZE_HEIGHT 176
 
 section .data
+waitingForLeft db 0
+waitingForRight db 0
+waitingForUp db 0
+waitingForDown db 0
 xPos dw 156       ;tunnel left = 72 (x) 96y            ;tunnel right = 240 (x)96y              
 xVelocity dw 1
 yPos dw 144                 
@@ -42,7 +46,7 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
                 db 49,49,49,49,14,54,40,49,49,49,49,49,49,49,49,40,54,15,49,49,49,49
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
-                db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
+                db 49,49,49,49,49,54,54,54,51,49,49,49,49,49,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
                 db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
@@ -83,7 +87,7 @@ gameloop:
      call check_collision_Touch_Blinky
      call clearGhostB
      call draw_blinky
-
+     
      call check_collision_ghost_Inky
      call check_collision_Touch_Inky
      call clearGhostI
@@ -99,10 +103,12 @@ gameloop:
      call clearGhostP
      call draw_pinky
 
+     
      call check_number_lives
      call check_collision_pacman
+     call direction_ghost
+     call checkWaitingKeystroke
      call read_character_key_was_pressed
-     call ghosts_behavior
 
      mov cx, 64000
 
@@ -150,33 +156,8 @@ SetSpawnPosition:
      mov [yPosPinky], ax
      
      mov ax, 0
-     mov [actualKeystroke], ax ; pacman respawn
-     mov ax, pacman_right_2
-     mov [currentSprite], ax
-     call clearSprite
-     call draw_sprite
-
-     mov ax, blinky_right_1
-     mov [currentSpriteBlinky], ax  ; blinky respawn
-     call clearGhostB
-     call draw_blinky
-
-     mov ax, inky_right_1
-     mov [currentSpriteInky], ax  ; inky respawn
-     call clearGhostI
-     call draw_inky
-
-     mov ax, clyde_right_1
-     mov [currentSpriteClyde], ax  ;clyde respawn
-     call clearGhostC
-     call draw_clyde
-
-     mov ax, pinky_right_1
-     mov [currentSpritePinky], ax  ;pinky respawn
-     call clearGhostP
-     call draw_pinky
-     call reset_ghosts_out
-
+     mov [actualKeystroke], ax
+     mov [waitingKeystroke], ax
      ret
 
 check_number_lives:
@@ -271,23 +252,60 @@ read_character_key_was_pressed:
     ; Read the keystroke
      mov ah, 00h
      int 16h
-     cmp ah, 4Dh
-     je .update_keystroke
-     cmp ah, 4Bh
-     je .update_keystroke
-     cmp ah, 48h
-     je .update_keystroke
-     cmp ah, 50h
-     je .update_keystroke
-     cmp ah, 19h
+     mov [waitingKeystroke], ah
+     cmp word [waitingKeystroke], 4Dh  ; Right arrow
+     je checkNextPosition
+     cmp word [waitingKeystroke], 4Bh  ; Left arrow
+     je checkNextPosition
+     cmp word [waitingKeystroke], 48h  ; Up arrow
+     je checkNextPosition
+     cmp word [waitingKeystroke], 50h  ; Down arrow
+     je checkNextPosition
+     .readMovement:
+     cmp ah, 4Dh  ; Right arrow
+     je setDirectionAndMove
+     cmp ah, 4Bh  ; Left arrow
+     je setDirectionAndMove
+     cmp ah, 48h  ; Up arrow
+     je setDirectionAndMove
+     cmp ah, 50h  ; Down arrow
+     je setDirectionAndMove
+
+     ; Other keys
+     cmp ah, 19h  ; Pause
      je pause
-     cmp ah, 01h
+     cmp ah, 01h  ; Exit
      je exit_menu
      jmp continue_movement
 
-     .update_keystroke:
-          mov [actualKeystroke], ah  ; Store the new direction
-          jmp continue_movement
+setDirectionAndMove:
+     mov [actualKeystroke], ah
+     jmp continue_movement
+
+checkNextPosition:
+     ; Check collision on the right side
+     call check_collision_pacman_waitingKeystroke
+     cmp byte [detectCollision], 0
+     je .noCollision
+     jne .collision
+     ; Collision, change actualKeystroke and continue movement
+     .noCollision:
+     mov al, [waitingKeystroke]
+     mov [actualKeystroke], al
+
+     .collision:
+     jmp continue_movement
+
+checkWaitingKeystroke:
+     mov al, [waitingKeystroke]
+     cmp al, [actualKeystroke]
+     je .noChange
+
+     .change:
+     call checkNextPosition
+
+     .noChange:
+     ret
 
 pause:
      mov ah, 00h

@@ -311,6 +311,16 @@ check_collision_pacman:
      je check_down_pac
      ret
 
+check_collision_pacman_waitingKeystroke:
+     cmp word [waitingKeystroke], 4Dh  ; Right
+     je check_right_pac
+     cmp word [waitingKeystroke], 4Bh  ; Left
+     je check_left_pac
+     cmp word [waitingKeystroke], 48h  ; Up
+     je check_up_pac
+     cmp word [waitingKeystroke], 50h  ; Down
+     je check_down_pac
+     ret
 
 
 check_right_pac:
