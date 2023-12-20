@@ -764,11 +764,11 @@ Real              Virtual           Name
             4DC5              4DC5  inky_out_spawn.up
             4DDE              4DDE  inky_out_spawn.done
             4DE7              4DE7  clyde_out_spawn
-            4DF3              4DF3  clyde_out_spawn.right
+            4DF3              4DF3  clyde_out_spawn.left
             4E05              4E05  clyde_out_spawn.up
             4E1E              4E1E  clyde_out_spawn.done
             4E27              4E27  pinky_out_spawn
-            4E33              4E33  pinky_out_spawn.right
+            4E33              4E33  pinky_out_spawn.left
             4E45              4E45  pinky_out_spawn.up
             4E5E              4E5E  pinky_out_spawn.done
             4E67              4E67  reset_ghosts_out

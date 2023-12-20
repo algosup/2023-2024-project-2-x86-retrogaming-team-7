@@ -91,12 +91,12 @@ inky_out_spawn:
 clyde_out_spawn:
     mov al, [xPosClyde]
     cmp al, 156
-    jne .right
+    jne .left
     cmp al, 156
     je .up
     ret
-    .right:
-        call clyde_right
+    .left:
+        call clyde_left
         mov al, [xPosClyde]
         dec al
         mov [xPosClyde], al
@@ -124,12 +124,12 @@ clyde_out_spawn:
 pinky_out_spawn:
     mov al, [xPosPinky]
     cmp al, 156
-    jne .right
+    jne .left
     cmp al, 156
     je .up
     ret
-    .right:
-        call pinky_right
+    .left:
+        call pinky_left
         mov al, [xPosPinky]
         dec al
         mov [xPosPinky], al
