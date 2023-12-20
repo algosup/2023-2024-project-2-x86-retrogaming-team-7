@@ -39,6 +39,7 @@ check_detection_pacman:
           mov bx, [lives]
           dec bx
           mov [lives], bx
+          call reset_ghosts_out
           jmp SetSpawnPosition
 ;=================================================
 ;              PELLETS COLLISIONS
@@ -664,7 +665,7 @@ check_right_blinky:
      .check_right_blinky_0:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           call check_detection_walls
           cmp byte [detectCollision], 0
           je .check_right_blinky_1
@@ -672,7 +673,7 @@ check_right_blinky:
      .check_right_blinky_1:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 1
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -681,7 +682,7 @@ check_right_blinky:
      .check_right_blinky_2:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 2
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -690,7 +691,7 @@ check_right_blinky:
      .check_right_blinky_3:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 3
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -699,7 +700,7 @@ check_right_blinky:
      .check_right_blinky_4:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 4
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -708,7 +709,7 @@ check_right_blinky:
      .check_right_blinky_5: 
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEW + 1
+          add ax, SPRITEW
           add bx, 5      ;    + this check hitbox bottom right
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -717,7 +718,7 @@ check_right_blinky:
      .check_right_blinky_6:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 6
           call check_detection_walls
           cmp byte [detectCollision], 0
@@ -726,7 +727,7 @@ check_right_blinky:
      .check_right_blinky_7:
           mov ax, [xPosBlinky]
           mov bx, [yPosBlinky]
-          add ax, SPRITEH + 1 ;    check hitbox top right
+          add ax, SPRITEH ;    check hitbox top right
           add bx, 7
           call check_detection_walls
           cmp byte [detectCollision], 0
