@@ -141,6 +141,9 @@ reset_ghosts_out:
     mov al, [pinkyfr]
     dec al
     mov [pinkyfr], al
+    mov al, [pinkyOut]
+    dec al
+    mov [pinkyOut], al
     ret
 
 ; ===============================================
