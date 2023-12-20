@@ -8,8 +8,9 @@ section .data
     exitChoice db 'Exit', 0x0D, 0x0A, '$'
     arrow db '->', 0x0d, 0x0A, '$'
     delArrow db '  ', 0x0d, 0x0A, '$' ; Can we avoid that ???? I don't know but that work :D*
-    copyrights1 db 'This game is a fanmade project and is not endorsed by, directly affiliated ', 0x0D, 0x0A, '$'
+    copyrights1 db 'This game is a fan made project and is not endorsed by, directly affiliated ', 0x0D, 0x0A, '$'
     copyrights2 db 'with, or officially connected to Namco or Bandai Namco Entertainment.', 0x0D, 0x0A, '$'
+    noncommercial db 'This fan game is distributed for non-commercial purposes only.', 0x0D, 0x0A, '$'
 
 
 section .text
@@ -85,6 +86,15 @@ display_main_menu:
     mov dl, 6          ; dl = column
     int 0x10            ; set cursor position
     mov si, copyrights2
+    mov ah, 0x0E
+    call print_string
+    ; Display Non-commercials
+    mov ah, 0x02        ; set cursor position
+    mov bh, 0x00        ; page number
+    mov dh, 24          ; dh = row
+    mov dl, 8          ; dl = column
+    int 0x10            ; set cursor position
+    mov si, noncommercial
     mov ah, 0x0E
     call print_string
     ; Display Arrow
