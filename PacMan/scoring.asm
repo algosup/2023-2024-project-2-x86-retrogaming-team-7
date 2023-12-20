@@ -21,6 +21,9 @@ pelletsNumbers db 188
 
 yScorePos dw 0
 xScorePos dw 0
+
+xLivesPos dw 0
+yLivesPos dw 0
 %define SPRITEW 8
 %define SPRITEH 8
 section .text
@@ -51,8 +54,72 @@ display_score:
     mov si, [scoreCurrentSprite]
     mov word [xScorePos], 296  ; 34 + 8
     call scoringDraw
-    call points 
+    ; Affiche "L"
+    mov word [scoreCurrentSprite], alphabetL
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 264
+    mov word [yScorePos], 53
+    call scoringDraw
+    ; Affiche "I"
+    mov word [scoreCurrentSprite], alphabetI
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 272
+    call scoringDraw
+    ; Affiche "V"
+    mov word [scoreCurrentSprite], alphabetV
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 280
+    call scoringDraw
+    ; Affiche "E"
+    mov word [scoreCurrentSprite], alphabetE
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 288
+    call scoringDraw
+    ; Affiche "S"
+    mov word [scoreCurrentSprite], alphabetS
+    mov si, [scoreCurrentSprite]
+    mov word [xScorePos], 296
+    call scoringDraw
+    call points
+display_lives:
+    mov word [lives_sprite], pacman_left_1
+    mov si, [lives_sprite]
+    mov word [xLivesPos], 264
+    mov word [yLivesPos], 65
+    call drawSprite
+    mov word [lives_sprite], pacman_left_1
+    mov si, [lives_sprite]
+    mov word [xLivesPos], 272
+    mov word [yLivesPos], 65
+    call drawSprite
+    mov word [lives_sprite], pacman_left_1
+    mov si, [lives_sprite]
+    mov word [xLivesPos], 280
+    mov word [yLivesPos], 65
+    call drawSprite
+    mov word [lives_sprite], pacman_left_1
+    mov si, [lives_sprite]
+    mov word [xLivesPos], 288
+    mov word [yLivesPos], 65
+    call drawSprite
     ret
+
+drawSprite:
+    mov ax, 0A000h
+    mov es, ax
+    mov ax, [yLivesPos]
+    imul ax, 320
+    add ax, [xLivesPos]
+    mov di, ax
+    mov cx, SPRITEH
+    .draw_line:
+        push cx
+        mov cx, SPRITEW
+        rep movsb
+        pop cx
+        add di, 320 - SPRITEW
+        loop .draw_line
+        ret
 points:
     mov word [scoreCurrentSprite], number0
     call five

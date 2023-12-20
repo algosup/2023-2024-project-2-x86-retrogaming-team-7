@@ -25,7 +25,7 @@ old_YPOS dw 0            ;Pac-man's YPOS
 xPosSpawn dw 156
 yPosSpawn dw 144
 currentSprite dd pacman_right_2
-xPoslives dw 265
+xPoslives dw 264
 yPoslives dw 65
 old_XPOSlives dw 0          
 old_YPOSlives dw 0  
@@ -505,18 +505,10 @@ pacman_Down:
           mov si, [currentSprite]
           ret
           
-display_lives:
-     call check_lives
-     call draw_lives          ; xPoslives = 265
-     add word [xPoslives], 9
-     call draw_lives
-     add word [xPoslives], 9
-     call draw_lives
-     add word [xPoslives], 9
-     call draw_lives
-     ret
 check_lives:
      mov ax, [lives]
+     cmp ax, 4
+     je .olives
      cmp ax, 3
      je .flives
      cmp ax, 2
@@ -526,49 +518,27 @@ check_lives:
      cmp ax, 0
      je .olives
      .flives:
-          mov word [xPoslives], 265
+          mov word [xLivesPos], 288
           call clear_life
           ret          
      .thlives:
-          mov word [xPoslives], 274
+          mov word [xLivesPos], 280
           call clear_life
           ret
      .tlives:
-          mov word [xPoslives], 283
+          mov word [xLivesPos], 272
           call clear_life
           ret
      .olives:
           ret
      ret
-     
-draw_lives:
-     mov si, [lives_sprite]
-     mov ax, [xPoslives]
-     mov [old_XPOSlives], ax
-     mov ax, [yPoslives]
-     mov [old_YPOSlives], ax
-     mov ax, 0A000h
-     mov es, ax
-     mov ax, [yPoslives]
-     imul ax, 320
-     add ax, [xPoslives] 
-     mov di, ax
-     mov cx, SPRITEH
-     .draw_line:
-          push cx
-          mov cx, SPRITEW
-          rep movsb
-          pop cx
-          add di, 320 - SPRITEW
-          loop .draw_line
-          ret
 
 clear_life:
      mov ax, 0A000h
      mov es, ax
-     mov ax, [yPoslives]     ; Get the old Y position
+     mov ax, [yLivesPos]     ; Get the old Y position
      imul ax, 320           ; Multiply Y position by screen width to get the offset
-     add ax, [xPoslives]     ; Add the old X position to the offset
+     add ax, [xLivesPos]     ; Add the old X position to the offset
      mov di, ax             ; DI = starting address for erasure
      mov cx, SPRITEH        ; Sprite height
      .clear_line:
