@@ -193,7 +193,7 @@ check_number_lives:
      je .deathf
      jne .return
      .deathf:
-          call displayEndScore
+          call death
           ret
      .return:
           call check_lives
