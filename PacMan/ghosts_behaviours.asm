@@ -4,9 +4,14 @@ inkyStep db 0
 blinkyStep db 0
 clydeStep db 0
 pinkyStep db 0
+blinkyInitialized db 0
+inkyInitialized db 0
+clydeInitialized db 0
+pinkyInitialized db 0
 
 blinky_switch_direction:
-    ; Vérifier s'il y a eu une collision
+    cmp byte [blinkyInitialized], 0
+    je .notInitialized
     mov al, [detectCollision]
     cmp al, 0
     je .no_collision  ; S'il n'y a pas de collision, ne rien faire
@@ -44,6 +49,13 @@ blinky_switch_direction:
     cmp byte [blinkyStep], 4
     jne .end
     mov byte [blinkyStep], 0
+    jmp .end
+
+.notInitialized:
+    mov byte [blinkyInitialized], 1
+    mov ax, 4Dh
+    mov [actualBDirection], ax
+    call continue_movementB
 
 .end:
     ; Réinitialiser l'indicateur de collision après avoir géré le changement de direction
@@ -54,7 +66,8 @@ blinky_switch_direction:
     ret
 
 clyde_switch_direction:
-    ; Vérifier s'il y a eu une collision
+    cmp byte [clydeInitialized], 0
+    je .notInitialized
     mov al, [detectCollision]
     cmp al, 0
     je .no_collision  ; S'il n'y a pas de collision, ne rien faire
@@ -92,6 +105,13 @@ clyde_switch_direction:
     cmp byte [clydeStep], 4
     jne .end
     mov byte [clydeStep], 0
+    jmp .end
+
+.notInitialized:
+    mov byte [clydeInitialized], 1
+    mov ax, 4Dh
+    mov [actualCDirection], ax
+    call continue_movementC
 
 .end:
     ; Réinitialiser l'indicateur de collision après avoir géré le changement de direction
@@ -102,7 +122,8 @@ clyde_switch_direction:
     ret
 
 inky_switch_direction:
-    ; Vérifier s'il y a eu une collision
+    cmp byte [inkyInitialized], 0
+    je .notInitialized
     mov al, [detectCollision]
     cmp al, 0
     je .no_collision  ; S'il n'y a pas de collision, ne rien faire
@@ -140,6 +161,13 @@ inky_switch_direction:
     cmp byte [inkyStep], 4
     jne .end
     mov byte [inkyStep], 0
+    jmp .end
+
+.notInitialized:
+    mov byte [inkyInitialized], 1
+    mov ax, 4Dh
+    mov [actualIDirection], ax
+    call continue_movementI
 
 .end:
     ; Réinitialiser l'indicateur de collision après avoir géré le changement de direction
@@ -150,7 +178,8 @@ inky_switch_direction:
     ret
     
 pinky_switch_direction:
-    ; Vérifier s'il y a eu une collision
+    cmp byte [pinkyInitialized], 0
+    je .notInitialized
     mov al, [detectCollision]
     cmp al, 0
     je .no_collision  ; S'il n'y a pas de collision, ne rien faire
@@ -188,6 +217,13 @@ pinky_switch_direction:
     cmp byte [pinkyStep], 4
     jne .end
     mov byte [pinkyStep], 0
+    jmp .end
+
+.notInitialized:
+    mov byte [pinkyInitialized], 1
+    mov ax, 4Dh
+    mov [actualPDirection], ax
+    call continue_movementP
 
 .end:
     ; Réinitialiser l'indicateur de collision après avoir géré le changement de direction
