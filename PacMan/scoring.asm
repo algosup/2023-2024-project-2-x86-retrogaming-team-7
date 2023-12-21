@@ -17,8 +17,8 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
-pelletsNumbers db 186
-superPelletsNumbers db 4
+pelletsNumbers db 50
+superPelletsNumbers db 0
 
 yScorePos dw 0
 xScorePos dw 0

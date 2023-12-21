@@ -176,6 +176,77 @@ collisionSP:
      call superPelletUpdate
      call checkSuperPelletNumber
      ret
+
+
+;=================================================
+;          GHOSTS COLLISIONS
+;=================================================
+check_detection_pellets_rightBlinky:
+     ; Convert position to screen buffer index
+     mov ax, [xPosBlinky]
+     mov bx, [yPosBlinky]
+     add ax, SPRITEH
+     add bx, 3
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_rightGhost
+     call erase_pellet_rightGhost ; Effacer le pellet et compter les points
+     jmp collisionPGhost
+no_collisionP_rightGhost:
+     ret
+
+erase_pellet_rightGhost:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     inc si
+     mov es:[si], al ; Effacer le pixel suivant
+     add si, 319
+     mov es:[si], al
+     inc si
+     mov es:[si], al ; Effacer le pixel actuel
+     ret
+
+check_detection_pellets_leftBlinky:
+     ; Convert position to screen buffer index
+     mov ax, [xPosBlinky]
+     mov bx, [yPosBlinky]
+     add bx, 3
+     imul bx, SCREEN_WIDTH
+     add bx, ax
+     mov si, bx
+     mov ax, 0A000h
+     mov es, ax
+     mov al, es:[si]
+     cmp al, 0x42
+     jne no_collisionP_leftBlinky
+     call erase_pellet_leftBlinky ; Effacer le pellet et compter les points
+     jmp collisionPGhost
+no_collisionP_leftBlinky:
+     ret
+
+erase_pellet_leftBlinky:
+     ; Effacer le pellet de la carte
+     mov al, 0 ; Couleur d'arrière-plan
+     mov es:[si], al ; Effacer le pixel actuel
+     dec si
+     mov es:[si], al ; Effacer le pixel suivant
+     add si, 321
+     mov es:[si], al
+     dec si
+     mov es:[si], al ; Effacer le pixel actuel
+     ret
+
+collisionPGhost:
+     dec word [pelletsNumbers]
+     call pelletsPoints
+     call checkPelletNumber
+     ret
 ;=================================================
 ;             SUPER PELLETS COLLISIONS
 ;=================================================
@@ -2021,6 +2092,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_1
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_1:
           mov ax, [xPosBlinky]
@@ -2030,6 +2103,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_2
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_2:
           mov ax, [xPosBlinky]
@@ -2039,6 +2114,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_3
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_3:
           mov ax, [xPosBlinky]
@@ -2048,6 +2125,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_4
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret 
      .check_right_touch_blinky_4:
           mov ax, [xPosBlinky]
@@ -2057,6 +2136,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_5
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_5: 
           mov ax, [xPosBlinky]
@@ -2066,6 +2147,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_6
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_6:
           mov ax, [xPosBlinky]
@@ -2075,6 +2158,8 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_7
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      .check_right_touch_blinky_7:
           mov ax, [xPosBlinky]
@@ -2084,12 +2169,16 @@ check_right_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_right_touch_blinky_over
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret
      
      .check_right_touch_blinky_over:
           mov bx, [xPosBlinky]
           add bx, 1
           mov [xPosBlinky], bx
+          call check_detection_pellets_rightBlinky
+          call check_detection_SuperPellets_right
           ret  
      
 check_left_touch_blinky:
@@ -2099,6 +2188,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_1
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_1:
           mov ax, [xPosBlinky]
@@ -2107,6 +2198,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_2
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_2:
           mov ax, [xPosBlinky]
@@ -2115,6 +2208,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_3
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_3:
           mov ax, [xPosBlinky]
@@ -2123,6 +2218,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_4
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
 
      .check_left_touch_blinky_4:
@@ -2132,6 +2229,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_5
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_5:
           mov ax, [xPosBlinky]
@@ -2140,6 +2239,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_6
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_6:
           mov ax, [xPosBlinky]
@@ -2148,6 +2249,8 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_7
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      .check_left_touch_blinky_7:
           mov ax, [xPosBlinky]
@@ -2156,12 +2259,16 @@ check_left_touch_blinky:
           call check_detection_pacman
           cmp byte [detectCollision], 0
           je .check_left_touch_blinky_over
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
      
      .check_left_touch_blinky_over:
           mov bx, [xPosBlinky]
           sub bx, 1
           mov [xPosBlinky], bx
+          call check_detection_pellets_leftBlinky
+          call check_detection_SuperPellets_left
           ret
 check_up_touch_blinky:
      .check_up_touch_blinky_0:

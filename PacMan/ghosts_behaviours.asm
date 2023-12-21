@@ -190,19 +190,15 @@ pinky_switch_direction:
 
 .go_right:
     mov ax, 4Dh
-    mov byte [pinkyStep], 1
     jmp .set_direction
 .go_up:
     mov ax, 48h
-    mov byte [pinkyStep], 2
     jmp .set_direction
 .go_left:
     mov ax, 4Bh
-    mov byte [pinkyStep], 3
     jmp .set_direction
 .go_down:   
     mov ax, 50h
-    mov byte [pinkyStep], 4
 
 .set_direction:
     mov [actualPDirection], ax
