@@ -172,7 +172,9 @@ collisionP:
      call checkPelletNumber
      ret
 collisionSP:
+     dec word [superPelletsNumbers]
      call superPelletUpdate
+     call checkSuperPelletNumber
      ret
 ;=================================================
 ;             SUPER PELLETS COLLISIONS

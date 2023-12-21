@@ -91,19 +91,19 @@ gameloop:
      
      call check_collision_ghost_Inky
      call check_collision_Touch_Inky
-     call inky_switch_direction 
+     ; call inky_switch_direction 
      call clearGhostI
      call draw_inky
 
      call check_collision_ghost_Clyde
      call check_collision_Touch_Clyde
-     call clyde_switch_direction
+     ; call clyde_switch_direction
      call clearGhostC
      call draw_clyde
 
      call check_collision_ghost_Pinky
      call check_collision_Touch_Pinky
-     call pinky_switch_direction
+     ; call pinky_switch_direction
      call clearGhostP
      call draw_pinky
 

@@ -17,7 +17,8 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
-pelletsNumbers db 10
+pelletsNumbers db 186
+superPelletsNumbers db 4
 
 yScorePos dw 0
 xScorePos dw 0
@@ -187,8 +188,23 @@ superPelletUpdate:
 
 checkPelletNumber:
     cmp byte [pelletsNumbers], 0
-    je resetMapPellet
+    je .firstCheckResetMapPellet
     jne .end
+    .firstCheckResetMapPellet:
+    cmp byte [superPelletsNumbers], 0
+    je resetMapPellet
+    ret
+    .end:
+    ret
+
+checkSuperPelletNumber:
+    cmp byte [superPelletsNumbers], 0
+    je .firstCheckResetMapSuperPellet
+    jne .end
+    .firstCheckResetMapSuperPellet:
+    cmp byte [pelletsNumbers], 0
+    je resetMapPellet
+    ret
     .end:
     ret
 
