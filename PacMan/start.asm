@@ -83,25 +83,27 @@ gameloop:
      call clearSprite
      call draw_sprite
      
-     ; call blinky_swith_direction
      call check_collision_ghost_Blinky
      call check_collision_Touch_Blinky
+     ; call blinky_switch_direction
      call clearGhostB
      call draw_blinky
      
      call check_collision_ghost_Inky
      call check_collision_Touch_Inky
-     call inky_switch_direction
+     call inky_switch_direction 
      call clearGhostI
      call draw_inky
 
      call check_collision_ghost_Clyde
      call check_collision_Touch_Clyde
+     call clyde_switch_direction
      call clearGhostC
      call draw_clyde
 
      call check_collision_ghost_Pinky
      call check_collision_Touch_Pinky
+     call pinky_switch_direction
      call clearGhostP
      call draw_pinky
 
@@ -110,7 +112,6 @@ gameloop:
      call check_collision_pacman
      call checkWaitingKeystroke
      call read_character_key_was_pressed
-     call ghosts_out_check
 
      mov cx, 64000
 

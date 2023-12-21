@@ -1,14 +1,14 @@
 section .data
 
-xPosBlinky dw 143
-xPosInky dw 152
-xPosClyde dw 161
-xPosPinky dw 170
+xPosBlinky dw 184
+xPosInky dw 128
+xPosClyde dw 184
+xPosPinky dw 128
 
-yPosBlinky dw 96
+yPosBlinky dw 80
 yPosInky dw 80
-yPosClyde dw 96
-yPosPinky dw 96
+yPosClyde dw 112
+yPosPinky dw 112
 
 xGVelocity dw 0
 
