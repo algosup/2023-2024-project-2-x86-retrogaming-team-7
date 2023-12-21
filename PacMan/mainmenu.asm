@@ -47,7 +47,7 @@ display_main_menu:
     ; Display Start Menu
     mov ah, 0x02        ; set cursor position
     mov bh, 0x00        ; page number
-    mov dh, 9          ; dh = row
+    mov dh, 10          ; dh = row
     mov dl, 38          ; dl = column
     int 0x10            ; set cursor position
     mov si, playChoice
@@ -56,7 +56,7 @@ display_main_menu:
     ; Display Settings Menu
     mov ah, 0x02        ; set cursor position
     mov bh, 0x00        ; page number
-    mov dh, 11           ; dh = row
+    mov dh, 12          ; dh = row
     mov dl, 38          ; dl = column
     int 0x10            ; set cursor position
     mov si, settingsChoice
@@ -65,7 +65,7 @@ display_main_menu:
     ; Display Exit Menu
     mov ah, 0x02        ; set cursor position
     mov bh, 0x00        ; page number
-    mov dh, 13          ; dh = row
+    mov dh, 14          ; dh = row
     mov dl, 38          ; dl = column
     int 0x10            ; set cursor position
     mov si, exitChoice
