@@ -83,15 +83,15 @@ gameloop:
      call clearSprite
      call draw_sprite
      
-     call blinky_swith_direction
+     ; call blinky_swith_direction
      call check_collision_ghost_Blinky
      call check_collision_Touch_Blinky
      call clearGhostB
      call draw_blinky
      
-     ; call inky_swith_direction
      call check_collision_ghost_Inky
      call check_collision_Touch_Inky
+     call inky_switch_direction
      call clearGhostI
      call draw_inky
 

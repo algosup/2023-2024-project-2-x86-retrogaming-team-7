@@ -6,7 +6,7 @@ xPosClyde dw 161
 xPosPinky dw 170
 
 yPosBlinky dw 96
-yPosInky dw 96
+yPosInky dw 80
 yPosClyde dw 96
 yPosPinky dw 96
 

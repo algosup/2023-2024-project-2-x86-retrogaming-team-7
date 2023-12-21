@@ -1,10 +1,10 @@
 section .data
 
 blinkyOut db 0
-inkyOut db 0
+inkyOut db 1
 clydeOut db 0
 pinkyOut db 0
-
+inkyStep db 0
 
 
 ghosts_out_check:
@@ -335,25 +335,53 @@ blinky_swith_direction:
         call randomizer_direction_blinky
         ret
 
-inky_swith_direction:
-    mov al, [inkyOut]
-    cmp al, 1
-    je .valid_check
+inky_switch_direction:
+    ; Vérifier s'il y a eu une collision
+    mov al, [detectCollision]
+    cmp al, 0
+    je .no_collision  ; S'il n'y a pas de collision, ne rien faire
+
+    ; Gérer le changement de direction en fonction de l'étape actuelle
+    cmp byte [inkyStep], 0
+    je .go_right
+    cmp byte [inkyStep], 1
+    je .go_up
+    cmp byte [inkyStep], 2
+    je .go_left
+    cmp byte [inkyStep], 3
+    je .go_down
+
+.go_right:
+    mov ax, 4Dh
+    mov byte [inkyStep], 1
+    jmp .set_direction
+.go_up:
+    mov ax, 48h
+    mov byte [inkyStep], 2
+    jmp .set_direction
+.go_left:
+    mov ax, 4Bh
+    mov byte [inkyStep], 3
+    jmp .set_direction
+.go_down:
+    mov ax, 50h
+    mov byte [inkyStep], 4
+
+.set_direction:
+    mov [actualIDirection], ax
+    call continue_movementI
+    ; Incrémenter blinkyStep et le réinitialiser si nécessaire
+    cmp byte [inkyStep], 4
+    jne .end
+    mov byte [inkyStep], 0
+
+.end:
+    ; Réinitialiser l'indicateur de collision après avoir géré le changement de direction
+    mov byte [detectCollision], 0
     ret
-    .valid_check:
-        mov ah, [xPosInky]
-        and ah, 8
-        cmp ah, 8
-        je .confirm
-        ret
-    .valid_check2:
-        mov ah, [yPosInky]
-        and ah, 8
-        cmp ah, 8
-        je .confirm
-        ret
-    .confirm:
-        call randomizer_direction_inky
-        ret
+
+.no_collision:
+    ret
+
 clyde_swith_direction:
 pinky_swith_direction:
