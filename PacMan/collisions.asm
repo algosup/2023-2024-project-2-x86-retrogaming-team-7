@@ -49,7 +49,7 @@ check_detection_pellets_right:
      mov ax, [xPos]
      mov bx, [yPos]
      add ax, SPRITEH
-     add bx, 4
+     add bx, 3
      imul bx, SCREEN_WIDTH
      add bx, ax
      mov si, bx
@@ -69,16 +69,17 @@ erase_pellet_right:
      mov es:[si], al ; Effacer le pixel actuel
      inc si
      mov es:[si], al ; Effacer le pixel suivant
-     sub si, 320
+     add si, 319
      mov es:[si], al
+     inc si
+     mov es:[si], al ; Effacer le pixel actuel
      ret
 
 check_detection_pellets_left:
      ; Convert position to screen buffer index
      mov ax, [xPos]
      mov bx, [yPos]
-     sub ax, 1
-     add bx, 4
+     add bx, 3
      imul bx, SCREEN_WIDTH
      add bx, ax
      mov si, bx
@@ -97,17 +98,18 @@ erase_pellet_left:
      mov al, 0 ; Couleur d'arrière-plan
      mov es:[si], al ; Effacer le pixel actuel
      dec si
-     mov es:[si], al ; Effacer le pixel précédent
-     sub si, 320
+     mov es:[si], al ; Effacer le pixel suivant
+     add si, 321
      mov es:[si], al
+     dec si
+     mov es:[si], al ; Effacer le pixel actuel
      ret
 
 check_detection_pellets_up:
      ; Convert position to screen buffer index
      mov ax, [xPos]
      mov bx, [yPos]
-     add ax, 4
-     sub bx, 1
+     add ax, 3
      imul bx, SCREEN_WIDTH
      add bx, ax
      mov si, bx
@@ -125,17 +127,19 @@ erase_pellet_up:
      ; Effacer le pellet de la carte
      mov al, 0 ; Couleur d'arrière-plan
      mov es:[si], al ; Effacer le pixel actuel
-     sub si, SCREEN_WIDTH
-     mov es:[si], al ; Effacer le pixel au-dessus
-     sub si, 1
-     mov es:[si], al
+     inc si
+     mov es:[si], al ; Effacer le pixel actuel
+     sub si, 320
+     mov es:[si], al ; Effacer le pixel actuel
+     dec si
+     mov es:[si], al ; Effacer le pixel actuel
      ret
 
 check_detection_pellets_down:
      ; Convert position to screen buffer index
      mov ax, [xPos]
      mov bx, [yPos]
-     add ax, 4
+     add ax, 3
      add bx, SPRITEH
      imul bx, SCREEN_WIDTH
      add bx, ax
@@ -154,10 +158,12 @@ erase_pellet_down:
      ; Effacer le pellet de la carte
      mov al, 0 ; Couleur d'arrière-plan
      mov es:[si], al ; Effacer le pixel actuel
-     add si, SCREEN_WIDTH
+     inc si
      mov es:[si], al ; Effacer le pixel en dessous
-     sub si, 1
+     add si, 319
      mov es:[si], al
+     inc si
+     mov es:[si], al   ;STOP HERE
      ret
 
 collisionP:
