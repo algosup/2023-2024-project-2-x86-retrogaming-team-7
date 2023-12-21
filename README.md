@@ -34,3 +34,19 @@ The project comprises several stages. Using the Trello project management tool, 
 | December 8th, 2023  | Test plan                |
 | December 11th, 2023 | Working prototype        |
 | December 21th, 2023 | Final product            |
+
+### Steps to download
+
+1. Download DOSBox, and Install it <br>
+   **https://www.dosbox.com/download.php?main=1**
+2. Download the `GameTeam7.com` in **bin**
+3. Launch DOSBox <br> Write in the DOSBox terminal :
+* ``mount C "PUT_YOUR_DIRECTORY_HERE"``
+* ``C:``
+* ``GameTeam7.com``
+Enjoy the game :P
+
+### Credits/Copyright
+This game is a fanmade project and is not endorsed by, directly affiliated with, or officially connected to Namco or Bandai Namco Entertainment.
+- Pac-Man and related characters are registered trademarks and copyrighted material owned by Namco/Bandai Namco Entertainment.
+- This fan game is distributed for non-commercial purposes only.
