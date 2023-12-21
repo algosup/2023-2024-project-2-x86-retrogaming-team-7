@@ -17,8 +17,8 @@ scoreFourRecord dw 0
 scoreThreeRecord dw 0
 scoreTwoRecord dw 0
 scoreOneRecord dw 0
-pelletsNumbers db 50
-superPelletsNumbers db 0
+pelletsNumbers db 192
+superPelletsNumbers db 4
 
 yScorePos dw 0
 xScorePos dw 0
@@ -1185,10 +1185,10 @@ displayEndScore:
     call scoringDraw
     ret
 resetMapPellet:
+    call clearScreen
     mov byte [pelletsNumbers], 10
     mov word [actualKeystroke], 0
     mov word [waitingKeystroke], 0
-    call clearScreen
     call displayEndScore
     call drawNumbersGG
     ret

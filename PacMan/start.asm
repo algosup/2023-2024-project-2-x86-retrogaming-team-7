@@ -44,11 +44,11 @@ mazeSprite      db  0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 2, 2, 2, 2, 2, 2, 2, 2, 
                 db 14,54,27,28,29,54,39,54,27,28,32,33,28,29,54,39,54,27,28,29,54,15
                 db 14,54,54,54,54,54,40,54,54,54,46,47,54,54,54,40,54,54,54,54,54,15
                 db 12, 3, 3, 3, 6,54, 4,28,29,54,44,45,54,27,28,16,54, 7, 3, 3, 3,13
-                db 49,49,49,49,14,54,40,49,49,49,49,49,49,49,49,40,54,15,49,49,49,49
+                db 49,49,49,49,14,54,40,49,54,54,54,54,54,54,49,40,54,15,49,49,49,49
                 db  2, 2, 2, 2,18,54,41,54, 9,10,34,35,10,11,54,41,54,17, 2, 2, 2, 2
                 db 49,49,49,49,49,54,54,54,51,49,49,49,49,50,54,54,54,49,49,49,49,49
                 db  3, 3, 3, 3, 6,54,39,54,21,22,22,22,22,23,54,39,54, 5, 3, 3, 3, 3
-                db 49,49,49,49,14,54,40,54,54,54,54,54,54,54,54,40,54,15,49,49,49,49
+                db 49,49,49,49,14,54,40,49,54,54,54,54,54,54,49,40,54,15,49,49,49,49
                 db  0, 2, 2, 2,18,54,41,54,27,28,32,33,28,29,54,41,54,17, 2, 2, 2, 1
                 db 14,54,54,54,54,54,54,54,54,54,46,47,54,54,54,54,54,54,54,54,54,15
                 db 14,54,27,28,31,54,27,28,29,54,44,45,54,27,28,29,54,30,28,29,54,15
@@ -91,19 +91,19 @@ gameloop:
      
      call check_collision_ghost_Inky
      call check_collision_Touch_Inky
-     ; call inky_switch_direction 
+     call inky_switch_direction 
      call clearGhostI
      call draw_inky
 
      call check_collision_ghost_Clyde
      call check_collision_Touch_Clyde
-     ; call clyde_switch_direction
+     call clyde_switch_direction
      call clearGhostC
      call draw_clyde
 
      call check_collision_ghost_Pinky
      call check_collision_Touch_Pinky
-     ; call pinky_switch_direction
+     call pinky_switch_direction
      call clearGhostP
      call draw_pinky
 
@@ -193,7 +193,7 @@ check_number_lives:
      je .deathf
      jne .return
      .deathf:
-          call death
+          call displayEndScore
           ret
      .return:
           call check_lives
