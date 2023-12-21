@@ -16,39 +16,40 @@ blinky_switch_direction:
     cmp al, 0
     je .no_collision  ; S'il n'y a pas de collision, ne rien faire
 
-    ; Gérer le changement de direction en fonction de l'étape actuelle
-    cmp byte [blinkyStep], 0
-    je .go_left
-    cmp byte [blinkyStep], 1
+.try_direction:
+    ; Utiliser l'interruption 0x1A pour obtenir un nombre aléatoire
+    mov ah, 0x00
+    int 0x1A          ; AX contient maintenant une valeur aléatoire
+    and ax, 0x0003    ; AX = AX modulo 4
+
+    cmp  dx, 0
+    jbe .go_right
+    cmp  dx, 1
+    jbe .go_up
+    cmp  dx, 2
+    jbe .go_left
+    cmp  dx, 3
     je .go_down
-    cmp byte [blinkyStep], 2
-    je .go_right
-    cmp byte [blinkyStep], 3
-    je .go_up
 
 .go_right:
     mov ax, 4Dh
-    mov byte [blinkyStep], 1
+    mov byte [blinkyStep], 0
     jmp .set_direction
 .go_up:
     mov ax, 48h
-    mov byte [blinkyStep], 2
+    mov byte [blinkyStep], 1
     jmp .set_direction
 .go_left:
     mov ax, 4Bh
-    mov byte [blinkyStep], 3
+    mov byte [blinkyStep], 2
     jmp .set_direction
 .go_down:
     mov ax, 50h
-    mov byte [blinkyStep], 4
+    mov byte [blinkyStep], 3
 
 .set_direction:
     mov [actualBDirection], ax
     call continue_movementB
-    ; Incrémenter blinkyStep et le réinitialiser si nécessaire
-    cmp byte [blinkyStep], 4
-    jne .end
-    mov byte [blinkyStep], 0
     jmp .end
 
 .notInitialized:

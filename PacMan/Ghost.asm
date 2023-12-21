@@ -36,15 +36,15 @@ actualIDirection dw 0
 actualCDirection dw 0
 actualPDirection dw 0
 
-xPosSpawnBlinky dw 143
-xPosSpawnInky dw 152
-xPosSpawnClyde dw 161
-xPosSpawnPinky dw 170
+xPosSpawnBlinky dw 184
+xPosSpawnInky dw 128
+xPosSpawnClyde dw 184
+xPosSpawnPinky dw 128
 
-yPosSpawnBlinky dw 96
-yPosSpawnInky dw 96
-yPosSpawnClyde dw 96
-yPosSpawnPinky dw 96
+yPosSpawnBlinky dw 80
+yPosSpawnInky dw 80
+yPosSpawnClyde dw 112
+yPosSpawnPinky dw 112
 
 
 section .text
