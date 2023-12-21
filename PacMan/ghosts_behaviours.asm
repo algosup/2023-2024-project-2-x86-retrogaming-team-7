@@ -153,7 +153,7 @@ inky_switch_direction:
 
 .set_direction:
     mov [actualIDirection], ax
-    call continue_movementB
+    call continue_movementI
     jmp .end
 
 .notInitialized:
