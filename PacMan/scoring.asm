@@ -1188,7 +1188,7 @@ resetMapPellet:
     mov byte [pelletsNumbers], 10
     mov word [actualKeystroke], 0
     mov word [waitingKeystroke], 0
-    call display_lives
-    call SetSpawnPosition
-    call gameloop
+    call clearScreen
+    call displayEndScore
+    call drawNumbersGG
     ret
