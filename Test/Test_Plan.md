@@ -73,18 +73,18 @@ In this phase, the main goal is to see if every aspect before development is cor
 
 > |Category|Description|Status|Expected result|Actual result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Main menu|As the main menu is the first page that every user will land on, the tests are based on two main ideas, functionality and visuals.|**<span style="color:orange">Work in progress</span>**|The main menu should be fully functional with buttons that work, and the user can navigate on the screen with the keys.|Everything is controllable; however, the visual doesn't meet expectations.|Still, a lot of work has to be done.|30 min
+>Main menu|As the main menu is the first page that every user will land on, the tests are based on two main ideas, functionality and visuals.|**<span style="color:green">completed</span>**|The main menu should be fully functional with buttons that work, and the user can navigate on the screen with the keys.|Everything is controllable; however, the visual doesn't meet expectations.|Still, a lot of work has to be done.|30 min
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> |Process|Test number|Test|Description|Status|Expected result|Actual result|Comment|If issue, status|
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Main menu|1|Pull the code from GitHub and look if the main menu is functional and visually pleasing|Check if the main menu buttons are functional, lead to another page, and are controllable with the arrows of the keyboard|**<span style="color:orange">Work in progress</span>**|The main menu should be controllable and functional. In a general point of view, it is visually pleasing.|The main menu is controllable; it is possible to move around from one button to another with the arrows.|Incomplete due to the main menu being nothing but a screen with three buttons and not visually pleasing. Additionally, the buttons aren't functional; they do not lead to another page such as the game or the settings.|**<span style="color:orange">Work in progress</span>**
+>> Main menu|1|Pull the code from GitHub and look if the main menu is functional and visually pleasing|Check if the main menu buttons are functional, lead to another page, and are controllable with the arrows of the keyboard|**<span style="color:green">completed</span>**|The main menu should be controllable and functional. In a general point of view, it is visually pleasing.|The main menu is controllable; it is possible to move around from one button to another with the arrows.|Incomplete due to the main menu being nothing but a screen with three buttons and not visually pleasing. Additionally, the buttons aren't functional; they do not lead to another page such as the game or the settings.|**<span style="color:green">fixed</span>**
 >></details>
 
 > |Category|Description|Status|Expected result|Actual result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Settings menu|Check if the settings are fully functional and do what they are supposed to do—change settings such as keybinds, volume, etc.|**<span style="color:orange">Work in progress</span>**|All the settings are correct; the user can navigate and modify to their preferred settings.|Not completed yet|Work in progress.|N.A.
+>Settings menu|Check if the settings are fully functional and do what they are supposed to do—change settings such as keybinds, volume, etc.|**<span style="color:red">not completed</span>**|All the settings are correct; the user can navigate and modify to their preferred settings.|Not completed yet|not completed in time|N.A.
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
@@ -94,34 +94,36 @@ In this phase, the main goal is to see if every aspect before development is cor
 >></details>
 > |Category|Description|Status|Expected result|Actual result|Comment|Time|
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->Exit|A button should allow the user to exit the game; this button should be fully functional|**<span style="color:orange">Work in progress</span>**|When the button is pressed, it quits the game|...|...|N.A.
+>Exit|A button should allow the user to exit the game; this button should be fully functional|**<span style="color:green">completed</span>**|When the button is pressed, it quits the game|functional|functional|1 min
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | If issue, status |
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Exit menu | 1 | Click on the exit button | Check if it does the command it is supposed to do | Quits the game | ... | Work in progress | N.A.
+>> Exit menu | 1 | Click on the exit button | Check if it does the command it is supposed to do | Quits the game | functional | done | functional | N.A.
 >></details>
 
 > | Category | Description | Status | Expected result | Actual result | Comment | Time |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-> Scoring | Scoring will be displayed on the screen during the game, and the number of points should correspond to the actual points | **<span style="color:orange">Work in progress</span>** | Scoring evolves with each pellet, fruit, ghost ingested by Pac-Man | Work in progress | ... | N.A.
+> Scoring | Scoring will be displayed on the screen during the game, and the number of points should correspond to the actual points | **<span style="color:green">completed</span>** | Scoring evolves with each pellet, fruit, ghost ingested by Pac-Man | general point function works however not all the system points work like super pellets or fruits | not fully complete but main function works | 10 min
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | If issue, status |
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Score system | 1 | Check the sprites display number | Check for missing pixels or any color problems | **<span style="color:orange">Work in progress</span>** | No visible difference | ... | ... | N.A.
+>> Score system | 1 | Check the sprites display number | Check for missing pixels or any color problems | **<span style="color:green">completed</span>** | No visible difference | Sprite display correct | No comment | N.A.
+>> Score system | 2 | Count the number of points and compare with the displayed |check if the points are correct and corresponding to the points of the player.|**<span style="color:green">completed</span>**|The number of points corresponds| Some pellets can be eaten only half and 3 quaters| Super pellets don't give points...| Fixed
+>> score system |3| Check if the super pellets give out the number of points like expected | Verify if the super pellets gives the points just like it should give. | **<span style="color:orange">Work in progress</span>** | Functional and gives the right amount of points | Is not functional at all it can be eaten by Pac-man but doesn't give any points | Not done. | **<span style="color:Red">Not completed</span>**
 >></details>
 > | Category | Description | Status | Expected result | Actual result | Comment | Time |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-> Maze | Ensure that the Maze is correct without any design flaws | The Maze should be correct, with all pixels where they are supposed to be, and the overall design should be visually pleasing | **<span style="color:orange">Work in progress</span>** | ... | ... | N.A.
+> Maze | Ensure that the Maze is correct without any design flaws, The Maze should be correct, with all pixels where they are supposed to be, and the overall design should be visually pleasing | **<span style="color:green">completed</span>** |there is no visual issues or collision issues with the maze| Done! | No comment|2 hours
 >><details>
 >> <summary>Unit tests of the development phase</summary>
 >>
 >> | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | If issue, status |
 >> |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->> Maze [^1] | 1 | First check on the visual of the Maze and verify if the design of the Maze is correct and that there are no flaws in the design | The Maze has to have no flaws to allow Pac-Man and the ghosts to move inside the intended spaces. Check that the Maze looks similar to the sketched design on Asprite | **<span style="color:red">Issue</span>** | Looks alike and visually pleasing | Some flaws in the design with some borders being inverted | Image shows the different design flaws | **<span style="color:orange">Work in progress</span>**
+>> Maze [^1] | 1 | First check on the visual of the Maze and verify if the design of the Maze is correct and that there are no flaws in the design | The Maze has to have no flaws to allow Pac-Man and the ghosts to move inside the intended spaces. Check that the Maze looks similar to the sketched design on Asprite | **<span style="color:red">Issue</span>** | Looks alike and visually pleasing | Some flaws in the design with some borders being inverted | Image shows the different design flaws | **<span style="color:green">Fixed</span>**
 >></details>
 
 ## Post Development (Final product)
@@ -130,75 +132,76 @@ The following tests will be made after that the final product is assembled togth
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Game test** | General check of playability & if the game respects all the criteria | **<span style="color:orange">Work in progress</span>** | The final expectation of the final product is that the game is fully functional and that the user experience is pleasant. The full experience of the game should flow without any technical issues | ... | ... | ... |
+>| **Game test** | General check of playability & if the game respects all the criteria | **<span style="color:Green">done</span>** | The final expectation of the final product is that the game is fully functional and that the user experience is pleasant. The full experience of the game should flow without any technical issues | The game playability is pretty fluid however some issues are being fixed | minor issues and bigs | 3 hours |
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
 >>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|--:|:--:|
->>  | Visual | 1 | Check the visual aspect of the final product, main menu, settings menu, game, etc. | Navigate throughout the game and look for design flaws | **<span style="color:orange">Work in progress</span>** | No visual problem with the sprites or any other visual aspect of the final product | ... | ... | ... |
->> Stress test (User experience) | 1 | The test consists of trying to overload the system with much information and look at the results | Selecting as many as functional buttons, continuously press on the select button... | **<span style="color:orange">Work in progress</span>** | Overall, the User experience should be flawless, and the user should not get bored or have to wait too long for a program to launch | ... | ... | ...
->> CPU and Processor stress test | 2 | The goal of this test is to test the limits of the CPU and its processor | Figure out a way to overload the system to result in a system failure | **<span style="color:orange">Work in progress</span>** | In the code, there should be no cracks for any system overload to happen, at least it should be prevented, and the user should not encounter any system failure | ... | ... | ...
+>>  | Visual | 1 | Check the visual aspect of the final product, main menu, settings menu, game, etc. | Navigate throughout the game and look for design flaws | **<span style="color:orange">Work in progress</span>** | No visual problem with the sprites or any other visual aspect of the final product | Main menu is not pretty but functional | Still waiting for a change on the visual of the main menu | 2 min |
+>> Stress test (User experience) | 1 | The test consists of trying to overload the system with much information and look at the results | Selecting as many as functional buttons, continuously press on the select button... | **<span style="color:green">completed</span>** | Overall, the User experience should be flawless, and the user should not get bored or have to wait too long for a program to launch | Waiting time is very fast and not system overloads | Very functional very well done | 5 min
+>> CPU and Processor stress test | 2 | The goal of this test is to test the limits of the CPU and its processor | Figure out a way to overload the system to result in a system failure | **<span style="color:green">completed</span>** | In the code, there should be no cracks for any system overload to happen, at least it should be prevented, and the user should not encounter any system failure | Overall fluid and overall experience is enjoyable without any bugs or CPU overload | Good | 5 min
 >></details>
 >---
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Controlability** | Check if the buttons from the instructions work correctly, if all buttons correspond to what it is supposedly controlling | **<span style="color:orange">Work in progress</span>** | All controllable aspects of the final product should be functional | ... | ... | ...
+>| **Controlability** | Check if the buttons from the instructions work correctly, if all buttons correspond to what it is supposedly controlling | **<span style="color:green">completed</span>** | All controllable aspects of the final product should be functional | every aspect is covered as functional | No comment | 2 hours
 >><details>
 >>  <summary>Unit tasks of controllability</summary>
 >>  
 >>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>  | Pac-Man | 1 | Press left | When the game launched, press the left arrow button | **<span style="color:orange">Work in progress</span>** | Pac-man should turn left with a sprite change with animation | ... | ... | ...
->>  | Pac-Man | 2 | Press right | When the game launched, press the right arrow button | **<span style="color:orange">Work in progress</span>** | Pac-man should turn right with a sprite change with animation | ... | ... | ...
->>  | Pac-Man | 3 | Press up | When the game launched, press the up arrow button | **<span style="color:orange">Work in progress</span>** | Pac-man should turn upwards with a sprite change with animation | ... | ... | ...
->>  | Pac-Man | 4 | Press down | When the game launched, press the down arrow button | **<span style="color:orange">Work in progress</span>** | Pac-man should turn downwards with a sprite change with animation | ... | ... | ...
->> Pac-Man | 5 | Press at the same time left and right keys | During the gameplay, press the left and right arrow simultaneously | **<span style="color:orange">Work in progress</span>** | No difference, or only one direction will be selected | ... | ... | ...
->> Navigation | 1 | Press down | In the main menu and other menus press the down button | **<span style="color:orange">Work in progress</span>** | The possibility to select a button changes to the one under or scrolls to the top one | ... | ... | ...
->> Navigation | 2 | Press up | In the main menu and other menus press the up button | **<span style="color:orange">Work in progress</span>** | The possibility to select a button changes to the one on top or scrolls to the bottom one | ... | ... | ...
->> Navigation | 3 | Press enter | In the main menu and other screens (settings menu etc.) menu press enter button | **<span style="color:orange">Work in progress</span>** | Will allow the user to select the button that was selected | ... | ... | ...
->> Navigation stressed | 4 | Press at the same time left and right | In the main menu press the left and right arrow simultaneously | **<span style="color:orange">Work in progress</span>** | No difference, or only one direction will be selected | ... | ... | ...
->> Navigation stressed | 5 | Press at the same time up and down keys | In the main menu and other screens (settings menu etc.) press at the same time up and down button and observe the results | **<span style="color:orange">Work in progress</span>** |...
->>Navigation Stressed|6|Press an arrow key followed rapidly with the enter button| In main menu and other screens (settings menu etc) press and arrow key followed rapidly with the enter key and obeserve the results.|**<span style = color:Orange>Work in progress</span>**|The program should be able to follow the desires of the user and should be able to follow the speed of decision of the User.|...|...|...
->> Navigation double press|7|Double press a key for instance arrows|In main menu double press the arrow keys and observe the results.|**<span style = color:Orange>Work in progress</span>**|There should be no particular errors in this test, the selction should be able to follow what the user wants to select.|...|...|...
->>  Navigation double press|8|Double press a key for instance enter|In main menu double pess the enter button and observe the results|**<span style = color:Orange>Work in progress</span>**|There should be no particular errors in this test the selected button should be applied without any technical dificulties. |...|...|...
+>>  | Pac-Man | 1 | Press left | When the game launched, press the left arrow button | **<span style="color:green">Completed</span>** | Pac-man should turn left with a sprite change with animation | turns left | good | 1 min
+>>  | Pac-Man | 2 | Press right | When the game launched, press the right arrow button | **<span style="color:green">completed</span>** | Pac-man should turn right with a sprite change with animation | turns right | good | 1 min
+>>  | Pac-Man | 3 | Press up | When the game launched, press the up arrow button | **<span style="color:green">completed</span>** | Pac-man should turn upwards with a sprite change with animation | Turns upward | good | 1 min
+>>  | Pac-Man | 4 | Press down | When the game launched, press the down arrow button | **<span style="color:green">completed</span>** | Pac-man should turn downwards with a sprite change with animation | Goes down | Good | 1 min
+>> Pac-Man | 5 | Press at the same time left and right keys | During the gameplay, press the left and right arrow simultaneously | **<span style="color:green">completed</span>** | No difference, or only one direction will be selected | Works well | done | 1 min
+>> Navigation | 1 | Press down | In the main menu and other menus press the down button | **<span style="color:green">completed</span>** | The possibility to select a button changes to the one under or scrolls to the top one | works | no comment | 1 min
+>> Navigation | 2 | Press up | In the main menu and other menus press the up button | **<span style="color:green">Completed</span>** | The possibility to select a button changes to the one on top or scrolls to the bottom one | done | done | 1 min
+>> Navigation | 3 | Press enter | In the main menu and other screens (settings menu etc.) menu press enter button | **<span style="color:green">completed</span>** | Will allow the user to select the button that was selected | Functional | Done | 2 min
+>> Navigation stressed | 4 | Press at the same time left and right | In the main menu press the left and right arrow simultaneously | **<span style="color:green">completed</span>** | No difference, or only one direction will be selected | Passed the test | good | 2 min
+>> Navigation stressed | 5 | Press at the same time up and down keys | In the main menu and other screens (settings menu etc.) press at the same time up and down button and observe the results | **<span style="color:Green">Completed</span>** |No any difference the disired direction|passed the test| Good | 2 min
+>>Navigation Stressed|6|Press an arrow key followed rapidly with the enter button| In main menu and other screens (settings menu etc) press and arrow key followed rapidly with the enter key and obeserve the results.|**<span style = color:green>Completed</span>**|The program should be able to follow the desires of the user and should be able to follow the speed of decision of the User.|All functional and experience is flawless|Good|5 min
+>> Navigation double press|7|Double press a key for instance arrows|In main menu double press the arrow keys and observe the results.|**<span style = color:Green>Completed</span>**|There should be no particular errors in this test, the selction should be able to follow what the user wants to select.|No particular errors|Good|5 min
+>>  Navigation double press|8|Double press a key for instance enter|In main menu double pess the enter button and observe the results|**<span style = color:green>WCompleted</span>**|There should be no particular errors in this test the selected button should be applied without any technical dificulties. |No issue|good|3 min
 >></details>
 >---
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Loading** | Verify if the loading works | **<span style="color:orange">Work in progress</span>** | Loading time not too long | ... | ... | ... |
+>| **Loading** | Verify if the loading works | **<span style="color:green">completed</span>** | Loading time not too long | ... | ... | ... |
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
 >>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>  | Loading animation | 1 | Time the loading time to launch the game | Loading time not too long | **<span style="color:orange">Work in progress</span>** | ... | ... | ... |
+>>  | Loading animation | 1 | Time the loading time to launch the game | Loading time not too long | **<span style="color:green">Wcompleted</span>** | Loading time is not be too long| good works | no comment | 1 min
 >></details>
 >---
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Effects** | Display of the pac-man opening and closing | | Animations of the ghost and pac-man should be in the maze and not affecting the map except the points | | | |
+>| **Effects** | Display of the pac-man opening and closing | | Animations of the ghost and pac-man should be in the maze and not affecting the map except the points | **<span style="color:blue">Abandonned</span>** | ...| ...|....
 >><details>
 >>  <summary>Unit tasks of game test</summary>
 >>  
 >>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
 >>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 >>  | | | | | | | | |
+>>  |Effects|1|Verify if the effect vulnability of ghosts are functional and gives the right amount of points|Meets the description|**<span style="color:blue">abandonned</span>**|Abandonned|...|...|...
 >></details>
 >---
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Visual** | Verify if the visual is generally clear and pleasing | | Animations of the ghost and pac-man should be in the maze and not affecting the map except the points | | | |
+>| **Visual** | Verify if the visual is generally clear and pleasing | **<span style="color:green">completed</span>**| Animations of the ghost and pac-man should be in the maze and not affecting the map except the points | Visual of the game is pleasing |apart from main menu the visuals of the game is pleasing | 1min |
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
 >>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>  | Verify if the classic pac-man is recognizable | Test number | Test | Description | Status | Expected result | Actual result | Comment | ... |
->>  | Map should be in the limits of the screen | Test number | Test | Description | Status | Expected result | Actual result | Comment | ... |
+>>  |:--:|:--:|:--:|:--:|:-:|:--:|:--:|:--:|:--:|
+>>  | Verify if the classic pac-man is recognizable | 1 | Compare the original pac man image and the one in the game | Compare side to side | **<span style="color:green">completed</span>** | Looks good| looks alike | no comment | ... |
+>>  | Map should be in the limits of the screen | 1 | Compare the map with the original one | compare side to side | **<span style="color:green">completed</span>**|they look alike | looks the same! | no comment | ... |
 >></details>
 >---
 
@@ -217,7 +220,7 @@ The following tests will be made after that the final product is assembled togth
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Visual** | Verify if the visual is generally clear and pleasing || Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points ||||
+>| **Visual** | Verify if the visual is generally clear and pleasing |**<span style="color:green">completed</span>**| Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points |Looks good| no comment|5 min|
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
@@ -230,19 +233,11 @@ The following tests will be made after that the final product is assembled togth
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Content** | Content of the original game meaning 4 ghosts, Pac-Man, fruits, points super points ||||
->><details>
->>  <summary>Unit tasks of visual</summary>
->>  
->>  | Process | Test number | Test | Description | Status | Expected result | Actual result | Comment | Time spent |
->>  |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->>  | Level indicator is correct |||||||
->></details>
->---
+>| **Content** | Content of the original game meaning 4 ghosts, Pac-Man, fruits, points super points |**<span style="color:orange">Work in progress</span>**|Content of the original game|Not quite that| not complete...|...
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Features** | Verify if the classic Pac-Man is recognizable || Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points ||||
+>| **Features** | Verify if the classic Pac-Man is recognizable |**<span style="color:orange">Work in progress</span>**| Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points |collisions work but some features like vulnability of the ghosts are not done|No quite done|...|
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
@@ -254,7 +249,7 @@ The following tests will be made after that the final product is assembled togth
 
 >| Category | Description | Status | Expected result | Actual result | Comment | Time spent |
 >|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
->| **Buffers** | Verify if the classic Pac-Man is recognizable || Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points ||||
+>| **Buffers** | Verify if the classic Pac-Man is recognizable |**<span style="color:green">completed</span>**| Animations of the ghost and Pac-Man should be in the maze and not affecting the map except the points |Completed with tests in Movement section|no comment|...|
 >><details>
 >>  <summary>Unit tasks of visual</summary>
 >>  
